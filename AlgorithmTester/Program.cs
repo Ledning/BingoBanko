@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace AlgorithmTester
 {
+    //Use this project to test the input/output of the plate generation algorithm. 
     class Program
     {
         static void Main(string[] args)
         {
-        }
+        } 
     }
 }
