@@ -18,7 +18,8 @@ namespace RNDTEST
       pladeCount = (int)Convert.ToInt64(Console.ReadLine());
       for (int i = 0; i < pladeCount; i++)
       {
-        dkg.Generator(key + i);
+        int[,] firstIteration = dkg.Generator(key + i);
+        int[,] lastIteration = dkg.CardFixer420(firstIteration);
       }
       Console.ReadLine();
     }
