@@ -8,5 +8,28 @@ namespace BankoProject.Models
 {
   class BingoRow
   {
+    private int[] _row;
+
+    public BingoRow(int[] row)
+    {
+
+      _row = row;
+    }
+
+
+
+
+
+
+
+
+
+    public int[] Row
+    {
+      get
+      {
+        return _row;
+      }
+    }
   }
 }

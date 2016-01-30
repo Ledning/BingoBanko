@@ -8,5 +8,6 @@ namespace BankoProject.Models
 {
   class BingoCard
   {
+
   }
 }

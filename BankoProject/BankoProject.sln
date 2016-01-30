@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankoProject", "BankoProjec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmTester", "..\AlgorithmTester\AlgorithmTester.csproj", "{1CAE63C4-C55B-478D-A5AF-5D33117DF3AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plate-Printer", "..\Printer-Project\Plate-Printer.csproj", "{59197ABE-CCC9-450D-9C57-315BEEEAAB18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1CAE63C4-C55B-478D-A5AF-5D33117DF3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CAE63C4-C55B-478D-A5AF-5D33117DF3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CAE63C4-C55B-478D-A5AF-5D33117DF3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59197ABE-CCC9-450D-9C57-315BEEEAAB18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59197ABE-CCC9-450D-9C57-315BEEEAAB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59197ABE-CCC9-450D-9C57-315BEEEAAB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59197ABE-CCC9-450D-9C57-315BEEEAAB18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

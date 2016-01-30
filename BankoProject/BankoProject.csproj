@@ -69,8 +69,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\BingoCard.cs" />
+    <Compile Include="Models\BingoCard\BingoCard.cs" />
+    <Compile Include="Models\BingoCard\BingoColumn.cs" />
     <Compile Include="Models\BingoNumberBoard.cs" />
+    <Compile Include="Models\BingoCard\BingoRow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
