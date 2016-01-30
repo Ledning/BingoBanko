@@ -137,7 +137,7 @@ namespace RNDTEST
       for (int i = 0; i < 3; i++)
       {
         sortedRow.Add(nextIteration[i,chosenColumn]);
-        sortedRow.Sort();
+        sortedRow.Sort(); //skal ikke bare lægges ind, men på samme pladser som før
       }
 
       for (int i = 0; i < 3; i++)
