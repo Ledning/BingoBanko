@@ -137,7 +137,50 @@ namespace RNDTEST
       for (int i = 0; i < 3; i++)
       {
         sortedRow.Add(nextIteration[i,chosenColumn]);
-        sortedRow.Sort(); //skal ikke bare lægges ind, men på samme pladser som før
+        
+      }
+      int number1, number2, noNumber;
+
+      if (sortedRow[0] == 0)
+      {
+        noNumber = sortedRow[0];
+        number1 = sortedRow[1];
+        number2 = sortedRow[2];
+      }
+      else if (sortedRow[1] == 0)
+      {
+        number1 = sortedRow[0];
+        noNumber = sortedRow[1];
+        number2 = sortedRow[2];
+      }
+      else
+      {
+        number1 = sortedRow[0];
+        number2 = sortedRow[1];
+        noNumber = sortedRow[2];
+      }
+
+      if (number1 > number2)
+      {
+        int tempNumber = number1;
+        number1 = number2;
+        number2 = number1;
+
+        if (sortedRow[0] == 0)
+        {
+          sortedRow[1] = number1;
+          sortedRow[2] = number2;
+        }
+        else if (sortedRow[1] == 0)
+        {
+          sortedRow[0] = number1;
+          sortedRow[2] = number2;
+        }
+        else
+        {
+          sortedRow[0] = number1;
+          sortedRow[1] = number2;
+        }
       }
 
       for (int i = 0; i < 3; i++)
@@ -146,8 +189,6 @@ namespace RNDTEST
       }
 
       return nextIteration;
-      
-
     }
 
     public int[,] RemoveNumberFromRow(int[,] firstIteration, int currentRow, int key)
