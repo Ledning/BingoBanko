@@ -8,7 +8,7 @@ namespace RNDTEST
 {
   class dankclass420
   {
-    //key == kodeord + pladenummer
+    //key == kodeord + pladenummer     huehue
     //Array starting points n shit
     public  int[] FillColumn(int lowerBound, int upperBound, int key, int columnCount)
     {
