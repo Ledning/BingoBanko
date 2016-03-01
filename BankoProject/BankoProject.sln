@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankoProject", "BankoProject.csproj", "{D907E36B-1E87-478E-89B9-21A193FDC3BE}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plate-Printer", "..\Printer-Project\Plate-Printer.csproj", "{59197ABE-CCC9-450D-9C57-315BEEEAAB18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNDTEST", "..\RNDTEST\RNDTEST.csproj", "{53FEF30D-68E0-40E9-90BA-4B40BD855D06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoCardGenerator", "..\BingoCardGenerator\BingoCardGenerator.csproj", "{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{53FEF30D-68E0-40E9-90BA-4B40BD855D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53FEF30D-68E0-40E9-90BA-4B40BD855D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53FEF30D-68E0-40E9-90BA-4B40BD855D06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
