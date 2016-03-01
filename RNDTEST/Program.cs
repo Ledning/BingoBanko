@@ -19,7 +19,7 @@ namespace RNDTEST
       for (int i = 0; i < pladeCount; i++)
       {
         int[,] firstIteration = dkg.Generator(key + i);
-        int[,] lastIteration = dkg.CardFixer420(firstIteration);
+        int[,] lastIteration = dkg.CardFixer420(firstIteration, key);
       }
       Console.ReadLine();
     }
