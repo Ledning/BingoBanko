@@ -13,6 +13,10 @@ namespace AlgorithmTester
     {
       try
       {
+          if (str == "")
+          {
+              throw new ArgumentException("String was empty");
+          }
         char[] charArray;
         str = str.ToLower();
         long longChecker = 0;

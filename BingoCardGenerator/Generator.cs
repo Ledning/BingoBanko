@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlgorithmTester;
 using StarMathLib;
 
 namespace BingoCardGenerator
@@ -15,7 +17,7 @@ namespace BingoCardGenerator
         //Takes in the key, converts it to an int representation of the string, and stores it as a token to be reused by the algorithm.
         public Generator(string key)
         {
-           
+            GENERATIONTOKEN = key.MakeInt();
         }
 
         //Two versions, one for generating 1 card, and one for generating multiple cards.
@@ -32,6 +34,7 @@ namespace BingoCardGenerator
             for (int i = 0; i < amountOfCards; i++)
             {
                 int[,] Card;
+                GENERATIONTOKEN += i;
                 Card = GenerateUncleanedCard();
                 Card = CleanCard(Card);
                 Cards.Add(Card);
@@ -61,7 +64,7 @@ namespace BingoCardGenerator
 
         private int[,] GenerateUncleanedCard()
         {
-            int[,] Card = new int[cardColumns,cardRows];
+            int[,] card = new int[cardColumns,cardRows];
             
             try
             {
@@ -86,7 +89,7 @@ namespace BingoCardGenerator
                     }
                     for (int i = 0; i < cardRows; i++)
                     {
-                        Card[count, i] = column[i];
+                        card[count, i] = column[i];
                     }
                 }
             }
@@ -95,7 +98,7 @@ namespace BingoCardGenerator
                 Console.WriteLine("Array error most likely. Check boundary values");
                 Console.WriteLine(e.Message);
             }
-            return Card;
+            return card;
         }
         private int[] FillColumn(int lowerBound, int upperBound, int columnCount)
         {
@@ -198,7 +201,7 @@ namespace BingoCardGenerator
             //run through every row
             for (int i = 0; i < cardRows; i++)
             {
-                //used to count how many columns in a row has too many numbers
+                //used to count how many columns in a row has too many or too few numbers, it has to be excatly 5.
                 int columnCounter = 0;
                 //Actually count the amount of columns with numbers
                 for (int column = 0; column < 9; column++)
@@ -224,8 +227,37 @@ namespace BingoCardGenerator
 
         private int[,] RemoveNumberFromRow(int[,] Card, int rowToAlter)
         {
+            List<int> numberOfRowsInColumns = new List<int>();
+            List<int> usableRows = new List<int>();
+            Random randcolumnpicker = new Random(GENERATIONTOKEN);
 
+            for (int column = 0; column < 9; column++)
+            {
+                int numberOfRows = 0;
 
+                for (int row = 0; row < 3; row++)
+                {
+                    if (Card[row, column] != 0)
+                    {
+                        numberOfRows++;
+                        
+                    }
+                }
+                numberOfRowsInColumns[column] = numberOfRows;
+            }
+
+            for (int column = 0; column < 9; column++)
+            {
+                if (numberOfRowsInColumns[column] == 3)
+                {
+                    usableRows.Add(column);
+                }
+            }
+
+            int chosenColumn = usableRows[randcolumnpicker.Next(0, usableRows.Count)];
+            int[,] nextIteration = Card;
+
+            nextIteration[rowToAlter, chosenColumn] = 0;
 
             return Card;
         }

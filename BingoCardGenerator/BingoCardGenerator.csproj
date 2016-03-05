@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CardSetAnalysis.cs" />
     <Compile Include="Generator.cs" />
+    <Compile Include="MakeIntToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
