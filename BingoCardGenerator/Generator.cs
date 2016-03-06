@@ -94,13 +94,13 @@ namespace BingoCardGenerator
           }
           else if (count == 8)
           {
-            column = FillColumn(80, 91, count);
+            column = FillColumn(80, 90, count);
           }
           else
           {
             int lower, upper;
             lower = count*10;
-            upper = lower + 10;
+            upper = lower + 9;
             column = FillColumn(lower, upper, count);
           }
           for (int i = 0; i < cardRows; i++)

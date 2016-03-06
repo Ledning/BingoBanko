@@ -15,7 +15,7 @@ namespace AlgorithmTester
     static void Main(string[] args)
     {
       int amount = 1;
-      Generator gen = new Generator("jhg");
+      Generator gen = new Generator("123");
       var resultingcards = gen.GenerateCard(amount);
       foreach (var card in resultingcards)
       {
