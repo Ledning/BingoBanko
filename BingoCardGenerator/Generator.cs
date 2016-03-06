@@ -10,7 +10,7 @@ using StarMathLib;
 
 namespace BingoCardGenerator
 {
-  public class Generator
+  public class Generator : IGenerator
   {
     private Int32 GENERATIONTOKEN;
     private const int cardRows = 3, cardColumns = 9; //const bcs array stuff
@@ -25,14 +25,7 @@ namespace BingoCardGenerator
       GENERATIONTOKEN = key.MakeInt();
     }
 
-    //Two versions, one for generating 1 card, and one for generating multiple cards.
-    public int[,] GenerateCard()
-    {
-      int[,] Card;
-      Card = GenerateUncleanedCard();
-      Card = CleanCard(Card);
-      return Card;
-    }
+    //Call this function with arbitrary number of amount to generate arbitrary amount of cards.
 
     public List<int[,]> GenerateCard(int amountOfCards)
     {

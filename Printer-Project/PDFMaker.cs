@@ -1,12 +1,7 @@
-﻿using PdfSharp;
-using PdfSharp.Drawing;
-using PdfSharp.Drawing.Layout;
-using PdfSharp.Pdf;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 
 namespace Printer_Project
 {
@@ -14,7 +9,7 @@ namespace Printer_Project
   {
     public static void MakePDF(List<int[,]> cards)
     {
-      string imgSource = @"C:/Users/Mini-Gis/Desktop/plade.png";
+      string imgSource = @"C:/Users/Mini-Gis/Desktop/plade.png"; //THIS HAS TO BE FIXED TO BE RELATIVE
       string loc = imgSource.Replace("png", "pdf");
       PdfDocument doc = new PdfDocument();
 

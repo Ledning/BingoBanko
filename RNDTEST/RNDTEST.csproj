@@ -60,6 +60,14 @@
     <Content Include="StarMath.XML" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AlgorithmTester\AlgorithmTester.csproj">
+      <Project>{1cae63c4-c55b-478d-a5af-5d33117df3aa}</Project>
+      <Name>AlgorithmTester</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BankoProject\BankoProject.csproj">
+      <Project>{d907e36b-1e87-478e-89b9-21a193fdc3be}</Project>
+      <Name>BankoProject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BingoCardGenerator\BingoCardGenerator.csproj">
       <Project>{b8dc75dc-3400-4a30-a3a1-0af9b2866d89}</Project>
       <Name>BingoCardGenerator</Name>
