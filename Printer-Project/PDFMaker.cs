@@ -60,7 +60,11 @@ namespace Printer_Project
             {
               columnChooser += jumpX * l; //Hopper med en kolonne per iteration
 
-              xgr.DrawString(Convert.ToString(cards[i][column, row]), font, XBrushes.Black, l, k);
+              if (cards[i][column,row] != 0)
+              {
+                xgr.DrawString(Convert.ToString(cards[i][column, row]), font, XBrushes.Black, l, k);
+              }
+              
             }
           }
         }        
