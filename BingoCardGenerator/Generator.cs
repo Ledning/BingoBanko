@@ -128,7 +128,6 @@ namespace BingoCardGenerator
       Random rndContent = new Random(GENERATIONTOKEN);
 
       int filledRows = rndColumn.Next(1, 4);
-      ; //the amount of slots to be filled
 
       for (int count = 0; count < filledRows; count++)
       {
@@ -139,10 +138,7 @@ namespace BingoCardGenerator
         }
         else
         {
-          if (count <= 0) // wat?
-          {
-            count--;
-          }
+          count--;
         }
 
       }
@@ -378,10 +374,18 @@ namespace BingoCardGenerator
       if (chosenColumn == 0)
       {
         addedNumber = randNumberMade.Next(1, 10);
+        while (Card.ContainsValue(addedNumber))
+        {
+          addedNumber = randNumberMade.Next(1, 10);
+        }
       }
       else if (chosenColumn == 8)
       {
         addedNumber = randNumberMade.Next(80, 91);
+        while (Card.ContainsValue(addedNumber))
+        {
+          addedNumber = randNumberMade.Next(80, 91);
+        }
       }
       else
       {
@@ -389,6 +393,10 @@ namespace BingoCardGenerator
         lower = chosenColumn*10;
         upper = lower + 10;
         addedNumber = randNumberMade.Next(lower, upper);
+        while (Card.ContainsValue(addedNumber))
+        {
+          addedNumber = randNumberMade.Next(lower, upper);
+        }
       }
 
       int[,] CleanedCard = Card;

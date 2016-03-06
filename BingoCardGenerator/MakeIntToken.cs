@@ -22,6 +22,22 @@ namespace AlgorithmTester
       return Card;
     }
 
+    public static bool ContainsValue(this int[,] Card, int compareValue)
+    {
+      int cardRows = Card.GetLength(1);
+      int cardColumns = Card.GetLength(0);
+      for (int i = 0; i < cardRows; i++)
+      {
+        for (int j = 0; j < cardColumns; j++)
+        {
+          if (Card[j,i] == compareValue)
+          {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
     public static bool IsValidCard(this int[,] Card)
     {
       int cardRows = Card.GetLength(1);
