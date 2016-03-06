@@ -9,22 +9,27 @@ using BingoCardGenerator;
 
 namespace AlgorithmTester
 {
-    //Use this project to test the input/output of the plate generation algorithm. 
-    class Program
+  //Use this project to test the input/output of the plate generation algorithm. 
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+      Generator gen = new Generator("420blazeitfgbdsffdsfdst");
+      var resultingcards = gen.GenerateCard(500);
+      foreach (var card in resultingcards)
+      {
+        for (int i = 0; i < 3; i++)
         {
-            Generator gen = new Generator("");
-            var resultingcard = gen.GenerateCard();
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    Console.Write(resultingcard[j, i] + "   ");
-                }
-                Console.WriteLine();
-            }
-            Console.ReadLine();
-        } 
+          for (int j = 0; j < 9; j++)
+          {
+            Console.Write(card[j, i] + "   ");
+          }
+          Console.WriteLine();
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+      }
+      Console.ReadLine();
     }
+  }
 }
