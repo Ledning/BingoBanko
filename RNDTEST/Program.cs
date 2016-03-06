@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlgorithmTester;
+using BingoCardGenerator;
+using Printer_Project;
+
 
 namespace RNDTEST
 {
@@ -10,17 +14,24 @@ namespace RNDTEST
   {
     static void Main(string[] args)
     {
-      int key, pladeCount;
-      dankgen dkg = new dankgen();
+      string key;
+      int pladeCount;
+      
       Console.WriteLine("enter key");
-      key = (int)Convert.ToInt64(Console.ReadLine());
+      key = Console.ReadLine();
       Console.WriteLine("enter antal plader");
-      pladeCount = (int)Convert.ToInt64(Console.ReadLine());
+      pladeCount = Convert.ToInt32(Console.ReadLine());
+
+      Generator gen = new Generator(key);
+
+      List<int[,]> cards = new List<int[,]>();
+
       for (int i = 0; i < pladeCount; i++)
       {
-        int[,] firstIteration = dkg.Generator(key + i);
-        int[,] lastIteration = dkg.CardFixer420(firstIteration, key);
+        cards.Add(gen.GenerateCard());
       }
+      PDFMaker.MakePDF(cards);
+      
       Console.ReadLine();
     }
 

@@ -1,5 +1,6 @@
 ﻿using PdfSharp;
 using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,12 @@ using System.Threading.Tasks;
 
 namespace Printer_Project
 {
-  class PDFMaker
+  public class PDFMaker
   {
-    void MakePDF(List<int[,]> cards)
+    public static void MakePDF(List<int[,]> cards)
     {
-      string imgSource = "";
+      string imgSource = @"C:/Users/Mini-Gis/Desktop/plade.png";
+      string loc = imgSource.Replace("png", "pdf");
       PdfDocument doc = new PdfDocument();
       PdfPage pdfPage = new PdfPage(); //Template for page
 
@@ -26,49 +28,53 @@ namespace Printer_Project
       pdfPage.TrimMargins.Left = 0;
 
       XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
-
+        
       #region PixelStuff
-      int startPlateY = 833;
-      int startX = 361;
-      int jumpX = 582-361;
-      int jumpY = 1073 - 833;
-      int jumpYPlate = 1631-833;
-      #endregion
+      int startPlateY = 280;
+      int startX = 118;
+      int jumpX = 191-118;
+      int jumpY = 357 - 280;
+      int jumpYPlate = 545-280;
+      #endregion 
 
 
       for (int i = 0; i < cards.Count; i++)
 			{
         doc.Pages.Add(pdfPage);
         XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[i]);
+        XTextFormatter tf = new XTextFormatter(xgr);
         XImage img = XImage.FromFile(imgSource);
+        
         xgr.DrawImage(img, 0, 0);
-        int row = 0;
-        int column = 0;
         int plateChooser = startPlateY;
         int rowChooser = plateChooser;
         int columnChooser = startX;
 
         for (int j = 0; j < 3; j++) //Pladenummer. Styrer y-akses startpunkt
         {
-          plateChooser += jumpYPlate * j; // hopper en plade per iteration
-
-          for (int k = 0; k < 3; k++) //rækkenummer. Placerer y-akseværdi
+          rowChooser = plateChooser;
+          for (int row = 0; row < 3; row++) //rækkenummer. Placerer y-akseværdi
           {
-            rowChooser += jumpY * k; //Hopper en række per iteration
-
-            for (int l = 0; l < 9; l++)
+            
+            for (int column = 0; column < 9; column++)
             {
-              columnChooser += jumpX * l; //Hopper med en kolonne per iteration
-
               if (cards[i][column,row] != 0)
               {
-                xgr.DrawString(Convert.ToString(cards[i][column, row]), font, XBrushes.Black, l, k);
+                xgr.DrawString(Convert.ToString(cards[i][column, row]), font, XBrushes.Black, new XRect(columnChooser, rowChooser, 10, 0), XStringFormats.TopLeft);
               }
-              
+
+              columnChooser += jumpX; //Hopper med en kolonne per iteration          
             }
+            columnChooser = startX;
+            rowChooser += jumpY; //Hopper en række per iteration
           }
+
+          plateChooser += jumpYPlate; // hopper en plade per iteration
         }        
       }
+
+      doc.Save(loc);
+      doc.Close();
     }    
   }
 }
