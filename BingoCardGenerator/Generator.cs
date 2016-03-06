@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 using AlgorithmTester;
 using StarMathLib;
 
@@ -13,6 +14,10 @@ namespace BingoCardGenerator
   {
     private Int32 GENERATIONTOKEN;
     private const int cardRows = 3, cardColumns = 9; //const bcs array stuff
+    public int DiscardedCards = 0;
+    public int originalAmount = 0;
+    public int totalAmountOfCardsGenerated = 0;
+    public int validCards = 0;
 
     //Takes in the key, converts it to an int representation of the string, and stores it as a token to be reused by the algorithm.
     public Generator(string key)
@@ -31,6 +36,7 @@ namespace BingoCardGenerator
 
     public List<int[,]> GenerateCard(int amountOfCards)
     {
+      originalAmount = amountOfCards;
       List<int[,]> Cards = new List<int[,]>();
       for (int i = 0; i < amountOfCards; i++)
       {
@@ -38,8 +44,17 @@ namespace BingoCardGenerator
         GENERATIONTOKEN += i;
         Card = GenerateUncleanedCard();
         Card = CleanCard(Card);
+        if (Card[0,0] == -1)
+        {
+          amountOfCards++;
+        }
+        else
+        {
+          validCards++;
+        }
         Cards.Add(Card);
       }
+      totalAmountOfCardsGenerated = amountOfCards;
       return Cards;
     }
 
@@ -203,6 +218,28 @@ namespace BingoCardGenerator
     //
     private int[,] ColumnRowFixer(int[,] Card)
     {
+      //this step is made to avoid edge cases where we have all numbers in one row or something similar.
+      int totalCount = 0;
+      for (int i = 0; i < cardRows; i++)
+      {
+        for (int j = 0; j < cardColumns; j++)
+        {
+          if (Card[j,i] != 0)
+          {
+            totalCount++;
+          }
+        }
+      }
+      if (totalCount < 10)
+      {
+        for (int i = totalCount; i <= 10 ; i++)
+        {
+          Random rndColumn = new Random(GENERATIONTOKEN + i);
+          AddNumberToRow(Card, rndColumn.Next(0, cardRows));
+        }
+      }
+
+
       //run through every row
       for (int i = 0; i < cardRows; i++)
       {
@@ -232,6 +269,12 @@ namespace BingoCardGenerator
             Card = RemoveNumberFromRow(Card, i);
           }
         }
+      }
+      if (!Card.IsValidCard())
+      {
+        Card = Card.DiscardCard();
+        DiscardedCards++;
+        return Card;
       }
       return Card;
     }
@@ -279,7 +322,9 @@ namespace BingoCardGenerator
       }
       else
       {
-        throw new ArgumentException("Something went very wrong. At the card cleaning part, removenumberfomrow part");
+        Card.DiscardCard();
+        DiscardedCards++;
+        return Card;
       }
       return Card;
     }
@@ -322,7 +367,9 @@ namespace BingoCardGenerator
       }
       else
       {
-        throw new ArgumentException("something went very wrong. addnumbertorow");
+        Card = Card.DiscardCard();
+        DiscardedCards++;
+        return Card;
       }
 
       int addedNumber = 0;

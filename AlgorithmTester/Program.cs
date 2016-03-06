@@ -14,8 +14,9 @@ namespace AlgorithmTester
   {
     static void Main(string[] args)
     {
-      Generator gen = new Generator("420blazeitfgbdsffdsfdst");
-      var resultingcards = gen.GenerateCard(500);
+      int amount = 1;
+      Generator gen = new Generator("jhg");
+      var resultingcards = gen.GenerateCard(amount);
       foreach (var card in resultingcards)
       {
         for (int i = 0; i < 3; i++)
@@ -29,6 +30,10 @@ namespace AlgorithmTester
         Console.WriteLine();
         Console.WriteLine();
       }
+      Console.WriteLine("This was supposed to produce " + gen.originalAmount + " cards.");
+      Console.WriteLine(gen.DiscardedCards + "Cards have been discarded.");
+      Console.WriteLine(gen.totalAmountOfCardsGenerated + "Cards have been generated.");
+      Console.WriteLine(gen.validCards + " valid cards have been generated.");
       Console.ReadLine();
     }
   }

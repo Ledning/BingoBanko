@@ -7,8 +7,42 @@ using System.Threading.Tasks;
 
 namespace AlgorithmTester
 {
-  public static class TokenExtentions
+  public static class AlgorithmExtentions
   {
+    public static int[,] DiscardCard(this int[,] Card)
+    {
+      for (int i = 0; i < Card.GetLength(0); i++)
+      {
+        for (int j = 0; j < Card.GetLength(1); j++)
+        {
+          Card[i, j] = 0;
+        }
+      }
+      Card[0, 0] = -1;
+      return Card;
+    }
+
+    public static bool IsValidCard(this int[,] Card)
+    {
+      int cardRows = Card.GetLength(1);
+      int cardColumns = Card.GetLength(0);
+      for (int i = 0; i < cardRows; i++)
+      {
+        int columnCounter = 0;
+        for (int j = 0; j < cardColumns; j++)
+        {
+          if (Card[j, i] != 0)
+          {
+            columnCounter++;
+          }
+        }
+        if (columnCounter != 5)
+        {
+          return false;
+        }
+      }
+      return true;
+    }
     public static int MakeInt(this String str)
     {
       try
