@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BankoProject.ViewModels"
              xmlns:catel="http://catel.codeplex.com"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             >
     <Grid>
             
     </Grid>
