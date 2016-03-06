@@ -30,11 +30,11 @@ namespace Printer_Project
       XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
         
       #region PixelStuff
-      int startPlateY = 280;
+      int startPlateY = Convert.ToInt32(pdfPage.Height) - 280;
       int startX = 118;
       int jumpX = 191-118;
-      int jumpY = 357 - 280;
-      int jumpYPlate = 545-280;
+      int jumpY = -(357 - 280);
+      int jumpYPlate = -(545-280);
       #endregion 
 
 
