@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
+using System.IO;
+using System.Resources;
+using System.Drawing;
 
 namespace Printer_Project
 {
@@ -9,8 +12,9 @@ namespace Printer_Project
   {
     public static void MakePDF(List<int[,]> cards)
     {
-      string imgSource = @"C:/Users/Mini-Gis/Desktop/plade.png"; //THIS HAS TO BE FIXED TO BE RELATIVE
-      string loc = imgSource.Replace("png", "pdf");
+      string imgName = @"bingo1.png";
+      string imgSource = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\", imgName);         
+      string saveLoc = imgSource.Replace("png", "pdf");
       PdfDocument doc = new PdfDocument();
 
       
@@ -26,9 +30,9 @@ namespace Printer_Project
       int jumpYPlate = 796;
       #endregion 
 
-
+      
       for (int i = 0; i < cards.Count; i++)
-			{
+	  {
         if (cards[i][0,0] != -1)
         {
           PdfPage page = new PdfPage(); //Template for page
@@ -81,7 +85,7 @@ namespace Printer_Project
         }         
       }
 
-      doc.Save(loc);
+      doc.Save(saveLoc);
       doc.Close();
     }    
   }
