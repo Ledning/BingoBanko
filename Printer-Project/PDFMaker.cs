@@ -19,20 +19,23 @@ namespace Printer_Project
 
       
       XImage img = XImage.FromFile(imgSource);
-      XFont font = new XFont("Verdana", 125, XFontStyle.BoldItalic);
+      XFont numberFont = new XFont("Verdana", 125, XFontStyle.BoldItalic);
+      XFont plateNumFont = new XFont("Verdana", 30, XFontStyle.Regular);
       XImage pdfSize = XImage.FromFile(imgSource); 
        
       #region PixelStuff
-      int startPlateY = /*Convert.ToInt32(pdfPage.Height) - */834;
+      int startPlateY = 834;
       int startX = 356;
       int jumpX = 222;
       int jumpY = 240;
       int jumpYPlate = 796;
+      int plateNumX = 45;
+      int plateNumY = 3300;
       #endregion 
 
       
       for (int i = 0; i < cards.Count; i++)
-	  {
+	    {
         if (cards[i][0,0] != -1)
         {
           PdfPage page = new PdfPage(); //Template for page
@@ -68,10 +71,10 @@ namespace Printer_Project
                 {
                   if (cards[i][column, row] < 10)
                   {
-                    xgr.DrawString(" " + Convert.ToString(cards[i][column, row]), font, XBrushes.Black, new XRect(columnChooser, rowChooser, 10, 0), XStringFormats.TopLeft);
+                    xgr.DrawString(" " + Convert.ToString(cards[i][column, row]), numberFont, XBrushes.Black, new XRect(columnChooser, rowChooser, 10, 0), XStringFormats.TopLeft);
                   }
                   else
-                    xgr.DrawString(Convert.ToString(cards[i][column, row]), font, XBrushes.Black, new XRect(columnChooser, rowChooser, 10, 0), XStringFormats.TopLeft);
+                    xgr.DrawString(Convert.ToString(cards[i][column, row]), numberFont, XBrushes.Black, new XRect(columnChooser, rowChooser, 10, 0), XStringFormats.TopLeft);
                 }
 
                 columnChooser += jumpX; //Hopper med en kolonne per iteration          
@@ -82,6 +85,8 @@ namespace Printer_Project
 
             plateChooser += jumpYPlate; // hopper en plade per iteration
           }
+
+          xgr.DrawString("Pladenummer: " + Convert.ToString(i), plateNumFont, XBrushes.Black, new XRect(plateNumX, plateNumY, 10, 0), XStringFormats.TopLeft);
         }         
       }
 
