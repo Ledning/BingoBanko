@@ -106,7 +106,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tools\Debugger.cs" />
+    <Compile Include="ViewModels\BigRedButtonViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
+    <Compile Include="Views\BigRedButtonView.xaml.cs">
+      <DependentUpon>BigRedButtonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ControlsScreenView.xaml.cs">
       <DependentUpon>ControlsScreenView.xaml</DependentUpon>
     </Compile>
@@ -146,7 +150,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <SplashScreen Include="Resources\teamrynkeby.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\bingo1.png" />
   </ItemGroup>
@@ -157,6 +163,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BigRedButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ControlsScreenView.xaml">
       <SubType>Designer</SubType>
@@ -169,6 +179,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Orchestra.Shell.MahApps.dll" />
+    <None Include="packages\Orchestra.Shell.MahApps.2.3.0\lib\net45\Orchestra.Shell.MahApps.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

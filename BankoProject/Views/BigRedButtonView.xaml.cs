@@ -12,18 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Catel;
-using Catel.MVVM.Views;
-using MahApps.Metro.Controls;
 
 namespace BankoProject.Views
 {
   /// <summary>
-  /// Interaction logic for MainWindowView.xaml
+  /// Interaction logic for BigRedButtonView.xaml
   /// </summary>
-  public partial class MainWindowView : MetroWindow
+  public partial class BigRedButtonView : UserControl
   {
-    public MainWindowView()
+    public BigRedButtonView()
     {
       InitializeComponent();
     }

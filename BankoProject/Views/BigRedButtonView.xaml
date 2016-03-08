@@ -1,0 +1,25 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:BankoProject.Views"
+             xmlns:cal="http://www.caliburnproject.org" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="BankoProject.Views.BigRedButtonView"
+             mc:Ignorable="d"
+             MaxHeight="600" MaxWidth="800"
+                
+             >
+    <Viewbox>
+        <DockPanel>
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <Button Margin="20,0" Background="#FFBF5050" Style="{DynamicResource MetroCircleButtonStyle}" Height="40" Width="40"/>
+                <Button Margin="0,0,20,0" Background="#FFBF5050" Style="{DynamicResource MetroCircleButtonStyle}"  Height="40" Width="40"/>
+                <Button Margin="0,0,20,0" Background="#FFBF5050" Style="{DynamicResource MetroCircleButtonStyle}"  Height="40" Width="40"/>
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">3:00</TextBlock>
+        </DockPanel>
+    </Viewbox>
+   
+</UserControl>
