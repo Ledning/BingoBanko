@@ -63,6 +63,7 @@
       <HintPath>packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Orc.Controls, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Orc.Controls.1.2.0\lib\net45\Orc.Controls.dll</HintPath>
       <Private>True</Private>
@@ -73,6 +74,10 @@
     </Reference>
     <Reference Include="Orchestra.Shell.MahApps, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Orchestra.Shell.MahApps.2.3.0\lib\net45\Orchestra.Shell.MahApps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>packages\SimpleInjector.3.1.2\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -106,17 +111,26 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tools\Debugger.cs" />
-    <Compile Include="ViewModels\BigRedButtonViewModel.cs" />
+    <Compile Include="Tools\IMainScreenTabItem.cs" />
+    <Compile Include="ViewModels\CountdownTimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
-    <Compile Include="Views\BigRedButtonView.xaml.cs">
-      <DependentUpon>BigRedButtonView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
+    <Compile Include="ViewModels\OptionsFlyoutViewModel.cs" />
     <Compile Include="Views\ControlsScreenView.xaml.cs">
       <DependentUpon>ControlsScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\CountDownTimerBigScreenView.xaml.cs">
+      <DependentUpon>CountdowntimerBigScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CountdownTimerControlView.xaml.cs">
+      <DependentUpon>CountdownTimerControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OptionsFlyoutView.xaml.cs">
+      <DependentUpon>OptionsFlyoutView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -164,15 +178,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\BigRedButtonView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ControlsScreenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CountdowntimerBigScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CountdownTimerControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OptionsFlyoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

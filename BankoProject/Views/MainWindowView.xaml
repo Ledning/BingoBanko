@@ -1,4 +1,4 @@
-﻿<metro:MetroWindow x:Class="BankoProject.Views.MainWindowView"
+﻿<metro:MetroWindow
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,6 +7,7 @@
              xmlns:catel="http://catel.codeplex.com"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:views="clr-namespace:BankoProject.Views"
+             xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.MainWindowView"
              mc:Ignorable="d" 
              SizeToContent="WidthAndHeight" Height="1080" Width="1920"
              WindowStyle="ThreeDBorderWindow"
@@ -14,6 +15,6 @@
              WindowState="Normal"
              WindowStartupLocation="CenterScreen"
              >
-    <views:BigRedButtonView/>
-    
+    <TabControl x:Name="Items"/>
+
 </metro:MetroWindow>

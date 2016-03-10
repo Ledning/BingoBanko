@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BankoProject.Views
 {
   /// <summary>
-  /// Interaction logic for BigRedButtonView.xaml
+  /// Interaction logic for OptionsFlyoutview.xaml
   /// </summary>
-  public partial class BigRedButtonView : UserControl
+  public partial class OptionsFlyoutview : UserControl
   {
-    public BigRedButtonView()
+    public OptionsFlyoutview()
     {
       InitializeComponent();
     }

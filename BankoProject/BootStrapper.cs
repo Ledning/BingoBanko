@@ -10,12 +10,17 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Orchestra.Views;
 using Debugger = BankoProject.Tools.Debugger;
+using System.Reflection;
+using BankoProject.Tools;
+using System.Collections;
+using SimpleInjector;
+using BankoProject.ViewModels;
 
 namespace BankoProject
 {
   class BootStrapper : BootstrapperBase
   {
-    private CompositionContainer _container;
+    private Container _container;
 
     public BootStrapper()
     {
@@ -27,7 +32,7 @@ namespace BankoProject
     {
       //Tells Caliburn Micro(CM) to display the root view of the specified type. You can have a base view, and then other views up the visual tree....
       //or something like that. Google it i dont remember.
-      DisplayRootViewFor<IShell>();
+      DisplayRootViewFor<MainWindowViewModel>();
     }
 
     #region MEF
@@ -45,37 +50,43 @@ namespace BankoProject
      */
     protected override void Configure()
     {
-      _container = new CompositionContainer(new AggregateCatalog(AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>()));
+      _container = new Container();
 
       //Collects values/stuff that has to go in our container
-      CompositionBatch batch = new CompositionBatch();
-      batch.AddExportedValue<IWindowManager>(new WindowManager());
-      batch.AddExportedValue<IEventAggregator>(new EventAggregator());
-      batch.AddExportedValue(_container);
-      _container.Compose(batch);
+      _container = new Container();
+      _container.Register<IWindowManager, WindowManager>();
+      _container.RegisterSingleton<IEventAggregator, EventAggregator>();
+      _container.Register<MainWindowViewModel, MainWindowViewModel>();
+      var viewModels =
+          Assembly.GetExecutingAssembly()
+              .DefinedTypes.Where(x => x.GetInterface(typeof(IMainScreenTabItem).Name) != null && !x.IsAbstract && x.IsClass);
+      _container.RegisterCollection(typeof(IMainScreenTabItem), viewModels);
+      _container.Verify();
     }
 
-    protected override object GetInstance(Type serviceType, string key)
+    protected override object GetInstance(Type service, string key)
     {
-      string contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(serviceType) : key;
-      var exports = _container.GetExportedValues<object>(contract);
-
-      if (exports.Count() > 0)
+      if (service == null)
       {
-        return exports.First();
-      }
+        var typeName = Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Contains(key)).Select(x => x.AssemblyQualifiedName).Single();
 
-      throw new Exception(string.Format("Could not locate any instances of contract {0}.", contract));
+        service = Type.GetType(typeName);
+      }
+      return _container.GetInstance(service);
     }
 
-    protected override IEnumerable<object> GetAllInstances(Type serviceType)
+    protected override IEnumerable<object> GetAllInstances(Type service)
     {
-      return _container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
+      IServiceProvider provider = _container;
+      Type collectionType = typeof(IEnumerable<>).MakeGenericType(service);
+      var services = (IEnumerable<object>)provider.GetService(collectionType);
+      return services ?? Enumerable.Empty<object>();
     }
 
     protected override void BuildUp(object instance)
     {
-      _container.SatisfyImportsOnce(instance);
+      var registration = _container.GetRegistration(instance.GetType(), true);
+      registration.Registration.InitializeInstance(instance);
     }
     #endregion
   }
