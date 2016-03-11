@@ -7,6 +7,7 @@ using Catel.MVVM;
 using System.Timers;
 using System.Windows.Controls;
 using Caliburn.Micro;
+using BankoProject.Models;
 
 namespace BankoProject.ViewModels
 {
@@ -20,11 +21,11 @@ namespace BankoProject.ViewModels
     int _buttonWidth, _buttonHeight; //buttonsize. maybe make scale with button count? certainly possible, try scaling in control and syncing that here. SFP
 
     int _counter; //timer count int ms, SFP
-    BindableCollection<Button> _buttonsList; //list of buttons on the screen. set to 0 if no buttons are desired, it will now show only the timer. hopefully. helpers might be needed. SFP
+    BindableCollection<Deltagere> _buttonsList; //list of buttons on the screen. set to 0 if no buttons are desired, it will now show only the timer. hopefully. helpers might be needed. SFP
 
     public CountdownTimerBigScreenViewModel()
     {
-      _buttonsList = new BindableCollection<Button>();
+      _buttonsList = new BindableCollection<Deltagere>();
     }
 
 
@@ -43,7 +44,7 @@ namespace BankoProject.ViewModels
       }
     }
 
-    public BindableCollection<Button> ButtonsList
+    public BindableCollection<Deltagere> ButtonsList
     {
       get
       {

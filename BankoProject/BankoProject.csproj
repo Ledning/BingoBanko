@@ -110,6 +110,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Deltagere.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\IMainScreenTabItem.cs" />
     <Compile Include="ViewModels\CountdownTimerBigScreenViewModel.cs" />

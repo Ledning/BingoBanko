@@ -15,6 +15,6 @@
              WindowState="Normal"
              WindowStartupLocation="CenterScreen"
              >
-    <TabControl x:Name="Items"/>
+    <TabControl x:Name="Items" HorizontalContentAlignment="Left"/>
 
 </metro:MetroWindow>
