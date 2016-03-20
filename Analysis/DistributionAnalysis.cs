@@ -14,6 +14,55 @@ namespace Analysis
     const int columns = 9;
     const int numbersOnCards = 90;
 
+    public double[] EndNumberAnalysis(string key, int amount, string mode)
+    {
+      const int endnumbers = 10;
+      int totalNumbers = 0;
+      double[] endNumberFreq = new double[endnumbers];
+      double[] endNumberPct = new double[endnumbers];
+      for (int i = 0; i < endnumbers; i++)
+      {
+        endNumberFreq[i] = 0;
+        endNumberPct[i] = 0;
+      }
+
+      Generator gen = new Generator(key);
+      List<int[,]> analysedCards = gen.GenerateCard(amount);
+
+
+      foreach (int[,] item in analysedCards)
+      {
+        if (item[0, 0] != -1)
+        {
+          for (int columnCount = 0; columnCount < columns; columnCount++)
+          {
+            for (int rowCount = 0; rowCount < rows; rowCount++)
+            {
+              if (item[columnCount, rowCount] != 0)
+              {
+                endNumberFreq[(item[columnCount,rowCount] % 10)]++;           
+                totalNumbers++;
+              }
+            }
+          }
+        }
+      }
+
+      if (mode == "freq")
+        return endNumberFreq;
+      else if (mode == "pct")
+      {
+        for (int i = 0; i < endnumbers; i++)
+        {
+          endNumberPct[i] = (endNumberFreq[i] / totalNumbers) * 100;
+        }
+        return endNumberPct;
+      }
+      else
+        return endNumberPct; //volvo pls fix     
+    }
+
+
     public double[,] PlacementAnalysis(string key, int amount, string mode)
     {
       int totalNumbers = 0;
@@ -85,13 +134,13 @@ namespace Analysis
       {
         if (item[0,0] != -1)
         {
-          for (int column = 0; column < 9; column++)
+          for (int columnCount = 0; columnCount < columns; columnCount++)
           {
-            for (int row = 0; row < 3; row++)
+            for (int rowCount = 0; rowCount < rows; rowCount++)
             {
-              if (item[column, row] != 0)
+              if (item[columnCount, rowCount] != 0)
               {
-                numberFreq[item[column, row] - 1]++;
+                numberFreq[item[columnCount, rowCount] - 1]++;
                 totalNumbers++;
               }
             }
