@@ -19,7 +19,7 @@ namespace Printer_Project
 
       
       XImage img = XImage.FromFile(imgSource);
-      XFont numberFont = new XFont("Verdana", 125, XFontStyle.BoldItalic);
+      XFont numberFont = new XFont("Verdana", 125, XFontStyle.Italic);
       XFont plateNumFont = new XFont("Verdana", 30, XFontStyle.Regular);
       XImage pdfSize = XImage.FromFile(imgSource); 
        
