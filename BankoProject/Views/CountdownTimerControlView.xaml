@@ -7,8 +7,7 @@
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="BankoProject.Views.CountdownTimerControlView"
              mc:Ignorable="d" 
              >
-    <Viewbox>
-        <DockPanel HorizontalAlignment="Left" Margin="0,0,10,0">
+    <DockPanel HorizontalAlignment="Left" Margin="0,0,10,0">
             <DockPanel DockPanel.Dock="Left" x:Name="OptionsPanel" Background="#FF8B8613" MinHeight="300" HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical" x:Name="Optionspanel" DockPanel.Dock="Top" HorizontalAlignment="Left">
                     <Label Content="Antal Deltagere:"/>
@@ -37,5 +36,4 @@
                 </ListBox.ItemsPanel>
             </ListBox>
         </DockPanel>
-    </Viewbox>
 </UserControl>
