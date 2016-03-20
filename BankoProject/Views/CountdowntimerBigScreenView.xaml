@@ -12,12 +12,21 @@
              >
     <Viewbox>
         <DockPanel>
-
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <Button Margin="20,0" Background="#FFBF5050" Style="{DynamicResource MetroCircleButtonStyle}" Height="40" Width="40" />
-                <!--<Button Margin="0,0,20,0" Background="#FFBF5050" Style="{DynamicResource MetroCircleButtonStyle}"  Height="40" Width="40"/>
-                <Button Margin="0,0,20,0" Background="#FFBF5050" Style="{DynamicResource MetroCircleButtonStyle}"  Height="40" Width="40"/>-->
-            </StackPanel>
+            <ListBox ItemsSource="{Binding ButtonsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Opacity="1">
+                            <Button Content="{Binding Name}" Style="{DynamicResource MetroCircleButtonStyle}" Height="60" Width="60" Background="#FFBF5050" Foreground="{x:Null}"/>
+                            <Label Content="{Binding Time}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center"  />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">3:00</TextBlock>
         </DockPanel>
     </Viewbox>

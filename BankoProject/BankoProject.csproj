@@ -113,7 +113,7 @@
     <Compile Include="Models\Deltagere.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\IMainScreenTabItem.cs" />
-    <Compile Include="ViewModels\CountdownTimerBigScreenViewModel.cs" />
+    <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
     <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
     <Compile Include="ViewModels\OptionsFlyoutViewModel.cs" />

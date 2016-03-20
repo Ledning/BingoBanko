@@ -8,10 +8,11 @@ using System.Timers;
 using System.Windows.Controls;
 using Caliburn.Micro;
 using BankoProject.Models;
+using BankoProject.Tools;
 
 namespace BankoProject.ViewModels
 {
-  public sealed class CountdownTimerBigScreenViewModel : PropertyChangedBase
+  public sealed class CountdowntimerBigScreenViewModel : Screen, IMainScreenTabItem
   {
     //The colour of the button at start and finish. NSFP. Modify if different colours are wanted. cannot be made from designer. 
     string finishCoulour = "#FF3FBD5B";
@@ -23,9 +24,9 @@ namespace BankoProject.ViewModels
     int _counter; //timer count int ms, SFP
     BindableCollection<Deltagere> _buttonsList; //list of buttons on the screen. set to 0 if no buttons are desired, it will now show only the timer. hopefully. helpers might be needed. SFP
 
-    public CountdownTimerBigScreenViewModel()
+    public CountdowntimerBigScreenViewModel()
     {
-      _buttonsList = new BindableCollection<Deltagere>();
+      DisplayName = "BigScreenTimer";
     }
 
 

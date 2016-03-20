@@ -23,7 +23,7 @@
             <ListBox ItemsSource="{Binding ButtonsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Opacity="1">
                             <Button Content="{Binding Name}" Style="{DynamicResource MetroCircleButtonStyle}" Height="60" Width="60" Background="#FFBF5050" Foreground="{x:Null}"/>
                             <Label Content="{Binding Time}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         </StackPanel>

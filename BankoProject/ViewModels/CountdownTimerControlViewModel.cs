@@ -14,7 +14,7 @@ namespace BankoProject.ViewModels
 {
   public sealed class CountdownTimerControlViewModel : Screen, IMainScreenTabItem
   {
-    public CountdownTimerBigScreenViewModel CTBSVM { get; set;}
+    public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
     Timer tmr;
 
 
@@ -31,7 +31,7 @@ namespace BankoProject.ViewModels
       tmr = new Timer(countInterval);
       tmr.Elapsed += HandleTimerCountdown;
       _buttonsList = new BindableCollection<Deltagere>(); //basically list of players
-      CTBSVM = new CountdownTimerBigScreenViewModel();
+      CTBSVM = new CountdowntimerBigScreenViewModel();
       
 
       Counter = 180000; //3 minutes.

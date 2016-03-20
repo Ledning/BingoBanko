@@ -18,12 +18,14 @@ namespace BankoProject.ViewModels
     //Every property that needs to reflect on GUI when changed needs get set/notifyofpropertychange. The childVM's does not, as their respective notifies are called when stuff is modified.
     public ControlsScreenViewModel ControlsScreenViewModel{get; set;}
     public CountdownTimerControlViewModel CountdownTimerControlViewModel { get; set;}
+    public CountdowntimerBigScreenViewModel CountdowntimerBigScreenViewModel { get; set;}
 
     [ImportingConstructor]
     public MainWindowViewModel(IEnumerable<IMainScreenTabItem> tabs)
     {
       ControlsScreenViewModel = new ControlsScreenViewModel();
       CountdownTimerControlViewModel = new CountdownTimerControlViewModel();
+      CountdowntimerBigScreenViewModel = new CountdowntimerBigScreenViewModel();
       Items.AddRange(tabs);
     }
 
