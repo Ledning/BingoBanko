@@ -13,11 +13,12 @@ namespace BingoCardGenerator
   public class Generator : IGenerator
   {
     private Int32 GENERATIONTOKEN;
-    private const int cardRows = 3, cardColumns = 9; //const bcs array stuff
+    private const int cardRows = 3, cardColumns = 9; //Card size. Change for other sizes. Remember to change the code as well.
     public int DiscardedCards = 0;
     public int originalAmount = 0;
     public int totalAmountOfCardsGenerated = 0;
     public int validCards = 0;
+    
 
     //Takes in the key, converts it to an int representation of the string, and stores it as a token to be reused by the algorithm.
     public Generator(string key)
@@ -29,14 +30,17 @@ namespace BingoCardGenerator
 
     public List<int[,]> GenerateCard(int amountOfCards)
     {
+      
       originalAmount = amountOfCards;
       List<int[,]> Cards = new List<int[,]>();
       for (int i = 0; i < amountOfCards; i++)
       {
-        int[,] Card;
         GENERATIONTOKEN += i;
-        Card = GenerateUncleanedCard();
-        Card = CleanCard(Card);
+        Random rndContent = new Random(GENERATIONTOKEN);
+        int[,] Card;
+        Card = GenerateUncleanedCard(rndContent);
+        Card = CleanCard(Card, rndContent);
+
         if (Card[0,0] == -1)
         {
           amountOfCards++;
@@ -71,30 +75,31 @@ namespace BingoCardGenerator
 
 
 
-    private int[,] GenerateUncleanedCard()
+    private int[,] GenerateUncleanedCard(Random rndContent)
     {
       int[,] card = new int[cardColumns, cardRows];
+      
 
       try
       {
-        //9 is the amount of columns on a standard bingo card. change if you want differently sized cards. Maybe expand to program option. for now it is globel var
+        
         for (int count = 0; count < cardColumns; count++)
         {
           int[] column = new int[cardRows] {0, 0, 0};
           if (count == 0)
           {
-            column = FillColumn(1, 10, count);
+            column = FillColumn(1, 9, count, rndContent);
           }
           else if (count == 8)
           {
-            column = FillColumn(80, 90, count);
+            column = FillColumn(80, 90, count, rndContent);
           }
           else
           {
             int lower, upper;
             lower = count*10;
             upper = lower + 9;
-            column = FillColumn(lower, upper, count);
+            column = FillColumn(lower, upper, count, rndContent);
           }
           for (int i = 0; i < cardRows; i++)
           {
@@ -110,7 +115,7 @@ namespace BingoCardGenerator
       return card;
     }
 
-    private int[] FillColumn(int lowerBound, int upperBound, int columnCount)
+    private int[] FillColumn(int lowerBound, int upperBound, int columnCount, Random rndContent)
     {
       int UpperBound = upperBound + 1;
       List<int> columnContent = new List<int>();
@@ -118,7 +123,7 @@ namespace BingoCardGenerator
 
       //the randoms used in this function. Both using the generationtoken
       Random rndColumn = new Random(GENERATIONTOKEN + columnCount + 1);
-      Random rndContent = new Random(GENERATIONTOKEN);
+      
 
       int filledRows = rndColumn.Next(1, 4);
 
@@ -144,7 +149,7 @@ namespace BingoCardGenerator
       return returnColumnContentArray;
     }
 
-    private int[,] CleanCard(int[,] Card)
+    private int[,] CleanCard(int[,] Card, Random rndContent)
     {
 
       //gets random places, and properly returns it to the original array. arrays are dumb in sharp, y no subarray method built in. this is like boilerplate code 1 o 1
@@ -164,7 +169,7 @@ namespace BingoCardGenerator
           }
         }
       }
-      return ColumnRowFixer(Card);
+      return ColumnRowFixer(Card, rndContent);
     }
 
     private int[] RandNumPosInColumn(int[] columnContent)
@@ -205,7 +210,7 @@ namespace BingoCardGenerator
     //This part looks at if a row has the right amount of numbers, aka not more or less than 5. When done it just returns the fixed card to the caller.
     //it might have to be run twice, as it is it could produce wrong output since we more or less always start with 1 row of 0
     //
-    private int[,] ColumnRowFixer(int[,] Card)
+    private int[,] ColumnRowFixer(int[,] Card, Random rndContent)
     {
       //this step is made to avoid edge cases where we have all numbers in one row or something similar.
       int totalCount = 0;
@@ -224,7 +229,7 @@ namespace BingoCardGenerator
         for (int i = totalCount; i <= 10 ; i++)
         {
           Random rndColumn = new Random(GENERATIONTOKEN + i);
-          AddNumberToRow(Card, rndColumn.Next(0, cardRows));
+          AddNumberToRow(Card, rndColumn.Next(0, cardRows), rndContent);
         }
       }
 
@@ -247,7 +252,7 @@ namespace BingoCardGenerator
         {
           for (int j = columnCounter; j < 5; j++)
           {
-            Card = AddNumberToRow(Card, i);
+            Card = AddNumberToRow(Card, i, rndContent);
           }
         }
 
@@ -318,7 +323,7 @@ namespace BingoCardGenerator
       return Card;
     }
 
-    private int[,] AddNumberToRow(int[,] Card, int rowToAlter)
+    private int[,] AddNumberToRow(int[,] Card, int rowToAlter, Random rndContent)
     {
       List<int> usableRows = new List<int>();
       List<int> usableRowsTwo = new List<int>();
@@ -362,22 +367,21 @@ namespace BingoCardGenerator
       }
 
       int addedNumber = 0;
-      Random randNumberMade = new Random(GENERATIONTOKEN + chosenColumn);
 
       if (chosenColumn == 0)
       {
-        addedNumber = randNumberMade.Next(1, 10);
+        addedNumber = rndContent.Next(1, 9);
         while (Card.ContainsValue(addedNumber))
         {
-          addedNumber = randNumberMade.Next(1, 10);
+          addedNumber = rndContent.Next(1, 9);
         }
       }
       else if (chosenColumn == 8)
       {
-        addedNumber = randNumberMade.Next(80, 91);
+        addedNumber = rndContent.Next(80, 91);
         while (Card.ContainsValue(addedNumber))
         {
-          addedNumber = randNumberMade.Next(80, 91);
+          addedNumber = rndContent.Next(80, 91);
         }
       }
       else
@@ -385,10 +389,10 @@ namespace BingoCardGenerator
         int lower, upper;
         lower = chosenColumn*10;
         upper = lower + 10;
-        addedNumber = randNumberMade.Next(lower, upper);
+        addedNumber = rndContent.Next(lower, upper);
         while (Card.ContainsValue(addedNumber))
         {
-          addedNumber = randNumberMade.Next(lower, upper);
+          addedNumber = rndContent.Next(lower, upper);
         }
       }
 
@@ -450,6 +454,34 @@ namespace BingoCardGenerator
       for (int i = 0; i < 3; i++)
       {
         CleanedCard[chosenColumn, i] = sortedRow[i];
+      }
+
+      //Remove duplicates
+      int dupeRemover = 0;
+      int fullColumn = 0;
+      for (int columnCount = 0; columnCount < cardColumns; columnCount++)
+      {
+        for (int rowCount = 0; rowCount < cardRows; rowCount++)
+        {
+          if (CleanedCard[columnCount, rowCount] != 0)
+          {
+            fullColumn++;
+            if (dupeRemover == CleanedCard[columnCount, rowCount])
+            {
+              Card.DiscardCard();
+            }
+            dupeRemover = CleanedCard[columnCount, rowCount];
+          }
+        }
+        if (fullColumn == 3)
+        {
+          if (dupeRemover == CleanedCard[columnCount, 0])
+          {
+            Card.DiscardCard();
+          }
+        }
+        dupeRemover = 0;
+        fullColumn = 0;
       }
 
       return CleanedCard;
