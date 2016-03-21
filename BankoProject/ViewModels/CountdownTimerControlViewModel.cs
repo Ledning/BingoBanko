@@ -44,22 +44,25 @@ namespace BankoProject.ViewModels
       ButtonsList.Add(new Deltagere(""));
       ButtonsList.Add(new Deltagere(""));
       ButtonsList.Add(new Deltagere(""));
-
     }
 
-    public void TestBig()
+    public void Start()
     {
-      winMan.ShowPopup(CTBSVM);
+      ButtonsList.RemoveAt(1);
     }
-
-
-
-
+    public void Stop()
+    {
+      throw new NotImplementedException();
+    }
+    public void Reset()
+    {
+      throw new NotImplementedException();
+    }
 
     private void HandleTimerCountdown(object source, ElapsedEventArgs e)
     {
       Counter = Counter - (int)countInterval;
-    }//SNB
+    }
     private void ResetTimer()
     {
       Counter = 0;

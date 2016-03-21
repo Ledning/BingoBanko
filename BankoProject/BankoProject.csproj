@@ -110,9 +110,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\ControlOptions.cs" />
     <Compile Include="Models\Deltagere.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\IMainScreenTabItem.cs" />
+    <Compile Include="Tools\SaveLoadInterface.cs" />
     <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
     <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
@@ -178,6 +180,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\CustomStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ControlsScreenView.xaml">
       <SubType>Designer</SubType>

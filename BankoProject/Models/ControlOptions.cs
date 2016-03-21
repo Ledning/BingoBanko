@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BankoProject.Models
 {
-  public class BingoNumberBoard
+  public class ControlOptions
   {
-    //supposed to implement a large array and all the needed functionality for controlling the numbers 1-90. 
+    //this class contains all settings in the options view. Anything to be set in there = add it to this class.
   }
 }
