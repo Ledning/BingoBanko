@@ -23,9 +23,10 @@ namespace BankoProject.ViewModels
     [ImportingConstructor]
     public MainWindowViewModel(IEnumerable<IMainScreenTabItem> tabs)
     {
-      ControlsScreenViewModel = new ControlsScreenViewModel();
-      CountdownTimerControlViewModel = new CountdownTimerControlViewModel();
-      CountdowntimerBigScreenViewModel = new CountdowntimerBigScreenViewModel();
+      List<IMainScreenTabItem> refList = new List<IMainScreenTabItem>(tabs);
+      ControlsScreenViewModel = (ControlsScreenViewModel)refList[0];
+      CountdownTimerControlViewModel = (CountdownTimerControlViewModel)refList[1]; //IMPORTANT IF ANY NEW VIEWS ARE ADDED, THIS HAVE TO BE RECONSIDERED.
+      CountdowntimerBigScreenViewModel = CountdownTimerControlViewModel.CTBSVM;
       Items.AddRange(tabs);
     }
 

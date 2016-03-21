@@ -12,7 +12,7 @@ using BankoProject.Tools;
 
 namespace BankoProject.ViewModels
 {
-  public sealed class CountdowntimerBigScreenViewModel : Screen, IMainScreenTabItem
+  public sealed class CountdowntimerBigScreenViewModel : Screen
   {
     //The colour of the button at start and finish. NSFP. Modify if different colours are wanted. cannot be made from designer. 
     string finishCoulour = "#FF3FBD5B";
@@ -26,6 +26,7 @@ namespace BankoProject.ViewModels
 
     public CountdowntimerBigScreenViewModel()
     {
+      _buttonsList = new BindableCollection<Deltagere>();
       DisplayName = "BigScreenTimer";
     }
 

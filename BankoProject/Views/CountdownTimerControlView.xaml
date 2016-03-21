@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankoProject.Views"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="BankoProject.Views.CountdownTimerControlView"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              >
     <DockPanel HorizontalAlignment="Left" Margin="0,0,10,0">
+        <Button x:Name="TestBig" BorderBrush="{x:Null}" Background="#FF8B8613" Content="Start"/>
             <DockPanel DockPanel.Dock="Left" x:Name="OptionsPanel" Background="#FF8B8613" MinHeight="300" HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical" x:Name="Optionspanel" DockPanel.Dock="Top" HorizontalAlignment="Left">
                     <Label Content="Antal Deltagere:"/>
@@ -20,20 +22,21 @@
                 </StackPanel>
             </DockPanel>
             <TextBox DockPanel.Dock="Bottom" HorizontalAlignment="Center" Width="62" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxHeight="26" VerticalAlignment="Bottom" Custom:ControlsHelper.MouseOverBorderBrush="{x:Null}" Text="00:00:000" Custom:ControlsHelper.FocusBorderBrush="{x:Null}" Margin="0"/>
-            <ListBox ItemsSource="{Binding ButtonsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical" Opacity="1">
-                            <Button Content="{Binding Name}" Style="{DynamicResource MetroCircleButtonStyle}" Height="60" Width="60" Background="#FFBF5050" Foreground="{x:Null}"/>
-                            <Label Content="{Binding Time}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center"  />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-            </ListBox>
-        </DockPanel>
+        <ListBox ItemsSource="{Binding ButtonsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Opacity="1">
+                        <Button Content="{Binding Name}" Style="{DynamicResource MetroCircleButtonStyle}" Height="60" Width="60" Background="#FFBF5050" Foreground="{x:Null}"/>
+                        <Label Content="{Binding Time}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center"  />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+    </DockPanel>
+    
 </UserControl>
