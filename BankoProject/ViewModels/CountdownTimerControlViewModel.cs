@@ -48,7 +48,7 @@ namespace BankoProject.ViewModels
 
     public void Start()
     {
-      ButtonsList.RemoveAt(1);
+      throw new NotImplementedException();
     }
     public void Stop()
     {
