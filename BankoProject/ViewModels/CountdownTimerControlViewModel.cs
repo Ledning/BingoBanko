@@ -17,12 +17,13 @@ namespace BankoProject.ViewModels
   public sealed class CountdownTimerControlViewModel : Screen, IMainScreenTabItem
   {
     public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
-    Timer tmr;
+    private Timer tmr;
+    private bool _isTmrRunning;
 
 
 
     private BindableCollection<Deltagere> _buttonsList;    //How many buttons do you want? dont matter 1 button call polit biru
-    private int _counter; //do all the counting in miliseconds, mod by 60 if needed min or shit.
+    private int _counter = 0, counterStartVal = 0; //do all the counting in miliseconds, mod by 60 if needed min or shit.
     private double countInterval = 10;
     private WindowManager winMan;
 
@@ -36,36 +37,28 @@ namespace BankoProject.ViewModels
       _buttonsList = new BindableCollection<Deltagere>(); //basically list of players
       CTBSVM = new CountdowntimerBigScreenViewModel();
       winMan = wman;
-
-      Counter = 180000; //3 minutes.
-
       DisplayName = "Nedtællings-kontrolskærm";
-      ButtonsList.Add(new Deltagere(""));
-      ButtonsList.Add(new Deltagere(""));
-      ButtonsList.Add(new Deltagere(""));
-      ButtonsList.Add(new Deltagere(""));
     }
 
-    public void Start()
+    public void timerStart()
     {
-      throw new NotImplementedException();
+      tmr.Start();
+      IsTmrRunning = true;
     }
-    public void Stop()
+    public void timerStop()
     {
-      throw new NotImplementedException();
+      tmr.Stop();
+      IsTmrRunning = false;
     }
-    public void Reset()
+    public void timerReset()
     {
-      throw new NotImplementedException();
+      timerStop();
+      Counter = counterStartVal;
     }
 
     private void HandleTimerCountdown(object source, ElapsedEventArgs e)
     {
       Counter = Counter - (int)countInterval;
-    }
-    private void ResetTimer()
-    {
-      Counter = 0;
     }
     #region GetterSetter
     public int Counter
@@ -95,6 +88,19 @@ namespace BankoProject.ViewModels
         _buttonsList = value;
         CTBSVM.ButtonsList = value;
         NotifyOfPropertyChange(() => ButtonsList);
+      }
+    }
+
+    public bool IsTmrRunning
+    {
+      get
+      {
+        return _isTmrRunning;
+      }
+
+      set
+      {
+        _isTmrRunning = value;
       }
     }
     #endregion

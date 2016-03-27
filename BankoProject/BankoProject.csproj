@@ -110,6 +110,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\BingoNumber.cs" />
     <Compile Include="Models\ControlOptions.cs" />
     <Compile Include="Models\Deltagere.cs" />
     <Compile Include="Tools\Debugger.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
     <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
+    <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\OptionsFlyoutViewModel.cs" />
     <Compile Include="Views\ControlsScreenView.xaml.cs">
       <DependentUpon>ControlsScreenView.xaml</DependentUpon>
@@ -128,6 +130,9 @@
     </Compile>
     <Compile Include="Views\CountdownTimerControlView.xaml.cs">
       <DependentUpon>CountdownTimerControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\dialogView.xaml.cs">
+      <DependentUpon>dialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
@@ -194,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CountdownTimerControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\dialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
