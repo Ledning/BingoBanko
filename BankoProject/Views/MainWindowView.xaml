@@ -11,12 +11,13 @@
              mc:Ignorable="d" 
              SizeToContent="WidthAndHeight" Height="1080" Width="1920"
              WindowStyle="ThreeDBorderWindow"
-             ResizeMode="CanResize"
+             ResizeMode="CanResizeWithGrip"
              WindowState="Maximized"
              WindowStartupLocation="CenterScreen"
              AllowsTransparency="False"
+             EnableDWMDropShadow="True"
              >
-    <Viewbox>
-        <TabControl x:Name="Items" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    <Viewbox VerticalAlignment="Top">
+        <TabControl x:Name="Items" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center"/>
     </Viewbox>
 </metro:MetroWindow>

@@ -4,11 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankoProject.ViewModels"
+             xmlns:models="clr-namespace:BankoProject.Models"
              xmlns:catel="http://catel.codeplex.com"
              xmlns:cal="http://www.caliburnproject.org" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="BankoProject.Views.ControlsScreenView"
              mc:Ignorable="d">
-
-    <Viewbox>
-        
-    </Viewbox>
+    
+    <VirtualizingStackPanel Height="100" Width="100" Orientation="Horizontal">
+            <Grid Name="GameOptions">
+                <Button></Button>
+            </Grid>
+            <Grid Name="Controls">
+                <Button></Button>
+            </Grid>
+            <ListBox x:Name="BNBoard_Board" Grid.IsSharedSizeScope="">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid cal:Bind.Model="{Binding}" IsItemsHost="True" HorizontalAlignment="Center"></UniformGrid>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBox Text="{Binding Value}" Background="Blue"></TextBox>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </VirtualizingStackPanel>
 </catel:UserControl>

@@ -116,11 +116,15 @@
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\IMainScreenTabItem.cs" />
     <Compile Include="Tools\SaveLoadInterface.cs" />
+    <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
     <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\OptionsFlyoutViewModel.cs" />
+    <Compile Include="Views\BoardView.xaml.cs">
+      <DependentUpon>BoardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ControlsScreenView.xaml.cs">
       <DependentUpon>ControlsScreenView.xaml</DependentUpon>
     </Compile>
@@ -187,6 +191,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Styles\CustomStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

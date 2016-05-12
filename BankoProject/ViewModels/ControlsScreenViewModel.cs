@@ -7,26 +7,44 @@ using Catel.MVVM;
 using Caliburn.Micro;
 using BankoProject.Tools;
 using BankoProject.Models;
+using System.ComponentModel.Composition;
+using System.Windows.Media;
 
 namespace BankoProject.ViewModels
 {
+  [Export(typeof(ControlsScreenViewModel))]
   public sealed class ControlsScreenViewModel : Screen, IMainScreenTabItem
   {
     private OptionsFlyoutViewModel _OFVM;
     private ControlOptions _COptions;
     private BingoNumberBoard _BNBoard;
     private Random randomNumber; //use to pick new random number. Maybe make into seperate class that adjusts according to prev numbers being picked.
+    private readonly SolidColorBrush _defaultBrush = Brushes.Black;
 
-    public ControlsScreenViewModel()
+    [ImportingConstructor]
+    public ControlsScreenViewModel(WindowManager winMan)
     {
       OFVM = new OptionsFlyoutViewModel();
-
+      _BNBoard = new BingoNumberBoard(90, winMan);
       DisplayName = "BingoBanko Kontrol-Skærm";
     }
 
 
 
-
+    #region Wrappers
+    public void Pick(int num)
+    {
+      BNBoard.PickNumber(num);
+    }
+    public void UnPick(int num)
+    {
+      BNBoard.UnPickNumber(num);
+    }
+    public void Reset(BingoNumberBoard Board)
+    {
+      BNBoard.ResetBoard();
+    }
+    #endregion
 
     #region GetterSetter
     public OptionsFlyoutViewModel OFVM
@@ -68,13 +86,14 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => BNBoard);
       }
     }
+
+    public SolidColorBrush DefaultBrush
+    {
+      get
+      {
+        return _defaultBrush;
+      }
+    }
     #endregion
-
-
-
-
-
-
-
   }
 }

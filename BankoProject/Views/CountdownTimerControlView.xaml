@@ -21,7 +21,7 @@
             </StackPanel>
         </DockPanel>
         <TextBox DockPanel.Dock="Bottom" HorizontalAlignment="Center" Width="62" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxHeight="26" VerticalAlignment="Bottom" Custom:ControlsHelper.MouseOverBorderBrush="{x:Null}" Text="00:00:000" Custom:ControlsHelper.FocusBorderBrush="{x:Null}" Margin="0"/>
-        <ListBox ItemsSource="{Binding ButtonsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" IsSynchronizedWithCurrentItem="True" Style="{DynamicResource ListBoxStyle1}">
+        <ListBox ItemsSource="{Binding ButtonsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" IsSynchronizedWithCurrentItem="True" >
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"></Setter>

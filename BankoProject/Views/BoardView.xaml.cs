@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BankoProject.Views
 {
   /// <summary>
-  /// Interaction logic for dialogView.xaml
+  /// Interaction logic for BoardView.xaml
   /// </summary>
-  public partial class dialogView : Catel.Windows.Controls.UserControl
+  public partial class BoardView : UserControl
   {
-    public dialogView()
+    public BoardView()
     {
       InitializeComponent();
     }
