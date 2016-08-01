@@ -29,7 +29,7 @@
         <DropShadowEffect BlurRadius="10"/>
       </Image.Effect>
     </Image>
-    <ListBox x:Name="latest_events" HorizontalAlignment="Right" Margin="0,360,85,80" Width="550" Background="#FFEFD758">
+    <ListBox x:Name="LatestEvents" HorizontalAlignment="Right" Margin="0,360,85,80" Width="550" Background="#FFEFD758">
       <ListBox.Effect>
         <DropShadowEffect/>
       </ListBox.Effect>
