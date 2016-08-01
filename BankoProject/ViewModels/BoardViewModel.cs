@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankoProject.Tools;
 
 namespace BankoProject.ViewModels
 {
-  class BoardViewModel : PropertyChangedBase
+  class BoardViewModel : PropertyChangedBase, IMainScreenTabItem
   {
+    public BoardViewModel()
+    {
+      
+    }
   }
 }

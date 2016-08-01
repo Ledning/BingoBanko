@@ -6,7 +6,7 @@ namespace BankoProject.Views
   /// <summary>
   /// Interaction logic for ControlsScreenView.xaml
   /// </summary>
-  public partial class ControlsScreenView : IUserControl
+  public partial class ControlsScreenView
   {
     public ControlsScreenView()
     {

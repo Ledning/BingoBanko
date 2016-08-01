@@ -19,7 +19,8 @@ namespace BankoProject.ViewModels
     [ImportingConstructor]
     public MainWindowViewModel(IEnumerable<IMainScreenTabItem> tabs)
     {
-      Items.AddRange(tabs);
+      //Items.AddRange(tabs); Reenable to use tabs
+      ActivateItem(new WelcomeViewModel());
     }
 
     public void Show()

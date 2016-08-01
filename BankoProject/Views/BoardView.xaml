@@ -4,9 +4,160 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankoProject.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+             xmlns:catel="http://catel.codeplex.com"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" d:DesignWidth="300" Height="297">
+  <UserControl.Resources>
+    <Style TargetType="ToggleButton">
+      <Setter Property="metro:ControlsHelper.CornerRadius" Value="3"/>
+      <Setter Property="Background" Value="{DynamicResource GrayBrush10}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}"/>
+      <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+      <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+      <Setter Property="FontSize" Value="{DynamicResource UpperCaseContentFontSize}"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Padding" Value="5,6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="MinHeight" Value="25"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ToggleButton">
+            <Grid>
+              <Border x:Name="Background" Background="{TemplateBinding Background}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+              <Border x:Name="DisabledVisualElement" Background="{DynamicResource ControlsDisabledBrush}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+              <metro:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (metro:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsChecked" Value="True">
+                <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
+                <Setter Property="Background" TargetName="Background" Value="LimeGreen"/>
+                <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
+              </Trigger>
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="IsMouseOver" Value="True"/>
+                  <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" TargetName="Background" Value="{DynamicResource GrayBrush8}"/>
+              </MultiTrigger>
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="IsMouseOver" Value="True"/>
+                  <Condition Property="IsChecked" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" TargetName="Background" Value="#FF32DC32"/>
+              </MultiTrigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" TargetName="Background" Value="LimeGreen"/>
+              </Trigger>
+              <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
+                <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource ButtonMouseOverBorderBrush}"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
+                <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </UserControl.Resources>
+
+
+
+  <Grid VerticalAlignment="Top">
+    <ToggleButton x:Name="slot1" Content="1" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30"/>
+    <ToggleButton x:Name="slot2" Content="2" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,0,0,0"   />
+    <ToggleButton x:Name="slot3" Content="3" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,0,0,0"   />
+    <ToggleButton x:Name="slot4" Content="4" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,0,0,0"   />
+    <ToggleButton x:Name="slot5" Content="5" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,0,0,0"  />
+    <ToggleButton x:Name="slot6" Content="6" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,0,0,0"  />
+    <ToggleButton x:Name="slot7" Content="7" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,0,0,0"  />
+    <ToggleButton x:Name="slot8" Content="8" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,0,0,0"  />
+    <ToggleButton x:Name="slot9" Content="9" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,0,0,0"  />
+    <ToggleButton x:Name="slot10" Content="10" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,0,0,0"  />
+    <ToggleButton x:Name="slot11" Content="11" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="0,33,0,0"   />
+    <ToggleButton x:Name="slot12" Content="12" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,33,0,0"  />
+    <ToggleButton x:Name="slot13" Content="13" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,33,0,0"  />
+    <ToggleButton x:Name="slot14" Content="14" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,33,0,0"  />
+    <ToggleButton x:Name="slot15" Content="15" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,33,0,0" />
+    <ToggleButton x:Name="slot16" Content="16" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,33,0,0" />
+    <ToggleButton x:Name="slot17" Content="17" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,33,0,0" />
+    <ToggleButton x:Name="slot18" Content="18" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,33,0,0" />
+    <ToggleButton x:Name="slot19" Content="19" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,33,0,0" />
+    <ToggleButton x:Name="slot20" Content="20" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,33,0,0" />
+    <ToggleButton x:Name="slot21" Content="21" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="0,66,0,0"   />
+    <ToggleButton x:Name="slot22" Content="22" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,66,0,0"  />
+    <ToggleButton x:Name="slot23" Content="23" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,66,0,0"  />
+    <ToggleButton x:Name="slot24" Content="24" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,66,0,0"  />
+    <ToggleButton x:Name="slot25" Content="25" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,66,0,0" />
+    <ToggleButton x:Name="slot26" Content="26" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,66,0,0" />
+    <ToggleButton x:Name="slot27" Content="27" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,66,0,0" />
+    <ToggleButton x:Name="slot28" Content="28" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,66,0,0" />
+    <ToggleButton x:Name="slot29" Content="29" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,66,0,0" />
+    <ToggleButton x:Name="slot30" Content="30" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,66,0,0" />
+    <ToggleButton x:Name="slot31" Content="31" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="0,99,0,0"   />
+    <ToggleButton x:Name="slot32" Content="32" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,99,0,0"  />
+    <ToggleButton x:Name="slot33" Content="33" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,99,0,0"  />
+    <ToggleButton x:Name="slot34" Content="34" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,99,0,0"  />
+    <ToggleButton x:Name="slot35" Content="35" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,99,0,0" />
+    <ToggleButton x:Name="slot36" Content="36" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,99,0,0" />
+    <ToggleButton x:Name="slot37" Content="37" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,99,0,0" />
+    <ToggleButton x:Name="slot38" Content="38" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,99,0,0" />
+    <ToggleButton x:Name="slot39" Content="39" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,99,0,0" />
+    <ToggleButton x:Name="slot40" Content="40" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,99,0,0" />
+    <ToggleButton x:Name="slot41" Content="41" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="0,132,0,0"  />
+    <ToggleButton x:Name="slot42" Content="42" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,132,0,0" />
+    <ToggleButton x:Name="slot43" Content="43" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,132,0,0" />
+    <ToggleButton x:Name="slot44" Content="44" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,132,0,0" />
+    <ToggleButton x:Name="slot45" Content="45" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,132,0,0"/>
+    <ToggleButton x:Name="slot46" Content="46" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,132,0,0"/>
+    <ToggleButton x:Name="slot47" Content="47" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,132,0,0"/>
+    <ToggleButton x:Name="slot48" Content="48" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,132,0,0"/>
+    <ToggleButton x:Name="slot49" Content="49" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,132,0,0"/>
+    <ToggleButton x:Name="slot50" Content="50" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,132,0,0"/>
+    <ToggleButton x:Name="slot51" Content="51" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="0,165,0,0"  />
+    <ToggleButton x:Name="slot52" Content="52" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,165,0,0" />
+    <ToggleButton x:Name="slot53" Content="53" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,165,0,0" />
+    <ToggleButton x:Name="slot54" Content="54" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,165,0,0" />
+    <ToggleButton x:Name="slot55" Content="55" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,165,0,0"/>
+    <ToggleButton x:Name="slot56" Content="56" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,165,0,0"/>
+    <ToggleButton x:Name="slot57" Content="57" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,165,0,0"/>
+    <ToggleButton x:Name="slot58" Content="58" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,165,0,0"/>
+    <ToggleButton x:Name="slot59" Content="59" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,165,0,0"/>
+    <ToggleButton x:Name="slot60" Content="60" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,165,0,0"/>
+    <ToggleButton x:Name="slot61" Content="61" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="0,198,0,0"  />
+    <ToggleButton x:Name="slot62" Content="62" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,198,0,0" />
+    <ToggleButton x:Name="slot63" Content="63" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,198,0,0" />
+    <ToggleButton x:Name="slot64" Content="64" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,198,0,0" />
+    <ToggleButton x:Name="slot65" Content="65" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,198,0,0"/>
+    <ToggleButton x:Name="slot66" Content="66" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,198,0,0"/>
+    <ToggleButton x:Name="slot67" Content="67" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,198,0,0"/>
+    <ToggleButton x:Name="slot68" Content="68" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,198,0,0"/>
+    <ToggleButton x:Name="slot69" Content="69" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,198,0,0"/>
+    <ToggleButton x:Name="slot70" Content="70" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,198,0,0"/>
+    <ToggleButton x:Name="slot71" Content="71" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="0,231,0,0"  />
+    <ToggleButton x:Name="slot72" Content="72" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,231,0,0" />
+    <ToggleButton x:Name="slot73" Content="73" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,231,0,0" />
+    <ToggleButton x:Name="slot74" Content="74" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,231,0,0" />
+    <ToggleButton x:Name="slot75" Content="75" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,231,0,0"/>
+    <ToggleButton x:Name="slot76" Content="76" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,231,0,0"/>
+    <ToggleButton x:Name="slot77" Content="77" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,231,0,0"/>
+    <ToggleButton x:Name="slot78" Content="78" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,231,0,0"/>
+    <ToggleButton x:Name="slot79" Content="79" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,231,0,0"/>
+    <ToggleButton x:Name="slot80" Content="80" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,231,0,0"/>
+    <ToggleButton x:Name="slot81" Content="81" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="0,264,0,0"  />
+    <ToggleButton x:Name="slot82" Content="82" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="30,264,0,0" />
+    <ToggleButton x:Name="slot83" Content="83" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="60,264,0,0" />
+    <ToggleButton x:Name="slot84" Content="84" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="90,264,0,0" />
+    <ToggleButton x:Name="slot85" Content="85" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="120,264,0,0"/>
+    <ToggleButton x:Name="slot86" Content="86" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="150,264,0,0"/>
+    <ToggleButton x:Name="slot87" Content="87" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="180,264,0,0"/>
+    <ToggleButton x:Name="slot88" Content="88" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="210,264,0,0"/>
+    <ToggleButton x:Name="slot89" Content="89" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="240,264,0,0"/>
+    <ToggleButton x:Name="slot90" Content="90" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="30" Margin="270,264,0,0"/>
+  </Grid>
 </UserControl>

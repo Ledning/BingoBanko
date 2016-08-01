@@ -10,14 +10,12 @@
              xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.MainWindowView"
              mc:Ignorable="d" 
              SizeToContent="WidthAndHeight" Height="1080" Width="1920"
-             WindowStyle="ThreeDBorderWindow"
              ResizeMode="CanResizeWithGrip"
              WindowState="Maximized"
              WindowStartupLocation="CenterScreen"
-             AllowsTransparency="False"
-             EnableDWMDropShadow="True"
+             EnableDWMDropShadow="True" WindowStyle="None" Background="#FFFFE457"
              >
-    <Viewbox VerticalAlignment="Top">
-        <TabControl x:Name="Items" HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center"/>
-    </Viewbox>
+  <Viewbox VerticalAlignment="Top">
+    <metro:MetroContentControl x:Name="ActiveItem"/>
+  </Viewbox>
 </metro:MetroWindow>

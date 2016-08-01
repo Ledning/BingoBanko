@@ -33,12 +33,12 @@ namespace BankoProject.Models
     }
 
 
-    private void Initialize()
+    private void Initialize() 
     {
       Board = new BindableCollection<BingoNumber>();
       for (int i = 0; i <= BoardSize; i++)
       {
-        Board.Add(new BingoNumber(i));
+        Board.Add(new BingoNumber(i+1));
       }
     }
 

@@ -1,0 +1,53 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BankoProject.Views"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:catel="http://catel.codeplex.com" x:Class="BankoProject.Views.WelcomeView"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920">
+  <UserControl.Resources>
+    <Storyboard x:Key="WelcomeViewTransition"/>
+  </UserControl.Resources>
+  <UserControl.Triggers>
+    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+      <BeginStoryboard Storyboard="{StaticResource WelcomeViewTransition}"/>
+    </EventTrigger>
+  </UserControl.Triggers>
+  <Grid Background="#FFFFE457" Height="1080" Width="1920">
+    <Border BorderBrush="Black" BorderThickness="1" Height="100" Margin="480,70,480,0" VerticalAlignment="Top" CornerRadius="50" Background="#FFBDA93F">
+      <Border.Effect>
+        <DropShadowEffect/>
+      </Border.Effect>
+      <Label x:Name="Title" Content="WIP TITLE" ClipToBounds="True" FontSize="64" Background="#00000000" VerticalContentAlignment="Center" Margin="324,-1,324,3.873" d:LayoutOverrides="Height" FontWeight="Bold" Foreground="#FF464646"/>
+    </Border>
+    <Image x:Name="Rynkelogo" HorizontalAlignment="Left" Height="215" Margin="20,20,0,0" VerticalAlignment="Top" Width="300" Source="logoalpha.png">
+      <Image.Effect>
+        <DropShadowEffect BlurRadius="10"/>
+      </Image.Effect>
+    </Image>
+    <ListBox x:Name="latest_events" HorizontalAlignment="Right" Margin="0,360,85,80" Width="550" Background="#FFEFD758">
+      <ListBox.Effect>
+        <DropShadowEffect/>
+      </ListBox.Effect>
+    </ListBox>
+    <Label x:Name="Latest" Content="Seneste Events" HorizontalAlignment="Right" Margin="0,290,420,0" VerticalAlignment="Top" Width="200" Background="#FFEFD758" FontSize="26.667" Foreground="Black" FontWeight="Bold" Height="49.999">
+      <Label.Effect>
+        <DropShadowEffect/>
+      </Label.Effect>
+    </Label>
+    <Button x:Name="CreateEvent" Content="Nyt event..." HorizontalAlignment="Left" Margin="80,441.38,0,0" Width="295" FontSize="32" Background="#FFEFD758" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Top">
+      <Button.Effect>
+        <DropShadowEffect/>
+      </Button.Effect>
+    </Button>
+    <Button x:Name="OpenFileDialog" Content="Indlæs event..." HorizontalAlignment="Left" Margin="80,0,0,295" Width="295" FontSize="32" Background="#FFEFD758" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Bottom">
+      <Button.Effect>
+        <DropShadowEffect/>
+      </Button.Effect>
+    </Button>
+  </Grid>
+</UserControl>
