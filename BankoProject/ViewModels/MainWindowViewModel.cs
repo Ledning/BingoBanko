@@ -20,7 +20,7 @@ namespace BankoProject.ViewModels
     public MainWindowViewModel(IEnumerable<IMainScreenTabItem> tabs)
     {
       //Items.AddRange(tabs); Reenable to use tabs
-      ActivateItem(new WelcomeViewModel());
+      ActivateItem(new BoardViewModel());
     }
 
     public void Show()

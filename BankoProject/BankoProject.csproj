@@ -133,14 +133,19 @@
     <Compile Include="Tools\IMainScreenTabItem.cs" />
     <Compile Include="Tools\SaveLoadInterface.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\ControlPanelViewModel.cs" />
     <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
     <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\OptionsFlyoutViewModel.cs" />
+    <Compile Include="ViewModels\test1ViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Views\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlPanelView.xaml.cs">
+      <DependentUpon>ControlPanelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ControlsScreenView.xaml.cs">
       <DependentUpon>ControlsScreenView.xaml</DependentUpon>
@@ -160,6 +165,9 @@
     </Compile>
     <Compile Include="Views\OptionsFlyoutView.xaml.cs">
       <DependentUpon>OptionsFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\test1View.xaml.cs">
+      <DependentUpon>test1View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -218,6 +226,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ControlPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ControlsScreenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -239,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OptionsFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\test1View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
