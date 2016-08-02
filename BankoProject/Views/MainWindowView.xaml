@@ -9,13 +9,12 @@
              xmlns:views="clr-namespace:BankoProject.Views"
              xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.MainWindowView"
              mc:Ignorable="d" 
-             SizeToContent="WidthAndHeight" Height="1080" Width="1920"
-             ResizeMode="CanResizeWithGrip"
+             SizeToContent="WidthAndHeight"
              WindowState="Maximized"
              WindowStartupLocation="CenterScreen"
-             EnableDWMDropShadow="True" WindowStyle="None" Background="#FFFFE457"
+             EnableDWMDropShadow="True" WindowStyle="None" Background="#FFFFE457" Width="1920" Height="1080"
              >
   <Viewbox VerticalAlignment="Top">
-    <metro:MetroContentControl x:Name="ActiveItem"/>
-  </Viewbox>
+        <metro:MetroContentControl x:Name="ActiveItem"/>
+    </Viewbox>
 </metro:MetroWindow>
