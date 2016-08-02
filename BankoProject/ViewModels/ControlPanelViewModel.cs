@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BankoProject.ViewModels
 {
-  class ControlPanelViewModel : Conductor<IMainViewItem>.Collection.OneActive, IMainScreenTabItem
+  class ControlPanelViewModel : Conductor<IMainViewItem>.Collection.OneActive, IMainViewItem
   {
     public ControlPanelViewModel()
     {

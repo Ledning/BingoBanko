@@ -131,7 +131,6 @@
     <Compile Include="Models\Deltagere.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\Events\ChangeViewEvent.cs" />
-    <Compile Include="Tools\IMainScreenTabItem.cs" />
     <Compile Include="Tools\IMainViewItem.cs" />
     <Compile Include="Tools\SaveLoadInterface.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />

@@ -29,13 +29,10 @@ namespace BankoProject.ViewModels
       _windowManager = windowManager;
       _eventAggregator = events;
       //Items.AddRange(tabs); Reenable to use tabs
-<<<<<<< HEAD
-      ActivateItem(new BoardViewModel());
-
       events.Subscribe(this);
-=======
+
       ActivateItem(new ControlPanelViewModel());
->>>>>>> origin/master
+
     }
 
     public void Show()
@@ -68,7 +65,7 @@ namespace BankoProject.ViewModels
 
     private void GoToControlPanel()
     {
-      ActiveItem(new ControlPanelViewModel());
+      ActivateItem(new ControlPanelViewModel());
     }
     #endregion
 
