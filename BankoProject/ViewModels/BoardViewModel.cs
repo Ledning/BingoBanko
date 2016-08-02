@@ -8,7 +8,7 @@ using BankoProject.Tools;
 
 namespace BankoProject.ViewModels
 {
-  class BoardViewModel : PropertyChangedBase, IMainScreenTabItem
+  class BoardViewModel : PropertyChangedBase, IMainViewItem
   {
     public BoardViewModel()
     {

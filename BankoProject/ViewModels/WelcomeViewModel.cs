@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BankoProject.ViewModels
 {
-  class WelcomeViewModel : IMainScreenTabItem
+  class WelcomeViewModel : IMainViewItem
   {
 
 

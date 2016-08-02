@@ -14,7 +14,7 @@ using System.Windows.Controls;
 namespace BankoProject.ViewModels
 {
   [Export(typeof(CountdownTimerControlViewModel))]
-  public sealed class CountdownTimerControlViewModel : Screen, IMainScreenTabItem
+  public sealed class CountdownTimerControlViewModel : Screen, IMainViewItem
   {
     public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
     private Timer tmr;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankoProject.Tools
 {
-  public interface IMainScreenTabItem
+  public interface IMainViewItem
   {
     
   }

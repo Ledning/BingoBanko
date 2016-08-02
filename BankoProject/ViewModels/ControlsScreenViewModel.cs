@@ -13,7 +13,7 @@ using System.Windows.Media;
 namespace BankoProject.ViewModels
 {
   [Export(typeof(ControlsScreenViewModel))]
-  public sealed class ControlsScreenViewModel : Screen, IMainScreenTabItem
+  public sealed class ControlsScreenViewModel : Screen, IMainViewItem
   {
     private OptionsFlyoutViewModel _OFVM;
     private ControlOptions _COptions;

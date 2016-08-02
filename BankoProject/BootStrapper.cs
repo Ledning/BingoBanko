@@ -59,8 +59,8 @@ namespace BankoProject
       _container.Register<MainWindowViewModel, MainWindowViewModel>();
       var viewModels =
           Assembly.GetExecutingAssembly()
-              .DefinedTypes.Where(x => x.GetInterface(typeof(IMainScreenTabItem).Name) != null && !x.IsAbstract && x.IsClass);
-      _container.RegisterCollection(typeof(IMainScreenTabItem), viewModels);
+              .DefinedTypes.Where(x => x.GetInterface(typeof(IMainViewItem).Name) != null && !x.IsAbstract && x.IsClass);
+      _container.RegisterCollection(typeof(IMainViewItem), viewModels);
       _container.Verify();
     }
 
