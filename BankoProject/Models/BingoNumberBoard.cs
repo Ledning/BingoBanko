@@ -11,7 +11,6 @@ using System.Windows.Media;
 
 namespace BankoProject.Models
 {
-  [Export(typeof(BingoNumberBoard))]
   public class BingoNumberBoard : PropertyChangedBase
   {
     //supposed to implement a large array and all the needed functionality for controlling the numbers 1-90. 
@@ -24,7 +23,6 @@ namespace BankoProject.Models
 
 
     private WindowManager winMan;
-    [ImportingConstructor]
     public BingoNumberBoard(int boardSize, WindowManager winMan)
     {
       this.BoardSize = boardSize;

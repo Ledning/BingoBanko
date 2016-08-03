@@ -6,25 +6,28 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankoProject.Models;
 
 namespace BankoProject.ViewModels
 {
-  class WelcomeViewModel : IMainViewItem
+  class WelcomeViewModel : Screen, IMainViewItem
   {
-    private readonly IWindowManager _winMan;
+    private IWindowManager _winMan;
+    private IEventAggregator _events;
+    private BingoEvent _bingoEvent;
 
 
-    public WelcomeViewModel(IWindowManager windowManager)
+    public WelcomeViewModel(IWindowManager windowManager, IEventAggregator eventAggregator, BingoEvent bingoEvent)
     {
       _winMan = windowManager;
+      _events = eventAggregator;
+      _bingoEvent = bingoEvent;
     }
-
-
 
 
     public void CreateEvent()
     {
-      _winMan.ShowDialog(new dialogViewModel("hrelo men"));
+      _winMan.ShowDialog(new NewEventView());
     }
 
     public void OpenFileDialog()

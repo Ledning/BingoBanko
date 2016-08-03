@@ -13,6 +13,7 @@ using Debugger = BankoProject.Tools.Debugger;
 using System.Reflection;
 using BankoProject.Tools;
 using System.Collections;
+using BankoProject.Models;
 using SimpleInjector;
 using BankoProject.ViewModels;
 
@@ -57,6 +58,7 @@ namespace BankoProject
       _container.Register<IWindowManager, WindowManager>();
       _container.RegisterSingleton<IEventAggregator, EventAggregator>();
       _container.Register<MainWindowViewModel, MainWindowViewModel>();
+      _container.RegisterSingleton<BingoEvent, BingoEvent>();
       //probably not needed? was used to share data/consistent viewmodels, which shouldnt be necessary if application is made well.
       /*var viewModels =
           Assembly.GetExecutingAssembly()

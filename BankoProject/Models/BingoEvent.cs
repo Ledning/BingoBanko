@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Caliburn.Micro;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace BankoProject.Models
 {
-  class BingoEvent
+  class BingoEvent : PropertyChangedBase
   {
 
-
     //names, dates, general stuff
-    private string _title;
+    private string _title; //Titlen
     private DateTime _startDateTime;
 
     //flags (has seed been manipulated, what was original seed, technical stuff
@@ -20,8 +21,11 @@ namespace BankoProject.Models
     private string _originalSeed; // generated based on event-name, then fed into algorithm
 
 
+    private BingoNumberBoard _bingoNumberBoard;
+
+
     //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event, 
-    //private List<competitionObject> _compettionList;
+    private List<CompetitionObject> _competitionList;
 
 
 
