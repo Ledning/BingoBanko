@@ -57,10 +57,11 @@ namespace BankoProject
       _container.Register<IWindowManager, WindowManager>();
       _container.RegisterSingleton<IEventAggregator, EventAggregator>();
       _container.Register<MainWindowViewModel, MainWindowViewModel>();
-      var viewModels =
+      //probably not needed? was used to share data/consistent viewmodels, which shouldnt be necessary if application is made well.
+      /*var viewModels =
           Assembly.GetExecutingAssembly()
               .DefinedTypes.Where(x => x.GetInterface(typeof(IMainViewItem).Name) != null && !x.IsAbstract && x.IsClass);
-      _container.RegisterCollection(typeof(IMainViewItem), viewModels);
+      _container.RegisterCollection(typeof(IMainViewItem), viewModels);*/
       _container.Verify();
     }
 

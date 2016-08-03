@@ -129,6 +129,7 @@
     <Compile Include="Models\CompetitionObject.cs" />
     <Compile Include="Models\ControlOptions.cs" />
     <Compile Include="Models\Deltagere.cs" />
+    <Compile Include="Tools\ApplicationWideEnums.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\Events\ChangeViewEvent.cs" />
     <Compile Include="Tools\IMainViewItem.cs" />

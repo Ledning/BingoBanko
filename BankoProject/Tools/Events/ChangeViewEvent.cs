@@ -8,34 +8,15 @@ namespace BankoProject.Tools.Events
 {
   class ChangeViewEvent
   {
-    string _viewName;
-    string _dispatcherName;
-
-    public string ViewName
+    public ChangeViewEvent(ApplicationWideEnums.MessageTypes msgType, string dispatcher)
     {
-      get
-      {
-        return _viewName;
-      }
-
-      set
-      {
-        _viewName = value;
-      }
+      ViewName = msgType.ToString();
+      DispatcherName = dispatcher;
     }
 
-    public string DispatcherName
-    {
-      get
-      {
-        return _dispatcherName; 
-        
-      }
-      set
-      {
-        _dispatcherName = value; 
-        
-      }
-    }
+
+    public string ViewName { get; }
+
+    public string DispatcherName { get; }
   }
 }

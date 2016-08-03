@@ -24,21 +24,32 @@ namespace BankoProject.ViewModels
 
 
     [ImportingConstructor]
-    public MainWindowViewModel(IEnumerable<IMainViewItem> tabs, IWindowManager windowManager, IEventAggregator events)
+    public MainWindowViewModel(IWindowManager windowManager, IEventAggregator events)
     {
       _windowManager = windowManager;
       _eventAggregator = events;
       //Items.AddRange(tabs); Reenable to use tabs
       events.Subscribe(this);
+      ActivateItem(new ControlPanelViewModel(_windowManager));
 
-      ActivateItem(new ControlPanelViewModel());
+      //See below for example of how to publish an event on a thread. Below event will publish a change of views event, which will change the current view to the one corresponding to the message
+      //events.PublishOnUIThread(new ChangeViewEvent(ApplicationWideEnums.MessageTypes.WelcomeView, "MainWindowViewModel"));
 
     }
 
+    //Pseudo constructor for the view i believ. Called upon initialization of the view, actions relating to startup of the view here. 
     public void Show()
     {
 
     }
+
+
+    public sealed override void ActivateItem(IMainViewItem item)
+    {
+      base.ActivateItem(item);
+    }
+
+
 
 
     public void Handle(ChangeViewEvent message)
@@ -60,12 +71,12 @@ namespace BankoProject.ViewModels
 
     private void GoToWelcomeView()
     {
-      ActivateItem(new WelcomeViewModel());
+      ActivateItem(new WelcomeViewModel(_windowManager));
     }
 
     private void GoToControlPanel()
     {
-      ActivateItem(new ControlPanelViewModel());
+      ActivateItem(new ControlPanelViewModel(_windowManager));
     }
     #endregion
 
