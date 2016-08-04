@@ -139,6 +139,7 @@
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
     <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
+    <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
     <Compile Include="Views\NewEventView.xaml.cs">
       <DependentUpon>NewEventView.xaml</DependentUpon>
     </Compile>
@@ -169,6 +170,9 @@
     </Compile>
     <Compile Include="Views\OptionsFlyoutView.xaml.cs">
       <DependentUpon>OptionsFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VisualSnaskView.xaml.cs">
+      <DependentUpon>VisualSnaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -256,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OptionsFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VisualSnaskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
