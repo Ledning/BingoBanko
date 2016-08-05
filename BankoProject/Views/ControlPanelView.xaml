@@ -11,7 +11,7 @@
   <Grid Width="1920" Height="1080" Background="#FFA2A2A2">
     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="10,10,0,10" Width="580" Background="#FF8C8C8D">
       <Grid>
-        <Label x:Name="label" Content="Visuals" Margin="169,10,169,0" VerticalAlignment="Top" FontSize="29.333" HorizontalAlignment="Center" Background="#FF747474">
+        <Label x:Name="VisualsLabel" Content="Visuals" Margin="169,10,169,0" VerticalAlignment="Top" FontSize="29.333" HorizontalAlignment="Center" Background="#FF747474">
           <Label.Effect>
             <DropShadowEffect BlurRadius="20"/>
           </Label.Effect>
@@ -22,31 +22,56 @@
     </Border>
     <Border BorderBrush="Black" BorderThickness="1" Margin="625,10,650,10" Background="#FF8C8C8D">
       <Grid>
-        <Label x:Name="label_Copy" Content="Banko" Margin="280.156,10,264,0" VerticalAlignment="Top" FontSize="29.333" Background="#FF747474" d:LayoutOverrides="Width">
+        <Label x:Name="BankoLabel" Content="Banko" Margin="280.156,10,264,0" VerticalAlignment="Top" FontSize="29.333" Background="#FF747474" d:LayoutOverrides="Width">
           <Label.Effect>
             <DropShadowEffect BlurRadius="20"/>
           </Label.Effect>
         </Label>
+        <DockPanel HorizontalAlignment="Center">
+          <Grid DockPanel.Dock="Top" Height="415" Margin="0,70,0,10" Width="645">
+            <RadioButton Margin="29,170,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
+            <Button x:Name="RNGButton" HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Width="161" Margin="29,250,0,0" Content="Træk tal" FontSize="24" FontWeight="Bold">
+
+            </Button>
+            <ListView Margin="220,0,29,10" Height="160" VerticalAlignment="Bottom">
+
+            </ListView>
+            <TextBox x:Name="PlateNumberTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="29,129,161,0" FontSize="24"/>
+            <Label x:Name="CheckPlateLabel" Content="Check pladenummer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,75,0,0" Width="250" Height="49" FontSize="24" Background="#FF737374"/>
+            <Button x:Name="CheckPlateButton" Content="Check " VerticalAlignment="Top" Margin="489,129,29,0" Height="36" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
+            <RadioButton Margin="29,195,0,195" Content="To rækker" HorizontalAlignment="Left" Width="101"/>
+            <RadioButton Margin="29,0,0,170" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="101"/>
+            <Label x:Name="WinningPlatesLabel" Content="Vinderplader" Margin="220,191,175,175" FontSize="24" Background="#FF737374"/>
+            <Button x:Name="ResetGameButton" HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Width="161" Margin="29,356,0,0" Content="Nustil spil" FontSize="24" FontWeight="Bold"/>
+          </Grid>
+          <Viewbox>
+            <ContentControl x:Name="ActiveItem" Margin="0,0,0,20">
+            </ContentControl>
+          </Viewbox>
+        </DockPanel>
       </Grid>
     </Border>
     <Border BorderBrush="Black" BorderThickness="1" Margin="0,10,10,10" HorizontalAlignment="Right" Width="600" Background="#FF8C8C8D">
       <Grid>
-        <Label x:Name="label_Copy1" Content="Konkurrencer" Margin="199,10,214,0" VerticalAlignment="Top" FontSize="29.333" Background="#FF747474">
+        <Label x:Name="ContestsLabel" Content="Konkurrencer" Margin="199,10,214,0" VerticalAlignment="Top" FontSize="29.333" Background="#FF747474">
           <Label.Effect>
             <DropShadowEffect BlurRadius="20"/>
           </Label.Effect>
         </Label>
-        <TextBox x:Name="textBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="29,203,29,0" FontSize="24"/>
-        <Label x:Name="label1" Content="Navn på konkurrencen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,149,0,0" Width="250" Height="49" FontSize="24" Background="#FF737374"/>
-        <TextBox x:Name="textBox_Copy" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="29,324,0,0" FontSize="24" HorizontalAlignment="Left" Width="65"/>
-        <Label x:Name="label1_Copy" Content="Antal Deltagere" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,270,0,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="textBox_Copy1" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,324,29,0" FontSize="24" HorizontalAlignment="Right" Width="65"/>
-        <Label x:Name="label1_Copy1" Content="Antal Hold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,270,29,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center"/>
-        <Button x:Name="button" Content="Start konkurrence" VerticalAlignment="Bottom" Margin="109,0,109,29.587" Height="54.413" FontSize="24" FontWeight="Bold"/>
-        <Button x:Name="button1" Content="Tilføj Hold" VerticalAlignment="Top" Margin="219,324,219,0" Height="36" FontSize="18.667" FontWeight="Bold" RenderTransformOrigin="0.594,0.571"/>
-        <TextBox x:Name="textBox_Copy2" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="29,324,0,0" FontSize="24" HorizontalAlignment="Left" Width="65"/>
-        <Label x:Name="label1_Copy2" Content="Varighed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,434,0,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="textBox_Copy3" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="29,488,0,0" FontSize="24" HorizontalAlignment="Left" Width="140"/>
+        <TextBox x:Name="ContestNameTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="29,203,29,0" FontSize="24"/>
+        <Label x:Name="ContestNameLabel" Content="Navn på konkurrencen" VerticalAlignment="Top" Margin="174,149,174,0" Height="49" FontSize="24" Background="#FF737374"/>
+        <TextBox x:Name="NumberOfContestantsTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="29,324,0,0" FontSize="24" HorizontalAlignment="Left" Width="65"/>
+        <Label x:Name="NumberOfContestantsLabel" Content="Antal Deltagere" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,270,0,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="NumberOfTeamsTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,324,29,0" FontSize="24" HorizontalAlignment="Right" Width="65"/>
+        <Label x:Name="NumberOfTeamsLabel" Content="Antal Hold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,270,29,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center"/>
+        <Button x:Name="StartContestButton" Content="Start konkurrence" VerticalAlignment="Bottom" Margin="109,0,109,29.587" Height="54.413" FontSize="24" FontWeight="Bold"/>
+        <Button x:Name="AddTeamButton" Content="Tilføj Hold" VerticalAlignment="Top" Margin="219,324,219,0" Height="36" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
+        <Label x:Name="ContestDurationLabel" Content="Varighed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,434,0,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="ContestDurationTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="29,488,0,0" FontSize="24" HorizontalAlignment="Left" Width="140"/>
+        <ListView Margin="29,0,29,111.5" Height="268.5" VerticalAlignment="Bottom"></ListView>
+        <Label x:Name="AddTeamsLabel" Content="Tilføjede hold" VerticalAlignment="Bottom" Margin="174,0,174,385" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center"/>
+        <Label x:Name="PlaceHolderLabel" Content="Place holder" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,434,29,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="PlaceHolderTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,488,29,0" FontSize="24" HorizontalAlignment="Right" Width="140"/>
       </Grid>
     </Border>
 

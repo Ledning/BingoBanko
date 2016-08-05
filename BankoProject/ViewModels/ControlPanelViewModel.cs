@@ -12,7 +12,7 @@ namespace BankoProject.ViewModels
   {
     public ControlPanelViewModel()
     {
-      //ActivateItem(); //Lav det her heehe
+      ActivateItem(new BoardViewModel());
     }
   }
 }
