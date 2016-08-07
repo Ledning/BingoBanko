@@ -10,8 +10,8 @@
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="GeneralStyle.xaml">
-        </ResourceDictionary>
+        <ResourceDictionary Source="Styles/GeneralStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Styles/ButtonStyle.xaml"></ResourceDictionary>
       </ResourceDictionary.MergedDictionaries>
        <Style TargetType="ToggleButton">
          <Setter Property="metro:ControlsHelper.CornerRadius" Value="3"/>

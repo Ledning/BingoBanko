@@ -32,7 +32,7 @@ namespace BankoProject.ViewModels
       _eventAggregator = events;
       _bingoEvent = bingoEvent;
       events.Subscribe(this);
-      ActivateItem(new WelcomeViewModel(_windowManager, _eventAggregator, _bingoEvent));
+      ActivateItem(new ControlPanelViewModel());
       DisplayName = "Bingo Kontrol";
 
       //See below for example of how to publish an event on a thread. Below event will publish a change of views event, which will change the current view to the one corresponding to the message

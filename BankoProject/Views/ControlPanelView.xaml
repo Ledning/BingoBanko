@@ -9,7 +9,11 @@
              xmlns:views="clr-namespace:BankoProject.Views"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
   <UserControl.Resources>
-    <ResourceDictionary Source="GeneralStyle.xaml">
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Styles/GeneralStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Styles/ButtonStyle.xaml"></ResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
   <Grid Width="1920" Height="1080">
