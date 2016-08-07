@@ -17,7 +17,7 @@
       <BeginStoryboard Storyboard="{StaticResource WelcomeViewTransition}"/>
     </EventTrigger>
   </UserControl.Triggers>
-  <Grid Background="#FFFFE457" Height="1080" Width="1920">
+  <Grid Background="{x:Null}" Height="1080" Width="1920">
     <Border BorderBrush="Black" BorderThickness="1" Height="100" Margin="480,70,480,0" VerticalAlignment="Top" CornerRadius="50" Background="#FFBDA93F">
       <Border.Effect>
         <DropShadowEffect/>

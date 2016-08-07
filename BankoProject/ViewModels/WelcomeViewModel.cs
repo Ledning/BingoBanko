@@ -27,7 +27,7 @@ namespace BankoProject.ViewModels
 
     public void CreateEvent()
     {
-      _winMan.ShowDialog(new NewEventView());
+      _winMan.ShowDialog(new dialogViewModel("popup box!"));
     }
 
     public void OpenFileDialog()

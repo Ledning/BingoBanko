@@ -1,20 +1,30 @@
 ﻿<metro:MetroWindow
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BankoProject.Views"
-             xmlns:catel="http://catel.codeplex.com"
-             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:views="clr-namespace:BankoProject.Views"
-             xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.MainWindowView"
-             mc:Ignorable="d" 
-             SizeToContent="WidthAndHeight"
-             WindowState="Maximized"
-             WindowStartupLocation="CenterScreen"
-             EnableDWMDropShadow="True" WindowStyle="None" Background="#FFFFE457" Width="1920" Height="1080"
-             >
-  <Viewbox VerticalAlignment="Top">
-        <metro:MetroContentControl x:Name="ActiveItem"/>
-    </Viewbox>
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:BankoProject.Views"
+  xmlns:catel="http://catel.codeplex.com"
+  xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+  xmlns:views="clr-namespace:BankoProject.Views"
+  xmlns:tools="clr-namespace:BankoProject.Tools"
+  xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.MainWindowView"
+  mc:Ignorable="d"
+  WindowState="Maximized"
+  Left="0" Top="0"
+  WindowStartupLocation="Manual"
+  WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" ResizeMode="CanResizeWithGrip"
+  Icon="/BankoProject;component/Resources/bingo1.png"
+  Background="#FF74ACDA"
+  
+  
+  >
+  <metro:MetroWindow.Resources>
+    <ResourceDictionary Source="GeneralStyle.xaml">
+    </ResourceDictionary>
+  </metro:MetroWindow.Resources>
+
+  <Viewbox VerticalAlignment="Top" ClipToBounds="True">
+    <metro:MetroContentControl x:Name="ActiveItem" />
+  </Viewbox>
 </metro:MetroWindow>

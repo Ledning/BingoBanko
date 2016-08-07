@@ -15,6 +15,7 @@ namespace BankoProject.ViewModels
     public dialogViewModel(string text)
     {
       Text = text;
+      DisplayName = "Bekræft Handling";
     }
 
     public string Text

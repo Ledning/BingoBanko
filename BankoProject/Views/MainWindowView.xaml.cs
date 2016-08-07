@@ -26,6 +26,12 @@ namespace BankoProject.Views
     public MainWindowView()
     {
       InitializeComponent();
+      this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+      this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+      this.MinHeight = 720;
+      this.MinWidth = 1280;
+      this.Height = this.MaxHeight;
+      this.Width = this.MaxWidth;
     }
   }
 }
