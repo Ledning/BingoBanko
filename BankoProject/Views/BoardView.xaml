@@ -8,62 +8,69 @@
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" d:DesignWidth="300" Height="297">
   <UserControl.Resources>
-    <Style TargetType="ToggleButton">
-      <Setter Property="metro:ControlsHelper.CornerRadius" Value="3"/>
-      <Setter Property="Background" Value="{DynamicResource GrayBrush10}"/>
-      <Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}"/>
-      <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-      <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
-      <Setter Property="FontSize" Value="{DynamicResource UpperCaseContentFontSize}"/>
-      <Setter Property="FontWeight" Value="Bold"/>
-      <Setter Property="Padding" Value="5,6"/>
-      <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="MinHeight" Value="25"/>
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="ToggleButton">
-            <Grid>
-              <Border x:Name="Background" Background="{TemplateBinding Background}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-              <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-              <Border x:Name="DisabledVisualElement" Background="{DynamicResource ControlsDisabledBrush}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-              <metro:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (metro:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            </Grid>
-            <ControlTemplate.Triggers>
-              <Trigger Property="IsChecked" Value="True">
-                <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
-                <Setter Property="Background" TargetName="Background" Value="LimeGreen"/>
-                <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
-              </Trigger>
-              <MultiTrigger>
-                <MultiTrigger.Conditions>
-                  <Condition Property="IsMouseOver" Value="True"/>
-                  <Condition Property="IsChecked" Value="False"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="Background" Value="{DynamicResource GrayBrush8}"/>
-              </MultiTrigger>
-              <MultiTrigger>
-                <MultiTrigger.Conditions>
-                  <Condition Property="IsMouseOver" Value="True"/>
-                  <Condition Property="IsChecked" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="Background" Value="#FF32DC32"/>
-              </MultiTrigger>
-              <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="Background" Value="LimeGreen"/>
-              </Trigger>
-              <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
-                <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource ButtonMouseOverBorderBrush}"/>
-              </Trigger>
-              <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
-                <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
-              </Trigger>
-            </ControlTemplate.Triggers>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-    </Style>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="GeneralStyle.xaml">
+        </ResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
+       <Style TargetType="ToggleButton">
+         <Setter Property="metro:ControlsHelper.CornerRadius" Value="3"/>
+         <Setter Property="Background" Value="{DynamicResource GrayBrush10}"/>
+         <Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}"/>
+         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+         <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+         <Setter Property="FontSize" Value="{DynamicResource UpperCaseContentFontSize}"/>
+         <Setter Property="FontWeight" Value="Bold"/>
+         <Setter Property="Padding" Value="5,6"/>
+         <Setter Property="BorderThickness" Value="1"/>
+         <Setter Property="MinHeight" Value="25"/>
+         <Setter Property="Template">
+           <Setter.Value>
+             <ControlTemplate TargetType="ToggleButton">
+               <Grid>
+                 <Border x:Name="Background" Background="{TemplateBinding Background}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                 <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                 <Border x:Name="DisabledVisualElement" Background="{DynamicResource ControlsDisabledBrush}" CornerRadius="{Binding (metro:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                 <metro:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (metro:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+               </Grid>
+               <ControlTemplate.Triggers>
+                 <Trigger Property="IsChecked" Value="True">
+                   <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
+                   <Setter Property="Background" TargetName="Background" Value="LimeGreen"/>
+                   <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
+                 </Trigger>
+                 <MultiTrigger>
+                   <MultiTrigger.Conditions>
+                     <Condition Property="IsMouseOver" Value="True"/>
+                     <Condition Property="IsChecked" Value="False"/>
+                   </MultiTrigger.Conditions>
+                   <Setter Property="Background" TargetName="Background" Value="{DynamicResource GrayBrush8}"/>
+                 </MultiTrigger>
+                 <MultiTrigger>
+                   <MultiTrigger.Conditions>
+                     <Condition Property="IsMouseOver" Value="True"/>
+                     <Condition Property="IsChecked" Value="True"/>
+                   </MultiTrigger.Conditions>
+                   <Setter Property="Background" TargetName="Background" Value="#FF32DC32"/>
+                 </MultiTrigger>
+                 <Trigger Property="IsPressed" Value="True">
+                   <Setter Property="Background" TargetName="Background" Value="LimeGreen"/>
+                 </Trigger>
+                 <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                   <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
+                   <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource ButtonMouseOverBorderBrush}"/>
+                 </Trigger>
+                 <Trigger Property="IsEnabled" Value="False">
+                   <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
+                   <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+                 </Trigger>
+               </ControlTemplate.Triggers>
+             </ControlTemplate>
+           </Setter.Value>
+         </Setter>
+       </Style>
+    </ResourceDictionary>
+    
   </UserControl.Resources>
 
 
