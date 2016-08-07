@@ -19,7 +19,7 @@ namespace BankoProject.Views
   /// <summary>
   /// Interaction logic for dialogView.xaml
   /// </summary>
-  public partial class dialogView : MetroWindow
+  public partial class dialogView : UserControl
   {
     public dialogView()
     {

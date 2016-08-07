@@ -16,11 +16,13 @@
   WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" ResizeMode="CanResizeWithGrip"
   Icon="/BankoProject;component/Resources/bingo1.png"
   Background="#FF74ACDA"
-  
-  
   >
   <metro:MetroWindow.Resources>
-    <ResourceDictionary Source="GeneralStyle.xaml">
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Styles/GeneralStyle.xaml"/>
+        <ResourceDictionary Source="Styles/ButtonStyle.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </metro:MetroWindow.Resources>
 
