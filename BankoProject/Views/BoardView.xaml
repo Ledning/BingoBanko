@@ -36,7 +36,7 @@
                <ControlTemplate.Triggers>
                  <Trigger Property="IsChecked" Value="True">
                    <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
-                   <Setter Property="Background" TargetName="Background" Value="LimeGreen"/>
+                   <Setter Property="Background" TargetName="Background" Value="Yellow"/>
                    <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
                  </Trigger>
                  <MultiTrigger>
@@ -54,7 +54,7 @@
                    <Setter Property="Background" TargetName="Background" Value="#FF32DC32"/>
                  </MultiTrigger>
                  <Trigger Property="IsPressed" Value="True">
-                   <Setter Property="Background" TargetName="Background" Value="LimeGreen"/>
+                   <Setter Property="Background" TargetName="Background" Value="Yellow"/>
                  </Trigger>
                  <Trigger Property="IsKeyboardFocusWithin" Value="True">
                    <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
