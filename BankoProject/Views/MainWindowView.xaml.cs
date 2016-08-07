@@ -12,9 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankoProject.ViewModels;
 using Catel;
 using Catel.MVVM.Views;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace BankoProject.Views
 {
@@ -33,5 +35,7 @@ namespace BankoProject.Views
       this.Height = this.MaxHeight;
       this.Width = this.MaxWidth;
     }
+
+    
   }
 }
