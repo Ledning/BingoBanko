@@ -5,8 +5,8 @@
     <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <Style TargetType="{x:Type Button}">
-    
+  <Style TargetType="{x:Type Button}" >
+    <Setter Property="Foreground" Value="Black"></Setter>
   </Style>
   
 </ResourceDictionary>
