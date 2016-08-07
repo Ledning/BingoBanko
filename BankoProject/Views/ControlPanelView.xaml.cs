@@ -24,5 +24,10 @@ namespace BankoProject.Views
     {
       InitializeComponent();
     }
+
+    private void OnePlateBingoRadio_Checked(object sender, RoutedEventArgs e)
+    {
+
+    }
   }
 }
