@@ -16,6 +16,7 @@ using System.Collections;
 using BankoProject.Models;
 using SimpleInjector;
 using BankoProject.ViewModels;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace BankoProject
 {
@@ -59,6 +60,7 @@ namespace BankoProject
       _container.RegisterSingleton<IEventAggregator, EventAggregator>();
       _container.Register<MainWindowViewModel, MainWindowViewModel>();
       _container.RegisterSingleton<BingoEvent, BingoEvent>();
+      _container.RegisterSingleton<IDialogCoordinator, DialogCoordinator>();
       //probably not needed? was used to share data/consistent viewmodels, which shouldnt be necessary if application is made well.
       /*var viewModels =
           Assembly.GetExecutingAssembly()
