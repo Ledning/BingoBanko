@@ -13,6 +13,7 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Styles/GeneralStyle.xaml"></ResourceDictionary>
         <ResourceDictionary Source="Styles/ButtonStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Styles/LabelStyle.xaml"></ResourceDictionary>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
@@ -30,18 +31,18 @@
 
         <Grid x:Name="TogglesVisualsGrid" Margin="30,193.5,29,0" Height="327.5" VerticalAlignment="Top" Background="#FF3E8BCB">
           <Grid.Effect>
-            <DropShadowEffect BlurRadius="40"/>
+            <DropShadowEffect BlurRadius="15"/>
           </Grid.Effect>
         </Grid>
-        <Label x:Name="TogglesVisualsLabel" Content="Toggles" VerticalAlignment="Top" Margin="29,144.5,0,0" Height="49" Style=""/>
+        <Label x:Name="TogglesVisualsLabel" Content="Toggles" VerticalAlignment="Top" Margin="29,144,424,0" Style="{StaticResource ControlPanelLabel}" HorizontalAlignment="Center" Width="125"/>
         <ToggleButton x:Name="RecentNumbersToggleButton" Content="Seneste tal" metro:ControlsHelper.CornerRadius="0" Margin="38,216.5,0,0" Height="45" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="177"/>
 
         <Grid x:Name="BGVisualsGrid" Margin="30,0,29,293.5" Height="175" VerticalAlignment="Bottom" Background="#FF3E8BCB">
           <Grid.Effect>
-            <DropShadowEffect BlurRadius="40"/>
+            <DropShadowEffect BlurRadius="15"/>
           </Grid.Effect>
         </Grid>
-        <Label x:Name="BackgroundVisualsLabel" Content="Baggrund" VerticalAlignment="Bottom" Margin="29,0,0,468.5" Height="49" FontSize="24" Background="#FF3E8BCB" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="204" FontWeight="Bold" BorderBrush="#19000000" BorderThickness="1,3,0,0"/>
+        <Label x:Name="BackgroundVisualsLabel" Content="Baggrund" VerticalAlignment="Bottom" Margin="29,0,0,468" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="152" Style="{StaticResource ControlPanelLabel}"/>
         <RadioButton x:Name="EmptyBGRadio" Content="Tom skærm" Height="44.5" VerticalAlignment="Top" Margin="38,612,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="168"/>
         <RadioButton x:Name="PlateBGRadio" Content="Pladeoversigt" Height="44.5" VerticalAlignment="Top" Margin="38,661.5,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="177"/>
         <RadioButton x:Name="CustomBGRadio" Content="Brugerdefineret:" Height="44.5" VerticalAlignment="Top" Margin="38,711,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="212.5"/>
@@ -49,10 +50,10 @@
 
         <Grid x:Name="TriggersVisualsGrid" Margin="30,0,29,34.5" Height="175" VerticalAlignment="Bottom" Background="#FF3E8BCB">
           <Grid.Effect>
-            <DropShadowEffect BlurRadius="40"/>
+            <DropShadowEffect BlurRadius="15"/>
           </Grid.Effect>
         </Grid>
-        <Label x:Name="TriggersVisualsLabel" Content="Triggers" VerticalAlignment="Bottom" Margin="29,0,0,208.5" Height="49" FontSize="24" Background="#FF3E8BCB" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="204" FontWeight="Bold" BorderBrush="#19000000" BorderThickness="1,1,1,0"/>
+        <Label x:Name="TriggersVisualsLabel" Content="Triggers" VerticalAlignment="Bottom" Margin="29,0,0,208" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="152" Style="{StaticResource ControlPanelLabel}"/>
         <Button x:Name="WirHabenBingoButton" Content="Bingo" Margin="38,0,0,135.5" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="186" Height="49.5" VerticalAlignment="Bottom"/>
       </Grid>
 
@@ -72,10 +73,10 @@
 
             <Grid x:Name="CheckPlateGrid" Margin="30,124,29,0" Height="281" VerticalAlignment="Top" Background="#FF3E8BCB">
               <Grid.Effect>
-                <DropShadowEffect BlurRadius="40"/>
+                <DropShadowEffect BlurRadius="15"/>
               </Grid.Effect>
             </Grid>
-            <Label x:Name="CheckPlateLabel" Content="Check pladenummer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,75,0,0" Width="250" Height="50" FontSize="24" Background="#FF3E8BCB" FontWeight="Bold" BorderThickness="1,1,1,0" BorderBrush="#19000000"/>
+            <Label x:Name="CheckPlateLabel" Content="Check pladenummer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,75,0,0" Width="250" Style="{StaticResource ControlPanelLabel}"/>
             <TextBox x:Name="PlateNumberTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="38,129,161,0" FontSize="24"/>
             <Button x:Name="CheckPlateButton" Content="Check" VerticalAlignment="Top" Margin="489,129,38,0" Height="36" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
             <RadioButton x:Name="OnePlateBingoRadio" Margin="38,170,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Checked="OnePlateBingoRadio_Checked" FontWeight="Bold"/>
@@ -89,10 +90,10 @@
 
             <Grid x:Name="WinningPlatesGrid" Margin="208,230.57,42,0" Height="165" VerticalAlignment="Top" Background="#FF3E8BCB">
               <Grid.Effect>
-                <DropShadowEffect BlurRadius="40"/>
+                <DropShadowEffect BlurRadius="15"/>
               </Grid.Effect>
             </Grid>
-            <Label x:Name="WinningPlatesLabel" Height="50" Content="Vinderplader" Margin="207,180.57,186,184.43" FontSize="24" Background="#FF3E8BCB" FontWeight="Bold" BorderThickness="1,1,1,0" BorderBrush="#19000000" d:LayoutOverrides="VerticalAlignment"/>
+            <Label x:Name="WinningPlatesLabel" Content="Vinderplader" Margin="207,180.57,186,184.43" d:LayoutOverrides="VerticalAlignment" Style="{StaticResource ControlPanelLabel}"/>
             <ListView Margin="217,0,50,30.43" Height="139.57" VerticalAlignment="Bottom" BorderThickness="0"/>
 
           </Grid>
@@ -108,7 +109,22 @@
         <DropShadowEffect BlurRadius="20"/>
       </Border.Effect>
       <Grid>
-        <Label x:Name="ContestsLabel" Content="Konkurrencer" Margin="199,10,214,0" VerticalAlignment="Top" FontSize="29.333" Background="#FF747474" FontWeight="Bold">
+        <Grid x:Name="ContestNameContestGrid_Copy2" Margin="42,673,17,0" Background="#FF3E8BCB" Height="291" VerticalAlignment="Top" RenderTransformOrigin="0.501,2.676">
+          <Grid.Effect>
+            <DropShadowEffect BlurRadius="14"/>
+          </Grid.Effect>
+        </Grid>
+        <Grid x:Name="ContestNameContestGrid_Copy1" Margin="30,484,29,0" Background="#FF3E8BCB" Height="51" VerticalAlignment="Top">
+          <Grid.Effect>
+            <DropShadowEffect BlurRadius="14"/>
+          </Grid.Effect>
+        </Grid>
+        <Grid x:Name="ContestNameContestGrid_Copy" Margin="29,320,30,0" Background="#FF3E8BCB" Height="51" VerticalAlignment="Top">
+          <Grid.Effect>
+            <DropShadowEffect BlurRadius="14"/>
+          </Grid.Effect>
+        </Grid>
+        <Label x:Name="ContestsLabel" Content="Konkurrencer" Margin="169.5,10,169.5,0" VerticalAlignment="Top" Style="{StaticResource ControlPanelLabel}" FontSize="42" FontWeight="Normal" Height="71" HorizontalAlignment="Center" FontFamily="Comic Sans MS" >
           <Label.Effect>
             <DropShadowEffect BlurRadius="20"/>
           </Label.Effect>
@@ -116,31 +132,24 @@
 
         <Grid x:Name="ContestNameContestGrid" Margin="29,203,30,0" Background="#FF3E8BCB" Height="51" VerticalAlignment="Top">
           <Grid.Effect>
-            <DropShadowEffect BlurRadius="40"/>
+            <DropShadowEffect BlurRadius="14"/>
           </Grid.Effect>
         </Grid>
         <Label x:Name="ContestNameLabel" Content="Navn på konkurrencen" VerticalAlignment="Top" Margin="160,154,160,0" Height="50" FontSize="24" Background="#FF3E8BCB" FontWeight="Bold" BorderThickness="1,1,1,0" BorderBrush="#19000000"/>
         <TextBox x:Name="ContestNameTextBox" Height="32.334" TextWrapping="Wrap" VerticalAlignment="Top" Margin="42.333,212.333,42.333,0" FontSize="24"/>
 
-        <Grid x:Name="AddTeamsContestGrid" Margin="29,203,30,0" Background="#FF3E8BCB" Height="51" VerticalAlignment="Top">
-          <Grid.Effect>
-            <DropShadowEffect BlurRadius="40"/>
-          </Grid.Effect>
-        </Grid>
-
-        <metro:NumericUpDown x:Name="NumberOfContestantsTextBox" Height="40" VerticalAlignment="Top" Margin="29,324,0,0" FontSize="24" HorizontalAlignment="Left" Width="136"/>
-        <Label x:Name="NumberOfContestantsLabel" Content="Antal Deltagere" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,270,0,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-        <metro:NumericUpDown x:Name="NumberOfTeamsTextBox" Height="40
-                             " VerticalAlignment="Top" Margin="0,324,29,0" FontSize="24" HorizontalAlignment="Right" Width="136"/>
-        <Label x:Name="NumberOfTeamsLabel" Content="Antal Hold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,270,29,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <metro:NumericUpDown x:Name="NumberOfContestantsTextBox" Height="40" VerticalAlignment="Top" Margin="42,328,0,0" FontSize="24" HorizontalAlignment="Left" Width="123" RenderTransformOrigin="0.512,0.55"/>
+        <Label x:Name="NumberOfContestantsLabel" Content="Antal Deltagere" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,270,0,0" Width="190" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
+        <metro:NumericUpDown x:Name="NumberOfTeamsTextBox" Height="40" VerticalAlignment="Top" Margin="0,328,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
+        <Label x:Name="NumberOfTeamsLabel" Content="Antal Hold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,270,29,0" Width="136" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
         <Button x:Name="StartContestButton" Content="Start konkurrence" VerticalAlignment="Bottom" Margin="109,0,109,29.587" Height="54.413" FontSize="24" FontWeight="Bold"/>
-        <Button x:Name="AddTeamButton" Content="Tilføj Hold" VerticalAlignment="Top" Margin="219,324,219,0" Height="40" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
-        <Label x:Name="ContestDurationLabel" Content="Varighed i sek." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,434,0,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-        <metro:NumericUpDown x:Name="ContestDurationTextBox" Height="40" VerticalAlignment="Top" Margin="29,488,0,0" FontSize="24" HorizontalAlignment="Left" Width="136"/>
-        <ListView x:Name="TeamsContestComboBox" Margin="29,0,29,111.5" Height="268.5" VerticalAlignment="Bottom"></ListView>
-        <Label x:Name="AddTeamsLabel" Content="Tilføjede hold" VerticalAlignment="Bottom" Margin="174,0,174,385" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-        <Label x:Name="PlaceHolderLabel" Content="Place holder" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,434,29,0" Width="250" Height="49" FontSize="24" Background="#FF737374" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-        <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" VerticalAlignment="Top" Margin="0,488,29,0" FontSize="24" HorizontalAlignment="Right" Width="136"/>
+        <Button x:Name="AddTeamButton" Content="Tilføj Hold" VerticalAlignment="Top" Margin="218,328,218,0" Height="40" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
+        <Label x:Name="ContestDurationLabel" Content="Varighed i sek." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,434,0,0" Width="190" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
+        <metro:NumericUpDown x:Name="ContestDurationTextBox" Height="40" VerticalAlignment="Top" Margin="42,489,0,0" FontSize="24" HorizontalAlignment="Left" Width="123"/>
+        <ListView x:Name="TeamsContestComboBox" Margin="56,0,30,114" Height="250" VerticalAlignment="Bottom"/>
+        <Label x:Name="AddTeamsLabel" Content="Tilføjede hold" VerticalAlignment="Bottom" Margin="174,0,174,385" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
+        <Label x:Name="PlaceHolderLabel" Content="Place holder" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,434,29,0" Width="190" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
+        <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" VerticalAlignment="Top" Margin="0,489,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
       </Grid>
     </Border>
 
