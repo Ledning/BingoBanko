@@ -19,11 +19,16 @@ namespace BankoProject.Views
   /// <summary>
   /// Interaction logic for dialogView.xaml
   /// </summary>
-  public partial class dialogView : UserControl
+  public partial class dialogView : MetroWindow
   {
     public dialogView()
     {
       InitializeComponent();
+    }
+
+    private void Text_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
     }
   }
 }

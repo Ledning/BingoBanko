@@ -42,33 +42,45 @@ namespace BankoProject.Models
 
     public void PickNumber(int number)
     {
-      dialogViewModel dVM;
-      winMan.ShowDialog(dVM = new dialogViewModel("Bekræft tilføjelse: " + number));
-      if (dVM.Response)
+      var result = winMan.ShowDialog(new dialogViewModel("Bekræft tilføjelse: " + number));
+      if (result.HasValue)
       {
-        Board[number].IsPicked = true;
-        PickingOrder.Push(Board[number]);
+        if (result.Value)
+        {
+          Board[number].IsPicked = true;
+          PickingOrder.Push(Board[number]);
+        }
       }
+      else
+      {
+        throw new ArgumentException();
+      }
+      
     }
     public void UnPickNumber(int number)
     {
-      dialogViewModel dVM;
-      winMan.ShowDialog(dVM = new dialogViewModel("Bekræft fjernelse: " + number));
-      if (dVM.Response)
-      {
-        Board[number].IsPicked = false;
-        PickingOrder.Pop();
+      var result = winMan.ShowDialog(new dialogViewModel("Bekræft fjernelse: " + number));
 
-      }
+      if (result.HasValue)
+      {
+        if (result.Value)
+        {
+          Board[number].IsPicked = false;
+          PickingOrder.Pop();
+        }
+      }      
     }
+
     public void ResetBoard()
     {
-      dialogViewModel dVM;
-      winMan.ShowDialog(dVM = new dialogViewModel("Bekræft reset af spil"));
-      if (dVM.Response)
+      var result = winMan.ShowDialog(new dialogViewModel("Bekræft reset af spil"));
+      if (result.HasValue)
       {
-        Board = null;
-        Initialize();
+        if (result.Value)
+        {
+          Board = null;
+          Initialize();
+        }
       }
     }
    

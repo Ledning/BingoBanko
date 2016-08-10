@@ -3,9 +3,11 @@ using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using BankoProject.Models;
 
 namespace BankoProject.ViewModels
@@ -27,8 +29,10 @@ namespace BankoProject.ViewModels
 
     public void CreateEvent()
     {
-      _winMan.ShowDialog(new dialogViewModel("popup box!"));
+      bool? result = _winMan.ShowDialog(new dialogViewModel("popup box!"));
+
     }
+
 
     public void OpenFileDialog()
     {

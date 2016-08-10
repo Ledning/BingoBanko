@@ -12,8 +12,8 @@ namespace BankoProject.Models
   {
 
     //names, dates, general stuff
-    private string _title; //Titlen
-    private DateTime _startDateTime;
+    private string _eventTitle; //Titlen
+    private DateTime _creationTime;
 
     //flags (has seed been manipulated, what was original seed, technical stuff
     private bool _seedManipulated; //basically isDirty
@@ -27,6 +27,12 @@ namespace BankoProject.Models
     //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event, 
     private List<CompetitionObject> _competitionList;
 
+
+    private string GenerateSeedFromKeyword(string keyword)
+    {
+      throw new NotImplementedException();
+      return keyword;
+    }
 
 
 

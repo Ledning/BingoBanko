@@ -31,27 +31,38 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => Text);
       }
     }
-    public bool Response
-    {
-      get
-      {
-        return _response;
-      }
 
-      set
-      {
-        _response = value;
-        NotifyOfPropertyChange(() => Response);
-      }
+    public void AcceptButton()
+    {
+      TryClose(true);
     }
 
-    public void yResponse()
+    public void CancelButton()
     {
-      Response = true;
+      TryClose(false);
     }
-    public void nResponse()
-    {
-      Response = false;
-    }
+
+
+
+
+    //HOW TO USE THIS PIECE OF SHIT? LOOOK NO FURTHER
+    //Same procedure if the result was != true
+    //Og, hvis du vil bruge denne i en viewmodel, skal den have en instans af WindowManageren sendt med. 
+    /*
+    bool? result = winMan.ShowDialog(new dialogViewModel("Bekræft tilføjelse: " + number));
+      if (result != null)
+      {
+        if (result.Value)
+        {
+          //Do some shit here
+        }
+      }
+
+
+
+
+
+
+    */
   }
 }
