@@ -9,8 +9,19 @@
              xmlns:catel="http://catel.codeplex.com" x:Class="BankoProject.Views.WelcomeView"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
+
+
+
   <UserControl.Resources>
-    <Storyboard x:Key="WelcomeViewTransition"/>
+    <ResourceDictionary>
+      <Storyboard x:Key="WelcomeViewTransition"/>
+
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Styles/GeneralStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Styles/ButtonStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Styles/LabelStyle.xaml"></ResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
   </UserControl.Resources>
   <UserControl.Triggers>
     <EventTrigger RoutedEvent="FrameworkElement.Loaded">
@@ -18,7 +29,7 @@
     </EventTrigger>
   </UserControl.Triggers>
   <Grid Background="{x:Null}" Height="1080" Width="1920">
-    <Border BorderBrush="Black" BorderThickness="1" Height="100" Margin="480,70,480,0" VerticalAlignment="Top" CornerRadius="50" Background="#FFBDA93F">
+    <Border BorderBrush="Black" BorderThickness="1" Height="100" Margin="480,70,480,0" VerticalAlignment="Top" CornerRadius="50" Background="#FF3E8BCB">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -29,22 +40,18 @@
         <DropShadowEffect BlurRadius="10"/>
       </Image.Effect>
     </Image>
-    <ListBox x:Name="LatestEvents" HorizontalAlignment="Right" Margin="0,360,85,80" Width="550" Background="#FFEFD758">
+    <ListBox x:Name="LatestEvents" HorizontalAlignment="Right" Margin="0,360,85,80" Width="550" Background="#FF3E8BCB">
       <ListBox.Effect>
         <DropShadowEffect/>
       </ListBox.Effect>
     </ListBox>
-    <Label x:Name="Latest" Content="Seneste Events" HorizontalAlignment="Right" Margin="0,290,420,0" VerticalAlignment="Top" Width="200" Background="#FFEFD758" FontSize="26.667" Foreground="Black" FontWeight="Bold" Height="49.999">
-      <Label.Effect>
-        <DropShadowEffect/>
-      </Label.Effect>
-    </Label>
-    <Button x:Name="CreateEvent" Content="Nyt event..." HorizontalAlignment="Left" Margin="80,441.38,0,0" Width="295" FontSize="32" Background="#FFEFD758" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Top">
+    <Label x:Name="Latest" Content="Seneste Events" HorizontalAlignment="Right" Margin="0,310,436,0" VerticalAlignment="Top" Width="200" Foreground="Black" Style="{StaticResource ControlPanelLabel}" />
+      <Button x:Name="CreateEvent" Content="Nyt event..." HorizontalAlignment="Left" Margin="80,441.38,0,0" Width="295" FontSize="32" Background="#FF3E8BCB" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Top">
       <Button.Effect>
         <DropShadowEffect/>
       </Button.Effect>
     </Button>
-    <Button x:Name="OpenFileDialog" Content="Indlæs event..." HorizontalAlignment="Left" Margin="80,0,0,295" Width="295" FontSize="32" Background="#FFEFD758" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Bottom">
+    <Button x:Name="OpenFileDialog" Content="Indlæs event..." HorizontalAlignment="Left" Margin="80,0,0,295" Width="295" FontSize="32" Background="#FF3E8BCB" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Bottom">
       <Button.Effect>
         <DropShadowEffect/>
       </Button.Effect>
