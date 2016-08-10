@@ -17,13 +17,13 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
-  <Grid Width="1920" Height="1080" Background="Black">
+  <Grid Width="1920" Height="1080" Background="{x:Null}">
     <Border x:Name="VisualsBorder" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="10,10,0,10" Width="580" CornerRadius="3" Background="#FF74ACFA">
       <Border.Effect>
         <DropShadowEffect RenderingBias="Quality" BlurRadius="20"/>
       </Border.Effect>
       <Grid x:Name="VisualsGrid">
-        <Label x:Name="VisualsLabel" Content="Visuals" Margin="169,10,169,0" VerticalAlignment="Top" FontSize="29.333" HorizontalAlignment="Center" Background="#FF747474" FontWeight="Bold">
+        <Label x:Name="VisualsLabel" Content="Visuals" Margin="169,10,169,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource ControlPanelLabel}" FontSize="42" FontWeight="Normal" Height="71">
           <Label.Effect>
             <DropShadowEffect BlurRadius="20"/>
           </Label.Effect>
@@ -63,7 +63,7 @@
         <DropShadowEffect BlurRadius="20"/>
       </Border.Effect>
       <Grid>
-        <Label x:Name="BankoLabel" Content="Banko" Margin="280.156,10,264,0" VerticalAlignment="Top" FontSize="29.333" Background="#FF747474" d:LayoutOverrides="Width" FontWeight="Bold">
+        <Label x:Name="BankoLabel" Content="Banko" Margin="280,10,235,0" VerticalAlignment="Top" Style="{StaticResource ControlPanelLabel}" FontSize="42" FontWeight="Normal" Height="71">
           <Label.Effect>
             <DropShadowEffect BlurRadius="20"/>
           </Label.Effect>
@@ -124,7 +124,7 @@
             <DropShadowEffect BlurRadius="14"/>
           </Grid.Effect>
         </Grid>
-        <Label x:Name="ContestsLabel" Content="Konkurrencer" Margin="169.5,10,169.5,0" VerticalAlignment="Top" Style="{StaticResource ControlPanelLabel}" FontSize="42" FontWeight="Normal" Height="71" HorizontalAlignment="Center" FontFamily="Comic Sans MS" >
+        <Label x:Name="ContestsLabel" Content="Konkurrencer" Margin="169.5,10,169.5,0" VerticalAlignment="Top" Style="{StaticResource ControlPanelLabel}" FontSize="42" FontWeight="Normal" Height="71" HorizontalAlignment="Center">
           <Label.Effect>
             <DropShadowEffect BlurRadius="20"/>
           </Label.Effect>
