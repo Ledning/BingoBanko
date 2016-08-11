@@ -8,9 +8,9 @@
         Title="DebuggingWindowView" Height="300" Width="300"
         WindowStartupLocation="CenterOwner">
   <Grid>
-    <Button x:Name="ShowWelcome" Margin="96,172,106,76" Content="WelcomeView">
+    <Button x:Name="ShowWelcome" Margin="96,156,106,76" Content="WelcomeView">
       
     </Button>
-    <Button x:Name="ShowControl" Margin="86,206,85,42" Content="ControlPanelView"/>
+    <Button x:Name="ShowControl" Margin="86,198,85,42" Content="ControlPanelView"/>
   </Grid>
 </Window>
