@@ -28,7 +28,7 @@
       <BeginStoryboard Storyboard="{StaticResource WelcomeViewTransition}"/>
     </EventTrigger>
   </UserControl.Triggers>
-  <Grid Background="{x:Null}" Height="1080" Width="1920">
+  <Grid Height="1080" Width="1920">
     <Border BorderBrush="Black" BorderThickness="1" Height="100" Margin="480,70,480,0" VerticalAlignment="Top" CornerRadius="50" Background="#FF3E8BCB">
       <Border.Effect>
         <DropShadowEffect/>
@@ -46,7 +46,7 @@
       </ListBox.Effect>
     </ListBox>
     <Label x:Name="Latest" Content="Seneste Events" HorizontalAlignment="Right" Margin="0,310,436,0" VerticalAlignment="Top" Width="200" Foreground="Black" Style="{StaticResource ControlPanelLabel}" />
-      <Button x:Name="CreateEvent" Content="Nyt event..." HorizontalAlignment="Left" Margin="80,441.38,0,0" Width="295" FontSize="32" Background="#FF3E8BCB" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Top">
+    <Button x:Name="CreateEvent" Content="Nyt event..." HorizontalAlignment="Left" Margin="80,441.38,0,0" Width="295" FontSize="32" Background="#FF3E8BCB" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Top">
       <Button.Effect>
         <DropShadowEffect/>
       </Button.Effect>

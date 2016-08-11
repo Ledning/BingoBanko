@@ -58,7 +58,6 @@ namespace BankoProject
       _container = new Container();
       _container.Register<IWindowManager, WindowManager>();
       _container.RegisterSingleton<IEventAggregator, EventAggregator>();
-      _container.Register<MainWindowViewModel, MainWindowViewModel>();
       _container.RegisterSingleton<BingoEvent, BingoEvent>();
       _container.RegisterSingleton<IDialogCoordinator, DialogCoordinator>();
       //probably not needed? was used to share data/consistent viewmodels, which shouldnt be necessary if application is made well.

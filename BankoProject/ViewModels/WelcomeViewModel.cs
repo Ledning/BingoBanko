@@ -18,17 +18,22 @@ namespace BankoProject.ViewModels
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
 
-
-    public WelcomeViewModel(IWindowManager windowManager, IEventAggregator eventAggregator, BingoEvent bingoEvent)
+    public WelcomeViewModel()
     {
-      _winMan = windowManager;
-      _events = eventAggregator;
-      _bingoEvent = bingoEvent;
+
+    }
+
+    protected override void OnViewReady(object view)
+    {
+      _winMan = IoC.Get<IWindowManager>();
+      _events = IoC.Get<IEventAggregator>();
+      _bingoEvent = IoC.Get<BingoEvent>();
     }
 
 
     public void CreateEvent()
     {
+
       bool? result = _winMan.ShowDialog(new dialogViewModel("popup box!"));
 
     }
