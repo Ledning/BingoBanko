@@ -14,71 +14,93 @@ using BankoProject.Tools.Events;
 
 namespace BankoProject.ViewModels
 {
+  /*
+   HOW TO DO EVENTS AND USE WINDOWMANAGER:
+
+    In order to use anything contained in the IOC container this project has, it is as simple as creating a property to contain it, and then assigning that propert to the corresponding value from IOC:
+    someproperty = IoC.Get<IWindowManager>();
+
+    As of right now, it has 4 things:
+    WindowManager  (Use IWindowManager)
+    EventAggregator (Use IEventAggregator)
+    BingoEvent (Use BingoEvent)
+
+    Windowmanager is the only one which is not a singleton (meaning it wont be the same instance passed around)
+    BingoEvent has all the info needed to run and show an event.
+
+    To use WindowManager to show a dialog:
+    _winMan.ShowDialog(new dialogViewModel("dialog text"))
+
+
+
+  */
   [Export(typeof(IShell))]
-  class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<ChangeViewEvent>
+  class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<ChangeViewEvent>, ISave, ILoad
   {
-    private IWindowManager _windowManager;
+    private IWindowManager _winMan;
     private IEventAggregator _eventAggregator;
     private BingoEvent _bingoEvent;
 
+    private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
 
 
 
 
-    [ImportingConstructor]
-    public MainWindowViewModel(IWindowManager windowManager, IEventAggregator events, BingoEvent bingoEvent)
+
+
+    public MainWindowViewModel()
     {
-      _windowManager = windowManager;
-      _eventAggregator = events;
-      _bingoEvent = bingoEvent;
-      events.Subscribe(this);
-      ActivateItem(new WelcomeViewModel(_windowManager, _eventAggregator, _bingoEvent));
+
+      ActivateItem(new WelcomeViewModel());
       DisplayName = "Bingo Kontrol";
 
-      //See below for example of how to publish an event on a thread. Below event will publish a change of views event, which will change the current view to the one corresponding to the message
-      //events.PublishOnUIThread(new ChangeViewEvent(ApplicationWideEnums.MessageTypes.WelcomeView, "MainWindowViewModel"));
-
-      //To use windowManager, pass it as a parameter to the viewmodel that needs it. See WelcomeViewModel for example. 
-      //Called like this:
-      //_winMan.ShowDialog(new dialogViewModel("hrelo men")); u get the idea
 
     }
 
-    //Pseudo constructor for the view i believe. Called upon initialization of the view, actions relating to startup of the view here. 
-    public void Show()
+
+    //The function below can be used as a constructor for the view. Everything in it will happen after the view is loaded.
+    protected override void OnViewReady(object view)
     {
-
+      _winMan = IoC.Get<IWindowManager>();
+      _eventAggregator = IoC.Get<IEventAggregator>();
+      _bingoEvent = IoC.Get<BingoEvent>();
+      _eventAggregator.Subscribe(this);
+      _log.Info("Main View loaded");
+      _winMan.ShowWindow(new DebuggingWindowViewModel());
     }
-
-
-    public sealed override void ActivateItem(IMainViewItem item)
-    {
-      base.ActivateItem(item);
-    }
-
-
-
 
     public void Handle(ChangeViewEvent message)
     {
       switch (message.ViewName)
       {
         case "WelcomeView":
+          _log.Info("Changing to WelcomeView...");
           GoToWelcomeView();
           break;
 
-        case "ControlPanel":
+        case "ControlPanelView":
+          _log.Info("Changing to ControlPanelView...");
           GoToControlPanel();
+          break;
+
+        case "Save":
+          _log.Info("Saving...");
+          SaveSession(ref _bingoEvent);
+          break;
+
+        case "Load":
+          _log.Info("Loading...");
+          LoadSession(ref _bingoEvent);
           break;
       }
     }
 
 
-    #region ChangeViewMethods
+    #region eventbusMethods
 
     private void GoToWelcomeView()
     {
-      ActivateItem(new WelcomeViewModel(_windowManager, _eventAggregator, _bingoEvent));
+      ActivateItem(new WelcomeViewModel());
     }
 
     private void GoToControlPanel()
@@ -87,5 +109,19 @@ namespace BankoProject.ViewModels
     }
     #endregion
 
+
+    public bool LoadSession(ref BingoEvent bingoEvent)
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool SaveSession(ref BingoEvent bingoEvent)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void Show()
+    {
+    }
   }
 }

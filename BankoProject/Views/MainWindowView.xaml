@@ -16,7 +16,6 @@
   WindowStartupLocation="Manual"
   WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" ResizeMode="CanResizeWithGrip"
   Icon="/BankoProject;component/Resources/bingo1.png"
-  Background="#FF74ACDA"
   dialog:DialogParticipation.Register="ShowDialog"
   >
   <metro:MetroWindow.Resources>
@@ -27,6 +26,9 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </metro:MetroWindow.Resources>
+  <metro:MetroWindow.Background>
+    <ImageBrush ImageSource="/BankoProject;component/Resources/10995537_695452673897093_536015149067717983_o.jpg"/>
+  </metro:MetroWindow.Background>
 
   <Viewbox VerticalAlignment="Top" ClipToBounds="True">
     <metro:MetroContentControl x:Name="ActiveItem" />

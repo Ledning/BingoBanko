@@ -138,8 +138,16 @@
     <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
     <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
+    <Compile Include="ViewModels\CreateEventView.cs" />
+    <Compile Include="ViewModels\DebuggingWindowViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
+    <Compile Include="Views\CreateEventView.xaml.cs">
+      <DependentUpon>CreateEventView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DebuggingWindowView.xaml.cs">
+      <DependentUpon>DebuggingWindowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewEventView.xaml.cs">
       <DependentUpon>NewEventView.xaml</DependentUpon>
     </Compile>
@@ -223,6 +231,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CreateEventView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DebuggingWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Styles\CustomStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -297,6 +313,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Orchestra.Shell.MahApps.dll" />
+    <Resource Include="Resources\10995537_695452673897093_536015149067717983_o.jpg" />
+    <Resource Include="Resources\team_rynkeby_banner.jpg" />
     <Resource Include="Views\logoalpha.png" />
     <Resource Include="Views\logo.png" />
     <None Include="packages\Orchestra.Shell.MahApps.2.3.0\lib\net45\Orchestra.Shell.MahApps.dll" />
