@@ -12,7 +12,6 @@ using System.Windows.Media;
 
 namespace BankoProject.ViewModels
 {
-  [Export(typeof(ControlsScreenViewModel))]
   public sealed class ControlsScreenViewModel : Screen, IMainViewItem
   {
     private OptionsFlyoutViewModel _OFVM;
@@ -21,11 +20,10 @@ namespace BankoProject.ViewModels
     private Random randomNumber; //use to pick new random number. Maybe make into seperate class that adjusts according to prev numbers being picked.
     private readonly SolidColorBrush _defaultBrush = Brushes.Black;
 
-    [ImportingConstructor]
-    public ControlsScreenViewModel(WindowManager winMan)
+    public ControlsScreenViewModel()
     {
       OFVM = new OptionsFlyoutViewModel();
-      _BNBoard = new BingoNumberBoard(90, winMan);
+      _BNBoard = new BingoNumberBoard();
       DisplayName = "BingoBanko Kontrol-Skærm";
     }
 

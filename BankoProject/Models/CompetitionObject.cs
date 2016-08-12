@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankoProject.Models
 {
-  class CompetitionObject
+  public class CompetitionObject
   {
   }
 }

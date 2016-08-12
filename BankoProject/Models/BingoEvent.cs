@@ -27,16 +27,75 @@ namespace BankoProject.Models
 
     //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event, 
     private BindableCollection<CompetitionObject> _competitionList;
+    private BindableCollection<BingoNumber> _bingoNumbers;
 
 
 
 
+#region GetterSetter
+    public string EventTitle
+    {
+      get { return _eventTitle; }
+      set { _eventTitle = value; NotifyOfPropertyChange(EventTitle);}
+    }
 
-    public void Initialize(string seed)
+    public DateTime CreationTime
+    {
+      get { return _creationTime; }
+      set { _creationTime = value; NotifyOfPropertyChange(() => CreationTime);}
+    }
+
+    public bool SeedManipulated
+    {
+      get { return _seedManipulated; }
+      set { _seedManipulated = value; NotifyOfPropertyChange(() => SeedManipulated);}
+    }
+
+    public string Seed
+    {
+      get { return _seed; }
+      set { _seed = value;  NotifyOfPropertyChange(() => Seed);}
+    }
+
+    public string OriginalSeed
+    {
+      get { return _originalSeed; }
+    }
+
+    public BingoNumberBoard NumberBoard
+    {
+      get { return _bingoNumberBoard; }
+      set { _bingoNumberBoard = value; NotifyOfPropertyChange(() => NumberBoard);}
+    }
+
+    public BindableCollection<CompetitionObject> CompetitionList
+    {
+      get { return _competitionList; }
+      set { _competitionList = value; NotifyOfPropertyChange(() => CompetitionList);}
+    }
+
+    public BindableCollection<BingoNumber> BingoNumbers
+    {
+      get { return _bingoNumbers; }
+      set { _bingoNumbers = value; NotifyOfPropertyChange(() => BingoNumbers);}
+    }
+#endregion
+
+    public void Initialize(string seed, string title)
     {
       _seedManipulated = false;
       _originalSeed = seed;
-      seed = GenerateSeedFromKeyword(_originalSeed);
+      _seed = GenerateSeedFromKeyword(_originalSeed);
+      _eventTitle = title;
+      _creationTime = DateTime.Now;
+      _bingoNumberBoard = new BingoNumberBoard();
+      _competitionList = new BindableCollection<CompetitionObject>();
+      _bingoNumbers = new BindableCollection<BingoNumber>();
+
+      for (int i = 1; i < 91; i++)
+      {
+        _bingoNumbers.Add(new BingoNumber(i));
+      }
 
 
       _initialised = true;
@@ -46,6 +105,8 @@ namespace BankoProject.Models
     {
       return keyword;
     }
+
+
 
 
 

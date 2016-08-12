@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BankoProject.Models;
 using Caliburn.Micro;
 using System.ComponentModel.Composition;
+using System.IO;
 using BankoProject.ViewModels;
 using System.Windows.Media;
 
@@ -22,12 +23,11 @@ namespace BankoProject.Models
 
 
 
-    private WindowManager winMan;
-    public BingoNumberBoard(int boardSize, WindowManager winMan)
+    private IWindowManager _winMan;
+    public BingoNumberBoard()
     {
-      this.BoardSize = boardSize;
       Initialize();
-      this.winMan = winMan;
+      _winMan = IoC.Get<IWindowManager>();
     }
 
 
@@ -42,7 +42,7 @@ namespace BankoProject.Models
 
     public void PickNumber(int number)
     {
-      var result = winMan.ShowDialog(new dialogViewModel("Bekræft tilføjelse: " + number));
+      var result = _winMan.ShowDialog(new dialogViewModel("Bekræft tilføjelse: " + number));
       if (result.HasValue)
       {
         if (result.Value)
@@ -59,7 +59,7 @@ namespace BankoProject.Models
     }
     public void UnPickNumber(int number)
     {
-      var result = winMan.ShowDialog(new dialogViewModel("Bekræft fjernelse: " + number));
+      var result = _winMan.ShowDialog(new dialogViewModel("Bekræft fjernelse: " + number));
 
       if (result.HasValue)
       {
@@ -73,7 +73,7 @@ namespace BankoProject.Models
 
     public void ResetBoard()
     {
-      var result = winMan.ShowDialog(new dialogViewModel("Bekræft reset af spil"));
+      var result = _winMan.ShowDialog(new dialogViewModel("Bekræft reset af spil"));
       if (result.HasValue)
       {
         if (result.Value)
