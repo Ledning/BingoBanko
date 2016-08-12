@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Windows.Controls.Primitives;
+using BingoCardGenerator;
+using Printer_Project;
 
 namespace BankoProject.Models
 {
@@ -21,18 +24,23 @@ namespace BankoProject.Models
     private string _seed;//what is the seed rn? might have changed
     private string _originalSeed; // generated based on event-name, then fed into algorithm
 
+    private int _platesGenerated; //the amount of plates generated in the beginning of the event.
+    private int _platesUsed; //Whatever number of plates you wish to be generated. It is stored with the name "platesUsed", to signify that this is the amount of plates we actually use
+    private bool _generating = false;
 
-    private BingoNumberBoard _bingoNumberBoard;
+
+
 
 
     //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event, 
-    private BindableCollection<CompetitionObject> _competitionList;
-    private BindableCollection<BingoNumber> _bingoNumbers;
+    private BindableCollection<CompetitionObject> _competitionList; //A list of all the competitions during the game
+    private BindableCollection<BingoNumber> _bingoNumberQueue; //the numbers picked in the game, input into this list as they come in. 
+    private BingoNumberBoard _bingoNumberBoard; //The bingo board, however it might look during the game
 
 
 
 
-#region GetterSetter
+    #region GetterSetter
     public string EventTitle
     {
       get { return _eventTitle; }
@@ -74,32 +82,61 @@ namespace BankoProject.Models
       set { _competitionList = value; NotifyOfPropertyChange(() => CompetitionList);}
     }
 
-    public BindableCollection<BingoNumber> BingoNumbers
+    public BindableCollection<BingoNumber> BingoNumberQueue
     {
-      get { return _bingoNumbers; }
-      set { _bingoNumbers = value; NotifyOfPropertyChange(() => BingoNumbers);}
+      get { return _bingoNumberQueue; }
+      set { _bingoNumberQueue = value; NotifyOfPropertyChange(() => BingoNumberQueue);}
     }
-#endregion
+
+    public bool Generating
+    {
+      get { return _generating; }
+    }
+
+    #endregion
 
     public void Initialize(string seed, string title)
     {
       _seedManipulated = false;
+      _eventTitle = title;
       _originalSeed = seed;
       _seed = GenerateSeedFromKeyword(_originalSeed);
-      _eventTitle = title;
       _creationTime = DateTime.Now;
       _bingoNumberBoard = new BingoNumberBoard();
       _competitionList = new BindableCollection<CompetitionObject>();
-      _bingoNumbers = new BindableCollection<BingoNumber>();
+      _bingoNumberQueue = new BindableCollection<BingoNumber>();
 
       for (int i = 1; i < 91; i++)
       {
-        _bingoNumbers.Add(new BingoNumber(i));
+        _bingoNumberQueue.Add(new BingoNumber(i));
       }
-
-
       _initialised = true;
+      worker.DoWork += worker_DoWork;
+      worker.RunWorkerCompleted += worker_RunWorkerCompleted;
     }
+
+    #region async plate generation
+    private readonly BackgroundWorker worker = new BackgroundWorker();
+
+    private void worker_DoWork(object sender, DoWorkEventArgs e)
+    {
+      Generator gen = new Generator(Seed);
+      PDFMaker maker = new PDFMaker();
+      maker.MakePDF(gen.GenerateCard(_platesGenerated));
+      
+    }
+
+
+    private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+    {
+      _generating = true;
+    }
+
+
+
+
+    #endregion
+
 
     private string GenerateSeedFromKeyword(string keyword)
     {

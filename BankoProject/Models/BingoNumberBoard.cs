@@ -19,7 +19,6 @@ namespace BankoProject.Models
 
     private BindableCollection<BingoNumber> _board;
     private int _boardSize = 90;
-    private Stack<BingoNumber> pickingOrder;
 
 
 
@@ -30,11 +29,10 @@ namespace BankoProject.Models
       _winMan = IoC.Get<IWindowManager>();
     }
 
-
     private void Initialize() 
     {
-      Board = new BindableCollection<BingoNumber>();
-      for (int i = 0; i <= BoardSize; i++)
+      _board = new BindableCollection<BingoNumber>();
+      for (int i = 0; i <= _boardSize; i++)
       {
         Board.Add(new BingoNumber(i+1));
       }
@@ -42,34 +40,25 @@ namespace BankoProject.Models
 
     public void PickNumber(int number)
     {
-      var result = _winMan.ShowDialog(new dialogViewModel("Bekræft tilføjelse: " + number));
-      if (result.HasValue)
+      if (!Board[number].IsPicked)
       {
-        if (result.Value)
-        {
-          Board[number].IsPicked = true;
-          PickingOrder.Push(Board[number]);
-        }
+        throw new NotImplementedException();
+        Board[number].IsPicked = true;
       }
-      else
-      {
-        throw new ArgumentException();
-      }
-      
     }
+
     public void UnPickNumber(int number)
     {
-      var result = _winMan.ShowDialog(new dialogViewModel("Bekræft fjernelse: " + number));
-
-      if (result.HasValue)
+      if (Board[number].IsPicked)
       {
-        if (result.Value)
-        {
-          Board[number].IsPicked = false;
-          PickingOrder.Pop();
-        }
-      }      
+        throw new NotImplementedException();
+        Board[number].IsPicked = false;
+      }
     }
+
+
+
+
 
     public void ResetBoard()
     {
@@ -78,8 +67,10 @@ namespace BankoProject.Models
       {
         if (result.Value)
         {
-          Board = null;
-          Initialize();
+          foreach (var bingoNumber in Board)
+          {
+            bingoNumber.IsPicked = false;
+          }
         }
       }
     }
@@ -90,38 +81,6 @@ namespace BankoProject.Models
       get
       {
         return _board;
-      }
-
-      set
-      {
-        _board = value;
-        NotifyOfPropertyChange(() => Board);
-      }
-    }
-    public int BoardSize
-    {
-      get
-      {
-        return _boardSize;
-      }
-
-      set
-      {
-        _boardSize = value;
-        NotifyOfPropertyChange(() => BoardSize);
-      }
-    }
-    public Stack<BingoNumber> PickingOrder
-    {
-      get
-      {
-        return pickingOrder;
-      }
-
-      set
-      {
-        pickingOrder = value;
-        NotifyOfPropertyChange(() => PickingOrder);
       }
     }
   }

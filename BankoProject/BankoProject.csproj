@@ -319,6 +319,16 @@
     <Resource Include="Views\logo.png" />
     <None Include="packages\Orchestra.Shell.MahApps.2.3.0\lib\net45\Orchestra.Shell.MahApps.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BingoCardGenerator\BingoCardGenerator.csproj">
+      <Project>{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}</Project>
+      <Name>BingoCardGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Printer-Project\Plate-Printer.csproj">
+      <Project>{59197ABE-CCC9-450D-9C57-315BEEEAAB18}</Project>
+      <Name>Plate-Printer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

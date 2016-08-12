@@ -10,7 +10,7 @@ namespace Printer_Project
 {
   public class PDFMaker
   {
-    public static void MakePDF(List<int[,]> cards)
+    public void MakePDF(List<int[,]> cards)
     {
       string imgName = @"bingo1.png";
       string imgSource = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\", imgName);         

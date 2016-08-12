@@ -8,7 +8,8 @@ namespace BankoProject.Models
 {
   public class ControlOptions
   {
-    //this class contains all settings in the options view. Anything to be set in there = add it to this class.
+    //Random shit, som f.eks. er det et 1 linje spil eller 2 linjer eller plade
+
 
   }
 }
