@@ -35,7 +35,7 @@ namespace BankoProject.ViewModels
     public void CreateEvent()
     {
 
-      bool? result = _winMan.ShowDialog(new dialogViewModel("popup box!")); //Når du skal lave viewet til nye events ledning, skal du kalde den som sådan en her
+      bool? result = _winMan.ShowDialog(new CreateEventViewModel()); //Når du skal lave viewet til nye events ledning, skal du kalde den som sådan en her
                                                                             //Erstat dialogviewmodel med det du har lavet, og husk at kalde _bingoevent.initialize i din viewmodel somewhere, efter data er indtastet
       
 
