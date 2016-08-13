@@ -4,9 +4,55 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankoProject.Views"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Styles/GeneralStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Styles/ButtonStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Styles/LabelStyle.xaml"></ResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
+
+
+
+  <Grid Background="#FF74ACDA">
+    <Grid x:Name="CreateNewEventGrid" Margin="10,39,10,0" Height="251" VerticalAlignment="Top" Background="#FF3E8BCB">
+      <Grid.Effect>
+        <DropShadowEffect BlurRadius="15"/>
+      </Grid.Effect>
     </Grid>
+    <Label x:Name="CreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Lav nyt event" Margin="10,16,186,261" Height="Auto" FontSize="15" Padding="2,0,0,0" HorizontalAlignment="Center" Width="104"/>
+    <Grid x:Name="EventNameGrid" Background="#FF3E8BCB" Margin="18,64,45,195">
+      <Grid.Effect>
+        <DropShadowEffect BlurRadius="15"/>
+      </Grid.Effect>
+      <TextBox x:Name="EventNameCreateEventTextBox" Margin="5,10,5,5"/>
+    </Grid>
+    <Label x:Name="EventNameCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Navn på event" Margin="17,50,216,236" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" Width="67"/>
+
+    <Grid x:Name="SeedCreateEventGrid" Background="#FF3E8BCB" Margin="18,129,45,131">
+      <Grid.Effect>
+        <DropShadowEffect BlurRadius="15"/>
+      </Grid.Effect>
+      <TextBox x:Name="SeedCreateEventTextBox" Margin="5,10,5,5"/>
+    </Grid>
+    <Label x:Name="SeedCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Seed" Margin="17,115,256,171" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" Width="27"/>
+
+    <Grid x:Name="NumberOfPlatesCreateEventGrid" Background="#FF3E8BCB" Margin="18,194,45,65">
+      <Grid.Effect>
+        <DropShadowEffect BlurRadius="15"/>
+      </Grid.Effect>
+      <controls:NumericUpDown x:Name="NumberOfPlatesCreateEventTextBox" Margin="5,10,5,5"/>
+    </Grid>
+    <Label x:Name="NumberOfPlatesCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Antal plader" Margin="17,180,210,106" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True"/>
+    <Button x:Name="CreateEventButton" Width="100" Margin="18,0,0,28" Content="Lav Plade" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="24"/>
+    <Button x:Name="CancelCreateEventButton" Width="100" Margin="155,0,0,28" Content="Annuller" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="24"/>
+
+
+
+  </Grid>
 </UserControl>
