@@ -8,13 +8,12 @@ using Caliburn.Micro;
 
 namespace BankoProject.ViewModels
 {
-  class CreateEventViewModel
+  class CreateEventViewModel : Screen
   {
     private BingoEvent _bingoEvent;
 
     public CreateEventViewModel()
     {
-      throw new NotImplementedException();
 
 
 
