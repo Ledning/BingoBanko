@@ -27,7 +27,7 @@ namespace BankoProject.Models
     private int _platesGenerated; //the amount of plates generated in the beginning of the event.
     private int _platesUsed; //Whatever number of plates you wish to be generated. It is stored with the name "platesUsed", to signify that this is the amount of plates we actually use
     private bool _generating = false;
-
+    private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
 
 
@@ -97,6 +97,7 @@ namespace BankoProject.Models
 
     public void Initialize(string seed, string title)
     {
+      _log.Info("Starting event object initialization...");
       _seedManipulated = false;
       _eventTitle = title;
       _originalSeed = seed;
@@ -113,6 +114,7 @@ namespace BankoProject.Models
       _initialised = true;
       worker.DoWork += worker_DoWork;
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+      _log.Info("Event object initialization done.");
     }
 
     #region async plate generation
@@ -120,23 +122,25 @@ namespace BankoProject.Models
 
     private void worker_DoWork(object sender, DoWorkEventArgs e)
     {
+      _log.Info("Async plate-generation running...");
+      _generating = true;
       Generator gen = new Generator(Seed);
       PDFMaker maker = new PDFMaker();
       maker.MakePDF(gen.GenerateCard(_platesGenerated));
-      
     }
 
 
     private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
-      _generating = true;
+      _generating = false;
+      _log.Info("Generation done.");
     }
-
-
-
-
     #endregion
 
+    public void GeneratePlates()
+    {
+      worker.RunWorkerAsync();
+    }
 
     private string GenerateSeedFromKeyword(string keyword)
     {

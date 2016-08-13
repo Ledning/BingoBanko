@@ -25,7 +25,7 @@ namespace RNDTEST
       Generator gen = new Generator(key);
 
       List<int[,]> cards = gen.GenerateCard(pladeCount);
-      PDFMaker.MakePDF(cards);
+      PDFMaker.MakePDF(cards); //make object instead
     }
   }
 }

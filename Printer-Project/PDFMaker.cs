@@ -10,10 +10,25 @@ namespace Printer_Project
 {
   public class PDFMaker
   {
+    public PDFMaker()
+    {
+      
+    }
+
+
+    private string _outputDirectory = null;
+    public PDFMaker(string outputDirectory)
+    {
+      _outputDirectory = outputDirectory;
+    }
     public void MakePDF(List<int[,]> cards)
     {
-      string imgName = @"bingo1.png";
-      string imgSource = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\", imgName);         
+      string imgName = @"BingoPlader.png";
+      string imgSource = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\", imgName);
+      if (_outputDirectory != null)
+      {
+        imgSource = _outputDirectory;
+      }      
       string saveLoc = imgSource.Replace("png", "pdf");
       PdfDocument doc = new PdfDocument();
 

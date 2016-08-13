@@ -19,7 +19,7 @@ namespace BankoProject.Models
 
     private BindableCollection<BingoNumber> _board;
     private int _boardSize = 90;
-
+    private readonly ILog _log = LogManager.GetLog(typeof(BingoNumberBoard));
 
 
     private IWindowManager _winMan;
@@ -29,30 +29,46 @@ namespace BankoProject.Models
       _winMan = IoC.Get<IWindowManager>();
     }
 
-    private void Initialize() 
+    private void Initialize()
     {
+      _log.Info("Initialising bingo-board with 90 numbers...");
       _board = new BindableCollection<BingoNumber>();
-      for (int i = 0; i <= _boardSize; i++)
+      for (int i = 0; i < _boardSize; i++)
       {
         Board.Add(new BingoNumber(i+1));
       }
+      _log.Info("Initialization of board done.");
     }
 
     public void PickNumber(int number)
     {
+      _log.Info("Picking number: " + number);
       if (!Board[number].IsPicked)
       {
-        throw new NotImplementedException();
-        Board[number].IsPicked = true;
+        bool? result = _winMan.ShowDialog(new dialogViewModel("Træk nr: " + number));
+        if (result.HasValue)
+        {
+          if (result.Value)
+          {
+            Board[number].IsPicked = true;
+          }
+        }
       }
     }
 
     public void UnPickNumber(int number)
     {
+      _log.Info("Un-Picking number: " + number);
       if (Board[number].IsPicked)
       {
-        throw new NotImplementedException();
-        Board[number].IsPicked = false;
+        bool? result = _winMan.ShowDialog(new dialogViewModel("Træk nr: " + number));
+        if (result.HasValue)
+        {
+          if (result.Value)
+          {
+            Board[number].IsPicked = false;
+          }
+        }
       }
     }
 
@@ -62,7 +78,8 @@ namespace BankoProject.Models
 
     public void ResetBoard()
     {
-      var result = _winMan.ShowDialog(new dialogViewModel("Bekræft reset af spil"));
+      _log.Info("Resetting board...");
+      bool? result = _winMan.ShowDialog(new dialogViewModel("Bekræft reset af spil"));
       if (result.HasValue)
       {
         if (result.Value)
