@@ -35,7 +35,7 @@ namespace BankoProject.ViewModels
 
   */
   [Export(typeof(IShell))]
-  class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<ChangeViewEvent>, ISave, ILoad
+  class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>, ISave, ILoad
   {
     private IWindowManager _winMan;
     private IEventAggregator _eventAggregator;
@@ -66,29 +66,31 @@ namespace BankoProject.ViewModels
       _bingoEvent = IoC.Get<BingoEvent>();
       _eventAggregator.Subscribe(this);
       _log.Info("Main View loaded");
-      _winMan.ShowWindow(new DebuggingWindowViewModel());
+      //_winMan.ShowWindow(new DebuggingWindowViewModel());
     }
 
-    public void Handle(ChangeViewEvent message)
+    public void Handle(CommunicationObject message)
     {
-      switch (message.ViewName)
+      switch (message.Message)
       {
-        case "WelcomeView":
+        case ApplicationWideEnums.MessageTypes.WelcomeView:
           _log.Info("Changing to WelcomeView...");
+          DisplayName = "Bingo Kontrol";
           GoToWelcomeView();
           break;
 
-        case "ControlPanelView":
+        case ApplicationWideEnums.MessageTypes.ControlPanelView:
           _log.Info("Changing to ControlPanelView...");
+          DisplayName = DisplayName + ": " + _bingoEvent.EventTitle;
           GoToControlPanel();
           break;
 
-        case "Save":
+        case ApplicationWideEnums.MessageTypes.Save:
           _log.Info("Saving...");
           SaveSession(ref _bingoEvent);
           break;
 
-        case "Load":
+        case ApplicationWideEnums.MessageTypes.Load:
           _log.Info("Loading...");
           LoadSession(ref _bingoEvent);
           break;
@@ -112,12 +114,14 @@ namespace BankoProject.ViewModels
 
     public bool LoadSession(ref BingoEvent bingoEvent)
     {
-      throw new NotImplementedException();
+      _log.Warn("NOT IMPLEMENTED");
+      return false;
     }
 
     public bool SaveSession(ref BingoEvent bingoEvent)
     {
-      throw new NotImplementedException();
+      _log.Warn("NOT IMPLEMENTED");
+      return false;
     }
 
     public void Show()

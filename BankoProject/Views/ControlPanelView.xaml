@@ -19,9 +19,7 @@
   </UserControl.Resources>
   <Grid Width="1920" Height="1080" Background="{x:Null}">
     <Border x:Name="VisualsBorder" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="10,10,0,10" Width="580" CornerRadius="3" Background="#FF74ACFA">
-      <Border.Effect>
-        <DropShadowEffect RenderingBias="Quality" BlurRadius="20"/>
-      </Border.Effect>
+
       <Grid x:Name="VisualsGrid">
         <Label x:Name="VisualsLabel" Content="Visuals" Margin="169,10,169,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource ControlPanelLabel}" FontSize="42" FontWeight="Normal" Height="71">
           <Label.Effect>
@@ -43,7 +41,7 @@
           </Grid.Effect>
         </Grid>
         <Label x:Name="BackgroundVisualsLabel" Content="Baggrund" VerticalAlignment="Bottom" Margin="29,0,0,468" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="152" Style="{StaticResource ControlPanelLabel}"/>
-        <RadioButton x:Name="EmptyBGRadio" Content="Tom skærm" Height="44.5" VerticalAlignment="Top" Margin="38,612,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="168"/>
+        <RadioButton x:Name="EmptyBGRadio"  IsChecked="True" Content="Tom skærm" Height="44.5" VerticalAlignment="Top" Margin="38,612,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="168"/>
         <RadioButton x:Name="PlateBGRadio" Content="Pladeoversigt" Height="44.5" VerticalAlignment="Top" Margin="38,661.5,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="177"/>
         <RadioButton x:Name="CustomBGRadio" Content="Brugerdefineret:" Height="44.5" VerticalAlignment="Top" Margin="38,711,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="212.5"/>
         <ComboBox x:Name="CustomBGs" Margin="0,0,47,302.5" HorizontalAlignment="Right" Height="44.5" VerticalAlignment="Bottom" Width="188"/>
@@ -79,9 +77,9 @@
             <Label x:Name="CheckPlateLabel" Content="Check pladenummer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,75,0,0" Width="250" Style="{StaticResource ControlPanelLabel}"/>
             <TextBox x:Name="PlateNumberTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="38,129,161,0" FontSize="24"/>
             <Button x:Name="CheckPlateButton" Content="Check" VerticalAlignment="Top" Margin="489,129,38,0" Height="36" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
-            <RadioButton x:Name="OnePlateBingoRadio" Margin="38,170,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Checked="OnePlateBingoRadio_Checked" FontWeight="Bold"/>
-            <RadioButton x:Name="TwoPlatesBingoRadio" Margin="38,195,0,195" Content="To rækker" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
-            <RadioButton x:Name="WholePlateBingoRaio" Margin="38,0,0,170" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
+            <RadioButton x:Name="SingleRow" IsChecked="{Binding ElementName=Event_BnkOptions_SingleRow}" Margin="38,170,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Checked="OnePlateBingoRadio_Checked" FontWeight="Bold"/>
+            <RadioButton x:Name="Event_BnkOptions_DoubleRow" Margin="38,195,0,195" Content="To rækker" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
+            <RadioButton x:Name="Event_BnkOptions_FullPlate" Margin="38,0,0,170" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
             <Button x:Name="DrawNumberBingoButton" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,245,0,0" Content="Træk tal" FontSize="24" FontWeight="Bold"/>
             <Button x:Name="ResetGameButton" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,297,0,0" Content="Nustil spil" FontSize="24" FontWeight="Bold"/>
             <Button x:Name="AddNumbersButton" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,348.57,0,0" Content="Tilføj tal" FontSize="24" FontWeight="Bold"/>
@@ -152,6 +150,7 @@
         <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" VerticalAlignment="Top" Margin="0,489,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
       </Grid>
     </Border>
+    <Button x:Name="ShowWelcome" Content="Tilbage til Hovedmenu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="127" Height="26"/>
 
   </Grid>
 

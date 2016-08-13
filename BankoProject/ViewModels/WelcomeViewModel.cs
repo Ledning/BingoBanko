@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using BankoProject.Models;
+using BankoProject.Tools.Events;
 
 namespace BankoProject.ViewModels
 {
@@ -17,7 +18,8 @@ namespace BankoProject.ViewModels
     private IWindowManager _winMan;
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
-    
+    private readonly ILog _log = LogManager.GetLog(typeof(WelcomeViewModel));
+
 
     public WelcomeViewModel()
     {
@@ -35,9 +37,16 @@ namespace BankoProject.ViewModels
     public void CreateEvent()
     {
 
-      bool? result = _winMan.ShowDialog(new CreateEventViewModel()); //Når du skal lave viewet til nye events ledning, skal du kalde den som sådan en her
-                                                                            //Erstat dialogviewmodel med det du har lavet, og husk at kalde _bingoevent.initialize i din viewmodel somewhere, efter data er indtastet
-      
+      bool? result = _winMan.ShowDialog(new CreateEventViewModel()); 
+      if (result.HasValue)
+      {
+        if (result.Value)
+        {
+          _log.Info("exit on event created, welcomeview");
+          _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, "WelcomeViewModel"));
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ControlPanelView, "WelcomeViewModel"));
+        }
+      }
 
     }
 

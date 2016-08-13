@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace BankoProject.Tools.Events
 {
-  class ChangeViewEvent
+  class CommunicationObject
   {
-    public ChangeViewEvent(ApplicationWideEnums.MessageTypes msgType, string dispatcher)
+    public CommunicationObject(ApplicationWideEnums.MessageTypes msgType, string dispatcher)
     {
-      ViewName = msgType.ToString();
+      Message = msgType;
       DispatcherName = dispatcher;
     }
 
 
-    public string ViewName { get; }
+    public ApplicationWideEnums.MessageTypes Message { get; }
 
     public string DispatcherName { get; }
   }

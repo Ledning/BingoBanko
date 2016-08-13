@@ -123,14 +123,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\BankoOptions.cs" />
     <Compile Include="Models\BingoEvent.cs" />
     <Compile Include="Models\BingoNumber.cs" />
     <Compile Include="Models\CompetitionObject.cs" />
+    <Compile Include="Models\CompetitionOptions.cs" />
     <Compile Include="Models\ControlOptions.cs" />
     <Compile Include="Models\Deltagere.cs" />
+    <Compile Include="Models\VisualsOptions.cs" />
     <Compile Include="Tools\ApplicationWideEnums.cs" />
     <Compile Include="Tools\Debugger.cs" />
-    <Compile Include="Tools\Events\ChangeViewEvent.cs" />
+    <Compile Include="Tools\Events\CommunicationObject.cs" />
     <Compile Include="Tools\IMainViewItem.cs" />
     <Compile Include="Tools\SaveLoadInterface.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />

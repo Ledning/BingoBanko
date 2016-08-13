@@ -29,6 +29,9 @@ namespace BankoProject.Models
     private bool _generating = false;
     private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
+    private BankoOptions _bnkOptions;
+    private CompetitionOptions _cmpOptions;
+    private VisualsOptions _vsOptions;
 
 
 
@@ -93,19 +96,41 @@ namespace BankoProject.Models
       get { return _generating; }
     }
 
+    public BankoOptions BnkOptions
+    {
+      get { return _bnkOptions; }
+      set { _bnkOptions = value; NotifyOfPropertyChange(() => BnkOptions);}
+    }
+
+    public CompetitionOptions CmpOptions
+    {
+      get { return _cmpOptions; }
+      set { _cmpOptions = value; NotifyOfPropertyChange(() => CmpOptions);}
+    }
+
+    public VisualsOptions VsOptions
+    {
+      get { return _vsOptions; }
+      set { _vsOptions = value; NotifyOfPropertyChange(() => VsOptions);}
+    }
+
     #endregion
 
-    public void Initialize(string seed, string title)
+    public void Initialize(string seed, string title, int pladetal)
     {
       _log.Info("Starting event object initialization...");
       _seedManipulated = false;
       _eventTitle = title;
       _originalSeed = seed;
+      _platesGenerated = pladetal;
       _seed = GenerateSeedFromKeyword(_originalSeed);
       _creationTime = DateTime.Now;
       _bingoNumberBoard = new BingoNumberBoard();
       _competitionList = new BindableCollection<CompetitionObject>();
       _bingoNumberQueue = new BindableCollection<BingoNumber>();
+      BnkOptions = new BankoOptions();
+      CmpOptions = new CompetitionOptions();
+      VsOptions = new VisualsOptions();
 
       for (int i = 1; i < 91; i++)
       {

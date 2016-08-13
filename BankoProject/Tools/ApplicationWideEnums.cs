@@ -12,7 +12,9 @@ namespace BankoProject.Tools
     public enum MessageTypes
     {
       WelcomeView,
-      ControlPanelView
+      ControlPanelView,
+      Save,
+      Load
     }
   }
 }
