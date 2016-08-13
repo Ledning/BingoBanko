@@ -138,7 +138,7 @@
     <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
     <Compile Include="ViewModels\CountdownTimerControlViewModel.cs" />
-    <Compile Include="ViewModels\CreateEventView.cs" />
+    <Compile Include="ViewModels\CreateEventViewModel.cs" />
     <Compile Include="ViewModels\DebuggingWindowViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
@@ -148,10 +148,6 @@
     <Compile Include="Views\DebuggingWindowView.xaml.cs">
       <DependentUpon>DebuggingWindowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewEventView.xaml.cs">
-      <DependentUpon>NewEventView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\NewEventViewModel.cs" />
     <Compile Include="ViewModels\OptionsFlyoutViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Views\BoardView.xaml.cs">
@@ -254,10 +250,6 @@
     <Page Include="Simple Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewEventView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BoardView.xaml">
       <SubType>Designer</SubType>

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankoProject.ViewModels
 {
-  class CreateEventView
+  class CreateEventViewModel
   {
-    public CreateEventView()
+    public CreateEventViewModel()
     {
       throw new NotImplementedException();
     }

@@ -48,7 +48,6 @@
         <ListBox.Effect>
           <DropShadowEffect/>
         </ListBox.Effect>
-
       </ListBox>
     </Grid>
     <Label x:Name="Latest" Content="Seneste Events" HorizontalAlignment="Right" Margin="0,311,435,0" VerticalAlignment="Top" Width="200" Foreground="Black" Style="{StaticResource ControlPanelLabel}" />
