@@ -77,9 +77,9 @@
             <Label x:Name="CheckPlateLabel" Content="Check pladenummer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,75,0,0" Width="250" Style="{StaticResource ControlPanelLabel}"/>
             <TextBox x:Name="PlateNumberTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="38,129,161,0" FontSize="24"/>
             <Button x:Name="CheckPlateButton" Content="Check" VerticalAlignment="Top" Margin="489,129,38,0" Height="36" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
-            <RadioButton x:Name="SingleRow" IsChecked="{Binding ElementName=Event_BnkOptions_SingleRow}" Margin="38,170,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Checked="OnePlateBingoRadio_Checked" FontWeight="Bold"/>
-            <RadioButton x:Name="Event_BnkOptions_DoubleRow" Margin="38,195,0,195" Content="To rækker" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
-            <RadioButton x:Name="Event_BnkOptions_FullPlate" Margin="38,0,0,170" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
+            <RadioButton IsChecked="{Binding Event_TestRadio}" Margin="38,170,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Checked="OnePlateBingoRadio_Checked" FontWeight="Bold"/>
+            <RadioButton IsChecked="{Binding Event.BnkOptions.DoubleRow}" Margin="38,195,0,195" Content="To rækker" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
+            <RadioButton IsChecked="{Binding Event.BnkOptions.FullPlate}" Margin="38,0,0,170" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
             <Button x:Name="DrawNumberBingoButton" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,245,0,0" Content="Træk tal" FontSize="24" FontWeight="Bold"/>
             <Button x:Name="ResetGameButton" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,297,0,0" Content="Nustil spil" FontSize="24" FontWeight="Bold"/>
             <Button x:Name="AddNumbersButton" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,348.57,0,0" Content="Tilføj tal" FontSize="24" FontWeight="Bold"/>
