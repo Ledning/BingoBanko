@@ -52,16 +52,7 @@
       <controls:NumericUpDown x:Name="Pladetal" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="1-10000" Minimum="1"/>
     </Grid>
     <Label x:Name="NumberOfPlatesCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Antal plader" Margin="17,180,210,106" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True"/>
-    <Button x:Name="AcceptButton" Width="100" Margin="18,0,0,26" Content="Færdig" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" RenderTransformOrigin="0.5,0.5">
-      <Button.RenderTransform>
-        <TransformGroup>
-          <ScaleTransform/>
-          <SkewTransform AngleX="0.682"/>
-          <RotateTransform/>
-          <TranslateTransform X="0.155"/>
-        </TransformGroup>
-      </Button.RenderTransform>
-    </Button>
+    <Button x:Name="AcceptButton" Width="100" Margin="18,0,0,26" Content="Færdig" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" RenderTransformOrigin="0.5,0.5"/>
     <Button x:Name="CancelButton" Width="100" Margin="155,0,0,26" Content="Annuller" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26"/>
 
 

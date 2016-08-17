@@ -137,6 +137,7 @@
     <Compile Include="Tools\IMainViewItem.cs" />
     <Compile Include="Tools\SaveLoadInterface.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\ContestViewModel.cs" />
     <Compile Include="ViewModels\ControlPanelViewModel.cs" />
     <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
     <Compile Include="ViewModels\ControlsScreenViewModel.cs" />
@@ -145,6 +146,9 @@
     <Compile Include="ViewModels\DebuggingWindowViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
+    <Compile Include="Views\ContestView.xaml.cs">
+      <DependentUpon>ContestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateEventView.xaml.cs">
       <DependentUpon>CreateEventView.xaml</DependentUpon>
     </Compile>
@@ -229,6 +233,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ContestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateEventView.xaml">
       <SubType>Designer</SubType>

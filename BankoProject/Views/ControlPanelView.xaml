@@ -107,7 +107,7 @@
         <DropShadowEffect BlurRadius="20"/>
       </Border.Effect>
       <Grid>
-        <Grid x:Name="ContestNameContestGrid_Copy2" Margin="42,673,17,0" Background="#FF3E8BCB" Height="291" VerticalAlignment="Top" RenderTransformOrigin="0.501,2.676">
+        <Grid x:Name="ContestNameContestGrid_Copy2" Margin="30,673,29,0" Background="#FF3E8BCB" Height="296" VerticalAlignment="Top" RenderTransformOrigin="0.501,2.676">
           <Grid.Effect>
             <DropShadowEffect BlurRadius="14"/>
           </Grid.Effect>
@@ -136,15 +136,15 @@
         <Label x:Name="ContestNameLabel" Content="Navn på konkurrencen" VerticalAlignment="Top" Margin="160,154,160,0" Height="50" FontSize="24" Background="#FF3E8BCB" FontWeight="Bold" BorderThickness="1,1,1,0" BorderBrush="#19000000"/>
         <TextBox x:Name="ContestNameTextBox" Height="32.334" TextWrapping="Wrap" VerticalAlignment="Top" Margin="42.333,212.333,42.333,0" FontSize="24"/>
 
-        <metro:NumericUpDown x:Name="NumberOfContestantsTextBox" Height="40" VerticalAlignment="Top" Margin="42,328,0,0" FontSize="24" HorizontalAlignment="Left" Width="123" RenderTransformOrigin="0.512,0.55"/>
+        <metro:NumericUpDown x:Name="NumberOfContestantsTextBox" Height="40" VerticalAlignment="Top" Margin="42,325,0,0" FontSize="24" HorizontalAlignment="Left" Width="123" RenderTransformOrigin="0.512,0.55"/>
         <Label x:Name="NumberOfContestantsLabel" Content="Antal Deltagere" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,270,0,0" Width="190" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
-        <metro:NumericUpDown x:Name="NumberOfTeamsTextBox" Height="40" VerticalAlignment="Top" Margin="0,328,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
+        <metro:NumericUpDown x:Name="NumberOfTeamsTextBox" Height="40" VerticalAlignment="Top" Margin="0,325,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
         <Label x:Name="NumberOfTeamsLabel" Content="Antal Hold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,270,29,0" Width="136" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
         <Button x:Name="StartContestButton" Content="Start konkurrence" VerticalAlignment="Bottom" Margin="109,0,109,29.587" Height="54.413" FontSize="24" FontWeight="Bold"/>
         <Button x:Name="AddTeamButton" Content="Tilføj Hold" VerticalAlignment="Top" Margin="218,328,218,0" Height="40" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
         <Label x:Name="ContestDurationLabel" Content="Varighed i sek." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,434,0,0" Width="190" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
         <metro:NumericUpDown x:Name="ContestDurationTextBox" Height="40" VerticalAlignment="Top" Margin="42,489,0,0" FontSize="24" HorizontalAlignment="Left" Width="123"/>
-        <ListView x:Name="TeamsContestComboBox" Margin="56,0,30,114" Height="250" VerticalAlignment="Bottom"/>
+        <ListView x:Name="TeamsContestComboBox" Margin="42,0,42,114" Height="250" VerticalAlignment="Bottom"/>
         <Label x:Name="AddTeamsLabel" Content="Tilføjede hold" VerticalAlignment="Bottom" Margin="174,0,174,385" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
         <Label x:Name="PlaceHolderLabel" Content="Place holder" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,434,29,0" Width="190" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
         <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" VerticalAlignment="Top" Margin="0,489,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
