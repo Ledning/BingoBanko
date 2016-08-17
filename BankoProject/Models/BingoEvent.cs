@@ -34,10 +34,6 @@ namespace BankoProject.Models
     private VisualsOptions _vsOptions;
 
 
-    /// <summary>
-    /// TEST BOOL IGNORE/REMOVE
-    /// </summary>
-    private bool testRadio;
 
 
     //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event, 
@@ -117,15 +113,6 @@ namespace BankoProject.Models
     {
       get { return _vsOptions; }
       set { _vsOptions = value; NotifyOfPropertyChange(() => VsOptions);}
-    }
-
-    /// <summary>
-    /// TEST BOOL IGNORE/REMOVE
-    /// </summary>
-    public bool TestRadio
-    {
-      get { return testRadio; }
-      set { testRadio = value; NotifyOfPropertyChange(()=> TestRadio);}
     }
 
     #endregion

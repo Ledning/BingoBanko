@@ -14,6 +14,8 @@ namespace BankoProject.ViewModels
   {
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
+    private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
+
     public ControlPanelViewModel()
     {
       ActivateItem(new BoardViewModel());
@@ -22,8 +24,7 @@ namespace BankoProject.ViewModels
     protected override void OnViewReady(object view)
     {
       _events = IoC.Get<IEventAggregator>();
-      _bingoEvent = IoC.Get<BingoEvent>();
-      Event.BnkOptions.SingleRow = true;
+      Event = IoC.Get<BingoEvent>();
     }
 
 
