@@ -16,6 +16,9 @@ namespace BankoProject.Models
 
   public class BankoOptions : PropertyChangedBase
   {
+    private bool _singleRow;
+    private bool _doubleRow;
+    private bool _fullPlate;
     private WinCondition winCondition;
     private readonly ILog _log = LogManager.GetLog(typeof(BankoOptions));
 
@@ -63,9 +66,7 @@ namespace BankoProject.Models
       set { _fullPlate = value; NotifyOfPropertyChange(()=>FullPlate);}
     }
 
-    private bool _singleRow;
-    private bool _doubleRow;
-    private bool _fullPlate;
+
 
 
   }
