@@ -72,6 +72,15 @@ namespace BankoProject.Models
     public string OriginalSeed
     {
       get { return _originalSeed; }
+      set {
+        if (_originalSeed != null)
+        {
+          _originalSeed = value;
+          NotifyOfPropertyChange(() => OriginalSeed);
+        }
+        else
+          _log.Info("This should not be set, and is effectively one time set only. maybe readonly works?");
+      }   
     }
 
     public BingoNumberBoard NumberBoard
@@ -113,6 +122,12 @@ namespace BankoProject.Models
     {
       get { return _vsOptions; }
       set { _vsOptions = value; NotifyOfPropertyChange(() => VsOptions);}
+    }
+
+    public int PlatesUsed
+    {
+      get { return _platesUsed; }
+      set { _platesUsed = value; }
     }
 
     #endregion

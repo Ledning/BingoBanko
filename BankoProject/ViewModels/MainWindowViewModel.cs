@@ -52,9 +52,13 @@ namespace BankoProject.ViewModels
     {
 
       ActivateItem(new WelcomeViewModel());
-      DisplayName = "Bingo Kontrol";
+      DisplayName = "Banko-Kontrol";
+    }
 
-
+    public BingoEvent Event
+    {
+      get { return _bingoEvent; }
+      set { _bingoEvent = value; NotifyOfPropertyChange(()=> Event);}
     }
 
 
@@ -63,7 +67,7 @@ namespace BankoProject.ViewModels
     {
       _winMan = IoC.Get<IWindowManager>();
       _eventAggregator = IoC.Get<IEventAggregator>();
-      _bingoEvent = IoC.Get<BingoEvent>();
+      Event = IoC.Get<BingoEvent>();
       _eventAggregator.Subscribe(this);
       _log.Info("Main View loaded");
       //_winMan.ShowWindow(new DebuggingWindowViewModel());
@@ -81,7 +85,7 @@ namespace BankoProject.ViewModels
 
         case ApplicationWideEnums.MessageTypes.ControlPanelView:
           _log.Info("Changing to ControlPanelView...");
-          DisplayName = DisplayName + ": " + _bingoEvent.EventTitle;
+          DisplayName = DisplayName + ": " + Event.EventTitle;
           GoToControlPanel();
           break;
 
@@ -103,11 +107,13 @@ namespace BankoProject.ViewModels
     private void GoToWelcomeView()
     {
       ActivateItem(new WelcomeViewModel());
+      DisplayName = "Banko-Kontrol";
     }
 
     private void GoToControlPanel()
     {
       ActivateItem(new ControlPanelViewModel());
+      DisplayName = Event.EventTitle;
     }
     #endregion
 

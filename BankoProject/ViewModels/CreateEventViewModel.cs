@@ -45,7 +45,8 @@ namespace BankoProject.ViewModels
 
     protected override void OnViewReady(object view)
     {
-      _bingoEvent = IoC.Get<BingoEvent>();
+      Event = IoC.Get<BingoEvent>();
+      Event.OriginalSeed = "";
     }
 
     public void AcceptButton()
