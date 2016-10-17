@@ -70,7 +70,7 @@ namespace AlgorithmTester
         char[] charArray;
         str = str.ToLower();
         long longChecker = 0;
-        int finalNumba = 0;
+        int finalNumber = 0;
         string stringChecker = "";
         Regex regx = new Regex("([a-zæøå0-9])+");
         if(regx.IsMatch(str))
@@ -87,7 +87,7 @@ namespace AlgorithmTester
           }
           
         }
-        return finalNumba = Convert.ToInt32(stringChecker);
+        return finalNumber = Convert.ToInt32(stringChecker);
       }
       catch (ArgumentException e)
       {

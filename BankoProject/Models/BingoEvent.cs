@@ -71,16 +71,7 @@ namespace BankoProject.Models
 
     public string OriginalSeed
     {
-      get { return _originalSeed; }
-      set {
-        if (_originalSeed != null)
-        {
-          _originalSeed = value;
-          NotifyOfPropertyChange(() => OriginalSeed);
-        }
-        else
-          _log.Info("This should not be set, and is effectively one time set only. maybe readonly works?");
-      }   
+      get { return _originalSeed; }  
     }
 
     public BingoNumberBoard NumberBoard

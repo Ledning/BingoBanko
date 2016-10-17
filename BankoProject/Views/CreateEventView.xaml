@@ -41,7 +41,7 @@
       <Grid.Effect>
         <DropShadowEffect BlurRadius="15"/>
       </Grid.Effect>
-      <TextBox Text="{Binding Event.OriginalSeed}" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="Indtast seed"/>
+      <TextBox Text="{Binding PlaceholderSeed}" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="Indtast seed"/>
     </Grid>
     <Label x:Name="SeedCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Seed" Margin="17,115,256,171" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" Width="27"/>
 

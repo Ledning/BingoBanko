@@ -32,10 +32,10 @@ namespace BankoProject.ViewModels
       get { return _pladetal; }
       set { _pladetal = value; NotifyOfPropertyChange(() => Pladetal);}
     }
-    public string Seed
+    public string PlaceholderSeed
     {
       get { return _seed; }
-      set { _seed = value; NotifyOfPropertyChange(() => Seed); }
+      set { _seed = value; NotifyOfPropertyChange(() => PlaceholderSeed); }
     }
     public string Title
     {
@@ -46,12 +46,11 @@ namespace BankoProject.ViewModels
     protected override void OnViewReady(object view)
     {
       Event = IoC.Get<BingoEvent>();
-      Event.OriginalSeed = "";
     }
 
     public void AcceptButton()
     {
-      Event.Initialize(Seed, Title, Pladetal);
+      Event.Initialize(PlaceholderSeed, Title, Pladetal);
       _log.Info("Event created, createeventviewmodel");
       TryClose(true);
     }
