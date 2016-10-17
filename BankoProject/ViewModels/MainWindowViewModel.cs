@@ -20,7 +20,7 @@ namespace BankoProject.ViewModels
     In order to use anything contained in the IOC container this project has, it is as simple as creating a property to contain it, and then assigning that propert to the corresponding value from IOC:
     someproperty = IoC.Get<IWindowManager>();
 
-    As of right now, it has 4 things:
+    As of right now, it has 3(4) things:
     WindowManager  (Use IWindowManager)
     EventAggregator (Use IEventAggregator)
     BingoEvent (Use BingoEvent)
