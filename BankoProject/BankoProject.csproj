@@ -123,6 +123,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\ApplicationOptions.cs" />
     <Compile Include="Models\BankoOptions.cs" />
     <Compile Include="Models\BingoEvent.cs" />
     <Compile Include="Models\BingoNumber.cs" />
@@ -132,10 +133,14 @@
     <Compile Include="Models\Deltagere.cs" />
     <Compile Include="Models\VisualsOptions.cs" />
     <Compile Include="Tools\ApplicationWideEnums.cs" />
+    <Compile Include="Tools\BingoDeserializer.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\Events\CommunicationObject.cs" />
     <Compile Include="Tools\IMainViewItem.cs" />
+    <Compile Include="Tools\Loader.cs" />
     <Compile Include="Tools\SaveLoadInterface.cs" />
+    <Compile Include="Tools\Saver.cs" />
+    <Compile Include="ViewModels\BingoBankoViewModel.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="ViewModels\ContestViewModel.cs" />
     <Compile Include="ViewModels\ControlPanelViewModel.cs" />
@@ -147,6 +152,9 @@
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\NumberQueueOverlayViewModel.cs" />
     <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
+    <Compile Include="Views\BingoBankoView.xaml.cs">
+      <DependentUpon>BingoBankoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ContestView.xaml.cs">
       <DependentUpon>ContestView.xaml</DependentUpon>
     </Compile>
@@ -237,6 +245,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BingoBankoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ContestView.xaml">
       <SubType>Designer</SubType>

@@ -61,5 +61,7 @@
         <DropShadowEffect/>
       </Button.Effect>
     </Button>
+    
   </Grid>
+  
 </UserControl>

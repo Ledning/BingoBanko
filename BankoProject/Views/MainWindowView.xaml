@@ -33,4 +33,10 @@
   <Viewbox VerticalAlignment="Top" ClipToBounds="True">
     <metro:MetroContentControl x:Name="ActiveItem" />
   </Viewbox>
+  <metro:MetroWindow.Flyouts>
+    <metro:FlyoutsControl>
+      <metro:Flyout Header="Indstillinger" Position="Left" ></metro:Flyout>
+    </metro:FlyoutsControl>
+  </metro:MetroWindow.Flyouts>
+
 </metro:MetroWindow>

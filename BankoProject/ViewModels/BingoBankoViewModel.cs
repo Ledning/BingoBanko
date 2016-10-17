@@ -1,5 +1,4 @@
-﻿using Caliburn.Micro;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankoProject.ViewModels
 {
-  public class OptionsFlyoutViewModel : Screen
+  class BingoBankoViewModel
   {
   }
 }
