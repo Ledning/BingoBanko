@@ -77,13 +77,13 @@ namespace BankoProject.ViewModels
     {
       switch (message.Message)
       {
-        case ApplicationWideEnums.MessageTypes.WelcomeView:
+        case ApplicationWideEnums.MessageTypes.ChngWelcomeView:
           _log.Info("Changing to WelcomeView...");
           DisplayName = "Bingo Kontrol";
           GoToWelcomeView();
           break;
 
-        case ApplicationWideEnums.MessageTypes.ControlPanelView:
+        case ApplicationWideEnums.MessageTypes.ChngControlPanelView:
           _log.Info("Changing to ControlPanelView...");
           DisplayName = DisplayName + ": " + Event.EventTitle;
           GoToControlPanel();

@@ -41,7 +41,7 @@ namespace BankoProject.ViewModels
 
     public void ShowWelcome()
     {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.WelcomeView, "ControlPanel"));
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public BingoEvent Event
