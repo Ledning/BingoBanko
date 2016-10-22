@@ -43,8 +43,8 @@ namespace BankoProject.ViewModels
         if (result.Value)
         {
           _log.Info("exit on event created, welcomeview");
-          _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, "WelcomeViewModel"));
-          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ControlPanelView, "WelcomeViewModel"));
+          _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, ApplicationWideEnums.SenderTypes.WelcomeView));
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
         }
       }
 

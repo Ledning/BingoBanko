@@ -11,10 +11,20 @@ namespace BankoProject.Tools
 
     public enum MessageTypes
     {
-      WelcomeView,
-      ControlPanelView,
+      ChngWelcomeView,
+      ChngControlPanelView,
+      ChngEventSelectedView,
+      ChngMainWindowView,
       Save,
       Load
+    }
+
+    public enum SenderTypes
+    {
+      WelcomeView, 
+      ControlPanelView,
+      EventSelectedView,
+      MainWindowView
     }
   }
 }

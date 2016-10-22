@@ -8,7 +8,13 @@ namespace BankoProject.Tools.Events
 {
   class CommunicationObject
   {
-    public CommunicationObject(ApplicationWideEnums.MessageTypes msgType, string dispatcher)
+    /// <summary>
+    /// Used for communicating between viewmodels.
+    /// Remember to add Viewmodels if additional ones are added. See ApplicationWideEnums for more. 
+    /// </summary>
+    /// <param name="msgType"></param>
+    /// <param name="dispatcher"></param>
+    public CommunicationObject(ApplicationWideEnums.MessageTypes msgType, ApplicationWideEnums.SenderTypes dispatcher)
     {
       Message = msgType;
       DispatcherName = dispatcher;
@@ -17,6 +23,6 @@ namespace BankoProject.Tools.Events
 
     public ApplicationWideEnums.MessageTypes Message { get; }
 
-    public string DispatcherName { get; }
+    public ApplicationWideEnums.SenderTypes DispatcherName { get; }
   }
 }

@@ -25,8 +25,13 @@ namespace BankoProject.ViewModels
     public BingoEvent Event
     {
       get { return _bingoEvent; }
-      set { _bingoEvent = value; NotifyOfPropertyChange(() => Event);}
+      set
+      {
+        _bingoEvent = value;
+        NotifyOfPropertyChange(() => Event);
+      }
     }
+
     public int Pladetal
     {
       get { return _pladetal; }
