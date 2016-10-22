@@ -27,13 +27,13 @@ namespace BankoProject.ViewModels
 
     public void ShowWelcome()
     {
-      CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.WelcomeView, "DebuggingView");
+      CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.DebuggingView);
       _eventAggregator.PublishOnUIThread(chwe);
     }
 
     public void ShowControl()
     {
-      CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ControlPanelView, "DebuggingView");
+      CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.DebuggingView);
       _eventAggregator.PublishOnUIThread(chwe);
     }
   }

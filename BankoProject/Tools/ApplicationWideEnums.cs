@@ -24,7 +24,8 @@ namespace BankoProject.Tools
       WelcomeView, 
       ControlPanelView,
       EventSelectedView,
-      MainWindowView
+      MainWindowView,
+      DebuggingView
     }
   }
 }
