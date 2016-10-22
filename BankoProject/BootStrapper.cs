@@ -40,15 +40,12 @@ namespace BankoProject
     #region MEF
     /* Managed Extensibility Framework
      * A lot of this is just copy paste code, from http://caliburnmicro.com/documentation/bootstrapper
-     * This is used to make whatever we store in our CompositionContainer available across the application.
-     * In this example we have put the windowmanager and the evenAggregator in it.
+     * This is used to make whatever we store in our SimpleInjector container available across the application.
+     * In this example we have put the windowmanager, EventAggregator and the Data object containing all the data into this container. 
      * The WindowManager manages creation and showing of windows/dialogs/stuff like that. 
      * The EventAggregator is a service that provides us with the ability to publish objects from one entity to another, in a loose fashion. http://caliburnmicro.com/documentation/event-aggregator
-     * Once the configure part of this is setup, you can go to your respective classes, and mark them with the [Export] attribute, and then if you for example
-     * wanted to get a local instance of the windowmanager, mark the constructor with the [ImportingConstructor], like this:
-     *  [ImportingConstructor]
-     *  public AppViewModel(IWindowManager windowManager)
-     * which will make the framework put in the applications instance of the windowmanager, for use in whatever you want to.
+     * BingoEvent is a dataobject, that is kept in the container so that all parts of the application might share the same data. 
+     * 
      */
     protected override void Configure()
     {
