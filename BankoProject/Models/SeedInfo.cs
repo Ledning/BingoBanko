@@ -16,13 +16,16 @@ namespace BankoProject.Models
   ///  - SeedManipulated
   ///     has the seed been manipulated compared to the original seed?
   /// </summary>
-  class SeedInfo : PropertyChangedBase
+  public class SeedInfo : PropertyChangedBase
   {
 
     public SeedInfo(string originalseed)
     {
-      NotifyOfPropertyChange(() => OriginalSeed);
       _originalSeed = originalseed;
+      NotifyOfPropertyChange(()=>OriginalSeed);
+      Seed = OriginalSeed;
+      _seedManipulated = false;
+      NotifyOfPropertyChange(()=> SeedManipulated);
     }
 
     private string _originalSeed;

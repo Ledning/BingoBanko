@@ -20,9 +20,7 @@ namespace BankoProject.Models
 
     //flags (has seed been manipulated, what was original seed, technical stuff
     private bool _initialised = false;
-    private bool _seedManipulated; //basically isDirty
-    private string _seed;//what is the seed rn? might have changed
-    private string _originalSeed; // generated based on event-name, then fed into algorithm
+
 
     private int _platesGenerated; //the amount of plates generated in the beginning of the event.
     private int _platesUsed; //Whatever number of plates you wish to be generated. It is stored with the name "platesUsed", to signify that this is the amount of plates we actually use
@@ -32,6 +30,8 @@ namespace BankoProject.Models
     private BankoOptions _bnkOptions;
     private CompetitionOptions _cmpOptions;
     private VisualsOptions _vsOptions;
+    private SeedInfo _seedInfo;
+    private PlateInfo _plateInfo;
 
 
 
@@ -54,23 +54,6 @@ namespace BankoProject.Models
     public DateTime CreationTime
     {
       get { return _creationTime; }
-    }
-
-    public bool SeedManipulated
-    {
-      get { return _seedManipulated; }
-      set { _seedManipulated = value; NotifyOfPropertyChange(() => SeedManipulated);}
-    }
-
-    public string Seed
-    {
-      get { return _seed; }
-      set { _seed = value;  NotifyOfPropertyChange(() => Seed);}
-    }
-
-    public string OriginalSeed
-    {
-      get { return _originalSeed; }  
     }
 
     public BingoNumberBoard NumberBoard
@@ -120,16 +103,26 @@ namespace BankoProject.Models
       set { _platesUsed = value; }
     }
 
+    public SeedInfo SInfo
+    {
+      get { return _seedInfo; }
+      set { _seedInfo = value; }
+    }
+
+    public PlateInfo PInfo
+    {
+      get { return _plateInfo; }
+      set { _plateInfo = value; }
+    }
+
     #endregion
 
     public void Initialize(string seed, string title, int pladetal)
     {
       _log.Info("Starting event object initialization...");
-      _seedManipulated = false;
       _eventTitle = title;
-      _originalSeed = seed;
       _platesGenerated = pladetal;
-      _seed = GenerateSeedFromKeyword(_originalSeed);
+      SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);
       _creationTime = DateTime.Now;
       _bingoNumberBoard = new BingoNumberBoard();
       _competitionList = new BindableCollection<CompetitionObject>();
@@ -137,6 +130,7 @@ namespace BankoProject.Models
       BnkOptions = new BankoOptions();
       CmpOptions = new CompetitionOptions();
       VsOptions = new VisualsOptions();
+      SInfo = new SeedInfo(seed);
 
       for (int i = 1; i < 91; i++)
       {
@@ -155,7 +149,7 @@ namespace BankoProject.Models
     {
       _log.Info("Async plate-generation running...");
       _generating = true;
-      Generator gen = new Generator(Seed);
+      Generator gen = new Generator(Info.Seed);
       PDFMaker maker = new PDFMaker();
       maker.MakePDF(gen.GenerateCard(_platesGenerated));
     }
