@@ -131,6 +131,7 @@
     <Compile Include="Models\CompetitionOptions.cs" />
     <Compile Include="Models\ControlOptions.cs" />
     <Compile Include="Models\Deltagere.cs" />
+    <Compile Include="Models\SeedInfo.cs" />
     <Compile Include="Models\VisualsOptions.cs" />
     <Compile Include="Tools\ApplicationWideEnums.cs" />
     <Compile Include="Tools\BingoDeserializer.cs" />

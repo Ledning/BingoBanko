@@ -54,7 +54,6 @@ namespace BankoProject.Models
     public DateTime CreationTime
     {
       get { return _creationTime; }
-      set { _creationTime = value; NotifyOfPropertyChange(() => CreationTime);}
     }
 
     public bool SeedManipulated
