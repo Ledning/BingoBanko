@@ -13,18 +13,12 @@ namespace BankoProject.Models
 {
   public class BingoEvent : PropertyChangedBase
   {
-
-    //names, dates, general stuff
-    private string _eventTitle; //Titlen
+    private string _eventTitle;
     private DateTime _creationTime;
 
-    //flags (has seed been manipulated, what was original seed, technical stuff
     private bool _initialised = false;
-
-
-    private int _platesGenerated; //the amount of plates generated in the beginning of the event.
-    private int _platesUsed; //Whatever number of plates you wish to be generated. It is stored with the name "platesUsed", to signify that this is the amount of plates we actually use
     private bool _generating = false;
+
     private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
     private BankoOptions _bnkOptions;
@@ -97,12 +91,6 @@ namespace BankoProject.Models
       set { _vsOptions = value; NotifyOfPropertyChange(() => VsOptions);}
     }
 
-    public int PlatesUsed
-    {
-      get { return _platesUsed; }
-      set { _platesUsed = value; }
-    }
-
     public SeedInfo SInfo
     {
       get { return _seedInfo; }
@@ -121,7 +109,7 @@ namespace BankoProject.Models
     {
       _log.Info("Starting event object initialization...");
       _eventTitle = title;
-      _platesGenerated = pladetal;
+      PInfo.PlatesGenerated = pladetal;
       SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);
       _creationTime = DateTime.Now;
       _bingoNumberBoard = new BingoNumberBoard();

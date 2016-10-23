@@ -19,7 +19,7 @@ namespace BankoProject.Models
     private bool _singleRow;
     private bool _doubleRow;
     private bool _fullPlate;
-    private WinCondition winCondition;
+    private WinCondition _winCondition;
     private readonly ILog _log = LogManager.GetLog(typeof(BankoOptions));
 
     public WinCondition Condition
