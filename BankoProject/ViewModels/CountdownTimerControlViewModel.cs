@@ -13,7 +13,6 @@ using System.Windows.Controls;
 
 namespace BankoProject.ViewModels
 {
-  [Export(typeof(CountdownTimerControlViewModel))]
   public sealed class CountdownTimerControlViewModel : Screen, IMainViewItem
   {
     public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
@@ -27,8 +26,7 @@ namespace BankoProject.ViewModels
     private double countInterval = 10;
     private WindowManager winMan;
 
-
-    [ImportingConstructor]
+    
     public CountdownTimerControlViewModel(WindowManager wman)
     {
       //initalization
@@ -37,7 +35,6 @@ namespace BankoProject.ViewModels
       _buttonsList = new BindableCollection<Deltagere>(); //basically list of players
       CTBSVM = new CountdowntimerBigScreenViewModel();
       winMan = wman;
-      DisplayName = "Nedtællings-kontrolskærm";
     }
 
     public void timerStart()

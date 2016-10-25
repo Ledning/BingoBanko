@@ -27,7 +27,6 @@ namespace BankoProject.ViewModels
     public CountdowntimerBigScreenViewModel()
     {
       _buttonsList = new BindableCollection<Deltagere>();
-      DisplayName = "BigScreenTimer";
     }
 
 

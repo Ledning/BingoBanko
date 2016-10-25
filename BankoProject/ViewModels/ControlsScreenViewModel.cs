@@ -24,7 +24,6 @@ namespace BankoProject.ViewModels
     {
       OFVM = new OptionsFlyoutViewModel();
       _BNBoard = new BingoNumberBoard();
-      DisplayName = "BingoBanko Kontrol-Skærm";
     }
 
 

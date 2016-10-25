@@ -46,9 +46,7 @@ namespace BankoProject.ViewModels
 
     public MainWindowViewModel()
     {
-
       ActivateItem(new WelcomeViewModel());
-      DisplayName = "Banko-Kontrol";
     }
 
     public BingoEvent Event
@@ -65,6 +63,7 @@ namespace BankoProject.ViewModels
       _eventAggregator = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
       _eventAggregator.Subscribe(this);
+      DisplayName = "Bingo Kontrol";
       _log.Info("Main View loaded");
       //_winMan.ShowWindow(new DebuggingWindowViewModel());
       worker.DoWork += worker_DoWork;
@@ -136,13 +135,13 @@ namespace BankoProject.ViewModels
     private void GoToWelcomeView()
     {
       ActivateItem(new WelcomeViewModel());
-      DisplayName = "Banko-Kontrol";
+      DisplayName = "Bingo Banko";
     }
 
     private void GoToControlPanel()
     {
       ActivateItem(new ControlPanelViewModel());
-      DisplayName = Event.EventTitle;
+      DisplayName = "Bingo Bango: " +Event.EventTitle;
     }
     #endregion
 

@@ -153,7 +153,6 @@
     <Compile Include="ViewModels\DebuggingWindowViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\EventSelectedViewModel.cs" />
-    <Compile Include="ViewModels\NumberQueueOverlayViewModel.cs" />
     <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
     <Compile Include="Views\BingoBankoView.xaml.cs">
       <DependentUpon>BingoBankoView.xaml</DependentUpon>
@@ -193,9 +192,6 @@
     </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NumberQueueOverlayView.xaml.cs">
-      <DependentUpon>NumberQueueOverlayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OptionsFlyoutView.xaml.cs">
       <DependentUpon>OptionsFlyoutView.xaml</DependentUpon>
@@ -269,10 +265,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EventSelectedView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\NumberQueueOverlayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
