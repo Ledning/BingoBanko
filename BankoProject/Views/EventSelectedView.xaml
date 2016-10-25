@@ -45,10 +45,10 @@
       <TextBox x:Name="EventSelectedSeedTextbox" Margin="20,159,167,660"  Text="{Binding PlaceholderSeed}" IsReadOnly="True" Grid.ColumnSpan="4"/>
 
       <Label x:Name="EventSelectedNumberOfPlatesLabel" Content="Number of plates" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="4,235,126,0" Style="{StaticResource ControlPanelLabel}" HorizontalAlignment="Center" Width="234" Height="40" Grid.ColumnSpan="4" />
-      <TextBox x:Name="EventSelectedNumberOfPlatesTextbox" Margin="20,275,167,544"  Text="{Binding Ændr til hvad det er kthx}" Grid.ColumnSpan="4"/>
+      <TextBox x:Name="EventSelectedNumberOfPlatesTextbox" Margin="20,275,167,544"  Text="{Binding Ændrtilhvaddeterkthx}" Grid.ColumnSpan="4"/>
       
       <Label x:Name="EventSelectedBackGroundList" Content="Number of plates" HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="4,336,126,0" Style="{StaticResource ControlPanelLabel}" HorizontalAlignment="Center" Width="234" Height="40" Grid.ColumnSpan="4" />
-      <TextBox x:Name="EventSelectedNumberOfPlatesTextbox_Copy" Margin="20,376,167,443"  Text="{Binding Ændr til hvad det er kthx}" Grid.ColumnSpan="4"/>
+      <TextBox x:Name="EventSelectedNumberOfPlatesTextbox_Copy" Margin="20,376,167,443"  Text="{Binding Ændrtihvaddeterkthx}" Grid.ColumnSpan="4"/>
 
 
 
