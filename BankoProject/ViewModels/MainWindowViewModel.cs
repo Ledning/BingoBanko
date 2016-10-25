@@ -12,6 +12,7 @@ using Caliburn.Micro;
 using BankoProject.Tools;
 using BankoProject.Tools.Events;
 using BingoCardGenerator;
+using MahApps.Metro.Controls;
 using Printer_Project;
 
 namespace BankoProject.ViewModels
@@ -43,6 +44,7 @@ namespace BankoProject.ViewModels
     private IEventAggregator _eventAggregator;
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
+    private bool _isFlyoutOpen = false;
 
     public MainWindowViewModel()
     {
@@ -53,6 +55,12 @@ namespace BankoProject.ViewModels
     {
       get { return _bingoEvent; }
       set { _bingoEvent = value; NotifyOfPropertyChange(()=> Event);}
+    }
+
+    public bool IsFlyoutOpen
+    {
+      get { return _isFlyoutOpen; }
+      set { _isFlyoutOpen = value; NotifyOfPropertyChange(()=> IsFlyoutOpen);}
     }
 
 
@@ -79,7 +87,6 @@ namespace BankoProject.ViewModels
           DisplayName = "Bingo Kontrol";
           GoToWelcomeView();
           break;
-
         case ApplicationWideEnums.MessageTypes.ChngControlPanelView:
           _log.Info("Changing to ControlPanelView...");
           DisplayName = DisplayName + ": " + Event.EventTitle;

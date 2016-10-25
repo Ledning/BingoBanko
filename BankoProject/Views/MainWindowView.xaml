@@ -35,8 +35,12 @@
   </Viewbox>
   <metro:MetroWindow.Flyouts>
     <metro:FlyoutsControl>
-      <metro:Flyout Header="Indstillinger" Position="Left" ></metro:Flyout>
+      <metro:Flyout Header="Indstillinger" Position="Left" IsOpen="{Binding IsFlyoutOpen}"></metro:Flyout>
     </metro:FlyoutsControl>
   </metro:MetroWindow.Flyouts>
-
+  <metro:MetroWindow.RightWindowCommands>
+    <metro:WindowCommands>
+      <ToggleButton Content="Indstillinger" IsChecked="{Binding IsFlyoutOpen}" Cursor="Hand"></ToggleButton>
+    </metro:WindowCommands>
+  </metro:MetroWindow.RightWindowCommands>
 </metro:MetroWindow>
