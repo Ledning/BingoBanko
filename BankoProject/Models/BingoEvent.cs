@@ -71,6 +71,7 @@ namespace BankoProject.Models
     public bool Generating
     {
       get { return _generating; }
+      set {_generating = value; NotifyOfPropertyChange(() => Generating); }
     }
 
     public BankoOptions BnkOptions
@@ -125,35 +126,10 @@ namespace BankoProject.Models
         _bingoNumberQueue.Add(new BingoNumber(i));
       }
       _initialised = true;
-      worker.DoWork += worker_DoWork;
-      worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+      
       _log.Info("Event object initialization done.");
     }
 
-    #region async plate generation
-    private readonly BackgroundWorker worker = new BackgroundWorker();
-
-    private void worker_DoWork(object sender, DoWorkEventArgs e)
-    {
-      _log.Info("Async plate-generation running...");
-      _generating = true;
-      Generator gen = new Generator(Info.Seed);
-      PDFMaker maker = new PDFMaker();
-      maker.MakePDF(gen.GenerateCard(_platesGenerated));
-    }
-
-
-    private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-    {
-      _generating = false;
-      _log.Info("Generation done.");
-    }
-    #endregion
-
-    public void GeneratePlates()
-    {
-      worker.RunWorkerAsync();
-    }
 
     private string GenerateSeedFromKeyword(string keyword)
     {

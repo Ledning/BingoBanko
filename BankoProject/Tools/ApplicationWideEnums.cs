@@ -16,7 +16,8 @@ namespace BankoProject.Tools
       ChngEventSelectedView,
       ChngMainWindowView,
       Save,
-      Load
+      Load,
+      GeneratePlates
     }
 
     public enum SenderTypes

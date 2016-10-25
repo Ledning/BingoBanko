@@ -11,6 +11,8 @@ using BankoProject.Models;
 using Caliburn.Micro;
 using BankoProject.Tools;
 using BankoProject.Tools.Events;
+using BingoCardGenerator;
+using Printer_Project;
 
 namespace BankoProject.ViewModels
 {
@@ -40,13 +42,7 @@ namespace BankoProject.ViewModels
     private IWindowManager _winMan;
     private IEventAggregator _eventAggregator;
     private BingoEvent _bingoEvent;
-
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
-
-
-
-
-
 
     public MainWindowViewModel()
     {
@@ -71,6 +67,8 @@ namespace BankoProject.ViewModels
       _eventAggregator.Subscribe(this);
       _log.Info("Main View loaded");
       //_winMan.ShowWindow(new DebuggingWindowViewModel());
+      worker.DoWork += worker_DoWork;
+      worker.RunWorkerCompleted += worker_RunWorkerCompleted;
     }
 
     public void Handle(CommunicationObject message)
@@ -98,8 +96,39 @@ namespace BankoProject.ViewModels
           _log.Info("Loading...");
           LoadSession(ref _bingoEvent);
           break;
+
+        case ApplicationWideEnums.MessageTypes.GeneratePlates:
+          _log.Info("Generate-plates message recieved...");
+          GeneratePlates();
+          break;
       }
     }
+
+    #region async plate generation
+    private readonly BackgroundWorker worker = new BackgroundWorker();
+
+    private void worker_DoWork(object sender, DoWorkEventArgs e)
+    {
+      _log.Info("Async plate-generation running...");
+      Event.Generating = true;
+      Generator gen = new Generator(Event.SInfo.Seed);
+      PDFMaker maker = new PDFMaker();
+      maker.MakePDF(gen.GenerateCard(Event.PInfo.PlatesGenerated));
+    }
+
+
+    private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+    {
+      Event.Generating = false;
+      _log.Info("Generation done.");
+    }
+
+    public void GeneratePlates()
+    {
+      worker.RunWorkerAsync();
+    }
+
+    #endregion
 
 
     #region eventbusMethods
