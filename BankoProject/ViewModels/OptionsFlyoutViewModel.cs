@@ -27,6 +27,7 @@ namespace BankoProject.ViewModels
       MonitorList = new BindableCollection<IEnumerable<Monitor>>();
       MonitorList.Add(Monitor.AllMonitors);
       _log.Info("TRIGGERED");
+      _log.Info("\n\n\n\n\n");
     }
 
 

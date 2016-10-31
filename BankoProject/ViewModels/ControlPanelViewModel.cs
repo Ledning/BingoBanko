@@ -15,7 +15,7 @@ namespace BankoProject.ViewModels
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
-    private BoardViewModel _boardViewModel;
+    private BoardViewModel _boardVm;
     private string _plateNumberTextBox;
     private string _contestName;
     private int _numberOfContestants;
@@ -25,8 +25,8 @@ namespace BankoProject.ViewModels
 
     public ControlPanelViewModel()
     {
-      BoardViewModel = new BoardViewModel();
-      ActivateItem(BoardViewModel);
+      BoardVM = new BoardViewModel();
+      ActivateItem(BoardVM);
     }
 
     protected override void OnViewReady(object view)
@@ -50,10 +50,10 @@ namespace BankoProject.ViewModels
       set { _bingoEvent = value; NotifyOfPropertyChange(() => Event); }
     }
 
-    public BoardViewModel BoardViewModel
+    public BoardViewModel BoardVM
     {
-      get { return _boardViewModel; }
-      set { _boardViewModel = value; NotifyOfPropertyChange(()=> BoardViewModel);}
+      get { return _boardVm; }
+      set { _boardVm = value; NotifyOfPropertyChange(()=> BoardVM);}
     }
 
     public string PlateNumberTextBox

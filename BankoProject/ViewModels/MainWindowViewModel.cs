@@ -37,7 +37,6 @@ namespace BankoProject.ViewModels
 
 
   */
-  [Export(typeof(IShell))]
   class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>, ISave, ILoad
   {
     private IWindowManager _winMan;
@@ -76,6 +75,7 @@ namespace BankoProject.ViewModels
       //_winMan.ShowWindow(new DebuggingWindowViewModel());
       worker.DoWork += worker_DoWork;
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+
     }
 
     public void Handle(CommunicationObject message)

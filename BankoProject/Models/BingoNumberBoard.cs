@@ -20,6 +20,7 @@ namespace BankoProject.Models
     private BindableCollection<BingoNumber> _board;
     private int _boardSize = 90;
     private readonly ILog _log = LogManager.GetLog(typeof(BingoNumberBoard));
+    private int _selectedIndex = 0;
 
 
     private IWindowManager _winMan;
@@ -37,61 +38,9 @@ namespace BankoProject.Models
       {
         Board.Add(new BingoNumber(i+1));
       }
+      NotifyOfPropertyChange(() => Board);
       _log.Info("Initialization of board done.");
     }
-
-    public void PickNumber(int number)
-    {
-      _log.Info("Picking number: " + number);
-      if (!Board[number].IsPicked)
-      {
-        bool? result = _winMan.ShowDialog(new dialogViewModel("Træk nr: " + number));
-        if (result.HasValue)
-        {
-          if (result.Value)
-          {
-            Board[number].IsPicked = true;
-          }
-        }
-      }
-    }
-
-    public void UnPickNumber(int number)
-    {
-      _log.Info("Un-Picking number: " + number);
-      if (Board[number].IsPicked)
-      {
-        bool? result = _winMan.ShowDialog(new dialogViewModel("Træk nr: " + number));
-        if (result.HasValue)
-        {
-          if (result.Value)
-          {
-            Board[number].IsPicked = false;
-          }
-        }
-      }
-    }
-
-
-
-
-
-    public void ResetBoard()
-    {
-      _log.Info("Resetting board...");
-      bool? result = _winMan.ShowDialog(new dialogViewModel("Bekræft reset af spil"));
-      if (result.HasValue)
-      {
-        if (result.Value)
-        {
-          foreach (var bingoNumber in Board)
-          {
-            bingoNumber.IsPicked = false;
-          }
-        }
-      }
-    }
-   
 
     public BindableCollection<BingoNumber> Board
     {
@@ -99,6 +48,14 @@ namespace BankoProject.Models
       {
         return _board;
       }
+      set
+      {
+        _board = value;
+        NotifyOfPropertyChange(()=> Board);
+      }
     }
+
+
+
   }
 }
