@@ -29,7 +29,7 @@ namespace BankoProject.ViewModels
 
 
     #region Wrappers
-    public void Pick(int num)
+    /*public void Pick(int num)
     {
       BNBoard.PickNumber(num);
     }
@@ -40,7 +40,7 @@ namespace BankoProject.ViewModels
     public void Reset(BingoNumberBoard Board)
     {
       BNBoard.ResetBoard();
-    }
+    }*/
     #endregion
 
     #region GetterSetter
