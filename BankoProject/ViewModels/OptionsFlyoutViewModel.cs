@@ -14,7 +14,7 @@ namespace BankoProject.ViewModels
   public class OptionsFlyoutViewModel : Screen
   {
 
-    public BindableCollection<IEnumerable<Monitor>> MonitorList { get; set; }
+
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
 
     public OptionsFlyoutViewModel()
@@ -24,10 +24,7 @@ namespace BankoProject.ViewModels
 
     protected override void OnViewReady(object view)
     {
-      MonitorList = new BindableCollection<IEnumerable<Monitor>>();
-      MonitorList.Add(Monitor.AllMonitors);
-      _log.Info("TRIGGERED");
-      _log.Info("\n\n\n\n\n");
+
     }
 
 

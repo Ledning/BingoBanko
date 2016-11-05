@@ -14,6 +14,10 @@ using BankoProject.Tools.Events;
 using BingoCardGenerator;
 using MahApps.Metro.Controls;
 using Printer_Project;
+using System.Windows.Forms;
+using FormScrn = System.Windows.Forms.Screen;
+using WpfScreenHelper;
+using ScrnHelpScrn = WpfScreenHelper.Screen;
 
 namespace BankoProject.ViewModels
 {
@@ -35,7 +39,7 @@ namespace BankoProject.ViewModels
     _winMan.ShowDialog(new dialogViewModel("dialog text"))
 
 
-
+    PH means placeholder
   */
   class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>, ISave, ILoad
   {
@@ -44,6 +48,7 @@ namespace BankoProject.ViewModels
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
     private bool _isFlyoutOpen = false;
+    private BindableCollection<ScrnHelpScrn> _screens;
 
     public MainWindowViewModel()
     {
@@ -62,10 +67,16 @@ namespace BankoProject.ViewModels
       set { _isFlyoutOpen = value; NotifyOfPropertyChange(()=> IsFlyoutOpen);}
     }
 
+    public BindableCollection<ScrnHelpScrn> Screens
+    {
+      get { return _screens; }
+      set { _screens = value; NotifyOfPropertyChange(()=> Screens);}
+    }
 
     //The function below can be used as a constructor for the view. Everything in it will happen after the view is loaded.
     protected override void OnViewReady(object view)
     {
+      Screens = new BindableCollection<ScrnHelpScrn>(ScrnHelpScrn.AllScreens);
       _winMan = IoC.Get<IWindowManager>();
       _eventAggregator = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
@@ -75,7 +86,6 @@ namespace BankoProject.ViewModels
       //_winMan.ShowWindow(new DebuggingWindowViewModel());
       worker.DoWork += worker_DoWork;
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-
     }
 
     public void Handle(CommunicationObject message)
@@ -148,7 +158,7 @@ namespace BankoProject.ViewModels
     private void GoToControlPanel()
     {
       ActivateItem(new ControlPanelViewModel());
-      DisplayName = "Bingo Bango: " +Event.EventTitle;
+      DisplayName = "Bingo Bango: " + Event.EventTitle;
     }
     #endregion
 
