@@ -11,15 +11,15 @@ namespace BankoProject.ViewModels
   class CreateEventViewModel : Screen
   {
     private BingoEvent _bingoEvent;
-    private string _title;
+    private string _phTitle;
     private string _seed;
-    private int _pladetal;
+    private int _phPladetal;
 
     private readonly ILog _log = LogManager.GetLog(typeof(CreateEventViewModel));
 
     public CreateEventViewModel()
     {
-      DisplayName = "Nyt Event";
+ 
     }
 
     public BingoEvent Event
@@ -32,30 +32,31 @@ namespace BankoProject.ViewModels
       }
     }
 
-    public int Pladetal
+    public int PhPladetal
     {
-      get { return _pladetal; }
-      set { _pladetal = value; NotifyOfPropertyChange(() => Pladetal);}
+      get { return _phPladetal; }
+      set { _phPladetal = value; NotifyOfPropertyChange(() => PhPladetal);}
     }
-    public string PlaceholderSeed
+    public string PhSeed
     {
       get { return _seed; }
-      set { _seed = value; NotifyOfPropertyChange(() => PlaceholderSeed); }
+      set { _seed = value; NotifyOfPropertyChange(() => PhSeed); }
     }
-    public string Title
+    public string PhTitle
     {
-      get { return _title; }
-      set { _title = value; NotifyOfPropertyChange(() => Title);}
+      get { return _phTitle; }
+      set { _phTitle = value; NotifyOfPropertyChange(() => PhTitle);}
     }
 
     protected override void OnViewReady(object view)
     {
       Event = IoC.Get<BingoEvent>();
+      DisplayName = "Nyt Event";
     }
 
     public void AcceptButton()
     {
-      Event.Initialize(PlaceholderSeed, Title, Pladetal);
+      Event.Initialize(PhSeed, PhTitle, PhPladetal);
       _log.Info("Event created, createeventviewmodel");
       TryClose(true);
     }

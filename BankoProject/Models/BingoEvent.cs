@@ -33,7 +33,7 @@ namespace BankoProject.Models
     //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event, 
     private BindableCollection<CompetitionObject> _competitionList; //A list of all the competitions during the game
     private BindableCollection<BingoNumber> _bingoNumberQueue; //the numbers picked in the game, input into this list as they come in. 
-    private BingoNumberBoard _bingoNumberBoard; //The bingo board, however it might look during the game
+    private BingoNumberBoard _numberBoard; //The bingo board, however it might look during the game
 
 
 
@@ -52,8 +52,8 @@ namespace BankoProject.Models
 
     public BingoNumberBoard NumberBoard
     {
-      get { return _bingoNumberBoard; }
-      set { _bingoNumberBoard = value; NotifyOfPropertyChange(() => NumberBoard);}
+      get { return _numberBoard; }
+      set { _numberBoard = value; NotifyOfPropertyChange(() => NumberBoard);}
     }
 
     public BindableCollection<CompetitionObject> CompetitionList
@@ -109,17 +109,20 @@ namespace BankoProject.Models
     public void Initialize(string seed, string title, int pladetal)
     {
       _log.Info("Starting event object initialization...");
-      _eventTitle = title;
-      PInfo.PlatesGenerated = pladetal;
-      SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);
-      _creationTime = DateTime.Now;
-      _bingoNumberBoard = new BingoNumberBoard();
-      _competitionList = new BindableCollection<CompetitionObject>();
-      _bingoNumberQueue = new BindableCollection<BingoNumber>();
+      NumberBoard = new BingoNumberBoard();
+      CompetitionList = new BindableCollection<CompetitionObject>();
+      BingoNumberQueue = new BindableCollection<BingoNumber>();
       BnkOptions = new BankoOptions();
       CmpOptions = new CompetitionOptions();
       VsOptions = new VisualsOptions();
       SInfo = new SeedInfo(seed);
+      PInfo = new PlateInfo();
+      EventTitle = title;
+      PInfo.PlatesGenerated = pladetal;
+      SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);
+      _creationTime = DateTime.Now;
+      NotifyOfPropertyChange(()=>CreationTime);
+
 
       for (int i = 1; i < 91; i++)
       {
