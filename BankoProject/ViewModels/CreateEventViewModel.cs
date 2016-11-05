@@ -56,7 +56,7 @@ namespace BankoProject.ViewModels
 
     public void AcceptButton()
     {
-      Event.Initialize(PhSeed, PhTitle, PhPladetal);
+      Event.Initialize(PhSeed, PhTitle, PhPladetal); //skal fjernes når vi kan åbne et event rigtigt
       _log.Info("Event created, createeventviewmodel");
       TryClose(true);
     }

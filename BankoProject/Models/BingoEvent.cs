@@ -11,6 +11,7 @@ using Printer_Project;
 
 namespace BankoProject.Models
 {
+  [Serializable]
   public class BingoEvent : PropertyChangedBase
   {
     private string _eventTitle;

@@ -7,12 +7,18 @@ using Catel.MVVM;
 using Orchestra.Views;
 using System.ComponentModel.Composition;
 using System.ComponentModel;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.AccessControl;
+using System.Windows;
 using BankoProject.Models;
 using Caliburn.Micro;
 using BankoProject.Tools;
 using BankoProject.Tools.Events;
 using BingoCardGenerator;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Printer_Project;
 
 namespace BankoProject.ViewModels
@@ -159,8 +165,32 @@ namespace BankoProject.ViewModels
       return false;
     }
 
-    public bool SaveSession(ref BingoEvent bingoEvent)
+    public bool SaveSession(ref BingoEvent bingoEvent) //Virker ikke. Den laver en .bingoprojekt, men jeg kan ikke få den til at skrive til filen. Derfor kommenteret ud.
     {
+      /*
+      string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", bingoEvent.EventTitle);
+      if(Directory.Exists(eventDir))
+      {
+        MessageBoxResult dR = MessageBox.Show("Event already exists. Do you want to override it?", "Confirmation box",
+          MessageBoxButton.YesNo);
+        if (dR == MessageBoxResult.No)
+        {
+          return false;
+        }
+        else
+        {
+          Directory.Delete(eventDir);
+        }
+      }
+
+      string eventDataDirString = eventDir + bingoEvent.EventTitle + @".bingoprojekt";
+      //File.Create(eventDataDirString);
+      IFormatter formatter = new BinaryFormatter();
+      Stream stream = new FileStream(eventDataDirString, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+      formatter.Serialize(stream, bingoEvent);
+      stream.Close();
+      */
+
       _log.Warn("NOT IMPLEMENTED");
       return false;
     }
