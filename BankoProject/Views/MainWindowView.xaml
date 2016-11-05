@@ -37,7 +37,6 @@
     <metro:FlyoutsControl>
       <metro:Flyout Header="Indstillinger" Position="Right" IsOpen="{Binding IsFlyoutOpen}">
         <ListBox ItemsSource="{Binding Screens}"> 
-          
         </ListBox>
       </metro:Flyout>
     </metro:FlyoutsControl>

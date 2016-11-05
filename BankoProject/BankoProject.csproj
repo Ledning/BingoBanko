@@ -137,8 +137,10 @@
     <Compile Include="Models\ControlOptions.cs" />
     <Compile Include="Models\Deltagere.cs" />
     <Compile Include="Models\PlateInfo.cs" />
+    <Compile Include="Models\PresentationScreenSettings.cs" />
     <Compile Include="Models\SeedInfo.cs" />
     <Compile Include="Models\VisualsOptions.cs" />
+    <Compile Include="Models\WinSettings.cs" />
     <Compile Include="Tools\ApplicationWideEnums.cs" />
     <Compile Include="Tools\BingoDeserializer.cs" />
     <Compile Include="Tools\Debugger.cs" />
@@ -234,7 +236,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Compile Include="Tools\Monitor.cs" />
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>

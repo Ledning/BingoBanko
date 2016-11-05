@@ -7,6 +7,7 @@ using Catel.MVVM;
 using Orchestra.Views;
 using System.ComponentModel.Composition;
 using System.ComponentModel;
+using System.Windows;
 using BankoProject.Models;
 using Caliburn.Micro;
 using BankoProject.Tools;
@@ -76,8 +77,10 @@ namespace BankoProject.ViewModels
     //The function below can be used as a constructor for the view. Everything in it will happen after the view is loaded.
     protected override void OnViewReady(object view)
     {
+      double asd = SystemParameters.VirtualScreenWidth;
       Screens = new BindableCollection<ScrnHelpScrn>(ScrnHelpScrn.AllScreens);
       _winMan = IoC.Get<IWindowManager>();
+      _winMan.ShowWindow(new DebuggingWindowViewModel(200,200,-100,-100));
       _eventAggregator = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
       _eventAggregator.Subscribe(this);

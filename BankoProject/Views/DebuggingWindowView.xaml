@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankoProject.Views"
         mc:Ignorable="d"
-        Title="DebuggingWindowView" Height="300" Width="300"
-        WindowStartupLocation="CenterOwner">
+        Title="DebuggingWindowView" 
+        Height="{Binding WinSngs.Height, Mode=TwoWay}" 
+        Width="{Binding WinSngs.Width, Mode=TwoWay}"
+        Left="{Binding WinSngs.Left, Mode=TwoWay}"
+        Top="{Binding WinSngs.Top, Mode=TwoWay}"
+        >
   <Grid>
     <Button x:Name="ShowWelcome" Margin="96,156,106,76" Content="WelcomeView">
       
