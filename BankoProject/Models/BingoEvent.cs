@@ -16,7 +16,8 @@ namespace BankoProject.Models
   {
     private string _eventTitle;
     private DateTime _creationTime;
-
+    private WinSettings _winSettings;
+    private PresentationScreenSettings _presScreenSettings;
     private bool _initialised = false;
     private bool _generating = false;
 
@@ -96,13 +97,25 @@ namespace BankoProject.Models
     public SeedInfo SInfo
     {
       get { return _seedInfo; }
-      set { _seedInfo = value; }
+      set { _seedInfo = value; NotifyOfPropertyChange(()=>SInfo);}
     }
 
     public PlateInfo PInfo
     {
       get { return _plateInfo; }
-      set { _plateInfo = value; }
+      set { _plateInfo = value; NotifyOfPropertyChange(()=>PInfo);}
+    }
+
+    public WinSettings Settings
+    {
+      get { return _winSettings; }
+      set { _winSettings = value; NotifyOfPropertyChange(()=>Settings);}
+    }
+
+    public PresentationScreenSettings PresScreenSettings
+    {
+      get { return _presScreenSettings; }
+      set { _presScreenSettings = value; NotifyOfPropertyChange(()=>PresScreenSettings);}
     }
 
     #endregion
@@ -118,6 +131,7 @@ namespace BankoProject.Models
       VsOptions = new VisualsOptions();
       SInfo = new SeedInfo(seed);
       PInfo = new PlateInfo();
+      Settings = new WinSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
       SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);
