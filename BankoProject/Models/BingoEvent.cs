@@ -131,10 +131,11 @@ namespace BankoProject.Models
       VsOptions = new VisualsOptions();
       SInfo = new SeedInfo(seed);
       PInfo = new PlateInfo();
-      Settings = new WinSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
       SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);
+      Settings = new WinSettings();
+
       _creationTime = DateTime.Now;
       NotifyOfPropertyChange(()=>CreationTime);
 

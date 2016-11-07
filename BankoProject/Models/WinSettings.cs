@@ -4,37 +4,46 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankoProject.Tools;
 using Caliburn.Micro;
 using ScrnHelper = WpfScreenHelper.Screen;
 
 namespace BankoProject.Models
 {
   /// <summary>
-  /// Settings / info for the control window. DOES not include settings related to the presentation window. 
+  /// Settings / info for the control window. DOES not include settings related to the presentation window, except in the capacity that it shows what screen is chosen to keep the presentation on.
+  /// What it does do is populate the list of screens that are available, and calculate basic info about them. 
+  /// This is a one-off class. Anything related to a particular screen should be in PresentationScreenSettings. 
   /// </summary>
   public class WinSettings : PropertyChangedBase
   {
+    //These again refer to the controlpanelWindow, not the presentationwindow. 
     private int _width;
     private int _height;
     private int _left;
     private int _top;
+
+    //This object holds reference to the current presentation screen. 
+    private PresentationScreenSettings _prsSettings;
 
     /// <summary>
     /// List of all the available screens.
     /// </summary>
     private BindableCollection<ScrnHelper> _screens;
 
-    /// <summary>
-    /// Describes which screen is the one showing the presentation overlay. 
-    /// 
-    /// </summary>
-    private int _selectedPresentationScreen;
+
 
     public WinSettings()
     {
       Screens = new BindableCollection<ScrnHelper>(ScrnHelper.AllScreens);
+      PrsSettings = new PresentationScreenSettings();
     }
 
+
+
+
+
+#region
     public int Width
     {
       get { return _width; }
@@ -64,13 +73,11 @@ namespace BankoProject.Models
       set { _screens = value; NotifyOfPropertyChange(() => Screens); }
     }
 
-    /// <summary>
-    /// Describes which screen is the one showing the presentation overlay. 
-    /// </summary>
-    public int SelectedPresentationScreen
+    public PresentationScreenSettings PrsSettings
     {
-      get { return _selectedPresentationScreen; }
-      set { _selectedPresentationScreen = value; NotifyOfPropertyChange(()=> SelectedPresentationScreen);}
+      get { return _prsSettings; }
+      set { _prsSettings = value; NotifyOfPropertyChange(()=> PrsSettings);}
     }
   }
+#endregion
 }
