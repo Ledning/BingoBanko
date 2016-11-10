@@ -21,6 +21,7 @@ namespace BankoProject.Models
     private bool _initialised = false;
     private bool _generating = false;
 
+    [NonSerialized]
     private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
     private BankoOptions _bnkOptions;
@@ -46,6 +47,8 @@ namespace BankoProject.Models
       get { return _eventTitle; }
       set { _eventTitle = value; NotifyOfPropertyChange(EventTitle);}
     }
+
+    public BindableCollection<string> RecentFiles { get; set; }
 
     public DateTime CreationTime
     {

@@ -60,7 +60,7 @@ namespace BankoProject.ViewModels
 
       if (ofd.ShowDialog() ?? false)
       {
-        var d = ofd.FileNames;
+        var d = ofd.FileName;
       }
     }
   }

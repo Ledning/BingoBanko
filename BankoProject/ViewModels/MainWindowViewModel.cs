@@ -23,6 +23,7 @@ using Printer_Project;
 using System.Windows.Forms;
 using FormScrn = System.Windows.Forms.Screen;
 using WpfScreenHelper;
+using MessageBox = System.Windows.MessageBox;
 using ScrnHelpScrn = WpfScreenHelper.Screen;
 
 namespace BankoProject.ViewModels
@@ -47,7 +48,7 @@ namespace BankoProject.ViewModels
 
     PH means placeholder
   */
-  class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>, ISave, ILoad
+  class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>
   {
     private IWindowManager _winMan;
     private IEventAggregator _eventAggregator;
@@ -108,12 +109,12 @@ namespace BankoProject.ViewModels
 
         case ApplicationWideEnums.MessageTypes.Save:
           _log.Info("Saving...");
-          SaveSession(ref _bingoEvent);
+          SaveSession();
           break;
 
         case ApplicationWideEnums.MessageTypes.Load:
           _log.Info("Loading...");
-          LoadSession(ref _bingoEvent);
+          LoadSession();
           break;
 
         case ApplicationWideEnums.MessageTypes.GeneratePlates:
@@ -166,16 +167,36 @@ namespace BankoProject.ViewModels
     #endregion
 
 
-    public bool LoadSession(ref BingoEvent bingoEvent)
+    public bool LoadSession()
     {
+
+      //find the file
+      string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", Event.EventTitle);
+      string eventDataDirString = eventDir + Event.EventTitle + @".bingoevent";
+      FileStream fs = new FileStream(eventDataDirString, FileMode.Open);
+      try
+      {
+        BinaryFormatter formatter = new BinaryFormatter();
+        Event = (BingoEvent)formatter.Deserialize(fs);
+      }
+      catch (SerializationException e)
+      {
+        _log.Error(e);
+        _log.Warn(e.Message);
+      }
+      finally
+      {
+        fs.Close();
+      }
       _log.Warn("NOT IMPLEMENTED");
-      return false;
+      return true;
     }
 
-    public bool SaveSession(ref BingoEvent bingoEvent) //Virker ikke. Den laver en .bingoprojekt, men jeg kan ikke få den til at skrive til filen. Derfor kommenteret ud.
+
+    public bool SaveSession() 
     {
-      /*
-      string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", bingoEvent.EventTitle);
+      
+      string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", Event.EventTitle);
       if(Directory.Exists(eventDir))
       {
         MessageBoxResult dR = MessageBox.Show("Event already exists. Do you want to override it?", "Confirmation box",
@@ -189,17 +210,25 @@ namespace BankoProject.ViewModels
           Directory.Delete(eventDir);
         }
       }
+      string eventDataDirString = eventDir + Event.EventTitle + @".bingoprojekt";
 
-      string eventDataDirString = eventDir + bingoEvent.EventTitle + @".bingoprojekt";
-      //File.Create(eventDataDirString);
-      IFormatter formatter = new BinaryFormatter();
-      Stream stream = new FileStream(eventDataDirString, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
-      formatter.Serialize(stream, bingoEvent);
-      stream.Close();
-      */
-
-      _log.Warn("NOT IMPLEMENTED");
-      return false;
+      FileStream fStream = new FileStream(eventDataDirString, FileMode.Create);
+      BinaryFormatter bFormatter = new BinaryFormatter();
+      try
+      {
+        bFormatter.Serialize(fStream, Event);
+      }
+      catch (SerializationException e)
+      {
+        _log.Error(e);
+        _log.Warn(e.Message);
+        return false;
+      }
+      finally
+      {
+        fStream.Close();
+      }
+      return true;
     }
 
     public void Show()
