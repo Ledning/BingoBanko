@@ -161,6 +161,9 @@
     <Compile Include="ViewModels\DebuggingWindowViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\EventSelectedViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreenViewModels\BingoScreenViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreenViewModels\FullscreenImageViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreenViewModels\NumberBarViewModel.cs" />
     <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
     <Compile Include="Views\BingoBankoView.xaml.cs">
       <DependentUpon>BingoBankoView.xaml</DependentUpon>
@@ -203,6 +206,15 @@
     </Compile>
     <Compile Include="Views\OptionsFlyoutView.xaml.cs">
       <DependentUpon>OptionsFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PresentationScreenViews\BingoScreenView.xaml.cs">
+      <DependentUpon>BingoScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PresentationScreenViews\FullscreenImageView.xaml.cs">
+      <DependentUpon>FullscreenImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PresentationScreenViews\NumberBarView.xaml.cs">
+      <DependentUpon>NumberBarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VisualSnaskView.xaml.cs">
       <DependentUpon>VisualSnaskView.xaml</DependentUpon>
@@ -273,6 +285,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EventSelectedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PresentationScreenViews\BingoScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PresentationScreenViews\FullscreenImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PresentationScreenViews\NumberBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -362,6 +386,7 @@
       <Name>Plate-Printer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

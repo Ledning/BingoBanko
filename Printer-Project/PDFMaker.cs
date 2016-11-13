@@ -23,7 +23,7 @@ namespace Printer_Project
     }
     public void MakePDF(List<int[,]> cards)
     {
-      string imgName = @"BingoPlader.png";
+      string imgName = @"bingo1.png";
       string imgSource = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\", imgName);
       if (_outputDirectory != null)
       {

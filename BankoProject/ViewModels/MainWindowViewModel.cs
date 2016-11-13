@@ -8,6 +8,7 @@ using Orchestra.Views;
 using System.ComponentModel.Composition;
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.AccessControl;
@@ -90,7 +91,18 @@ namespace BankoProject.ViewModels
       //_winMan.ShowWindow(new DebuggingWindowViewModel());
       worker.DoWork += worker_DoWork;
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+      foreach (var przScrn in GetTypesInNamespace(Assembly.GetExecutingAssembly(), "BankoProject.ViewModels.PresentationScreenViewModels"))
+      {
+        Activator.CreateInstance<IPresentationScreenItem>();
+      }
     }
+
+    private Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
+    {
+      return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
+    }
+
+
 
     public void Handle(CommunicationObject message)
     {
