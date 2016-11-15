@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using BankoProject.Models;
 using BankoProject.Tools.Events;
+using BankoProject.ViewModels.PresentationScreen;
 
 namespace BankoProject.ViewModels
 {
@@ -24,6 +25,12 @@ namespace BankoProject.ViewModels
     public WelcomeViewModel()
     {
 
+    }
+
+    public BingoEvent Event
+    {
+      get { return _bingoEvent; }
+      set { _bingoEvent = value; NotifyOfPropertyChange(()=>Event);}
     }
 
     protected override void OnViewReady(object view)
@@ -48,6 +55,14 @@ namespace BankoProject.ViewModels
         }
       }
 
+    }
+
+    public void ShowPresentationScreen()
+    {
+      dynamic settings = new ExpandoObject();
+      settings.Left = Event.PresScreenSettings.Left;
+      settings.Top = Event.PresScreenSettings.Top;
+      _winMan.ShowPopup(new PresentationScreenHostViewModel());
     }
 
 

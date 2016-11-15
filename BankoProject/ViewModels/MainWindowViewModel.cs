@@ -93,7 +93,7 @@ namespace BankoProject.ViewModels
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
       foreach (var przScrn in GetTypesInNamespace(Assembly.GetExecutingAssembly(), "BankoProject.ViewModels.PresentationScreenViewModels"))
       {
-        Activator.CreateInstance<IPresentationScreenItem>();
+        //Activator.CreateInstance<IPresentationScreenItem>();
       }
     }
 

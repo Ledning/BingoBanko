@@ -161,10 +161,10 @@
     <Compile Include="ViewModels\DebuggingWindowViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\EventSelectedViewModel.cs" />
-    <Compile Include="ViewModels\PresentationScreenViewModels\BingoScreenViewModel.cs" />
-    <Compile Include="ViewModels\PresentationScreenViewModels\FullscreenImageViewModel.cs" />
-    <Compile Include="ViewModels\PresentationScreenViewModels\NumberBarViewModel.cs" />
-    <Compile Include="ViewModels\PresentationScreenViewModels\PresentationScreenHostViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreen\BingoScreenViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreen\FullscreenImageViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreen\NumberBarViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreen\PresentationScreenHostViewModel.cs" />
     <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
     <Compile Include="Views\BingoBankoView.xaml.cs">
       <DependentUpon>BingoBankoView.xaml</DependentUpon>
@@ -208,16 +208,16 @@
     <Compile Include="Views\OptionsFlyoutView.xaml.cs">
       <DependentUpon>OptionsFlyoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PresentationScreenViews\BingoScreenView.xaml.cs">
+    <Compile Include="Views\PresentationScreen\BingoScreenView.xaml.cs">
       <DependentUpon>BingoScreenView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PresentationScreenViews\FullscreenImageView.xaml.cs">
+    <Compile Include="Views\PresentationScreen\FullscreenImageView.xaml.cs">
       <DependentUpon>FullscreenImageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PresentationScreenViews\NumberBarView.xaml.cs">
+    <Compile Include="Views\PresentationScreen\NumberBarView.xaml.cs">
       <DependentUpon>NumberBarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PresentationScreenViews\PresentationScreenHostView.xaml.cs">
+    <Compile Include="Views\PresentationScreen\PresentationScreenHostView.xaml.cs">
       <DependentUpon>PresentationScreenHostView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VisualSnaskView.xaml.cs">
@@ -292,19 +292,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PresentationScreenViews\BingoScreenView.xaml">
+    <Page Include="Views\PresentationScreen\BingoScreenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PresentationScreenViews\FullscreenImageView.xaml">
+    <Page Include="Views\PresentationScreen\FullscreenImageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PresentationScreenViews\NumberBarView.xaml">
+    <Page Include="Views\PresentationScreen\NumberBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PresentationScreenViews\PresentationScreenHostView.xaml">
+    <Page Include="Views\PresentationScreen\PresentationScreenHostView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

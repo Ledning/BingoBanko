@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BankoProject.Tools;
+﻿using BankoProject.Tools;
 using Caliburn.Micro;
 
-namespace BankoProject.ViewModels.PresentationScreenViewModels
+namespace BankoProject.ViewModels.PresentationScreen
 {
   class FullscreenImageViewModel : IPresentationScreenItem
   {
