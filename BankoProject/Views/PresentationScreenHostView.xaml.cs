@@ -1,12 +1,12 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
 using MahApps.Metro.Controls;
 
-namespace BankoProject.Views.PresentationScreen
+namespace BankoProject.Views
 {
   /// <summary>
   /// Interaction logic for PresentationScreenHostView.xaml
   /// </summary>
-  public partial class PresentationScreenHostView : UserControl
+  public partial class PresentationScreenHostView : Window
   {
     public PresentationScreenHostView()
     {

@@ -57,13 +57,7 @@ namespace BankoProject.ViewModels
 
     }
 
-    public void ShowPresentationScreen()
-    {
-      dynamic settings = new ExpandoObject();
-      settings.Left = Event.PresScreenSettings.Left;
-      settings.Top = Event.PresScreenSettings.Top;
-      _winMan.ShowPopup(new PresentationScreenHostViewModel());
-    }
+    
 
 
     public void OpenFileDialog()

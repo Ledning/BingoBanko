@@ -2,11 +2,13 @@
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BankoProject.Models;
 using BankoProject.Tools.Events;
+using BankoProject.ViewModels.PresentationScreen;
 
 namespace BankoProject.ViewModels
 {
@@ -14,6 +16,7 @@ namespace BankoProject.ViewModels
   {
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
+    private IWindowManager _winMan;
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
     private BoardViewModel _boardVm;
     private string _plateNumberTextBox;
@@ -32,6 +35,7 @@ namespace BankoProject.ViewModels
     protected override void OnViewReady(object view)
     {
       _events = IoC.Get<IEventAggregator>();
+      _winMan = IoC.Get<IWindowManager>();
       Event = IoC.Get<BingoEvent>();
       Event.BnkOptions.SingleRow = true;
       Event.VsOptions.EmptyScreen = true;
@@ -41,7 +45,12 @@ namespace BankoProject.ViewModels
 
     public void ShowWelcome()
     {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.ControlPanelView));
+      dynamic settings = new ExpandoObject();
+      settings.Left = Event.PresScreenSettings.Left;
+      settings.Top = Event.PresScreenSettings.Top;
+      _winMan.ShowDialog(new PresentationScreenHostViewModel());
+
+    //_events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public BingoEvent Event

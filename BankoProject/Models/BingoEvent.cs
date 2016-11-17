@@ -134,6 +134,8 @@ namespace BankoProject.Models
       VsOptions = new VisualsOptions();
       SInfo = new SeedInfo(seed);
       PInfo = new PlateInfo();
+      Settings = new WinSettings();
+      PresScreenSettings = new PresentationScreenSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
       SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);

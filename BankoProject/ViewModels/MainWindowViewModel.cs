@@ -182,25 +182,25 @@ namespace BankoProject.ViewModels
     public bool LoadSession()
     {
 
-      //find the file
-      string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", Event.EventTitle);
-      string eventDataDirString = eventDir + Event.EventTitle + @".bingoevent";
-      FileStream fs = new FileStream(eventDataDirString, FileMode.Open);
-      try
-      {
-        BinaryFormatter formatter = new BinaryFormatter();
-        Event = (BingoEvent)formatter.Deserialize(fs);
-      }
-      catch (SerializationException e)
-      {
-        _log.Error(e);
-        _log.Warn(e.Message);
-      }
-      finally
-      {
-        fs.Close();
-      }
-      _log.Warn("NOT IMPLEMENTED");
+      ////find the file
+      //string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", Event.EventTitle);
+      //string eventDataDirString = eventDir + Event.EventTitle + @".bingoevent";
+      //FileStream fs = new FileStream(eventDataDirString, FileMode.Open);
+      //try
+      //{
+      //  BinaryFormatter formatter = new BinaryFormatter();
+      //  Event = (BingoEvent)formatter.Deserialize(fs);
+      //}
+      //catch (SerializationException e)
+      //{
+      //  _log.Error(e);
+      //  _log.Warn(e.Message);
+      //}
+      //finally
+      //{
+      //  fs.Close();
+      //}
+      //_log.Warn("NOT IMPLEMENTED");
       return true;
     }
 
@@ -208,38 +208,38 @@ namespace BankoProject.ViewModels
     public bool SaveSession() 
     {
       
-      string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", Event.EventTitle);
-      if(Directory.Exists(eventDir))
-      {
-        MessageBoxResult dR = MessageBox.Show("Event already exists. Do you want to override it?", "Confirmation box",
-          MessageBoxButton.YesNo);
-        if (dR == MessageBoxResult.No)
-        {
-          return false;
-        }
-        else
-        {
-          Directory.Delete(eventDir);
-        }
-      }
-      string eventDataDirString = eventDir + Event.EventTitle + @".bingoprojekt";
+      //string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", Event.EventTitle);
+      //if(Directory.Exists(eventDir))
+      //{
+      //  MessageBoxResult dR = MessageBox.Show("Event already exists. Do you want to override it?", "Confirmation box",
+      //    MessageBoxButton.YesNo);
+      //  if (dR == MessageBoxResult.No)
+      //  {
+      //    return false;
+      //  }
+      //  else
+      //  {
+      //    Directory.Delete(eventDir);
+      //  }
+      //}
+      //string eventDataDirString = eventDir + Event.EventTitle + @".bingoprojekt";
 
-      FileStream fStream = new FileStream(eventDataDirString, FileMode.Create);
-      BinaryFormatter bFormatter = new BinaryFormatter();
-      try
-      {
-        bFormatter.Serialize(fStream, Event);
-      }
-      catch (SerializationException e)
-      {
-        _log.Error(e);
-        _log.Warn(e.Message);
-        return false;
-      }
-      finally
-      {
-        fStream.Close();
-      }
+      //FileStream fStream = new FileStream(eventDataDirString, FileMode.Create);
+      //BinaryFormatter bFormatter = new BinaryFormatter();
+      //try
+      //{
+      //  bFormatter.Serialize(fStream, Event);
+      //}
+      //catch (SerializationException e)
+      //{
+      //  _log.Error(e);
+      //  _log.Warn(e.Message);
+      //  return false;
+      //}
+      //finally
+      //{
+      //  fStream.Close();
+      //}
       return true;
     }
 

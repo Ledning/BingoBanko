@@ -1,7 +1,7 @@
 ﻿using BankoProject.Tools;
 using Caliburn.Micro;
 
-namespace BankoProject.ViewModels.PresentationScreen
+namespace BankoProject.ViewModels
 {
   /// <summary>
   /// This is where you would set up all the shit, so when this is put up, the rest follows.
