@@ -45,11 +45,8 @@ namespace BankoProject.ViewModels
 
     public void ShowWelcome()
     {
-      dynamic settings = new ExpandoObject();
-      settings.Left = Event.PresScreenSettings.Left;
-      settings.Top = Event.PresScreenSettings.Top;
-      _winMan.ShowDialog(new PresentationScreenHostViewModel());
-
+       PresentationScreenHostViewModel przscrnvm = new PresentationScreenHostViewModel();
+       _winMan.ShowWindow(przscrnvm);
     //_events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 

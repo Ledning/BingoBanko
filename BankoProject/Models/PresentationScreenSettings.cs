@@ -19,6 +19,7 @@ namespace BankoProject.Models
     private int _height;
     private int _left;
     private int _top;
+        private int _selectedPresScreen;
 
     public int Width
     {
@@ -48,14 +49,24 @@ namespace BankoProject.Models
     {
       
     }
+        public int SelectedPresScreen
+        {
+            get
+            {
+                return _selectedPresScreen;
+            }
 
-    /// <summary>
-    /// A collection which has the available items to be shown on a presentation screen, by reference to their viewmodels. Filtered based on the IPresentationScreenItem interface. 
-    /// </summary>
-    public BindableCollection<IPresentationScreenItem> PresentationScreenItems { get; set; }
+            set
+            {
+                _selectedPresScreen = value; NotifyOfPropertyChange(() => SelectedPresScreen);
+            }
+        }
 
+        /// <summary>
+        /// A collection which has the available items to be shown on a presentation screen, by reference to their viewmodels. Filtered based on the IPresentationScreenItem interface. 
+        /// </summary>
+        public BindableCollection<IPresentationScreenItem> PresentationScreenItems { get; set; }
 
-
-
-  }
+        
+    }
 }

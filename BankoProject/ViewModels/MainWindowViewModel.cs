@@ -82,7 +82,7 @@ namespace BankoProject.ViewModels
     protected override void OnViewReady(object view)
     {
       _winMan = IoC.Get<IWindowManager>();
-      _winMan.ShowWindow(new DebuggingWindowViewModel(200,200,-100,-100));
+      //_winMan.ShowWindow(new DebuggingWindowViewModel(200,200,-100,-100));
       _eventAggregator = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
       _eventAggregator.Subscribe(this);

@@ -5,11 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        WindowStyle="None"
-        Height="300" Width="300"  Background="{x:Null}" AllowsTransparency="True">
-
-  <Grid >
-    <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="94,136,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
-
-  </Grid>
+        WindowStartupLocation="Manual" Height="{Binding WHeight}" Width="{Binding WWidth}" Focusable="False"
+        Background="{x:Null}" Top="{Binding Top}" Left="{Binding Left}" ShowInTaskbar="False" Topmost="False" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
+    <Grid  Background="{x:Null}" Height="{Binding WHeight}" Width="{Binding WWidth}" IsHitTestVisible="True">
+        <Button Height="70" Width="150"  Content="lel"></Button>
+    </Grid>
 </Window>
