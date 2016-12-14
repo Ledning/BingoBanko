@@ -33,6 +33,8 @@ namespace BankoProject.ViewModels
       }
     }
 
+    public BindableCollection<>
+
     public int PhPladetal
     {
       get { return _phPladetal; }

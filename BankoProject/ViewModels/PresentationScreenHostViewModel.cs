@@ -5,110 +5,97 @@ using Caliburn.Micro;
 namespace BankoProject.ViewModels
 {
   /// <summary>
-  /// This is where you would set up all the shit, so when this is put up, the rest follows.
+  ///   This is where you would set up all the shit, so when this is put up, the rest follows.
   /// </summary>
-  class PresentationScreenHostViewModel : Conductor<IPresentationScreenItem>.Collection.OneActive
+  internal class PresentationScreenHostViewModel : Conductor<IPresentationScreenItem>.Collection.OneActive
   {
-        BingoEvent _event;
-        private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
-        public PresentationScreenHostViewModel()
+    private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
+    private BingoEvent _event;
+    private int _left;
+    private int _top;
+    private int wHeight;
+
+    private int wWidth;
+
+    public PresentationScreenHostViewModel()
     {
-            Event = IoC.Get<BingoEvent>();
-            WWidth = 100;
-            WHeight = 300;
-            Left = (int)Event.Settings.Screens[GetPresentationScreen()].WorkingArea.Left;
-            Top = (int)Event.Settings.Screens[GetPresentationScreen()].WorkingArea.Top;
-        }
+      Event = IoC.Get<BingoEvent>();
+      WWidth = 300;
+      WHeight = 300;
+      Left = (int) Event.Settings.Screens[GetPresentationScreen()].WorkingArea.Left;
+      Top = (int) Event.Settings.Screens[GetPresentationScreen()].WorkingArea.Top;
+    }
 
-        public int GetPresentationScreen()
-        {
-            int screenNr = 0;
-            for (; screenNr < Event.Settings.Screens.Count; screenNr++)
-            {
-                if (!Event.Settings.Screens[screenNr].Primary)
-                {
-                    return screenNr;
-                }
-            }
-                return -1; //Error no other screen than the primary was found. 
-        }
+    public int WWidth
+    {
+      get { return wWidth; }
 
-        int wWidth;
-        int wHeight;
-        int _top;
-        int _left;
+      set
+      {
+        wWidth = value;
+        NotifyOfPropertyChange(() => WWidth);
+      }
+    }
 
-        public int WWidth
-        {
-            get
-            {
-                return wWidth;
-            }
+    public int WHeight
+    {
+      get { return wHeight; }
 
-            set
-            {
-                wWidth = value; NotifyOfPropertyChange(() => WWidth);
-            }
-        }
+      set
+      {
+        wHeight = value;
+        NotifyOfPropertyChange(() => WHeight);
+      }
+    }
 
-        public int WHeight
-        {
-            get
-            {
-                return wHeight;
-            }
+    public int Top
+    {
+      get { return _top; }
 
-            set
-            {
-                wHeight = value; NotifyOfPropertyChange(() => WHeight);
-            }
-        }
+      set
+      {
+        _top = value;
+        NotifyOfPropertyChange(() => Top);
+      }
+    }
 
-        public int Top
-        {
-            get
-            {
-                return _top;
-            }
+    public int Left
+    {
+      get
+      {
+        return _left;
+      }
 
-            set
-            {
-                _top = value; NotifyOfPropertyChange(() => Top);
-            }
-        }
+      set
+      {
+        _left = value;
+        NotifyOfPropertyChange(() => Left);
+      }
+    }
 
-        public int Left
-        {
-            get
-            {
-                _log.Info("||||||||||||||||||||||||||||LEFTTRIGG||||||||||||||||||||"); return _left; 
-            }
+    public BingoEvent Event
+    {
+      get { return _event; }
 
-            set
-            {
-                _left = value; NotifyOfPropertyChange(() => Left); 
-            }
-        }
+      set
+      {
+        _event = value;
+        NotifyOfPropertyChange(() => Event);
+      }
+    }
 
-        public BingoEvent Event
-        {
-            get
-            {
-                return _event;
-            }
+    public int GetPresentationScreen()
+    {
+      var screenNr = 0;
+      for (; screenNr < Event.Settings.Screens.Count; screenNr++)
+        if (!Event.Settings.Screens[screenNr].Primary)
+          return screenNr;
+      return -1; //Error no other screen than the primary was found. 
+    }
 
-            set
-            {
-                _event = value; NotifyOfPropertyChange(() => Event);
-            }
-        }
-
-        public void ShowFullscreenImage()
+    public void ShowFullscreenImage()
     {
       //ActivateItem();
     }
-
-
-
   }
 }
