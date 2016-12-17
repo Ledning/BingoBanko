@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Drawing.Text;
 using System.Windows.Controls.Primitives;
 using BingoCardGenerator;
 using Printer_Project;
@@ -14,6 +15,7 @@ namespace BankoProject.Models
   [Serializable]
   public class BingoEvent : PropertyChangedBase
   {
+    private int _queueLength = 0;
     private string _eventTitle;
     private DateTime _creationTime;
     private WinSettings _winSettings;
@@ -70,7 +72,8 @@ namespace BankoProject.Models
     public BindableCollection<BingoNumber> BingoNumberQueue
     {
       get { return _bingoNumberQueue; }
-      set { _bingoNumberQueue = value; NotifyOfPropertyChange(() => BingoNumberQueue);}
+      set { _bingoNumberQueue = value;
+        ; NotifyOfPropertyChange(() => BingoNumberQueue);}
     }
 
     public bool Generating
