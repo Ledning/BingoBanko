@@ -45,9 +45,9 @@ namespace BankoProject.ViewModels
 
     public void ShowWelcome()
     {
-       PresentationScreenHostViewModel przscrnvm = new PresentationScreenHostViewModel();
-       _winMan.ShowWindow(przscrnvm);
-    //_events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.ControlPanelView));
+       //PresentationScreenHostViewModel przscrnvm = new PresentationScreenHostViewModel();
+       //_winMan.ShowWindow(przscrnvm);
+    _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public BingoEvent Event

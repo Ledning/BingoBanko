@@ -6,8 +6,9 @@
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         WindowStartupLocation="Manual" Height="{Binding WHeight}" Width="{Binding WWidth}" Focusable="False"
-        Background="{x:Null}" Top="{Binding Top}" Left="{Binding Left}" ShowInTaskbar="False" Topmost="False" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
-    <Grid  Background="{x:Null}" Height="{Binding WHeight}" Width="{Binding WWidth}" IsHitTestVisible="True">
-        <Button Height="70" Width="150"  ></Button>
-    </Grid>
+        Background="{Binding Event.PresScreenSettings.BackgroundBrush}" Top="{Binding Top}" Left="{Binding Left}" ShowInTaskbar="False" Topmost="False" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
+  <Viewbox>
+    <metro:MetroContentControl x:Name="ActiveItem" />
+  </Viewbox>
+
 </Window>

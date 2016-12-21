@@ -18,6 +18,7 @@ namespace BankoProject.Tools
       ChngControlPanelView,
       ChngEventSelectedView,
       ChngMainWindowView,
+      RbPrezScreen,
       Save,
       Load,
       GeneratePlates

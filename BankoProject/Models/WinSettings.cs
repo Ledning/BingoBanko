@@ -22,6 +22,7 @@ namespace BankoProject.Models
     private int _height;
     private int _left;
     private int _top;
+    private string currentWindow;
 
     //This object holds reference to the current presentation screen. 
     private PresentationScreenSettings _prsSettings;
@@ -77,6 +78,12 @@ namespace BankoProject.Models
     {
       get { return _prsSettings; }
       set { _prsSettings = value; NotifyOfPropertyChange(()=> PrsSettings);}
+    }
+
+    public string CurrentWindow
+    {
+      get { return currentWindow; }
+      set { currentWindow = value;  NotifyOfPropertyChange(()=>CurrentWindow);}
     }
   }
 #endregion

@@ -1,5 +1,7 @@
-﻿using BankoProject.Models;
+﻿using System.Windows.Media;
+using BankoProject.Models;
 using BankoProject.Tools;
+using BankoProject.ViewModels.PresentationScreen;
 using Caliburn.Micro;
 
 namespace BankoProject.ViewModels
@@ -20,11 +22,21 @@ namespace BankoProject.ViewModels
     public PresentationScreenHostViewModel()
     {
       Event = IoC.Get<BingoEvent>();
+
+    }
+
+    #region Overrides of ViewAware
+
+    protected override void OnViewReady(object view)
+    {
       WWidth = 300;
       WHeight = 300;
-      Left = (int) Event.Settings.Screens[GetPresentationScreen()].WorkingArea.Left;
-      Top = (int) Event.Settings.Screens[GetPresentationScreen()].WorkingArea.Top;
+      Left = (int)Event.Settings.Screens[GetPresentationScreen()].WorkingArea.Left;
+      Top = (int)Event.Settings.Screens[GetPresentationScreen()].WorkingArea.Top;
+      ActivateItem(new NumberBarViewModel());
     }
+
+    #endregion
 
     public int WWidth
     {
@@ -36,7 +48,6 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => WWidth);
       }
     }
-
     public int WHeight
     {
       get { return wHeight; }
@@ -47,7 +58,6 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => WHeight);
       }
     }
-
     public int Top
     {
       get { return _top; }
@@ -58,7 +68,6 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => Top);
       }
     }
-
     public int Left
     {
       get
@@ -72,7 +81,6 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => Left);
       }
     }
-
     public BingoEvent Event
     {
       get { return _event; }
@@ -83,6 +91,7 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => Event);
       }
     }
+
 
     public int GetPresentationScreen()
     {

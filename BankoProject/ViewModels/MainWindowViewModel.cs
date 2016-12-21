@@ -82,19 +82,19 @@ namespace BankoProject.ViewModels
     protected override void OnViewReady(object view)
     {
       _winMan = IoC.Get<IWindowManager>();
-      //_winMan.ShowWindow(new DebuggingWindowViewModel(200,200,-100,-100));
+      _winMan.ShowWindow(new DebuggingWindowViewModel(490,490,-500,500));
       _eventAggregator = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
       _eventAggregator.Subscribe(this);
       DisplayName = "Bingo Kontrol";
       _log.Info("Main View loaded");
-      //_winMan.ShowWindow(new DebuggingWindowViewModel());
+     
       worker.DoWork += worker_DoWork;
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-      foreach (var przScrn in GetTypesInNamespace(Assembly.GetExecutingAssembly(), "BankoProject.ViewModels.PresentationScreenViewModels"))
-      {
-        //Activator.CreateInstance<IPresentationScreenItem>();
-      }
+      //foreach (var przScrn in GetTypesInNamespace(Assembly.GetExecutingAssembly(), "BankoProject.ViewModels.PresentationScreenViewModels"))
+      //{
+      //  //Activator.CreateInstance<IPresentationScreenItem>();
+      //}
     }
 
     private Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
@@ -102,7 +102,10 @@ namespace BankoProject.ViewModels
       return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
     }
 
-
+    public void SpawnPrezScreen()
+    {
+     _winMan.ShowWindow(new PresentationScreenHostViewModel());
+    }
 
     public void Handle(CommunicationObject message)
     {
@@ -132,6 +135,9 @@ namespace BankoProject.ViewModels
         case ApplicationWideEnums.MessageTypes.GeneratePlates:
           _log.Info("Generate-plates message recieved...");
           GeneratePlates();
+          break;
+        case ApplicationWideEnums.MessageTypes.RbPrezScreen:
+          SpawnPrezScreen();
           break;
       }
     }

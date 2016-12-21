@@ -11,10 +11,11 @@ using MahApps.Metro.Controls;
 
 namespace BankoProject.ViewModels
 {
-  class DebuggingWindowViewModel : Screen
+  class DebuggingWindowViewModel : Screen, IHandle<CommunicationObject>
   {
     private IEventAggregator _eventAggregator;
     private WinSettings _winSngs;
+    private BingoEvent _event;
 
 
     public DebuggingWindowViewModel(int width, int height, int left, int top)
@@ -24,13 +25,23 @@ namespace BankoProject.ViewModels
       WinSngs.Height = height;
       WinSngs.Left = left;
       WinSngs.Top = top;
+      WinSngs.CurrentWindow = ApplicationWideEnums.MessageTypes.ChngWelcomeView.ToString();
       DisplayName = "DebuggingWindow";
     }
 
     protected override void OnViewReady(object view)
     {
       _eventAggregator = IoC.Get<IEventAggregator>();
+      _eventAggregator.Subscribe(this);
+      Event = IoC.Get<BingoEvent>();
     }
+
+    public void RebootPrezScreen()
+    {
+      CommunicationObject rbps = new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.DebuggingView);
+      _eventAggregator.PublishOnUIThread(rbps);
+    }
+
 
     public WinSettings WinSngs
     {
@@ -40,6 +51,12 @@ namespace BankoProject.ViewModels
         _winSngs = value;
         NotifyOfPropertyChange(()=>WinSngs);
       }
+    }
+
+    public BingoEvent Event
+    {
+      get { return _event; }
+      set { _event = value; NotifyOfPropertyChange(()=>Event);}
     }
 
     public void ShowWelcome()
@@ -53,5 +70,14 @@ namespace BankoProject.ViewModels
       CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.DebuggingView);
       _eventAggregator.PublishOnUIThread(chwe);
     }
+
+    #region Implementation of IHandle<CommunicationObject>
+
+    public void Handle(CommunicationObject message)
+    {
+      WinSngs.CurrentWindow = message.Message.ToString();
+    }
+
+    #endregion
   }
 }

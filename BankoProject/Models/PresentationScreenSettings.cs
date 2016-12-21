@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using BankoProject.Tools;
 using Caliburn.Micro;
 
@@ -19,7 +20,8 @@ namespace BankoProject.Models
     private int _height;
     private int _left;
     private int _top;
-        private int _selectedPresScreen;
+    private int _selectedPresScreen;
+    private SolidColorBrush backgroundBrush;
 
     public int Width
     {
@@ -36,7 +38,7 @@ namespace BankoProject.Models
     public int Left
     {
       get { return _left; }
-      set { _left = value; NotifyOfPropertyChange(() => Left); }
+      set { _left = value; NotifyOfPropertyChange(() => Left); } 
     }
 
     public int Top

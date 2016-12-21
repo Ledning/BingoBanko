@@ -41,6 +41,10 @@ namespace BankoProject.Models
       {
         return value;
       }
+      set
+      {
+        var temp = value;
+      }
     }
   }
 }

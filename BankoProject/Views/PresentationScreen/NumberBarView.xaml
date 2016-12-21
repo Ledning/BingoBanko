@@ -7,15 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
   <Grid>
-    <StackPanel Height="180" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
-      <ItemsControl ItemsSource="{Binding Event.BingoNumberQueue}">
-        <ItemsControl.Template>
-          <ControlTemplate>
-            <TextBox Text="{Binding Value}" Width="182" Background="Transparent" Margin="10,0,0,0" />
-          </ControlTemplate>
-        </ItemsControl.Template>
-      </ItemsControl>
-      
-    </StackPanel>
+    <ItemsControl IsTabStop="False" ItemsSource="{Binding Event.BingoNumberQueue}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Border Tag="{Binding}">
+            <TextBox Text="{Binding Value, Mode=OneWayToSource}" Width="182" Background="Transparent" Margin="10,0,0,0" />
+          </Border>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Height="180" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
+          </StackPanel>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+    </ItemsControl>
   </Grid>
 </UserControl>
