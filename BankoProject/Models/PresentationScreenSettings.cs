@@ -69,6 +69,10 @@ namespace BankoProject.Models
         /// </summary>
         public BindableCollection<IPresentationScreenItem> PresentationScreenItems { get; set; }
 
-        
+    public SolidColorBrush BackgroundBrush
+    {
+      get { return backgroundBrush; }
+      set { backgroundBrush = value; NotifyOfPropertyChange(()=>BackgroundBrush);}
     }
+  }
 }

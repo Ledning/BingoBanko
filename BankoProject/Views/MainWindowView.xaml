@@ -8,6 +8,7 @@
   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
   xmlns:views="clr-namespace:BankoProject.Views"
   xmlns:tools="clr-namespace:BankoProject.Tools"
+  xmlns:flyout="clr-namespace:BankoProject.Views.Flyout"
   xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.MainWindowView"
   xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
   mc:Ignorable="d"
@@ -35,9 +36,13 @@
   </Viewbox>
   <metro:MetroWindow.Flyouts>
     <metro:FlyoutsControl>
-      <metro:Flyout Header="Indstillinger" Position="Right" IsOpen="{Binding IsFlyoutOpen}">
-        <ListBox ItemsSource="{Binding Screens}"> 
-        </ListBox>
+      <metro:Flyout Header="Indstillinger" Width="200" Position="Right" IsOpen="{Binding IsFlyoutOpen}">
+        <Viewbox>
+          <flyout:WelcomeScreenFlyoutView>
+            
+          </flyout:WelcomeScreenFlyoutView>
+        </Viewbox>
+
       </metro:Flyout>
     </metro:FlyoutsControl>
   </metro:MetroWindow.Flyouts>

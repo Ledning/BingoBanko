@@ -161,6 +161,8 @@
     <Compile Include="ViewModels\DebuggingWindowViewModel.cs" />
     <Compile Include="ViewModels\dialogViewModel.cs" />
     <Compile Include="ViewModels\EventSelectedViewModel.cs" />
+    <Compile Include="ViewModels\Flyout\ControlPanelFlyoutViewModel.cs" />
+    <Compile Include="ViewModels\Flyout\WelcomeScreenFlyoutViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreenHostViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\BingoScreenViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\FullscreenImageViewModel.cs" />
@@ -201,6 +203,12 @@
     </Compile>
     <Compile Include="Views\EventSelectedView.xaml.cs">
       <DependentUpon>EventSelectedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Flyout\ControlPanelFlyoutView.xaml.cs">
+      <DependentUpon>ControlPanelFlyoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Flyout\WelcomeScreenFlyoutView.xaml.cs">
+      <DependentUpon>WelcomeScreenFlyoutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
@@ -289,6 +297,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EventSelectedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Flyout\ControlPanelFlyoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Flyout\WelcomeScreenFlyoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

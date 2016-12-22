@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using BankoProject.Models;
 using BankoProject.Tools;
 using BankoProject.Tools.Events;
@@ -57,6 +58,23 @@ namespace BankoProject.ViewModels
     {
       get { return _event; }
       set { _event = value; NotifyOfPropertyChange(()=>Event);}
+    }
+
+    public void showPresBackground()
+    {
+      if (Event.PresScreenSettings.BackgroundBrush == null)
+      {
+        Event.PresScreenSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
+      }
+      else if(Event.PresScreenSettings.BackgroundBrush.Color == Colors.Black)
+      {
+        Event.PresScreenSettings.BackgroundBrush = null;
+      }
+      else
+      {
+        Event.PresScreenSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
+      }
+      
     }
 
     public void ShowWelcome()

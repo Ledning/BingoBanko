@@ -22,6 +22,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Printer_Project;
 using System.Windows.Forms;
+using BankoProject.ViewModels.Flyout;
 using FormScrn = System.Windows.Forms.Screen;
 using WpfScreenHelper;
 using MessageBox = System.Windows.MessageBox;
@@ -56,6 +57,7 @@ namespace BankoProject.ViewModels
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
     private bool _isFlyoutOpen = false;
+    private IMainViewItem _flyoutActiveItem;
 
 
 
@@ -76,6 +78,11 @@ namespace BankoProject.ViewModels
       set { _isFlyoutOpen = value; NotifyOfPropertyChange(()=> IsFlyoutOpen);}
     }
 
+    public IMainViewItem FlyoutActiveItem
+    {
+      get { return _flyoutActiveItem; }
+      set { _flyoutActiveItem = value; NotifyOfPropertyChange(()=>FlyoutActiveItem);}
+    }
 
 
     //The function below can be used as a constructor for the view. Everything in it will happen after the view is loaded.
@@ -88,7 +95,7 @@ namespace BankoProject.ViewModels
       _eventAggregator.Subscribe(this);
       DisplayName = "Bingo Kontrol";
       _log.Info("Main View loaded");
-     
+      FlyoutActiveItem = new WelcomeScreenFlyoutViewModel();
       worker.DoWork += worker_DoWork;
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
       //foreach (var przScrn in GetTypesInNamespace(Assembly.GetExecutingAssembly(), "BankoProject.ViewModels.PresentationScreenViewModels"))
@@ -102,10 +109,7 @@ namespace BankoProject.ViewModels
       return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
     }
 
-    public void SpawnPrezScreen()
-    {
-     _winMan.ShowWindow(new PresentationScreenHostViewModel());
-    }
+
 
     public void Handle(CommunicationObject message)
     {
@@ -173,6 +177,7 @@ namespace BankoProject.ViewModels
 
     private void GoToWelcomeView()
     {
+      FlyoutActiveItem = new WelcomeScreenFlyoutViewModel();
       ActivateItem(new WelcomeViewModel());
       DisplayName = "Bingo Banko";
     }
@@ -181,6 +186,11 @@ namespace BankoProject.ViewModels
     {
       ActivateItem(new ControlPanelViewModel());
       DisplayName = "Bingo Bango: " + Event.EventTitle;
+    }
+
+    public void SpawnPrezScreen()
+    {
+      _winMan.ShowWindow(new PresentationScreenHostViewModel());
     }
     #endregion
 
