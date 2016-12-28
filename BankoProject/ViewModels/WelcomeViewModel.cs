@@ -57,6 +57,15 @@ namespace BankoProject.ViewModels
 
     }
 
+    //TODO: En collection som Seneste Events kan binde til
+    //Navneboksen for Seneste Events er slightly unaligned
+
+    //TODO: Titlen i Welcomeview skal bindes til en string prop
+
+    //TODO: Ordentlig boks til titlen i WelcomewView.
+    //Den ligner sku en sæk lort lige pt
+
+
     
 
 

@@ -157,7 +157,8 @@ namespace BankoProject.Models
       _log.Info("Event object initialization done.");
     }
 
-
+    //TODO: Make this greater again
+    //Den skal rent faktisk gøre noget ved seedet. lol
     private string GenerateSeedFromKeyword(string keyword)
     {
       return keyword;

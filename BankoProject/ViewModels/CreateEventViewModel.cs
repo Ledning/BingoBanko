@@ -11,6 +11,21 @@ namespace BankoProject.ViewModels
 {
   class CreateEventViewModel : Screen
   {
+
+    //TODO: Make this window a totally borderless window
+    /*Den skal være helt kantløs, og man behøver ikke kunne flytte den. 
+     * Den bør ikke låse musen til programvinduet, bare man ikke kan klikke andet i programmet.
+     * Derudover skal det overvejes om der skal være inputrestriktion i dette vindue  */
+
+    //TODO: Husk at lave vinduet om så alle tingene er synlige
+
+    //TODO: LAv Skærmindstillinger dropdownen
+    //Den kan bare bruge en enum der betegner alle de forskellige normale aspect ratios, lav enumen i ApplicationWideEnums, så vi kan reffe den otherwhere
+    //Det valgte skal så være bundet til en prop på BingoEvent objektet, under PresentationScreen objektet, aka lissom begivenhedsnavnet eller whatev
+
+    //TODO: Make this window great again
+    //det ligner lidt lårt gør det ikk? Make it better or summin, idunno
+
     private BingoEvent _bingoEvent;
     private string _phTitle;
     private string _seed;
