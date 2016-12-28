@@ -72,8 +72,7 @@ namespace BankoProject.Models
     public BindableCollection<BingoNumber> BingoNumberQueue
     {
       get { return _bingoNumberQueue; }
-      set { _bingoNumberQueue = value;
-        ; NotifyOfPropertyChange(() => BingoNumberQueue);}
+      set { _bingoNumberQueue = value; QueueLength = _bingoNumberQueue.Count; NotifyOfPropertyChange(() => BingoNumberQueue);}
     }
 
     public bool Generating
@@ -122,6 +121,12 @@ namespace BankoProject.Models
     {
       get { return _presScreenSettings; }
       set { _presScreenSettings = value; NotifyOfPropertyChange(()=>PresScreenSettings);}
+    }
+
+    public int QueueLength
+    {
+      get { return _queueLength; }
+      set { _queueLength = value; NotifyOfPropertyChange(() => QueueLength);}
     }
 
     #endregion
