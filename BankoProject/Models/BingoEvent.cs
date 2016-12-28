@@ -153,10 +153,6 @@ namespace BankoProject.Models
       NotifyOfPropertyChange(()=>CreationTime);
 
 
-      for (int i = 1; i < 91; i++)
-      {
-        _bingoNumberQueue.Add(new BingoNumber(i));
-      }
       _initialised = true;
       
       _log.Info("Event object initialization done.");

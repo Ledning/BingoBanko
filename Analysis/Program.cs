@@ -14,29 +14,28 @@ namespace Analysis
 
       do
       {
-        Console.WriteLine("key");
-        string key = Console.ReadLine();
-        Console.WriteLine("amount");
-        int amount = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("123");
+        string key = "123";
+        int amount = 10000;
 
-
-        //double[] analysisArray = dAnal.NumberAnalysis(key, amount, "pct"); //Numberanalysis
-        //foreach (double item in analysisArray)
-        //{
-        //  Console.Write(item + " ");
-        //}
-
-        //double[,] analysisArrayArray = dAnal.PlacementAnalysis(key, amount, "freq"); //Placementanalysis
-        //for (int i = 0; i < 3; i++)
-        //{
-        //  for (int j = 0; j < 9; j++)
-        //  {
-        //    Console.Write("{0:0} ", analysisArrayArray[j, i]);
-        //  }
-        //  Console.Write("\n");
-        //}
+        Console.WriteLine("Tallene 1-90 bliver brugt procentvis så mange gange, i rækkefølge: ");
+        double[] analysisArray = dAnal.NumberAnalysis(key, amount, "pct"); //Numberanalysis
+        foreach (double item in analysisArray)
+        {
+          Console.Write(item.ToString(("#.##")) + " ");
+        }
+      Console.WriteLine("\nPlacement Analysis:");
+       double[,] analysisArrayArray = dAnal.PlacementAnalysis(key, amount, "freq"); //Placementanalysis
+        for (int i = 0; i < 3; i++)
+        {
+          for (int j = 0; j < 9; j++)
+          {
+            Console.Write("{0:0} ", analysisArrayArray[j, i].ToString(("#.##")));
+          }
+          Console.Write("\n");
+        }
         
-
+        Console.WriteLine("Endetalsanalyse: ");
         double[] analysisArraytwo = dAnal.EndNumberAnalysis(key, amount, "pct"); //endNumberAnalysis
         foreach (double item in analysisArraytwo)
         {

@@ -35,14 +35,49 @@ namespace BankoProject.ViewModels
       _eventAggregator = IoC.Get<IEventAggregator>();
       _eventAggregator.Subscribe(this);
       Event = IoC.Get<BingoEvent>();
+      NotifyOfPropertyChange(()=>CanGeneratePlatesButton);
     }
 
     public void RebootPrezScreen()
     {
-      CommunicationObject rbps = new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.DebuggingView);
+      CommunicationObject rbps = new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen,
+        ApplicationWideEnums.SenderTypes.DebuggingView);
       _eventAggregator.PublishOnUIThread(rbps);
     }
 
+    public void CheckGenerate()
+    {
+      if (Event != null)
+      {
+        if (Event.SInfo != null)
+        {
+          NotifyOfPropertyChange(() => CanGeneratePlatesButton);
+        }
+      }
+      
+    }
+
+    public void GeneratePlatesButton()
+    {
+      CommunicationObject gpbtn = new CommunicationObject(ApplicationWideEnums.MessageTypes.GeneratePlates,
+        ApplicationWideEnums.SenderTypes.DebuggingView);
+      _eventAggregator.PublishOnUIThread(gpbtn);
+    }
+
+    public bool CanGeneratePlatesButton
+    {
+      get
+      {
+        if (Event != null)
+        {
+          if (Event.SInfo != null)
+          {
+            return !string.IsNullOrEmpty(Event.SInfo.Seed);
+          }
+        }
+        return false;
+      }
+    }
 
     public WinSettings WinSngs
     {
@@ -50,14 +85,18 @@ namespace BankoProject.ViewModels
       set
       {
         _winSngs = value;
-        NotifyOfPropertyChange(()=>WinSngs);
+        NotifyOfPropertyChange(() => WinSngs);
       }
     }
 
     public BingoEvent Event
     {
       get { return _event; }
-      set { _event = value; NotifyOfPropertyChange(()=>Event);}
+      set
+      {
+        _event = value;
+        NotifyOfPropertyChange(() => Event);
+      }
     }
 
     public void showPresBackground()
@@ -66,7 +105,7 @@ namespace BankoProject.ViewModels
       {
         Event.PresScreenSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
       }
-      else if(Event.PresScreenSettings.BackgroundBrush.Color == Colors.Black)
+      else if (Event.PresScreenSettings.BackgroundBrush.Color == Colors.Black)
       {
         Event.PresScreenSettings.BackgroundBrush = null;
       }
@@ -74,18 +113,19 @@ namespace BankoProject.ViewModels
       {
         Event.PresScreenSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
       }
-      
     }
 
     public void ShowWelcome()
     {
-      CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.DebuggingView);
+      CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
+        ApplicationWideEnums.SenderTypes.DebuggingView);
       _eventAggregator.PublishOnUIThread(chwe);
     }
 
     public void ShowControl()
     {
-      CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.DebuggingView);
+      CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView,
+        ApplicationWideEnums.SenderTypes.DebuggingView);
       _eventAggregator.PublishOnUIThread(chwe);
     }
 
