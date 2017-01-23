@@ -26,6 +26,8 @@
       <Label x:Name="label" Content="PrezScreen" HorizontalAlignment="Left" Margin="303,88,0,0" VerticalAlignment="Top"/>
       <Button x:Name="RebootPrezScreen" Content="RebootPrezScreen" HorizontalAlignment="Left" Margin="259,19,0,0" VerticalAlignment="Top" Width="168" Height="64"/>
       <Button x:Name="showPresBackground" Content="togglepresbackground" HorizontalAlignment="Left" Margin="281,226,0,0" VerticalAlignment="Top" Width="125" Height="45"/>
+      <Button x:Name="GeneratePlatesButton" Content="Generer plader" HorizontalAlignment="Left" Margin="26,226,0,0" VerticalAlignment="Top" Width="150" Height="45" />
+      <Button x:Name="CheckGenerate" Content="CheckGenerate" HorizontalAlignment="Left" Margin="57,276,0,0" VerticalAlignment="Top" Width="89" Height="29"/>
     </Grid>
 
   </Viewbox>
