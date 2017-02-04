@@ -38,6 +38,10 @@ namespace BankoProject.ViewModels
     public CreateEventViewModel()
     {
       Event = new BingoEvent();
+
+      this._phPladetal = 5;
+      this._seed = "DefaultValue";
+      this._phTitle = "Default";
     }
 
     public BingoEvent Event
@@ -49,8 +53,7 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => Event);
       }
     }
-
-
+    
     public int PhPladetal
     {
       get { return _phPladetal; }
