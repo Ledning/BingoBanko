@@ -129,8 +129,20 @@ namespace BankoProject.ViewModels
 
     public void AddSelectedNumbers()
     {
+      //TODO: Make the numbers enter into a secondary queue, so that they might be animated
+      foreach (BingoNumber bnum in Event.NumberBoard.Board)
+      {
+        if (bnum.IsSelected)
+        {
+          if (!bnum.IsPicked)
+          {
 
-      throw new NotImplementedException();
+          bnum.IsPicked = true;
+          }
+        }
+      }
+
+
     }
 
     public void CheckPlateButton()

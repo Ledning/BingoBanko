@@ -118,11 +118,11 @@ namespace BankoProject.Models
       set { _winSettings = value; NotifyOfPropertyChange(()=>Settings);}
     }
 
-    public PresentationScreenSettings PresScreenSettings
-    {
-      get { return _presScreenSettings; }
-      set { _presScreenSettings = value; NotifyOfPropertyChange(()=>PresScreenSettings);}
-    }
+    //public PresentationScreenSettings PresScreenSettings
+    //{
+    //  get { return _presScreenSettings; }
+    //  set { _presScreenSettings = value; NotifyOfPropertyChange(()=>PresScreenSettings);}
+    //}
 
     public int QueueLength
     {
@@ -144,7 +144,7 @@ namespace BankoProject.Models
       SInfo = new SeedInfo(seed);
       PInfo = new PlateInfo();
       Settings = new WinSettings();
-      PresScreenSettings = new PresentationScreenSettings();
+      //PresScreenSettings = new PresentationScreenSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
       SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);
@@ -152,15 +152,16 @@ namespace BankoProject.Models
 
       _creationTime = DateTime.Now;
       NotifyOfPropertyChange(()=>CreationTime);
-
+      BingoNumberQueue.Add(new BingoNumber(1));
+      BingoNumberQueue.Add(new BingoNumber(2));
+      BingoNumberQueue.Add(new BingoNumber(3));
+      BingoNumberQueue.Add(new BingoNumber(4));
 
       _initialised = true;
       
       _log.Info("Event object initialization done.");
     }
 
-    //TODO: Make this greater again
-    //Den skal rent faktisk gøre noget ved seedet. lol
     private string GenerateSeedFromKeyword(string keyword)
     {
       return keyword;

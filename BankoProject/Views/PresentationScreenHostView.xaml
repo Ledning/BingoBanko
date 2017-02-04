@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        WindowStartupLocation="Manual" Height="{Binding WHeight}" Width="{Binding WWidth}" Focusable="False"
-        Background="{Binding Event.PresScreenSettings.BackgroundBrush}" Top="{Binding Top}" Left="{Binding Left}" ShowInTaskbar="False" Topmost="False" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
-  <Viewbox>
-    <metro:MetroContentControl x:Name="ActiveItem" />
-  </Viewbox>
+        WindowStartupLocation="Manual" Height="{Binding Event.Settings.PrsSettings.Height}" Width="{Binding Event.Settings.PrsSettings.Width}" Focusable="False"
+        WindowState="{Binding Event.Settings.PrsSettings.State}"
+        ResizeMode ="NoResize"
+        Background="{Binding Event.Settings.PrsSettings.BackgroundBrush}" Top="{Binding Event.Settings.PrsSettings.Top}" Left="{Binding Event.Settings.PrsSettings.Left}" ShowInTaskbar="False" Topmost="False" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
+  <DockPanel LastChildFill="False">
+    <Viewbox DockPanel.Dock="Bottom">
+      <metro:MetroContentControl x:Name="ActiveItem" />
+    </Viewbox>
+  </DockPanel>
+  
 
 </Window>

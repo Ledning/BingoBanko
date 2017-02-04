@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using BankoProject.Models;
 using BankoProject.Tools;
@@ -101,18 +102,24 @@ namespace BankoProject.ViewModels
 
     public void showPresBackground()
     {
-      if (Event.PresScreenSettings.BackgroundBrush == null)
+      if (Event.Settings.PrsSettings.BackgroundBrush == null)
       {
-        Event.PresScreenSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
+        Event.Settings.PrsSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
       }
-      else if (Event.PresScreenSettings.BackgroundBrush.Color == Colors.Black)
+      else if (Event.Settings.PrsSettings.BackgroundBrush.Color == Colors.Black)
       {
-        Event.PresScreenSettings.BackgroundBrush = null;
+        Event.Settings.PrsSettings.BackgroundBrush = null;
       }
       else
       {
-        Event.PresScreenSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
+        Event.Settings.PrsSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
       }
+    }
+
+    public void applycoord()
+    {
+      Event.Settings.PrsSettings.State = WindowState.Normal;
+      Event.Settings.PrsSettings.State = WindowState.Maximized;
     }
 
     public void ShowWelcome()
