@@ -39,57 +39,85 @@ namespace BankoProject.ViewModels
       Event = IoC.Get<BingoEvent>();
       Event.BnkOptions.SingleRow = true;
       Event.VsOptions.EmptyScreen = true;
-
     }
 
 
     public void ShowWelcome()
     {
-       //PresentationScreenHostViewModel przscrnvm = new PresentationScreenHostViewModel();
-       //_winMan.ShowWindow(przscrnvm);
-    _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView, ApplicationWideEnums.SenderTypes.ControlPanelView));
+      //PresentationScreenHostViewModel przscrnvm = new PresentationScreenHostViewModel();
+      //_winMan.ShowWindow(przscrnvm);
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public BingoEvent Event
     {
       get { return _bingoEvent; }
-      set { _bingoEvent = value; NotifyOfPropertyChange(() => Event); }
+      set
+      {
+        _bingoEvent = value;
+        NotifyOfPropertyChange(() => Event);
+      }
     }
 
     public BoardViewModel BoardVM
     {
       get { return _boardVm; }
-      set { _boardVm = value; NotifyOfPropertyChange(()=> BoardVM);}
+      set
+      {
+        _boardVm = value;
+        NotifyOfPropertyChange(() => BoardVM);
+      }
     }
 
     public string PlateNumberTextBox
     {
       get { return _plateNumberTextBox; }
-      set { _plateNumberTextBox = value; NotifyOfPropertyChange(() => PlateNumberTextBox);}
+      set
+      {
+        _plateNumberTextBox = value;
+        NotifyOfPropertyChange(() => PlateNumberTextBox);
+      }
     }
 
     public string ContestName
     {
       get { return _contestName; }
-      set { _contestName = value; NotifyOfPropertyChange(() => ContestName);}
+      set
+      {
+        _contestName = value;
+        NotifyOfPropertyChange(() => ContestName);
+      }
     }
 
     public int NumberOfContestants
     {
       get { return _numberOfContestants; }
-      set { _numberOfContestants = value; NotifyOfPropertyChange(() => NumberOfContestants);}
+      set
+      {
+        _numberOfContestants = value;
+        NotifyOfPropertyChange(() => NumberOfContestants);
+      }
     }
 
     public int NumberOfTeams
     {
       get { return _numberOfTeams; }
-      set { _numberOfTeams = value; NotifyOfPropertyChange(() => NumberOfTeams);}
+      set
+      {
+        _numberOfTeams = value;
+        NotifyOfPropertyChange(() => NumberOfTeams);
+      }
     }
 
     public int ContestDuration
     {
       get { return _contestDuration; }
-      set { _contestDuration = value; NotifyOfPropertyChange(() => ContestDuration);}
+      set
+      {
+        _contestDuration = value;
+        NotifyOfPropertyChange(() => ContestDuration);
+      }
     }
 
     public void ShowLatestNumbers()
@@ -103,9 +131,9 @@ namespace BankoProject.ViewModels
     }
 
     //this method gets a random number and marks the boardview, that that number is now marked
-    public void DrawRandom()
+    public int DrawRandom()
     {
-      
+      //TODO: Lav et eller andet check så man ikke kan trække hvis der er få tal tilbage 
       Random rdn = new Random();
 
       int rdnnumber = rdn.Next(0, 89);
@@ -114,10 +142,12 @@ namespace BankoProject.ViewModels
         if (this.Event.NumberBoard.Board[rdnnumber].IsPicked == false)
         {
           this.Event.NumberBoard.Board[rdnnumber].IsPicked = true;
-          break;
+          Event.NumberBoard.Board[rdnnumber].IsSelected = true;
+          return 1;
         }
         rdnnumber = rdn.Next(0, 89);
       }
+      return 0;
     }
 
     public void AddSelectedNumbers()
@@ -129,13 +159,24 @@ namespace BankoProject.ViewModels
         {
           if (!bnum.IsPicked)
           {
-
-          bnum.IsPicked = true;
+            bnum.IsPicked = true;
           }
         }
       }
+    }
 
-
+    public void AddNumber()
+    {
+      bool? result = _winMan.ShowDialog(new dialogViewModel("Indtast tal...."));
+      if (result.HasValue)
+      {
+        if (result.Value)
+        {
+          _log.Info("exit on event created, welcomeview");
+          _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, ApplicationWideEnums.SenderTypes.WelcomeView));
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
+        }
+      }
     }
 
     public void CheckPlateButton()
@@ -152,10 +193,5 @@ namespace BankoProject.ViewModels
     {
       throw new NotImplementedException();
     }
-
-
-
-
-
   }
 }

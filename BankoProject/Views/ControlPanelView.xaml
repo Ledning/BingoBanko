@@ -74,22 +74,13 @@
             <Label x:Name="CheckPlateLabel" Content="Check pladenummer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,75,0,0" Width="250" Style="{StaticResource ControlPanelLabel}"/>
             <TextBox x:Name="PlateNumberTextBox" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Margin="38,129,161,0" FontSize="18" metro:TextBoxHelper.Watermark="Indtast pladenummer..."/>
             <Button x:Name="CheckPlateButton" Content="Check" VerticalAlignment="Top" Margin="489,129,38,0" Height="36" FontSize="18.667" RenderTransformOrigin="0.594,0.571" FontWeight="Bold"/>
-            <RadioButton IsChecked="{Binding Event.BnkOptions.SingleRow}" Margin="38,170,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Checked="OnePlateBingoRadio_Checked" FontWeight="Bold"/>
-            <RadioButton IsChecked="{Binding Event.BnkOptions.DoubleRow}" Margin="38,195,0,195" Content="To rækker" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
-            <RadioButton IsChecked="{Binding Event.BnkOptions.FullPlate}" Margin="38,0,0,170" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="101" FontWeight="Bold"/>
-            <Button x:Name="DrawRandom" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,245,0,0" Content="Træk tal" FontSize="24" FontWeight="Bold"/>
-            <Button x:Name="ResetGame" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,297,0,0" Content="Nustil spil" FontSize="24" FontWeight="Bold"/>
-            <Button x:Name="AddSelectedNumbers" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="152" Margin="38,348.57,0,0" Content="Tilføj tal" FontSize="24" FontWeight="Bold"/>
-
-
-
-            <Grid x:Name="WinningPlatesGrid" Margin="208,230.57,42,0" Height="165" VerticalAlignment="Top" Background="#FF3E8BCB">
-              <Grid.Effect>
-                <DropShadowEffect BlurRadius="15"/>
-              </Grid.Effect>
-            </Grid>
-            <Label x:Name="WinningPlatesLabel" Content="Vinderplader" Margin="207,180.57,186,184.43" d:LayoutOverrides="VerticalAlignment" Style="{StaticResource ControlPanelLabel}"/>
-            <ListView Margin="217,0,50,30.43" Height="139.57" VerticalAlignment="Bottom" BorderThickness="0"/>
+            <RadioButton IsChecked="{Binding Event.BnkOptions.SingleRow}" Margin="38,198,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Checked="OnePlateBingoRadio_Checked" FontWeight="Bold" RenderTransformOrigin="0.475,2.16" FontSize="20"/>
+            <RadioButton IsChecked="{Binding Event.BnkOptions.DoubleRow}" Margin="38,259,0,124" Content="To rækker" HorizontalAlignment="Left" Width="139" FontWeight="Bold" FontSize="20"/>
+            <RadioButton IsChecked="{Binding Event.BnkOptions.FullPlate}" Margin="38,0,0,59" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="126" FontWeight="Bold" FontSize="20"/>
+            <Button x:Name="DrawRandom" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="163" Margin="444,186,0,0" Content="Tilfældigt tal" FontSize="24" FontWeight="Bold"/>
+            <Button x:Name="ResetGame" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,297,0,0" Content="Indtast tal.." FontSize="24" FontWeight="Bold"/>
+            <Button x:Name="AddSelectedNumbers" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,244,0,0" Content="Tilføj valgte tal" FontSize="24" FontWeight="Bold"/>
+            <Button x:Name="AddNumber" Background="DarkRed" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,349,0,0" Content="Nustil spil" FontSize="24" FontWeight="Bold"/>
 
           </Grid>
           <Viewbox>

@@ -22,7 +22,7 @@
   <Grid Background="#FFA0A0A0">
     <Button Content="Ja" Margin="20,0,0,16.38" VerticalAlignment="Bottom" Height="23.62" FontSize="12" HorizontalAlignment="Left" Width="60" cal:Message.Attach="[Event Click] = [AcceptButton()]"/>
     <Button Content="Nej" Margin="0,0,17,16.38" VerticalAlignment="Bottom" Height="23.62" FontSize="12" HorizontalAlignment="Right" Width="60" cal:Message.Attach="[Event Click] = [CancelButton()]"/>
-    <TextBox x:Name="Text" Height="50" Margin="22.5,10,22,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FF878787" Foreground="#FF222222" Text="{Binding Text}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="Text_TextChanged"/>
+    <TextBox x:Name="Text" metro:TextBoxHelper.Watermark="{Binding WmarkText}" Height="50" Margin="22.5,10,22,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FF878787" Foreground="#FF222222" Text="{Binding Text}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="Text_TextChanged"/>
 
   </Grid>
 </metro:MetroWindow>
