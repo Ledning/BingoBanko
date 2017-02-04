@@ -17,7 +17,11 @@ namespace BankoProject.ViewModels.PresentationScreen
     public BingoEvent Event
     {
       get { return _bingoEvent; }
-      set { _bingoEvent = value; NotifyOfPropertyChange(() => Event); }
+      set
+      {
+        _bingoEvent = value;
+        NotifyOfPropertyChange(() => Event);
+      }
     }
 
     protected override void OnViewReady(object view)
@@ -25,6 +29,10 @@ namespace BankoProject.ViewModels.PresentationScreen
       _winMan = IoC.Get<IWindowManager>();
       _events = IoC.Get<IEventAggregator>();
       _bingoEvent = IoC.Get<BingoEvent>();
+    }
+
+    public void FontSizeConverter()
+    {
     }
   }
 }

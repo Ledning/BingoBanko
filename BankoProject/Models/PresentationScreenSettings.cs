@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using BankoProject.Tools;
 using Caliburn.Micro;
@@ -22,6 +23,7 @@ namespace BankoProject.Models
     private int _top;
     private int _selectedPresScreen;
     private SolidColorBrush backgroundBrush;
+    private WindowState _state;
 
     public int Width
     {
@@ -73,6 +75,12 @@ namespace BankoProject.Models
     {
       get { return backgroundBrush; }
       set { backgroundBrush = value; NotifyOfPropertyChange(()=>BackgroundBrush);}
+    }
+
+    public WindowState State
+    {
+      get { return _state; }
+      set { _state = value; NotifyOfPropertyChange(()=> State); }
     }
   }
 }

@@ -5,19 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.PresentationScreen.NumberBarView"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920">
-  <Grid>
-    <ItemsControl IsTabStop="False" ItemsSource="{Binding Event.BingoNumberQueue}">
+             d:DesignHeight="300" d:DesignWidth="1920">
+  <Grid Width="1900" Height="300" ClipToBounds="True">
+    <Grid.Background>
+      <SolidColorBrush Color="Gray" Opacity="0.5"></SolidColorBrush>
+    </Grid.Background>
+    <ItemsControl IsTabStop="False" ItemsSource="{Binding Event.BingoNumberQueue}" cal:Bind.AtDesignTime="True">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
-          <Border Tag="{Binding}">
-            <TextBox Text="{Binding Value, Mode=OneWayToSource}" Width="182" Background="Transparent" Margin="10,0,0,0" />
+          <Border Tag="{Binding}" cal:Bind.AtDesignTime="True">
+            <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
+              <TextBox Text="{Binding VText, Mode=OneWay}" Width="182" Background="Transparent" Margin="10,0,0,0" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" cal:Bind.AtDesignTime="True"/>
+            </Viewbox>
           </Border>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
-          <StackPanel Height="180" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
+          <StackPanel Height="180" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom" cal:Bind.AtDesignTime="True">
           </StackPanel>
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>

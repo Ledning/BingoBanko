@@ -2,6 +2,7 @@
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using BankoProject.Models;
 using BankoProject.Tools.Events;
 using BankoProject.ViewModels.PresentationScreen;
+using Catel.Collections;
 
 namespace BankoProject.ViewModels
 {
@@ -30,6 +32,7 @@ namespace BankoProject.ViewModels
     {
       BoardVM = new BoardViewModel();
       ActivateItem(BoardVM);
+      
     }
 
     protected override void OnViewReady(object view)
@@ -92,6 +95,10 @@ namespace BankoProject.ViewModels
       set { _contestDuration = value; NotifyOfPropertyChange(() => ContestDuration);}
     }
 
+    private ObservableCollection<Team> _allTeams; 
+    public ObservableCollection<Team> AllTeams { get { return _allTeams; } set { _allTeams = value; NotifyOfPropertyChange(()=> AllTeams);} } 
+
+
     public void ShowLatestNumbers()
     {
       throw new NotImplementedException();
@@ -102,14 +109,40 @@ namespace BankoProject.ViewModels
       throw new NotImplementedException();
     }
 
+    //this method gets a random number and marks the boardview, that that number is now marked
     public void DrawRandom()
     {
-      throw new NotImplementedException();
+      
+      Random rdn = new Random();
+
+      int rdnnumber = rdn.Next(0, 89);
+      while (true)
+      {
+        if (this.Event.NumberBoard.Board[rdnnumber].IsPicked == false)
+        {
+          this.Event.NumberBoard.Board[rdnnumber].IsPicked = true;
+          break;
+        }
+        rdnnumber = rdn.Next(0, 89);
+      }
     }
 
     public void AddSelectedNumbers()
     {
-      throw new NotImplementedException();
+      //TODO: Make the numbers enter into a secondary queue, so that they might be animated
+      foreach (BingoNumber bnum in Event.NumberBoard.Board)
+      {
+        if (bnum.IsSelected)
+        {
+          if (!bnum.IsPicked)
+          {
+
+          bnum.IsPicked = true;
+          }
+        }
+      }
+
+
     }
 
     public void CheckPlateButton()
@@ -124,7 +157,11 @@ namespace BankoProject.ViewModels
 
     public void StartContest()
     {
-      throw new NotImplementedException();
+      CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams, this.ContestDuration);
+
+      this.AllTeams = new ObservableCollection<Team>(competition.AllTeams);
+      
+      //this should prolly also start some counter somewhere
     }
 
 
