@@ -19,15 +19,16 @@
       </Button>
       <Button x:Name="ShowControl" Margin="467,19,52,376" Content="ControlPanelView"/>
       <TextBox x:Name="currentwindow" HorizontalAlignment="Left" Height="23" Margin="26,130,0,0" TextWrapping="Wrap" Text="{Binding WinSngs.CurrentWindow}" VerticalAlignment="Top" Width="120"/>
-      <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="259,130,0,0" TextWrapping="Wrap" Text="{Binding Event.PresScreenSettings.Top}" VerticalAlignment="Top" Width="66" />
-      <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="350,130,0,0" TextWrapping="Wrap" Text="{Binding Event.PresScreenSettings.Left}" VerticalAlignment="Top" Width="66" />
-      <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="23" Margin="259,172,0,0" TextWrapping="Wrap" Text="{Binding Event.PresScreenSettings.Width}" VerticalAlignment="Top" Width="66" />
-      <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="23" Margin="350,172,0,0" TextWrapping="Wrap" Text="{Binding Event.PresScreenSettings.Height}" VerticalAlignment="Top" Width="66" />
+      <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="259,130,0,0" TextWrapping="Wrap" Text="{Binding Event.Settings.PrsSettings.Top, Mode=TwoWay}" VerticalAlignment="Top" Width="66" />
+      <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="350,130,0,0" TextWrapping="Wrap" Text="{Binding Event.Settings.PrsSettings.Left, Mode=TwoWay}" VerticalAlignment="Top" Width="66" />
+      <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="23" Margin="259,172,0,0" TextWrapping="Wrap" Text="{Binding Event.Settings.PrsSettings.Width, Mode=TwoWay}" VerticalAlignment="Top" Width="66" />
+      <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="23" Margin="350,172,0,0" TextWrapping="Wrap" Text="{Binding Event.Settings.PrsSettings.Height, Mode=TwoWay}" VerticalAlignment="Top" Width="66" />
       <Label x:Name="label" Content="PrezScreen" HorizontalAlignment="Left" Margin="303,88,0,0" VerticalAlignment="Top"/>
       <Button x:Name="RebootPrezScreen" Content="RebootPrezScreen" HorizontalAlignment="Left" Margin="259,19,0,0" VerticalAlignment="Top" Width="168" Height="64"/>
       <Button x:Name="showPresBackground" Content="togglepresbackground" HorizontalAlignment="Left" Margin="281,226,0,0" VerticalAlignment="Top" Width="125" Height="45"/>
       <Button x:Name="GeneratePlatesButton" Content="Generer plader" HorizontalAlignment="Left" Margin="26,226,0,0" VerticalAlignment="Top" Width="150" Height="45" />
       <Button x:Name="CheckGenerate" Content="CheckGenerate" HorizontalAlignment="Left" Margin="57,276,0,0" VerticalAlignment="Top" Width="89" Height="29"/>
+      <Button x:Name="applycoord" Content="Button" HorizontalAlignment="Left" Margin="325,305,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 
   </Viewbox>

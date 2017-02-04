@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using BankoProject.Tools;
 using Caliburn.Micro;
 using ScrnHelper = WpfScreenHelper.Screen;
@@ -38,6 +39,7 @@ namespace BankoProject.Models
     {
       Screens = new BindableCollection<ScrnHelper>(ScrnHelper.AllScreens);
       PrsSettings = new PresentationScreenSettings();
+      PrsSettings.State = WindowState.Normal;
     }
 
 

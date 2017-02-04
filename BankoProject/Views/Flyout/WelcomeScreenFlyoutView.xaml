@@ -8,7 +8,7 @@
              >
   <StackPanel Orientation="Vertical"  Width="200">
     <Border>
-      <Label Content="SpilIndstillinger" Foreground="Beige"/>
+      <Label Content="SpilIindstillinger" Foreground="Beige"/>
     </Border>
     <Button x:Name="Reset" Height="40" Content="Nulstil spil"></Button>
   </StackPanel>
