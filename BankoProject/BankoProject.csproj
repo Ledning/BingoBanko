@@ -139,6 +139,7 @@
     <Compile Include="Models\PlateInfo.cs" />
     <Compile Include="Models\PresentationScreenSettings.cs" />
     <Compile Include="Models\SeedInfo.cs" />
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Models\VisualsOptions.cs" />
     <Compile Include="Models\WinSettings.cs" />
     <Compile Include="Tools\ApplicationWideEnums.cs" />
