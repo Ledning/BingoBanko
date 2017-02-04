@@ -147,7 +147,6 @@ namespace BankoProject.Models
       PresScreenSettings = new PresentationScreenSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
-      SInfo.Seed = GenerateSeedFromKeyword(SInfo.OriginalSeed);
       Settings = new WinSettings();
 
       _creationTime = DateTime.Now;
@@ -165,14 +164,5 @@ namespace BankoProject.Models
     {
       return keyword;
     }
-
-        
-
-        
-
-
-
-
-
-    }
+  }
 }

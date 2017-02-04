@@ -26,8 +26,13 @@ namespace BankoProject.Models
       Seed = OriginalSeed;
       _seedManipulated = false;
       NotifyOfPropertyChange(()=> SeedManipulated);
+      ConvertedOriginalSeed = ShortenAndParsePassphraseToInt32(originalseed);
+
+
+
     }
 
+    private int _convertedOriginalSeed;
     private string _originalSeed;
     private string _seed;
     private bool _seedManipulated;
@@ -51,6 +56,53 @@ namespace BankoProject.Models
         NotifyOfPropertyChange(() => SeedManipulated);
         return _seedManipulated;
       }
+    }
+    public int ConvertedOriginalSeed
+    {
+      get {return _convertedOriginalSeed; }
+      private set { _convertedOriginalSeed = value; }
+    }
+    private int ShortenAndParsePassphraseToInt32(string keyword)
+    {
+      // Converts user keyword into an int32 seed
+      int seed;
+      string temp = "";
+
+      // Convert passphrase to UTF8 values
+      keyword = ConvertTextToUTF8Value(keyword);
+
+      while (true)
+      {
+        bool b = Int32.TryParse(keyword, out seed);
+        if (b)
+        {
+          break;
+        }
+        else
+        {
+          for (int i = 0; i < keyword.Length; i += 2)
+          {
+            temp += keyword[i];
+          }
+          keyword = temp;
+          temp = "";
+        }
+      }
+      return seed;
+    }
+    private string ConvertTextToUTF8Value(string keyword)
+    {
+      byte[] arrayBytes = Encoding.UTF8.GetBytes(keyword);
+
+      string convertedKeyword = "";
+
+      //put values from arrayBytes into string
+      foreach (byte element in arrayBytes)
+      {
+        convertedKeyword += Convert.ToString(element);
+      }
+
+      return convertedKeyword;
     }
   }
 }

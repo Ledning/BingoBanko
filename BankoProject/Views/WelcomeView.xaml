@@ -33,7 +33,7 @@
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
-      <Label x:Name="Title" Content="WIP TITLE" ClipToBounds="True" FontSize="64" Background="#00000000" VerticalContentAlignment="Center" Margin="324,-1,324,3.873" d:LayoutOverrides="Height" FontWeight="Bold" Foreground="#FF464646"/>
+      <Label x:Name="Title" Content="{Binding Title, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ClipToBounds="True" FontSize="64" Background="#00000000" VerticalContentAlignment="Center" Margin="122,-1,122,4" FontWeight="Bold" Foreground="#FF464646"/>
     </Border>
     <Image x:Name="Rynkelogo" HorizontalAlignment="Left" Height="215" Margin="0,10,0,0" VerticalAlignment="Top" Width="300" Source="logoalpha.png">
       <Image.Effect>
@@ -50,7 +50,7 @@
         </ListBox.Effect>
       </ListBox>
     </Grid>
-    <Label x:Name="Latest" Content="Seneste Events" HorizontalAlignment="Right" Margin="0,311,435,0" VerticalAlignment="Top" Width="200" Foreground="Black" Style="{StaticResource ControlPanelLabel}" />
+    <Label x:Name="Latest" Content="Seneste Events" HorizontalAlignment="Right" Margin="0,310,435,0" VerticalAlignment="Top" Width="200" Foreground="Black" Style="{StaticResource ControlPanelLabel}" BorderBrush="#FF3E8BCB" BorderThickness="1" />
     <Button x:Name="CreateEvent" Content="Nyt event..." HorizontalAlignment="Left" Margin="80,441.38,0,0" Width="295" FontSize="32" Background="#FF3E8BCB" BorderBrush="#FF191515" BorderThickness="1" Height="68.62" VerticalAlignment="Top">
       <Button.Effect>
         <DropShadowEffect/>
