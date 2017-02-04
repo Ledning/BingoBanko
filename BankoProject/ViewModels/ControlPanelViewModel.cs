@@ -102,13 +102,27 @@ namespace BankoProject.ViewModels
       throw new NotImplementedException();
     }
 
+    //this method gets a random number and marks the boardview, that that number is now marked
     public void DrawRandom()
     {
-      throw new NotImplementedException();
+      
+      Random rdn = new Random();
+
+      int rdnnumber = rdn.Next(0, 89);
+      while (true)
+      {
+        if (this.Event.NumberBoard.Board[rdnnumber].IsPicked == false)
+        {
+          this.Event.NumberBoard.Board[rdnnumber].IsPicked = true;
+          break;
+        }
+        rdnnumber = rdn.Next(0, 89);
+      }
     }
 
     public void AddSelectedNumbers()
     {
+
       throw new NotImplementedException();
     }
 
