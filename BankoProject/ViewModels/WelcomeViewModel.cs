@@ -2,6 +2,7 @@
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Dynamic;
 using System.Linq;
@@ -24,6 +25,19 @@ namespace BankoProject.ViewModels
 
     public WelcomeViewModel()
     {
+      //assign dummy data to LatestEvents
+      
+      Random rdn = new Random();
+      BingoEvent bingoevent = new BingoEvent();
+      LatestEvents = new BindableCollection<BingoEvent>();
+
+      for (int i = 0; i < 5; i++)
+      {
+        bingoevent.Initialize("something"+rdn.Next(500).ToString(), "SuperEVENT"+rdn.Next(500).ToString(), rdn.Next(5));
+        this.LatestEvents.Add(bingoevent);
+      }
+      
+      Title = "PLACEHOLDER";
 
     }
 
@@ -31,6 +45,13 @@ namespace BankoProject.ViewModels
     {
       get { return _bingoEvent; }
       set { _bingoEvent = value; NotifyOfPropertyChange(()=>Event);}
+    }
+
+    private string _title;
+    public string Title
+    {
+      get { return _title; }
+      set { _title = value; NotifyOfPropertyChange(() => Title); }
     }
 
     protected override void OnViewReady(object view)
@@ -54,8 +75,9 @@ namespace BankoProject.ViewModels
           _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
         }
       }
-
     }
+    public BindableCollection<BingoEvent> LatestEvents { get; set; }
+
 
     //TODO: En collection som Seneste Events kan binde til
     //Navneboksen for Seneste Events er slightly unaligned
@@ -66,7 +88,7 @@ namespace BankoProject.ViewModels
     //Den ligner sku en sæk lort lige pt
 
 
-    
+
 
 
     public void OpenFileDialog()
