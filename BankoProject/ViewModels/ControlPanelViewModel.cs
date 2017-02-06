@@ -42,17 +42,23 @@ namespace BankoProject.ViewModels
       Event = IoC.Get<BingoEvent>();
       Event.BnkOptions.SingleRow = true;
       Event.VsOptions.EmptyScreen = true;
+      //_events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
 
     public void ShowWelcome()
     {
-      //PresentationScreenHostViewModel przscrnvm = new PresentationScreenHostViewModel();
-      //_winMan.ShowWindow(przscrnvm);
+
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
+    public void SpawnPrezScreen()
+    {
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.ControlPanelView));
+    }
+
+    #region props
     public BingoEvent Event
     {
       get { return _bingoEvent; }
@@ -124,8 +130,8 @@ namespace BankoProject.ViewModels
     }
 
     private ObservableCollection<Team> _allTeams; 
-    public ObservableCollection<Team> AllTeams { get { return _allTeams; } set { _allTeams = value; NotifyOfPropertyChange(()=> AllTeams);} } 
-
+    public ObservableCollection<Team> AllTeams { get { return _allTeams; } set { _allTeams = value; NotifyOfPropertyChange(()=> AllTeams);} }
+#endregion
 
     public void ShowLatestNumbers()
     {

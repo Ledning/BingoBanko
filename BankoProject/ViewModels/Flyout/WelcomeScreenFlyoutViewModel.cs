@@ -23,6 +23,7 @@ namespace BankoProject.ViewModels.Flyout
     protected override void OnViewReady(object view)
     {
       Event = IoC.Get<BingoEvent>();
+      NotifyOfPropertyChange(() => StartStopText);
     }
 
     /// <summary>
@@ -34,11 +35,52 @@ namespace BankoProject.ViewModels.Flyout
       Event.NumberBoard = new BingoNumberBoard();
     }
 
+    public void ToggleBingo()
+    {
+      if (Event.IsBingoRunning)
+      {
+        StopBingo();
+        NotifyOfPropertyChange(()=> StartStopText);
+      }
+      else
+      {
+        StartBingo();
+        NotifyOfPropertyChange(() => StartStopText);
+      }
+    }
+
+    public void StartBingo()
+    {
+      Event.IsBingoRunning = true;
+    }
+    public void StopBingo()
+    {
+      Event.IsBingoRunning = false;
+    }
+
+    public string StartStopText
+    {
+      get
+      {
+        if (Event.IsBingoRunning)
+        {
+          return "Stop Bingo";
+        }
+        else
+        {
+          return "Start Bingo";
+        }
+      }
+    }
 
     public BingoEvent Event
     {
       get { return _bingoEvent; }
-      set { _bingoEvent = value; NotifyOfPropertyChange(() => Event); }
+      set
+      {
+        _bingoEvent = value;
+        NotifyOfPropertyChange(() => Event);
+      }
     }
   }
 }

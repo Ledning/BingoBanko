@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920" Height="1080" Width="1920"
              xmlns:views="clr-namespace:BankoProject.Views"
-             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:cal="http://www.caliburnproject.org"
+             >
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -135,7 +137,7 @@
                 <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" VerticalAlignment="Top" Margin="0,489,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
             </Grid>
         </Border>
-        <Button x:Name="ShowWelcome" Content="Tilbage til Hovedmenu" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" Width="151" Height="46" FontSize="14" Background="#FF878787" Opacity="0.5"/>
+    <Button x:Name="SpawnPrezScreen" Content="Tilbage til Hovedmenu" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" Width="151" Height="46" FontSize="14" Background="#FF878787" Opacity="0.5"/>
 
     </Grid>
 

@@ -116,11 +116,11 @@ namespace BankoProject.ViewModels
       }
     }
 
-    public void applycoord()
-    {
-      Event.Settings.PrsSettings.State = WindowState.Normal;
-      Event.Settings.PrsSettings.State = WindowState.Maximized;
-    }
+    //public void applycoord()
+    //{
+    //  Event.Settings.PrsSettings.State = WindowState.Normal;
+    //  Event.Settings.PrsSettings.State = WindowState.Maximized;
+    //}
 
     public void ShowWelcome()
     {

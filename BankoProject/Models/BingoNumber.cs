@@ -9,6 +9,7 @@ using BankoProject.ViewModels;
 
 namespace BankoProject.Models
 {
+  [Serializable]
   public class BingoNumber : PropertyChangedBase
   {
     //this class is necessary because the position in which the numbers are being drawn needs to be recorded.

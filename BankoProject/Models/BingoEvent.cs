@@ -23,6 +23,7 @@ namespace BankoProject.Models
     private WinSettings _winSettings;
     private bool _initialised = false;
     private bool _generating = false;
+    private bool _isBingoRunning = false;
 
     [NonSerialized] private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
@@ -174,12 +175,19 @@ namespace BankoProject.Models
       }
     }
 
+    public bool IsBingoRunning
+    {
+      get { return _isBingoRunning; }
+      set { _isBingoRunning = value; NotifyOfPropertyChange(()=>IsBingoRunning);}
+    }
+
     #endregion
 
     public void Initialize(string seed, string title, int pladetal)
     {
       _log.Info("Starting event object initialization...");
       NumberBoard = new BingoNumberBoard();
+      NumberBoard.Initialize();
       CompetitionList = new BindableCollection<CompetitionObject>();
       BingoNumberQueue = new BindableCollection<BingoNumber>();
       BnkOptions = new BankoOptions();
@@ -188,11 +196,9 @@ namespace BankoProject.Models
       SInfo = new SeedInfo(seed);
       PInfo = new PlateInfo();
       Settings = new WinSettings();
-      //PresScreenSettings = new PresentationScreenSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
       Settings = new WinSettings();
-
       _creationTime = DateTime.Now;
       NotifyOfPropertyChange(() => CreationTime);
       _initialised = true;

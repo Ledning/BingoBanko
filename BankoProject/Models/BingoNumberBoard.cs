@@ -29,11 +29,12 @@ namespace BankoProject.Models
     private IWindowManager _winMan;
     public BingoNumberBoard()
     {
-      Initialize();
+
       _winMan = IoC.Get<IWindowManager>();
     }
 
-    private void Initialize()
+    //TODO: Consider this function. should it even be here?=
+    public void Initialize()
     {
       _log.Info("Initialising bingo-board with 90 numbers...");
       _board = new BindableCollection<BingoNumber>();
@@ -45,7 +46,7 @@ namespace BankoProject.Models
       _log.Info("Initialization of board done.");
     }
 
-    [XmlArray("BingoNumberBoard")]
+    [XmlArray("Board")]
     [XmlArrayItem(Type = typeof(BingoNumber))]
     public BindableCollection<BingoNumber> Board
     {

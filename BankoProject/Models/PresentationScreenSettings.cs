@@ -29,7 +29,10 @@ namespace BankoProject.Models
     private int _selectedPresScreen;
     private SolidColorBrush backgroundBrush;
     private WindowState _state;
+    [NonSerialized]
+    private BindableCollection<IPresentationScreenItem> _presentationScreenItems;
 
+    #region Props
     public int Width
     {
       get { return _width; }
@@ -71,10 +74,6 @@ namespace BankoProject.Models
             _selectedPresScreen = value; NotifyOfPropertyChange(() => SelectedPresScreen);
         }
     }
-
-    [NonSerialized]
-    private BindableCollection<IPresentationScreenItem> _presentationScreenItems;
-
     /// <summary>
     /// A collection which has the available items to be shown on a presentation screen, by reference to their viewmodels. Filtered based on the IPresentationScreenItem interface. 
     /// </summary>
@@ -88,13 +87,21 @@ namespace BankoProject.Models
     public SolidColorBrush BackgroundBrush
     {
       get { return backgroundBrush; }
-      set { backgroundBrush = value; NotifyOfPropertyChange(()=>BackgroundBrush);}
+      set { backgroundBrush = value; NotifyOfPropertyChange(() => BackgroundBrush); }
     }
 
     public WindowState State
     {
       get { return _state; }
-      set { _state = value; NotifyOfPropertyChange(()=> State); }
+      set { _state = value; NotifyOfPropertyChange(() => State); }
     }
+    #endregion
+
+
+
+    
+
+    
+    
   }
 }

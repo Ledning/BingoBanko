@@ -66,7 +66,6 @@ namespace BankoProject.ViewModels
 
     public MainWindowViewModel()
     {
-      CreateApplicationDirectories();
       ActivateItem(new WelcomeViewModel());
     }
 
@@ -115,7 +114,7 @@ namespace BankoProject.ViewModels
     protected override void OnViewReady(object view)
     {
       _winMan = IoC.Get<IWindowManager>();
-      _winMan.ShowWindow(new DebuggingWindowViewModel(490, 490, -500, 500));
+      _winMan.ShowWindow(new DebuggingWindowViewModel(490, 490, 2300, 200));
       _eventAggregator = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
       _eventAggregator.Subscribe(this);
@@ -371,15 +370,39 @@ namespace BankoProject.ViewModels
         CreateApplicationDirectories();
       }
       _log.Info("LOADSESSION");
-      Event = DeSerializeObject<BingoEvent>(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents" + "\\" + sessionName + ".xml");
-      BingoEvent ev = IoC.Get<BingoEvent>();
-      Event.Initialize(Event.SInfo.Seed, Event.EventTitle, Event.PInfo.PlatesGenerated);
+      BingoEvent ev = new BingoEvent();
+      ev = DeSerializeObject<BingoEvent>(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents" + "\\" + sessionName + ".xml");
+      CopyEvent(ev, Event);
       //TODO: There should be no errors at this point, provided that no files has been corrupted or anything. if it has, the application will crash
       //We should come up with some way of avoiding this, might be a buch of valuechecks or something. 
       return true;
     }
 
-    
+
+    /// <summary>
+    /// SO. This is a fucking disgusting function
+    /// When we use DeSerializeObject, it returns an entirely new object which the one in our simplecontainer is then replaced with.
+    /// SimpleContainer does not like it when we do this, in fact it resets the object entirely. 
+    /// So for now we have copied over all the values manually. it is disgusting but it works. 
+    /// </summary>
+    /// <param name="fr"></param>
+    /// <param name="to"></param>
+    private void CopyEvent(BingoEvent fr, BingoEvent to)
+    {
+      to.Initialize(fr.SInfo.Seed, fr.EventTitle, fr.PInfo.PlatesGenerated);
+      to.BingoNumberQueue = fr.BingoNumberQueue;
+      to.BnkOptions = fr.BnkOptions;
+      to.CmpOptions = fr.CmpOptions;
+      to.CompetitionList = fr.CompetitionList;
+      to.EventTitle = fr.EventTitle;
+      to.Generating = fr.Generating;
+      to.NumberBoard = fr.NumberBoard;
+      to.PInfo = fr.PInfo;
+      to.RecentFiles = fr.RecentFiles;
+      to.Settings = fr.Settings;
+      to.SInfo = fr.SInfo;
+      to.VsOptions = fr.VsOptions;
+    }
 
 
     public bool SaveSession()
@@ -399,11 +422,13 @@ namespace BankoProject.ViewModels
     public void OnApplicationExit()
     {
       SaveSession();
+      Environment.Exit(1);
     }
-
-
     public void Show()
     {
     }
+
+
+    //TODO: Somebody needs to look through the output log, and fix all the errors there. this is not easy, it takes a lot of time.
   }
 }
