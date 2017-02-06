@@ -149,9 +149,7 @@
     <Compile Include="Tools\Events\CommunicationObject.cs" />
     <Compile Include="Tools\IMainViewItem.cs" />
     <Compile Include="Tools\IPresentationScreenItem.cs" />
-    <Compile Include="Tools\Loader.cs" />
     <Compile Include="Tools\SaveLoadInterface.cs" />
-    <Compile Include="Tools\Saver.cs" />
     <Compile Include="ViewModels\BingoBankoViewModel.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="ViewModels\ContestViewModel.cs" />

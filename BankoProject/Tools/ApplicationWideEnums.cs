@@ -21,7 +21,8 @@ namespace BankoProject.Tools
       RbPrezScreen,
       Save,
       Load,
-      GeneratePlates
+      GeneratePlates, 
+      CreateApplicationDirectories
     }
 
     /// <summary>

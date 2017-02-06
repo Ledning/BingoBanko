@@ -66,6 +66,7 @@ namespace BankoProject.ViewModels
 
     public MainWindowViewModel()
     {
+      CreateApplicationDirectories();
       ActivateItem(new WelcomeViewModel());
     }
 
@@ -165,6 +166,10 @@ namespace BankoProject.ViewModels
           break;
         case ApplicationWideEnums.MessageTypes.RbPrezScreen:
           SpawnPrezScreen();
+          break;
+        case ApplicationWideEnums.MessageTypes.CreateApplicationDirectories:
+          _log.Info("Creating directories...");
+          CreateApplicationDirectories();
           break;
       }
     }
@@ -365,9 +370,9 @@ namespace BankoProject.ViewModels
       {
         CreateApplicationDirectories();
       }
-      Event = null;//probably not needed
       _log.Info("LOADSESSION");
       Event = DeSerializeObject<BingoEvent>(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents" + "\\" + sessionName + ".xml");
+      BingoEvent ev = IoC.Get<BingoEvent>();
       Event.Initialize(Event.SInfo.Seed, Event.EventTitle, Event.PInfo.PlatesGenerated);
       //TODO: There should be no errors at this point, provided that no files has been corrupted or anything. if it has, the application will crash
       //We should come up with some way of avoiding this, might be a buch of valuechecks or something. 

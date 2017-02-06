@@ -37,10 +37,11 @@ namespace BankoProject.ViewModels
 
     public WelcomeViewModel()
     {
-      
-      BingoEvent bingoevent = new BingoEvent();
+      SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+      CreateApplicationDirectories();
       LatestEvents = new BindableCollection<EventFileInfo>();
       DirectoryInfo info = new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol\\LatestEvents");
+
       FileInfo[] files = info.GetFiles().OrderBy(p => p.CreationTime).ToArray();
       foreach (FileInfo file  in files)
       {
@@ -67,9 +68,10 @@ namespace BankoProject.ViewModels
 
     protected override void OnViewReady(object view)
     {
+      SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       _winMan = IoC.Get<IWindowManager>();
       _events = IoC.Get<IEventAggregator>();
-      _bingoEvent = IoC.Get<BingoEvent>();
+      Event = IoC.Get<BingoEvent>();
     }
 
 
@@ -89,6 +91,12 @@ namespace BankoProject.ViewModels
       }
     }
     public BindableCollection<EventFileInfo> LatestEvents { get; set; }
+
+    public string SaveDirectory
+    {
+      get { return _saveDirectory; }
+      set { _saveDirectory = value; }
+    }
 
 
     //TODO: En collection som Seneste Events kan binde til
@@ -121,5 +129,74 @@ namespace BankoProject.ViewModels
         _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
       }
     }
+
+
+
+    #region DirectoryStuff
+
+    private string _saveDirectory;
+    //TODO: Make these use a string for each of the subdirectories and the main directory, no chance of spelling error
+    private bool ApplicationDirectoryExists()
+    {
+      if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol"))
+      {
+        return true;
+      }
+      return false;
+    }
+    private bool ApplicationSubDirectoriesExists()
+    {
+      bool result = false;
+      if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents"))
+      {
+        if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol" + "\\Settings"))
+        {
+          if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol" + "\\Background"))
+          {
+            result = true;
+          }
+        }
+      }
+      else
+        result = false;
+      return result;
+    }
+    private bool ApplicationDirectoriesExist()
+    {
+      if (ApplicationDirectoryExists())
+      {
+        if (ApplicationSubDirectoriesExists())
+        {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    private void CreateApplicationDirectories()
+    {
+      Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol");
+      CreateLatestDirectory();
+      CreateSettingsDirectory();
+      CreateBackgroundsDirectories();
+    }
+
+    private void CreateLatestDirectory()
+    {
+      Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents");
+    }
+
+    private void CreateSettingsDirectory()
+    {
+      Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol" + "\\Settings");
+    }
+
+    private void CreateBackgroundsDirectories()
+    {
+      Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol" + "\\Background");
+    }
+
+    #endregion
   }
+
 }

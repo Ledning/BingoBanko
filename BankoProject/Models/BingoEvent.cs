@@ -195,11 +195,6 @@ namespace BankoProject.Models
 
       _creationTime = DateTime.Now;
       NotifyOfPropertyChange(() => CreationTime);
-      BingoNumberQueue.Add(new BingoNumber(1));
-      BingoNumberQueue.Add(new BingoNumber(2));
-      BingoNumberQueue.Add(new BingoNumber(3));
-      BingoNumberQueue.Add(new BingoNumber(4));
-
       _initialised = true;
 
       _log.Info("Event object initialization done.");

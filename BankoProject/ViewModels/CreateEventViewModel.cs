@@ -37,7 +37,7 @@ namespace BankoProject.ViewModels
 
     public CreateEventViewModel()
     {
-      Event = new BingoEvent();
+      Event = IoC.Get<BingoEvent>();
 
       this._phPladetal = 5;
       this._seed = "DefaultValue";
