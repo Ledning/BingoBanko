@@ -7,15 +7,18 @@ using Caliburn.Micro;
 
 namespace BankoProject.Models
 {
+  [Serializable]
   public class VisualsOptions : PropertyChangedBase
   {
+    [NonSerialized]
     private readonly ILog _log = LogManager.GetLog(typeof(BankoOptions));
+
     private bool _emptyScreen;
     private bool _plateScreen;
     private bool _userDefinedScreen;
     private BindableCollection<string> _userDefinedScreens;
 
-
+#region
     public BindableCollection<string> UserDefinedScreens
     {
       get { return _userDefinedScreens; }
@@ -39,5 +42,6 @@ namespace BankoProject.Models
       get { return _userDefinedScreen; }
       set { _userDefinedScreen = value; NotifyOfPropertyChange(() => UserDefinedScreen);}
     }
+#endregion
   }
 }

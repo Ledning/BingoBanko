@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Caliburn.Micro;
 
 namespace BankoProject.Models
 {
+  //TODO: I ALLE KLASSER EVERYWHERE: ORGANISER RÆKKEFØLGEN AF PROPERTIES, BACKING FIELDS, FUNCTIONS; GROUP FUNCTIONS BY FUNCTIONALITY
+  // REMEMBER SERIALIZEABLETAGS HAS TO BE IN THE RIGHT PLACE
+
+
   /// <summary>
   /// Contains:
   ///  - Originalseed
@@ -16,9 +21,13 @@ namespace BankoProject.Models
   ///  - SeedManipulated
   ///     has the seed been manipulated compared to the original seed?
   /// </summary>
+  [Serializable]
   public class SeedInfo : PropertyChangedBase
   {
-
+    public SeedInfo()
+    {
+      //TODO: MAKE up some clever way of making this not be called by anything but the serializer
+    }
     public SeedInfo(string originalseed)
     {
       _originalSeed = originalseed;
@@ -37,6 +46,7 @@ namespace BankoProject.Models
     private string _seed;
     private bool _seedManipulated;
 
+    [XmlIgnore]
     public string OriginalSeed
     {
       get {return _originalSeed; }
@@ -57,6 +67,8 @@ namespace BankoProject.Models
         return _seedManipulated;
       }
     }
+
+    [XmlIgnore]
     public int ConvertedOriginalSeed
     {
       get {return _convertedOriginalSeed; }

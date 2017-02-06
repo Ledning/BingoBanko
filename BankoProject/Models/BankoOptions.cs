@@ -13,13 +13,15 @@ namespace BankoProject.Models
     DoubleRow,
     FullPlate
   }
-
+  [Serializable]
   public class BankoOptions : PropertyChangedBase
   {
     private bool _singleRow;
     private bool _doubleRow;
     private bool _fullPlate;
     private WinCondition _winCondition;
+
+    [NonSerialized]
     private readonly ILog _log = LogManager.GetLog(typeof(BankoOptions));
 
     public WinCondition Condition

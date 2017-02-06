@@ -33,7 +33,7 @@ namespace BankoProject.Tools
       ControlPanelView,
       EventSelectedView,
       MainWindowView, //this one is mainly the recieving place for all these requests, probably shouldnt be used for like design reasons
-      DebuggingView
+      DebuggingView, 
     }
 
     public struct AspectRatio

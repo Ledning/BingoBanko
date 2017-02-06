@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Serialization;
 using BankoProject.Tools;
 using Caliburn.Micro;
 using ScrnHelper = WpfScreenHelper.Screen;
@@ -16,6 +17,8 @@ namespace BankoProject.Models
   /// What it does do is populate the list of screens that are available, and calculate basic info about them. 
   /// This is a one-off class. Anything related to a particular screen should be in PresentationScreenSettings. 
   /// </summary>
+  /// 
+  [Serializable]
   public class WinSettings : PropertyChangedBase
   {
     //These again refer to the controlpanelWindow, not the presentationwindow. 
@@ -31,6 +34,8 @@ namespace BankoProject.Models
     /// <summary>
     /// List of all the available screens.
     /// </summary>
+
+    [NonSerialized]
     private BindableCollection<ScrnHelper> _screens;
 
 
@@ -70,6 +75,8 @@ namespace BankoProject.Models
       get { return _top; }
       set { _top = value; NotifyOfPropertyChange(()=>Top);}
     }
+    [XmlIgnore]
+    [_screens: NonSerialized]
     public BindableCollection<ScrnHelper> Screens
     {
       get { return _screens; }

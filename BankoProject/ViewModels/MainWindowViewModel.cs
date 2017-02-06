@@ -22,6 +22,8 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Printer_Project;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 using BankoProject.ViewModels.Flyout;
 using FormScrn = System.Windows.Forms.Screen;
 using WpfScreenHelper;
@@ -50,6 +52,7 @@ namespace BankoProject.ViewModels
 
     PH means placeholder
   */
+
   class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>
   {
     private IWindowManager _winMan;
@@ -58,8 +61,8 @@ namespace BankoProject.ViewModels
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
     private bool _isFlyoutOpen = false;
     private IMainViewItem _flyoutActiveItem;
-
-
+    private string _saveDirectory;
+    private bool _directoriesInitialised;
 
     public MainWindowViewModel()
     {
@@ -69,27 +72,49 @@ namespace BankoProject.ViewModels
     public BingoEvent Event
     {
       get { return _bingoEvent; }
-      set { _bingoEvent = value; NotifyOfPropertyChange(()=> Event);}
+      set
+      {
+        _bingoEvent = value;
+        NotifyOfPropertyChange(() => Event);
+      }
     }
 
     public bool IsFlyoutOpen
     {
       get { return _isFlyoutOpen; }
-      set { _isFlyoutOpen = value; NotifyOfPropertyChange(()=> IsFlyoutOpen);}
+      set
+      {
+        _isFlyoutOpen = value;
+        NotifyOfPropertyChange(() => IsFlyoutOpen);
+      }
     }
 
     public IMainViewItem FlyoutActiveItem
     {
       get { return _flyoutActiveItem; }
-      set { _flyoutActiveItem = value; NotifyOfPropertyChange(()=>FlyoutActiveItem);}
+      set
+      {
+        _flyoutActiveItem = value;
+        NotifyOfPropertyChange(() => FlyoutActiveItem);
+      }
     }
 
+    public string SaveDirectory
+    {
+      get { return _saveDirectory; }
+      set { _saveDirectory = value; }
+    }
+
+    public bool DirectoriesInitialised
+    {
+      get { return _directoriesInitialised; }
+    }
 
     //The function below can be used as a constructor for the view. Everything in it will happen after the view is loaded.
     protected override void OnViewReady(object view)
     {
       _winMan = IoC.Get<IWindowManager>();
-      _winMan.ShowWindow(new DebuggingWindowViewModel(490,490,-500,500));
+      _winMan.ShowWindow(new DebuggingWindowViewModel(490, 490, -500, 500));
       _eventAggregator = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
       _eventAggregator.Subscribe(this);
@@ -98,17 +123,15 @@ namespace BankoProject.ViewModels
       FlyoutActiveItem = new WelcomeScreenFlyoutViewModel();
       worker.DoWork += worker_DoWork;
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-      //foreach (var przScrn in GetTypesInNamespace(Assembly.GetExecutingAssembly(), "BankoProject.ViewModels.PresentationScreenViewModels"))
-      //{
-      //  //Activator.CreateInstance<IPresentationScreenItem>();
-      //}
+      SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+      CreateApplicationDirectories();
+      _directoriesInitialised = true;
     }
 
     private Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
     {
       return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
     }
-
 
 
     public void Handle(CommunicationObject message)
@@ -133,7 +156,7 @@ namespace BankoProject.ViewModels
 
         case ApplicationWideEnums.MessageTypes.Load:
           _log.Info("Loading...");
-          LoadSession();
+          LoadSession(message.SessionName);
           break;
 
         case ApplicationWideEnums.MessageTypes.GeneratePlates:
@@ -147,7 +170,9 @@ namespace BankoProject.ViewModels
     }
 
     #region async plate generation
+
     private readonly BackgroundWorker worker = new BackgroundWorker();
+
 
     private void worker_DoWork(object sender, DoWorkEventArgs e)
     {
@@ -172,7 +197,6 @@ namespace BankoProject.ViewModels
 
     #endregion
 
-
     #region eventbusMethods
 
     private void GoToWelcomeView()
@@ -192,72 +216,186 @@ namespace BankoProject.ViewModels
     {
       _winMan.ShowWindow(new PresentationScreenHostViewModel());
     }
+
+    #endregion
+
+    #region DirectoryStuff
+    //TODO: Make these use a string for each of the subdirectories and the main directory, no chance of spelling error
+    private bool ApplicationDirectoryExists()
+    {
+      if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol"))
+      {
+        return true;
+      }
+      return false;
+    }
+    private bool ApplicationSubDirectoriesExists()
+    {
+      bool result = false;
+      if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents"))
+      {
+        if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol" + "\\Settings"))
+        {
+          if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol" + "\\Background"))
+          {
+            result = true;
+          }
+        }
+      }   
+      else
+        result = false;
+      return result;
+    }
+    private bool ApplicationDirectoriesExist()
+    {
+      if (ApplicationDirectoryExists())
+      {
+        if (ApplicationSubDirectoriesExists())
+        {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    private void CreateApplicationDirectories()
+    {
+      Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol");   
+      CreateLatestDirectory();
+      CreateSettingsDirectory();
+      CreateBackgroundsDirectories();
+    }
+
+    private void CreateLatestDirectory()
+    {
+      Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents");
+    }
+
+    private void CreateSettingsDirectory()
+    {
+      Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol" + "\\Settings");
+    }
+
+    private void CreateBackgroundsDirectories()
+    {
+      Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol" + "\\Background");
+    }
+
+    #endregion
+
+    #region SerializingCode
+    /// <summary>
+    /// Serializes an object.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="serializableObject"></param>
+    /// <param name="fileName"></param>
+    public void SerializeObject<T>(T serializableObject, string fileName)
+    {
+      if (serializableObject == null) { return; }
+
+      try
+      {
+        XmlDocument xmlDocument = new XmlDocument();
+        XmlSerializer serializer = new XmlSerializer(serializableObject.GetType());
+        using (MemoryStream stream = new MemoryStream())
+        {
+          serializer.Serialize(stream, serializableObject);
+          stream.Position = 0;
+          xmlDocument.Load(stream);
+          xmlDocument.Save(fileName);
+          stream.Close();
+        }
+      }
+      catch (Exception ex)
+      {
+        _log.Error(ex);
+      }
+    }
+
+
+    /// <summary>
+    /// Deserializes an xml file into an object list
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="fileName"></param>
+    /// <returns></returns>
+    public T DeSerializeObject<T>(string fileName)
+    {
+      if (string.IsNullOrEmpty(fileName)) { return default(T); }
+
+      T objectOut = default(T);
+
+      try
+      {
+        XmlDocument xmlDocument = new XmlDocument();
+        xmlDocument.Load(fileName);
+        string xmlString = xmlDocument.OuterXml;
+
+        using (StringReader read = new StringReader(xmlString))
+        {
+          Type outType = typeof(T);
+
+          XmlSerializer serializer = new XmlSerializer(outType);
+          using (XmlReader reader = new XmlTextReader(read))
+          {
+            objectOut = (T)serializer.Deserialize(reader);
+            reader.Close();
+          }
+
+          read.Close();
+        }
+      }
+      catch (Exception ex)
+      {
+        _log.Error(ex);
+      }
+
+      return objectOut;
+    }
+
+
+    #endregion
+
+    #region loadsave
+
+    public bool LoadSession(string sessionName)
+    {
+      if (!DirectoriesInitialised)
+      {
+        CreateApplicationDirectories();
+      }
+      Event = null;//probably not needed
+      _log.Info("LOADSESSION");
+      Event = DeSerializeObject<BingoEvent>(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents" + "\\" + sessionName + ".xml");
+      Event.Initialize(Event.SInfo.Seed, Event.EventTitle, Event.PInfo.PlatesGenerated);
+      //TODO: There should be no errors at this point, provided that no files has been corrupted or anything. if it has, the application will crash
+      //We should come up with some way of avoiding this, might be a buch of valuechecks or something. 
+      return true;
+    }
+
+    
+
+
+    public bool SaveSession()
+    {
+      if (!DirectoriesInitialised)
+      {
+        CreateApplicationDirectories();
+      }
+      _log.Info("SAVESESSION");
+      SerializeObject<BingoEvent>(Event, SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents" + "\\" + Event.EventTitle + ".xml");
+      return true;
+    }
+
     #endregion
 
 
-    public bool LoadSession()
+    public void OnApplicationExit()
     {
-
-      ////find the file
-      //string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", Event.EventTitle);
-      //string eventDataDirString = eventDir + Event.EventTitle + @".bingoevent";
-      //FileStream fs = new FileStream(eventDataDirString, FileMode.Open);
-      //try
-      //{
-      //  BinaryFormatter formatter = new BinaryFormatter();
-      //  Event = (BingoEvent)formatter.Deserialize(fs);
-      //}
-      //catch (SerializationException e)
-      //{
-      //  _log.Error(e);
-      //  _log.Warn(e.Message);
-      //}
-      //finally
-      //{
-      //  fs.Close();
-      //}
-      //_log.Warn("NOT IMPLEMENTED");
-      return true;
+      SaveSession();
     }
 
-
-    public bool SaveSession() 
-    {
-      
-      //string eventDir = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\Events", Event.EventTitle);
-      //if(Directory.Exists(eventDir))
-      //{
-      //  MessageBoxResult dR = MessageBox.Show("Event already exists. Do you want to override it?", "Confirmation box",
-      //    MessageBoxButton.YesNo);
-      //  if (dR == MessageBoxResult.No)
-      //  {
-      //    return false;
-      //  }
-      //  else
-      //  {
-      //    Directory.Delete(eventDir);
-      //  }
-      //}
-      //string eventDataDirString = eventDir + Event.EventTitle + @".bingoprojekt";
-
-      //FileStream fStream = new FileStream(eventDataDirString, FileMode.Create);
-      //BinaryFormatter bFormatter = new BinaryFormatter();
-      //try
-      //{
-      //  bFormatter.Serialize(fStream, Event);
-      //}
-      //catch (SerializationException e)
-      //{
-      //  _log.Error(e);
-      //  _log.Warn(e.Message);
-      //  return false;
-      //}
-      //finally
-      //{
-      //  fStream.Close();
-      //}
-      return true;
-    }
 
     public void Show()
     {

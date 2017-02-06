@@ -41,10 +41,10 @@
                     </Grid.Effect>
                 </Grid>
                 <Label x:Name="BackgroundVisualsLabel" Content="Baggrund" VerticalAlignment="Bottom" Margin="29,0,0,468" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="152" Style="{StaticResource ControlPanelLabel}"/>
-                <RadioButton IsChecked="{Binding Event.VisualsOptions.EmptyScreen}" Content="Tom skærm" Height="44.5" VerticalAlignment="Top" Margin="38,612,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="168"/>
-                <RadioButton IsChecked="{Binding Event.VisualsOptions.PlateScreen}" Content="Pladeoversigt" Height="44.5" VerticalAlignment="Top" Margin="38,661.5,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="177"/>
-                <RadioButton IsChecked="{Binding Event.VisualsOptions.UserDefinedScreen}" Content="Brugerdefineret:" Height="44.5" VerticalAlignment="Top" Margin="38,711,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="212.5"/>
-                <ComboBox ItemsSource="{Binding Event.VisualsOptions.UserDefinedScreens}" metro:TextBoxHelper.Watermark="Vælg skærm" Margin="0,0,47,302.5" HorizontalAlignment="Right" Height="44.5" VerticalAlignment="Bottom" Width="188" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+                <RadioButton IsChecked="{Binding Event.VsOptions.EmptyScreen}" Content="Tom skærm" Height="44.5" VerticalAlignment="Top" Margin="38,612,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="168"/>
+                <RadioButton IsChecked="{Binding Event.VsOptions.PlateScreen}" Content="Pladeoversigt" Height="44.5" VerticalAlignment="Top" Margin="38,661.5,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="177"/>
+                <RadioButton IsChecked="{Binding Event.VsOptions.UserDefinedScreen}" Content="Brugerdefineret:" Height="44.5" VerticalAlignment="Top" Margin="38,711,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="212.5"/>
+                <ComboBox ItemsSource="{Binding Event.VsOptions.UserDefinedScreens}" metro:TextBoxHelper.Watermark="Vælg skærm" Margin="0,0,47,302.5" HorizontalAlignment="Right" Height="44.5" VerticalAlignment="Bottom" Width="188" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>
 
                 <Grid x:Name="TriggersVisualsGrid" Margin="30,0,29,34.5" Height="175" VerticalAlignment="Bottom" Background="#FF3E8BCB">
                     <Grid.Effect>

@@ -9,6 +9,7 @@ namespace BankoProject.Models
   /// <summary>
   /// A class that holds all the information about the plates, how many did we print how many were actually used and so on
   /// </summary>
+  [Serializable]
   public class PlateInfo
   {
     private int _platesGenerated;
@@ -20,7 +21,6 @@ namespace BankoProject.Models
       get { return _platesGenerated; }
       set { _platesGenerated = value; }
     }
-
     public int PlatesUsed
     {
       get { return _platesUsed; }

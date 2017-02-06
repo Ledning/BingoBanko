@@ -9,9 +9,11 @@ using System.ComponentModel.Composition;
 using System.IO;
 using BankoProject.ViewModels;
 using System.Windows.Media;
+using System.Xml.Serialization;
 
 namespace BankoProject.Models
 {
+  [Serializable]
   public class BingoNumberBoard : PropertyChangedBase
   {
     //supposed to implement a large array and all the needed functionality for controlling the numbers 1-90. 
@@ -19,6 +21,7 @@ namespace BankoProject.Models
 
     private BindableCollection<BingoNumber> _board;
     private int _boardSize = 90;
+    [NonSerialized]
     private readonly ILog _log = LogManager.GetLog(typeof(BingoNumberBoard));
     private int _selectedIndex = 0;
 
@@ -42,6 +45,8 @@ namespace BankoProject.Models
       _log.Info("Initialization of board done.");
     }
 
+    [XmlArray("BingoNumberBoard")]
+    [XmlArrayItem(Type = typeof(BingoNumber))]
     public BindableCollection<BingoNumber> Board
     {
       get

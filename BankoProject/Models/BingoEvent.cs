@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Drawing.Text;
 using System.Windows.Controls.Primitives;
+using System.Xml.Serialization;
 using BingoCardGenerator;
 using Printer_Project;
 
@@ -20,35 +21,36 @@ namespace BankoProject.Models
     private string _eventTitle;
     private DateTime _creationTime;
     private WinSettings _winSettings;
-    private PresentationScreenSettings _presScreenSettings;
     private bool _initialised = false;
     private bool _generating = false;
 
-    [NonSerialized]
-    private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
+    [NonSerialized] private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
     private BankoOptions _bnkOptions;
     private CompetitionOptions _cmpOptions;
     private VisualsOptions _vsOptions;
     private SeedInfo _seedInfo;
     private PlateInfo _plateInfo;
+    private BingoNumberBoard _numberBoard;
 
+    //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event,
+    [XmlArray("CompetitionList")] [XmlArrayItem("Competition")] private BindableCollection<CompetitionObject>
+      _competitionList; //A list of all the competitions during the game
 
-
-
-    //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event, 
-    private BindableCollection<CompetitionObject> _competitionList; //A list of all the competitions during the game
-    private BindableCollection<BingoNumber> _bingoNumberQueue; //the numbers picked in the game, input into this list as they come in. 
-    private BingoNumberBoard _numberBoard; //The bingo board, however it might look during the game
-
-
+    [XmlArray("BingoNumberQueue")] [XmlArrayItem("BingoNumber")] private BindableCollection<BingoNumber>
+      _bingoNumberQueue; //the numbers picked in the game, input into this list as they come in. 
 
 
     #region GetterSetter
+
     public string EventTitle
     {
       get { return _eventTitle; }
-      set { _eventTitle = value; NotifyOfPropertyChange(EventTitle);}
+      set
+      {
+        _eventTitle = value;
+        NotifyOfPropertyChange(EventTitle);
+      }
     }
 
     public BindableCollection<string> RecentFiles { get; set; }
@@ -57,77 +59,119 @@ namespace BankoProject.Models
     {
       get { return _creationTime; }
     }
-
+    
     public BingoNumberBoard NumberBoard
     {
       get { return _numberBoard; }
-      set { _numberBoard = value; NotifyOfPropertyChange(() => NumberBoard);}
+      set
+      {
+        _numberBoard = value;
+        NotifyOfPropertyChange(() => NumberBoard);
+      }
     }
 
+    [XmlArray("CompetitionList")]
+    [XmlArrayItem(Type = typeof(CompetitionObject))]
     public BindableCollection<CompetitionObject> CompetitionList
     {
       get { return _competitionList; }
-      set { _competitionList = value; NotifyOfPropertyChange(() => CompetitionList);}
+      set
+      {
+        _competitionList = value;
+        NotifyOfPropertyChange(() => CompetitionList);
+      }
     }
-
+    [XmlArray("BingoNumberQueue")]
+    [XmlArrayItem(Type = typeof(BingoNumber))]
     public BindableCollection<BingoNumber> BingoNumberQueue
     {
       get { return _bingoNumberQueue; }
-      set { _bingoNumberQueue = value; QueueLength = _bingoNumberQueue.Count; NotifyOfPropertyChange(() => BingoNumberQueue);}
+      set
+      {
+        _bingoNumberQueue = value;
+        QueueLength = _bingoNumberQueue.Count;
+        NotifyOfPropertyChange(() => BingoNumberQueue);
+      }
     }
 
     public bool Generating
     {
       get { return _generating; }
-      set {_generating = value; NotifyOfPropertyChange(() => Generating); }
+      set
+      {
+        _generating = value;
+        NotifyOfPropertyChange(() => Generating);
+      }
     }
 
     public BankoOptions BnkOptions
     {
       get { return _bnkOptions; }
-      set { _bnkOptions = value; NotifyOfPropertyChange(() => BnkOptions);}
+      set
+      {
+        _bnkOptions = value;
+        NotifyOfPropertyChange(() => BnkOptions);
+      }
     }
 
     public CompetitionOptions CmpOptions
     {
       get { return _cmpOptions; }
-      set { _cmpOptions = value; NotifyOfPropertyChange(() => CmpOptions);}
+      set
+      {
+        _cmpOptions = value;
+        NotifyOfPropertyChange(() => CmpOptions);
+      }
     }
 
     public VisualsOptions VsOptions
     {
       get { return _vsOptions; }
-      set { _vsOptions = value; NotifyOfPropertyChange(() => VsOptions);}
+      set
+      {
+        _vsOptions = value;
+        NotifyOfPropertyChange(() => VsOptions);
+      }
     }
 
     public SeedInfo SInfo
     {
       get { return _seedInfo; }
-      set { _seedInfo = value; NotifyOfPropertyChange(()=>SInfo);}
+      set
+      {
+        _seedInfo = value;
+        NotifyOfPropertyChange(() => SInfo);
+      }
     }
 
     public PlateInfo PInfo
     {
       get { return _plateInfo; }
-      set { _plateInfo = value; NotifyOfPropertyChange(()=>PInfo);}
+      set
+      {
+        _plateInfo = value;
+        NotifyOfPropertyChange(() => PInfo);
+      }
     }
 
     public WinSettings Settings
     {
       get { return _winSettings; }
-      set { _winSettings = value; NotifyOfPropertyChange(()=>Settings);}
+      set
+      {
+        _winSettings = value;
+        NotifyOfPropertyChange(() => Settings);
+      }
     }
-
-    //public PresentationScreenSettings PresScreenSettings
-    //{
-    //  get { return _presScreenSettings; }
-    //  set { _presScreenSettings = value; NotifyOfPropertyChange(()=>PresScreenSettings);}
-    //}
 
     public int QueueLength
     {
       get { return _queueLength; }
-      set { _queueLength = value; NotifyOfPropertyChange(() => QueueLength);}
+      set
+      {
+        _queueLength = value;
+        NotifyOfPropertyChange(() => QueueLength);
+      }
     }
 
     #endregion
@@ -150,14 +194,14 @@ namespace BankoProject.Models
       Settings = new WinSettings();
 
       _creationTime = DateTime.Now;
-      NotifyOfPropertyChange(()=>CreationTime);
+      NotifyOfPropertyChange(() => CreationTime);
       BingoNumberQueue.Add(new BingoNumber(1));
       BingoNumberQueue.Add(new BingoNumber(2));
       BingoNumberQueue.Add(new BingoNumber(3));
       BingoNumberQueue.Add(new BingoNumber(4));
 
       _initialised = true;
-      
+
       _log.Info("Event object initialization done.");
     }
 

@@ -18,6 +18,7 @@
   WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" ResizeMode="CanResizeWithGrip"
   Icon="/BankoProject;component/Resources/bingo1.png"
   dialog:DialogParticipation.Register="ShowDialog"
+  cal:Message.Attach="[Event Closing] = [Action OnApplicationExit()]"
   >
   <metro:MetroWindow.Resources>
     <ResourceDictionary>

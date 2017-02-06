@@ -17,6 +17,11 @@ namespace BankoProject.Models
     private bool isSelected = false;
     private readonly ILog _log = LogManager.GetLog(typeof(BingoNumber));
 
+    //TODO: Samme deal som med Comp Obj o lign, der skal laves en alternativ måde at gøre det på.
+    public BingoNumber()
+    {
+      
+    }
 
     public BingoNumber(int value)
     {

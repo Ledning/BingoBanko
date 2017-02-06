@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,22 +23,32 @@ namespace BankoProject.ViewModels
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(WelcomeViewModel));
 
+    public struct EventFileInfo //TODO: make this more sensible lol, this was just quick to make it work
+    {
+      public string title;
+      public string date;
+
+      public EventFileInfo(string _title, string _date)
+      {
+        title = _title;
+        date = _date;
+      }
+    }
 
     public WelcomeViewModel()
     {
-      //assign dummy data to LatestEvents
       
-      Random rdn = new Random();
       BingoEvent bingoevent = new BingoEvent();
-      LatestEvents = new BindableCollection<BingoEvent>();
-
-      for (int i = 0; i < 5; i++)
+      LatestEvents = new BindableCollection<EventFileInfo>();
+      DirectoryInfo info = new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol\\LatestEvents");
+      FileInfo[] files = info.GetFiles().OrderBy(p => p.CreationTime).ToArray();
+      foreach (FileInfo file  in files)
       {
-        bingoevent.Initialize("something"+rdn.Next(500).ToString(), "SuperEVENT"+rdn.Next(500).ToString(), rdn.Next(5));
-        this.LatestEvents.Add(bingoevent);
+        LatestEvents.Add(new EventFileInfo(file.Name, file.LastAccessTime.ToString()));
       }
-      
-      Title = "PLACEHOLDER";
+
+
+      Title = "BingoBanko Kontrol";
 
     }
 
@@ -72,11 +83,12 @@ namespace BankoProject.ViewModels
         {
           _log.Info("exit on event created, welcomeview");
           _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, ApplicationWideEnums.SenderTypes.WelcomeView));
+          _log.Info("SAVEMESSAGE");
           _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
         }
       }
     }
-    public BindableCollection<BingoEvent> LatestEvents { get; set; }
+    public BindableCollection<EventFileInfo> LatestEvents { get; set; }
 
 
     //TODO: En collection som Seneste Events kan binde til
@@ -95,12 +107,18 @@ namespace BankoProject.ViewModels
     {
       var ofd = new Microsoft.Win32.OpenFileDialog()
       {
-        Filter = "Event filer (*.bingoEvent)|*bingoEvent"
+        Filter = "Event filer (*.xml)|*xml"
       };
-
+      var d = "NOFILE";
       if (ofd.ShowDialog() ?? false)
       {
-        var d = ofd.FileName;
+        d = ofd.FileName;
+      }
+      if (d != "NOFILE")
+      {
+        d = Path.GetFileNameWithoutExtension(d);
+        _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Load, ApplicationWideEnums.SenderTypes.WelcomeView, d));
+        _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
       }
     }
   }
