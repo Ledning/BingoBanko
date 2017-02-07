@@ -37,21 +37,22 @@
   </Viewbox>
   <metro:MetroWindow.Flyouts>
     <metro:FlyoutsControl>
-      <metro:Flyout Header="Indstillinger" Width="200" Position="Right" IsOpen="{Binding IsFlyoutOpen}">
-        <Viewbox>
-          <flyout:WelcomeScreenFlyoutView>
-            
-          </flyout:WelcomeScreenFlyoutView>
-        </Viewbox>
+      <metro:Flyout DataContext="{Binding FlyoutViewModel}" 
+                    Position="Right"
+                    Header="{Binding DisplayName}"
+                    IsOpen="{Binding IsOpen}"
+                    Theme="Light"
+                    IsModal="True">
 
+        <ContentControl cal:View.Model="{Binding .}" />
       </metro:Flyout>
     </metro:FlyoutsControl>
   </metro:MetroWindow.Flyouts>
-  
+
   <metro:MetroWindow.RightWindowCommands>
     <metro:WindowCommands>
-      <ToggleButton Content="Indstillinger" IsChecked="{Binding IsFlyoutOpen}" Cursor="Hand"></ToggleButton>
+      <ToggleButton Content="Indstillinger" IsChecked="{Binding FlyoutViewModel.IsOpen}" Cursor="Hand"></ToggleButton>
     </metro:WindowCommands>
   </metro:MetroWindow.RightWindowCommands>
-  
+
 </metro:MetroWindow>

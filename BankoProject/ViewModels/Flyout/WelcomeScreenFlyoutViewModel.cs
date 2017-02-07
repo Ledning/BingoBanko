@@ -9,69 +9,55 @@ using Caliburn.Micro;
 
 namespace BankoProject.ViewModels.Flyout
 {
-  class WelcomeScreenFlyoutViewModel : Screen, IMainViewItem
+  class WelcomeScreenFlyoutViewModel : Screen, IFlyoutItem
   {
+
+
+
+
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
     private BingoEvent _bingoEvent;
+    private bool _isOpen = false;
+    private string _startStopText = "Stop BingoBanko";
+
 
     public WelcomeScreenFlyoutViewModel()
     {
+      Event = IoC.Get<BingoEvent>();
+      DisplayName = "";
       _log.Info("WelcomeScreenFlyoutTriggered");
     }
 
 
     protected override void OnViewReady(object view)
     {
-      Event = IoC.Get<BingoEvent>();
-      NotifyOfPropertyChange(() => StartStopText);
-    }
 
-    /// <summary>
-    /// Resets the board, not the game. If a full application/event reset is desired, a new event should be created instead.
-    /// </summary>
-    public void Reset()
-    {
-      Event.BingoNumberQueue = new BindableCollection<BingoNumber>();
-      Event.NumberBoard = new BingoNumberBoard();
     }
 
     public void ToggleBingo()
     {
-      if (Event.IsBingoRunning)
-      {
-        StopBingo();
-        NotifyOfPropertyChange(()=> StartStopText);
-      }
-      else
-      {
-        StartBingo();
-        NotifyOfPropertyChange(() => StartStopText);
-      }
-    }
-
-    public void StartBingo()
-    {
-      Event.IsBingoRunning = true;
-    }
-    public void StopBingo()
-    {
-      Event.IsBingoRunning = false;
-    }
-
-    public string StartStopText
-    {
-      get
+      if (Event != null)
       {
         if (Event.IsBingoRunning)
         {
-          return "Stop Bingo";
+          Event.IsBingoRunning = false;
+          StartStopText = "Start BingoBanko";
         }
-        else
+        else if (!Event.IsBingoRunning)
         {
-          return "Start Bingo";
+          Event.IsBingoRunning = true;
+          StartStopText = "Stop BingoBanko";
         }
       }
     }
+
+    public void Reset()
+    {
+      //Not sure waht goes in here yet
+      _log.Info("NOTIMPLEMENTED");
+    }
+
+    #region props
 
     public BingoEvent Event
     {
@@ -82,5 +68,27 @@ namespace BankoProject.ViewModels.Flyout
         NotifyOfPropertyChange(() => Event);
       }
     }
+
+    public bool IsOpen
+    {
+      get { return _isOpen; }
+      set
+      {
+        _isOpen = value;
+        NotifyOfPropertyChange(() => IsOpen);
+      }
+    }
+
+    public string StartStopText
+    {
+      get { return _startStopText; }
+      set
+      {
+        _startStopText = value;
+        NotifyOfPropertyChange(() => StartStopText);
+      }
+    }
+
+    #endregion
   }
 }

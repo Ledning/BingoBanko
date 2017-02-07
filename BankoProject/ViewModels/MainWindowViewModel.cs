@@ -59,10 +59,9 @@ namespace BankoProject.ViewModels
     private IEventAggregator _eventAggregator;
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
-    private bool _isFlyoutOpen = false;
-    private IMainViewItem _flyoutActiveItem;
     private string _saveDirectory;
     private bool _directoriesInitialised;
+    private IFlyoutItem _flyoutViewModel;
 
     public MainWindowViewModel()
     {
@@ -79,26 +78,6 @@ namespace BankoProject.ViewModels
       }
     }
 
-    public bool IsFlyoutOpen
-    {
-      get { return _isFlyoutOpen; }
-      set
-      {
-        _isFlyoutOpen = value;
-        NotifyOfPropertyChange(() => IsFlyoutOpen);
-      }
-    }
-
-    public IMainViewItem FlyoutActiveItem
-    {
-      get { return _flyoutActiveItem; }
-      set
-      {
-        _flyoutActiveItem = value;
-        NotifyOfPropertyChange(() => FlyoutActiveItem);
-      }
-    }
-
     public string SaveDirectory
     {
       get { return _saveDirectory; }
@@ -108,6 +87,12 @@ namespace BankoProject.ViewModels
     public bool DirectoriesInitialised
     {
       get { return _directoriesInitialised; }
+    }
+
+    public IFlyoutItem FlyoutViewModel
+    {
+      get { return _flyoutViewModel; }
+      set { _flyoutViewModel = value; NotifyOfPropertyChange(()=> FlyoutViewModel);}
     }
 
     //The function below can be used as a constructor for the view. Everything in it will happen after the view is loaded.
@@ -120,12 +105,12 @@ namespace BankoProject.ViewModels
       _eventAggregator.Subscribe(this);
       DisplayName = "Bingo Kontrol";
       _log.Info("Main View loaded");
-      FlyoutActiveItem = new WelcomeScreenFlyoutViewModel();
       worker.DoWork += worker_DoWork;
       worker.RunWorkerCompleted += worker_RunWorkerCompleted;
       SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       CreateApplicationDirectories();
       _directoriesInitialised = true;
+      FlyoutViewModel = new WelcomeScreenFlyoutViewModel();
     }
 
     private Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
@@ -205,13 +190,15 @@ namespace BankoProject.ViewModels
 
     private void GoToWelcomeView()
     {
-      FlyoutActiveItem = new WelcomeScreenFlyoutViewModel();
+      FlyoutViewModel= new WelcomeScreenFlyoutViewModel();
       ActivateItem(new WelcomeViewModel());
       DisplayName = "Bingo Banko";
     }
 
     private void GoToControlPanel()
     {
+      FlyoutViewModel = new WelcomeScreenFlyoutViewModel();
+      //FlyoutViewModel = new ControlPanelFlyoutViewModel();
       ActivateItem(new ControlPanelViewModel());
       DisplayName = "Bingo Bango: " + Event.EventTitle;
     }
@@ -417,6 +404,7 @@ namespace BankoProject.ViewModels
     }
 
     #endregion
+
 
 
     public void OnApplicationExit()

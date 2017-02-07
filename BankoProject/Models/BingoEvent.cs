@@ -202,6 +202,7 @@ namespace BankoProject.Models
       _creationTime = DateTime.Now;
       NotifyOfPropertyChange(() => CreationTime);
       _initialised = true;
+      IsBingoRunning = false;
 
       _log.Info("Event object initialization done.");
     }

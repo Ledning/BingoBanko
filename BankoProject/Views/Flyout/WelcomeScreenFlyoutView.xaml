@@ -4,13 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankoProject.Views.Flyout"
+             xmlns:metro="clr-namespace:MahApps;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              >
   <StackPanel Orientation="Vertical"  Width="200">
-    <Border>
-      <Label Content="SpilIindstillinger" Foreground="Beige"/>
-    </Border>
+    <Border/>
     <Button x:Name="Reset" Height="40" Content="Nulstil spil"></Button>
-    <Button x:Name="ToggleBingo" Content="{Binding StartStopText}" Height="26"/>
+    <Button x:Name="ToggleBingo" Content="{Binding StartStopText}"  Height="26"/>
   </StackPanel>
 </UserControl>

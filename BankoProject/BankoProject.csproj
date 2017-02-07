@@ -147,6 +147,7 @@
     <Compile Include="Tools\ControlExtensions.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\Events\CommunicationObject.cs" />
+    <Compile Include="Tools\IFlyoutItem.cs" />
     <Compile Include="Tools\IMainViewItem.cs" />
     <Compile Include="Tools\IPresentationScreenItem.cs" />
     <Compile Include="Tools\SaveLoadInterface.cs" />
