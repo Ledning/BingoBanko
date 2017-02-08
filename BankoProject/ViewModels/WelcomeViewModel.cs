@@ -8,6 +8,7 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using BankoProject.Models;
@@ -22,36 +23,23 @@ namespace BankoProject.ViewModels
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(WelcomeViewModel));
-    private string _selectedEvent;
+    private KeyValuePair<string,string> _selectedEvent;
+    private BindableCollection<KeyValuePair<string, string>> _latestEvents;
+    private string _title;
 
     public WelcomeViewModel()
     {
+      Title = "BingoBanko Kontrol";
       SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       CreateApplicationDirectories();
-      //LatestEvents = new BindableCollection<EventFileInfo>();
-      DirectoryInfo info = new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol\\LatestEvents");
-
-      FileInfo[] files = info.GetFiles().OrderBy(p => p.CreationTime).ToArray();
-      foreach (FileInfo file  in files)
-      {
-        //LatestEvents.Add(new EventFileInfo(file.Name, file.LastAccessTime.ToString()));
-      }
+      _latestEvents = new BindableCollection<KeyValuePair<string, string>>();
+      UpdateLatestEvents();
 
 
-      Title = "BingoBanko Kontrol";
-    }
-
-    public BingoEvent Event
-    {
-      get { return _bingoEvent; }
-      set { _bingoEvent = value; NotifyOfPropertyChange(()=>Event);}
-    }
-
-    private string _title;
-    public string Title
-    {
-      get { return _title; }
-      set { _title = value; NotifyOfPropertyChange(() => Title); }
+      //Run the update on latestevents
+      var dueTime = TimeSpan.FromSeconds(10);
+      var interval = TimeSpan.FromSeconds(10);
+      RunPeriodicAsync(UpdateLatestEvents, dueTime, interval, CancellationToken.None);
     }
 
     protected override void OnViewReady(object view)
@@ -61,24 +49,122 @@ namespace BankoProject.ViewModels
       _events = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
     }
-
-
-    public void CreateEvent()
+    /// <summary>
+    /// Used for doing things when doubleclicking latestevents
+    /// </summary>
+    public void DoubleClickAction()
     {
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Load, ApplicationWideEnums.SenderTypes.WelcomeView, SelectedEvent.Key.Replace(".xml", "")));
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
+    }
 
-      bool? result = _winMan.ShowDialog(new CreateEventViewModel()); 
-      if (result.HasValue)
+    #region BindableCollectionManipulation
+    //So some of these might not be entirely needed, but i was not 100% sure on waht the built in ones for keyvaluepair did, so i thought this was better
+    public bool ContainsKey(BindableCollection<KeyValuePair<string, string>> inputCollection, string key)
+    {
+      foreach (KeyValuePair<string, string> pair in inputCollection)
       {
-        if (result.Value)
+        if (pair.Key == key)
         {
-          _log.Info("exit on event created, welcomeview");
-          _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, ApplicationWideEnums.SenderTypes.WelcomeView));
-          _log.Info("SAVEMESSAGE");
-          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
+          return true;
+        }
+      }
+      return false;
+    }
+
+    public void RemoveKeyPair(BindableCollection<KeyValuePair<string,string>> inputCollection, string targetkey)
+    {
+      foreach (KeyValuePair<string,string> pair in inputCollection)
+      {
+        if (pair.Key == targetkey)
+        {
+          inputCollection.Remove(pair);
         }
       }
     }
+    #endregion
+    #region asynctask latestevents
+    public void UpdateLatestEvents()
+    {
+      bool changeHappened = false;
+      DirectoryInfo info =
+        new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                          "\\BingoBankoKontrol\\LatestEvents");
+      FileInfo[] fInf = info.GetFiles().OrderBy(p => p.CreationTime).ToArray();
 
+
+      foreach (var file in fInf)
+      {
+        KeyValuePair<string, string> targetKeyValuePair = new KeyValuePair<string, string>(file.Name,
+          file.LastAccessTime.ToString());
+
+        //Corresponds to the key not being in there already
+        if (!ContainsKey(LatestEvents, targetKeyValuePair.Key))
+        {
+          _latestEvents.Add(targetKeyValuePair);
+          changeHappened = true;
+        }
+        else
+        {
+          //Corresponds to the key being in there, but not the right value(date)
+          if (!LatestEvents.Contains(targetKeyValuePair))
+          {
+            RemoveKeyPair(_latestEvents, targetKeyValuePair.Key);
+            _latestEvents.Add(targetKeyValuePair);
+            changeHappened = true;
+          }
+        }
+      }
+      if (changeHappened)
+      {
+        //TODO: MAke it sorted
+        NotifyOfPropertyChange(() => LatestEvents);
+      }
+    }
+    private static async Task RunPeriodicAsync(System.Action onTick,
+      TimeSpan dueTime,
+      TimeSpan interval,
+      CancellationToken token)
+    {
+      // Initial wait time before we begin the periodic loop.
+      if (dueTime > TimeSpan.Zero)
+        await Task.Delay(dueTime, token);
+
+      // Repeat this loop until cancelled.
+      while (!token.IsCancellationRequested)
+      {
+        // Call our onTick function.
+        onTick?.Invoke();
+
+        // Wait to repeat again.
+        if (interval > TimeSpan.Zero)
+          await Task.Delay(interval, token);
+      }
+    }
+
+    #endregion
+    #region props
+    public BingoEvent Event
+    {
+      get { return _bingoEvent; }
+      set
+      {
+        _bingoEvent = value;
+        NotifyOfPropertyChange(() => Event);
+      }
+    }
+
+
+
+    public string Title
+    {
+      get { return _title; }
+      set
+      {
+        _title = value;
+        NotifyOfPropertyChange(() => Title);
+      }
+    }
 
     public string SaveDirectory
     {
@@ -86,12 +172,9 @@ namespace BankoProject.ViewModels
       set { _saveDirectory = value; }
     }
 
-    public string SelectedEvent
+    public KeyValuePair<string, string> SelectedEvent
     {
-      get
-      {
-        return _selectedEvent;
-      }
+      get { return _selectedEvent; }
 
       set
       {
@@ -100,17 +183,35 @@ namespace BankoProject.ViewModels
       }
     }
 
+    public BindableCollection<KeyValuePair<string, string>> LatestEvents
+    {
+      get { return _latestEvents; }
+    }
+    #endregion
+    #region Loading/creating
+    public void CreateEvent()
+    {
+      bool? result = _winMan.ShowDialog(new CreateEventViewModel());
+      if (result.HasValue)
+      {
+        if (result.Value)
+        {
+          _log.Info("exit on event created, welcomeview");
+          _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save,
+            ApplicationWideEnums.SenderTypes.WelcomeView));
+          _log.Info("SAVEMESSAGE");
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView,
+            ApplicationWideEnums.SenderTypes.WelcomeView));
+        }
+      }
+    }
 
-    //TODO: En collection som Seneste Events kan binde til
-    //Navneboksen for Seneste Events er slightly unaligned
 
-    //TODO: Titlen i Welcomeview skal bindes til en string prop
+    
+
 
     //TODO: Ordentlig boks til titlen i WelcomewView.
     //Den ligner sku en sæk lort lige pt
-
-
-
 
 
     public void OpenFileDialog()
@@ -127,13 +228,13 @@ namespace BankoProject.ViewModels
       if (d != "NOFILE")
       {
         d = Path.GetFileNameWithoutExtension(d);
-        _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Load, ApplicationWideEnums.SenderTypes.WelcomeView, d));
-        _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
+        _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Load,
+          ApplicationWideEnums.SenderTypes.WelcomeView, d));
+        _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView,
+          ApplicationWideEnums.SenderTypes.WelcomeView));
       }
     }
-
-
-
+    #endregion
     #region DirectoryStuff
 
     private string _saveDirectory;
@@ -146,6 +247,7 @@ namespace BankoProject.ViewModels
       }
       return false;
     }
+
     private bool ApplicationSubDirectoriesExists()
     {
       bool result = false;
@@ -163,6 +265,7 @@ namespace BankoProject.ViewModels
         result = false;
       return result;
     }
+
     private bool ApplicationDirectoriesExist()
     {
       if (ApplicationDirectoryExists())
@@ -200,5 +303,4 @@ namespace BankoProject.ViewModels
 
     #endregion
   }
-
 }
