@@ -44,20 +44,13 @@
       <Grid.Effect>
         <DropShadowEffect BlurRadius="15"/>
       </Grid.Effect>
-      <ListView x:Name="LatestEvents" HorizontalAlignment="Right" Margin="30.5,28,30.5,28" Width="540" Background="CornflowerBlue" IsHitTestVisible="True">
+      <ListView x:Name="LatestEventsview" ItemsSource="{Binding LatestEvents}" HorizontalAlignment="Right" Margin="30.5,28,30.5,28" Width="540" Background="CornflowerBlue" SelectedItem="SelectedEvent">
         <ListView.View>
-          <GridView AllowsColumnReorder="False" >
-            <GridViewColumn  Header="Begivenhedsnavn" Width="300" DisplayMemberBinding="{Binding title}"></GridViewColumn>
-            <GridViewColumn Header="Ændringsdato" Width="250" DisplayMemberBinding="{Binding date}"></GridViewColumn>
+          <GridView>
+            <GridViewColumn Header="Begivenhedsnavn" Width="300" DisplayMemberBinding="{Binding title}"/>
+            <GridViewColumn Header="Ændringsdato" Width="250" DisplayMemberBinding="{Binding date}"/>
           </GridView>
         </ListView.View>
-        <ListView.Resources>
-          <Style TargetType="ListViewItem">
-            <Style.Setters>
-              <Setter Property="Foreground" Value="Black"></Setter>
-            </Style.Setters>
-          </Style>
-        </ListView.Resources>
       </ListView>
     </Grid>
     <Label x:Name="Latest" Content="Seneste Events" HorizontalAlignment="Right" Margin="0,310,435,0" VerticalAlignment="Top" Width="200" Foreground="Black" Style="{StaticResource ControlPanelLabel}" BorderBrush="#FF3E8BCB" BorderThickness="1" Height="51" />

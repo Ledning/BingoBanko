@@ -22,35 +22,23 @@ namespace BankoProject.ViewModels
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(WelcomeViewModel));
-
-    public struct EventFileInfo //TODO: make this more sensible lol, this was just quick to make it work
-    {
-      public string title;
-      public string date;
-
-      public EventFileInfo(string _title, string _date)
-      {
-        title = _title;
-        date = _date;
-      }
-    }
+    private string _selectedEvent;
 
     public WelcomeViewModel()
     {
       SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       CreateApplicationDirectories();
-      LatestEvents = new BindableCollection<EventFileInfo>();
+      //LatestEvents = new BindableCollection<EventFileInfo>();
       DirectoryInfo info = new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol\\LatestEvents");
 
       FileInfo[] files = info.GetFiles().OrderBy(p => p.CreationTime).ToArray();
       foreach (FileInfo file  in files)
       {
-        LatestEvents.Add(new EventFileInfo(file.Name, file.LastAccessTime.ToString()));
+        //LatestEvents.Add(new EventFileInfo(file.Name, file.LastAccessTime.ToString()));
       }
 
 
       Title = "BingoBanko Kontrol";
-
     }
 
     public BingoEvent Event
@@ -90,12 +78,26 @@ namespace BankoProject.ViewModels
         }
       }
     }
-    public BindableCollection<EventFileInfo> LatestEvents { get; set; }
+
 
     public string SaveDirectory
     {
       get { return _saveDirectory; }
       set { _saveDirectory = value; }
+    }
+
+    public string SelectedEvent
+    {
+      get
+      {
+        return _selectedEvent;
+      }
+
+      set
+      {
+        _selectedEvent = value;
+        NotifyOfPropertyChange(() => SelectedEvent);
+      }
     }
 
 
