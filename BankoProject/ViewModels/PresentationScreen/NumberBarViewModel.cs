@@ -12,8 +12,6 @@ namespace BankoProject.ViewModels.PresentationScreen
     private readonly ILog _log = LogManager.GetLog(typeof(WelcomeViewModel));
 
 
-    public ApplicationWideEnums.AspectRatio AsRatio { get; set; }
-
     public BingoEvent Event
     {
       get { return _bingoEvent; }

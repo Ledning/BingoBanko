@@ -10,15 +10,15 @@ namespace BankoProject.ViewModels
   /// <summary>
   ///   This is where you would set up all the shit, so when this is put up, the rest follows.
   /// </summary>
-  internal class PresentationScreenHostViewModel : Conductor<IPresentationScreenItem>.Collection.OneActive
+  class PresentationScreenHostViewModel : Conductor<IPresentationScreenItem>.Collection.OneActive
   {
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
     private BingoEvent _event;
+    private IPresentationScreenItem _currentPrezItem;
 
     public PresentationScreenHostViewModel()
     {
       Event = IoC.Get<BingoEvent>();
-
     }
 
     #region Overrides of ViewAware
@@ -31,8 +31,6 @@ namespace BankoProject.ViewModels
       Event.Settings.PrsSettings.Left = (int)Event.Settings.Screens[1].WorkingArea.Left;
       Event.Settings.PrsSettings.Top = (int)Event.Settings.Screens[1].WorkingArea.Top;
       Event.Settings.PrsSettings.State = WindowState.Maximized;
-
-      ActivateItem(new NumberBarViewModel());
     }
 
     #endregion
@@ -49,6 +47,12 @@ namespace BankoProject.ViewModels
       }
     }
 
+    public IPresentationScreenItem CurrentPrezItem
+    {
+      get { return _currentPrezItem; }
+      set { _currentPrezItem = value; ActivateItem(CurrentPrezItem);  NotifyOfPropertyChange(()=>CurrentPrezItem);}
+    }
+
 
     public int GetPresentationScreen()
     {
@@ -58,11 +62,6 @@ namespace BankoProject.ViewModels
           return screenNr;
       _log.Warn("No Presentation screen was found. ERROR");
       return -1; 
-    }
-
-    public void ShowFullscreenImage()
-    {
-      //ActivateItem();
     }
   }
 }

@@ -16,7 +16,6 @@ namespace BankoProject.Tools
   public interface IPresentationScreenItem
   {
 
-    ApplicationWideEnums.AspectRatio AsRatio { get; set; }
 
 
 

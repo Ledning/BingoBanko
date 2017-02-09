@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using BankoProject.Tools;
+using BankoProject.ViewModels.PresentationScreen;
 using Caliburn.Micro;
 
 namespace BankoProject.Models
 {
-  //TODO: OMG SOMEBODY PLEASE FIND OUT HOW TO HANDLE SERIALIZATION OF COLLECTIONS
+  //TODO: dw i did it yay
+  //TODO: add buttons to controlpanelflyout to control overlay
 
 
   /// <summary>
@@ -29,8 +31,7 @@ namespace BankoProject.Models
     private int _selectedPresScreen;
     private SolidColorBrush backgroundBrush;
     private WindowState _state;
-    [NonSerialized]
-    private BindableCollection<IPresentationScreenItem> _presentationScreenItems;
+
 
     #region Props
     public int Width
@@ -60,7 +61,9 @@ namespace BankoProject.Models
 
     public PresentationScreenSettings()
     {
-      
+      //PresentationScreenItems.Add(new NumberBarViewModel());
+      //PresentationScreenItems.Add(new BingoScreenViewModel());
+      //PresentationScreenItems.Add(new FullscreenImageViewModel());
     }
     public int SelectedPresScreen
     {
@@ -74,15 +77,7 @@ namespace BankoProject.Models
             _selectedPresScreen = value; NotifyOfPropertyChange(() => SelectedPresScreen);
         }
     }
-    /// <summary>
-    /// A collection which has the available items to be shown on a presentation screen, by reference to their viewmodels. Filtered based on the IPresentationScreenItem interface. 
-    /// </summary>
-    [XmlIgnore]
-    public BindableCollection<IPresentationScreenItem> PresentationScreenItems
-    {
-      get { return _presentationScreenItems; }
-      set { _presentationScreenItems = value; }
-    }
+
 
     public SolidColorBrush BackgroundBrush
     {

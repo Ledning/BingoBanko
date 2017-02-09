@@ -1,6 +1,12 @@
-﻿namespace BankoProject.ViewModels.PresentationScreen
+﻿using BankoProject.Tools;
+using Caliburn.Micro;
+
+namespace BankoProject.ViewModels.PresentationScreen
 {
-  class BingoScreenViewModel
+  class BingoScreenViewModel : PropertyChangedBase, IPresentationScreenItem
   {
+
+
+
   }
 }

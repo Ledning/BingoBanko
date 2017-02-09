@@ -54,6 +54,7 @@ namespace BankoProject.ViewModels
     /// </summary>
     public void DoubleClickAction()
     {
+      //TODO: Der var et crash her. jeg sværger. dunno what happened, but that NEEDS to be thoroughly checked.
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Load, ApplicationWideEnums.SenderTypes.WelcomeView, SelectedEvent.Key.Replace(".xml", "")));
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
     }
