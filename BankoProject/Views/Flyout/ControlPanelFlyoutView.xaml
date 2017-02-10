@@ -4,9 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankoProject.Views.Flyout"
+              xmlns:metro="clr-namespace:MahApps;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+  <StackPanel Orientation="Vertical"  Width="200">
+    <StackPanel   x:Name="GeneralSettings" Orientation="Vertical">
+      <Button Height="40" x:Name="ToggleBingo" Content="{Binding StartStopText}" />
+    </StackPanel>
+    <Rectangle Height="20"></Rectangle>
+    <StackPanel x:Name="AdjustmentPanel">
+      <Button Height="40" x:Name="Somethingsomethingadjust" Content="stuff"></Button>
+    </StackPanel>
+
+    
+  </StackPanel>
 </UserControl>

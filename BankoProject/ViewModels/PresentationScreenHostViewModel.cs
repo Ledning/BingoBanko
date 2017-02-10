@@ -25,12 +25,12 @@ namespace BankoProject.ViewModels
 
     protected override void OnViewReady(object view)
     {
-      Event.Settings.PrsSettings.Width = (int)Event.Settings.Screens[1].WorkingArea.Width;
-      Event.Settings.PrsSettings.Height = (int)Event.Settings.Screens[1].WorkingArea.Height;
+      Event.WindowSettings.PrsSettings.Width = (int)Event.WindowSettings.Screens[1].WorkingArea.Width;
+      Event.WindowSettings.PrsSettings.Height = (int)Event.WindowSettings.Screens[1].WorkingArea.Height;
 
-      Event.Settings.PrsSettings.Left = (int)Event.Settings.Screens[1].WorkingArea.Left;
-      Event.Settings.PrsSettings.Top = (int)Event.Settings.Screens[1].WorkingArea.Top;
-      Event.Settings.PrsSettings.State = WindowState.Maximized;
+      Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[1].WorkingArea.Left;
+      Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[1].WorkingArea.Top;
+      Event.WindowSettings.PrsSettings.State = WindowState.Maximized;
     }
 
     #endregion
@@ -57,8 +57,8 @@ namespace BankoProject.ViewModels
     public int GetPresentationScreen()
     {
       var screenNr = 0;
-      for (; screenNr < Event.Settings.Screens.Count; screenNr++)
-        if (!Event.Settings.Screens[screenNr].Primary)
+      for (; screenNr < Event.WindowSettings.Screens.Count; screenNr++)
+        if (!Event.WindowSettings.Screens[screenNr].Primary)
           return screenNr;
       _log.Warn("No Presentation screen was found. ERROR");
       return -1; 

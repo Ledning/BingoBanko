@@ -41,7 +41,8 @@ namespace BankoProject.ViewModels
       _winMan = IoC.Get<IWindowManager>();
       Event = IoC.Get<BingoEvent>();
       Event.BnkOptions.SingleRow = true;
-      Event.VsOptions.EmptyScreen = true;
+      //TODO: Fix this so these options are taken care of in bingoevent or in winsettings
+      //Event.VsOptions.EmptyScreen = true;
       //_events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
@@ -178,22 +179,24 @@ namespace BankoProject.ViewModels
       }
     }
 
-    public void AddNumber()
-    {
-      bool? result = _winMan.ShowDialog(new dialogViewModel("Indtast tal...."));
-      if (result.HasValue)
-      {
-        if (result.Value)
-        {
-          _log.Info("exit on event created, welcomeview");
-          _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, ApplicationWideEnums.SenderTypes.WelcomeView));
-          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
-        }
-      }
-    }
+    //public void AddNumber()
+    //{
+    //  bool? result = _winMan.ShowDialog(new dialogViewModel("Indtast tal...."));
+    //  if (result.HasValue)
+    //  {
+    //    if (result.Value)
+    //    {
+    //      _log.Info("exit on event created, welcomeview");
+    //      _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, ApplicationWideEnums.SenderTypes.WelcomeView));
+    //      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
+    //    }
+    //  }
+    //}
 
     public void CheckPlateButton()
     {
+      //OO this one is...intredasting
+      //TODO: implement lol
       throw new NotImplementedException();
     }
 
@@ -210,5 +213,54 @@ namespace BankoProject.ViewModels
       
       //this should prolly also start some counter somewhere
     }
+
+
+
+    #region ResetStuff
+    public void Reset()
+    {
+      //Save the current event, with a different ending
+      //if it was named bingo2017, save a file called bingo2017RESET[TIMESTAMP]
+      _log.Info("Saving event before reset...");
+      _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
+      BingoEvent resetEv = new BingoEvent();
+      //The following block is almost excatly like the method CopyTo in MainWindowVM, different in the fact that it does not copy over number positions or queues or anything. 
+      resetEv.Initialize(Event.SInfo.Seed, Event.EventTitle, Event.PInfo.PlatesGenerated, DateTime.Now);
+      resetEv.WindowSettings = Event.WindowSettings;
+      resetEv.PInfo = Event.PInfo;
+      resetEv.SInfo = Event.SInfo;
+      //create a new object, that is the same except for the following:
+      //empty competitionlist
+      //empty numberqueue, reset numberboard
+      //reset singlerow/doublerow/plate to singlerow
+      CopyEvent(resetEv, Event);
+      _log.Info("Reset Done");
+      //TODO: Somebody else needs to check up on if this actually copies it all over correctly and resets the correct thingies
+      //ask kris if summin is missin, maybe theres a stupid ass reason for it
+    }
+
+    private void CopyEvent(BingoEvent fr, BingoEvent to)
+    {
+      to.Initialize(fr.SInfo.Seed, fr.EventTitle, fr.PInfo.PlatesGenerated);
+      to.BingoNumberQueue = fr.BingoNumberQueue;
+      to.BnkOptions = fr.BnkOptions;
+      to.CmpOptions = fr.CmpOptions;
+      to.CompetitionList = fr.CompetitionList;
+      to.EventTitle = fr.EventTitle;
+      to.Generating = fr.Generating;
+      to.NumberBoard = fr.NumberBoard;
+      to.PInfo = fr.PInfo;
+      to.RecentFiles = fr.RecentFiles;
+      to.WindowSettings = fr.WindowSettings;
+      to.SInfo = fr.SInfo;
+      //to.VsOptions = fr.VsOptions;
+    }
+
+
+    #endregion
+
+
+
   }
 }

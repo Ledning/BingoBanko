@@ -42,7 +42,9 @@
                     Header="{Binding DisplayName}"
                     IsOpen="{Binding IsOpen}"
                     Theme="Light"
-                    IsModal="True">
+                    IsModal="True"
+                    Width="300"
+                    Background="DodgerBlue">
 
         <ContentControl cal:View.Model="{Binding .}" />
       </metro:Flyout>

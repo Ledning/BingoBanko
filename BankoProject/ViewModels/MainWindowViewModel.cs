@@ -53,6 +53,8 @@ namespace BankoProject.ViewModels
     PH means placeholder
   */
 
+
+
   class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>
   {
     private IWindowManager _winMan;
@@ -198,9 +200,10 @@ namespace BankoProject.ViewModels
     private void GoToControlPanel()
     {
       FlyoutViewModel = new WelcomeScreenFlyoutViewModel();
-      //FlyoutViewModel = new ControlPanelFlyoutViewModel();
+      FlyoutViewModel = new ControlPanelFlyoutViewModel();
       ActivateItem(new ControlPanelViewModel());
       DisplayName = "Bingo Bango: " + Event.EventTitle;
+      Event.IsBingoRunning = true;
     }
 
     public void SpawnPrezScreen()
@@ -386,9 +389,8 @@ namespace BankoProject.ViewModels
       to.NumberBoard = fr.NumberBoard;
       to.PInfo = fr.PInfo;
       to.RecentFiles = fr.RecentFiles;
-      to.Settings = fr.Settings;
+      to.WindowSettings = fr.WindowSettings;
       to.SInfo = fr.SInfo;
-      to.VsOptions = fr.VsOptions;
     }
 
 

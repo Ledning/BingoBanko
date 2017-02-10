@@ -79,10 +79,10 @@
             <RadioButton IsChecked="{Binding Event.BnkOptions.SingleRow}" Margin="38,198,0,0" Content="Enkelt række" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Checked="OnePlateBingoRadio_Checked" FontWeight="Bold" RenderTransformOrigin="0.475,2.16" FontSize="20"/>
             <RadioButton IsChecked="{Binding Event.BnkOptions.DoubleRow}" Margin="38,259,0,124" Content="To rækker" HorizontalAlignment="Left" Width="139" FontWeight="Bold" FontSize="20"/>
             <RadioButton IsChecked="{Binding Event.BnkOptions.FullPlate}" Margin="38,0,0,59" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="126" FontWeight="Bold" FontSize="20"/>
-            <Button x:Name="DrawRandom" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="163" Margin="444,186,0,0" Content="Tilfældigt tal" FontSize="24" FontWeight="Bold"/>
+            <Button x:Name="DrawRandom" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="163" Margin="400,189,0,0" Content="Tilfældigt tal" FontSize="24" FontWeight="Bold"/>
             <Button x:Name="ResetGame" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,297,0,0" Content="Indtast tal.." FontSize="24" FontWeight="Bold"/>
             <Button x:Name="AddSelectedNumbers" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,244,0,0" Content="Tilføj valgte tal" FontSize="24" FontWeight="Bold"/>
-          <Button x:Name="AddNumber" Background="DarkRed" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,349,0,0" Content="Nustil spil" FontSize="24" FontWeight="Bold"/>
+          <Button x:Name="Reset" Background="DarkRed" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,349,0,0" Content="Nustil spil" FontSize="24" FontWeight="Bold"/>
 
       </Grid>
                     <Viewbox>

@@ -20,7 +20,9 @@ namespace BankoProject.ViewModels.Flyout
     private bool _isOpen = false;
     private string _startStopText = "Stop BingoBanko";
 
-
+    //IMPORTANT
+    //For once in this apps lifetime, these things have to be loaded in here. since this is a flyout, OnViewReady is not called/not called at the appropriate time, so that does not work.
+    //On the other hand, this one is 100% called before the flyout is shown, so this works for these. (not for anything else afaik.)
     public WelcomeScreenFlyoutViewModel()
     {
       Event = IoC.Get<BingoEvent>();
@@ -31,33 +33,15 @@ namespace BankoProject.ViewModels.Flyout
 
     protected override void OnViewReady(object view)
     {
-
+      
     }
 
-    public void ToggleBingo()
+
+    public bool IsOpen
     {
-      if (Event != null)
-      {
-        if (Event.IsBingoRunning)
-        {
-          Event.IsBingoRunning = false;
-          StartStopText = "Start BingoBanko";
-        }
-        else if (!Event.IsBingoRunning)
-        {
-          Event.IsBingoRunning = true;
-          StartStopText = "Stop BingoBanko";
-        }
-      }
+      get { return _isOpen; }
+      set { _isOpen = value; NotifyOfPropertyChange(() => IsOpen); }
     }
-
-    public void Reset()
-    {
-      //Not sure waht goes in here yet
-      _log.Info("NOTIMPLEMENTED");
-    }
-
-    #region props
 
     public BingoEvent Event
     {
@@ -69,26 +53,5 @@ namespace BankoProject.ViewModels.Flyout
       }
     }
 
-    public bool IsOpen
-    {
-      get { return _isOpen; }
-      set
-      {
-        _isOpen = value;
-        NotifyOfPropertyChange(() => IsOpen);
-      }
-    }
-
-    public string StartStopText
-    {
-      get { return _startStopText; }
-      set
-      {
-        _startStopText = value;
-        NotifyOfPropertyChange(() => StartStopText);
-      }
-    }
-
-    #endregion
   }
 }

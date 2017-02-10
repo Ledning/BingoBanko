@@ -24,6 +24,8 @@ namespace BankoProject.Models
     private bool _initialised = false;
     private bool _generating = false;
     private bool _isBingoRunning = false;
+    private bool _isResat = false;
+    private DateTime _resetTime;
 
     [NonSerialized] private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
@@ -125,16 +127,6 @@ namespace BankoProject.Models
       }
     }
 
-    public VisualsOptions VsOptions
-    {
-      get { return _vsOptions; }
-      set
-      {
-        _vsOptions = value;
-        NotifyOfPropertyChange(() => VsOptions);
-      }
-    }
-
     public SeedInfo SInfo
     {
       get { return _seedInfo; }
@@ -155,13 +147,13 @@ namespace BankoProject.Models
       }
     }
 
-    public WinSettings Settings
+    public WinSettings WindowSettings
     {
       get { return _winSettings; }
       set
       {
         _winSettings = value;
-        NotifyOfPropertyChange(() => Settings);
+        NotifyOfPropertyChange(() => WindowSettings);
       }
     }
 
@@ -181,6 +173,21 @@ namespace BankoProject.Models
       set { _isBingoRunning = value; NotifyOfPropertyChange(()=>IsBingoRunning);}
     }
 
+    //Not intended to be used on interface
+    public bool IsResat
+    {
+      get { return _isResat; }
+      set { _log.Warn("Not intended for display"); _isResat = value;}
+    }
+
+    //Not intended to be used on interface
+    public DateTime ResetTime
+    {
+      get { return _resetTime; }
+      set {_log.Warn("Not intended for display"); _resetTime = value;
+      }
+    }
+
     #endregion
 
     public void Initialize(string seed, string title, int pladetal)
@@ -192,13 +199,12 @@ namespace BankoProject.Models
       BingoNumberQueue = new BindableCollection<BingoNumber>();
       BnkOptions = new BankoOptions();
       CmpOptions = new CompetitionOptions();
-      VsOptions = new VisualsOptions();
       SInfo = new SeedInfo(seed);
       PInfo = new PlateInfo();
-      Settings = new WinSettings();
+      WindowSettings = new WinSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
-      Settings = new WinSettings();
+      WindowSettings = new WinSettings();
       _creationTime = DateTime.Now;
       NotifyOfPropertyChange(() => CreationTime);
       _initialised = true;
@@ -206,6 +212,40 @@ namespace BankoProject.Models
 
       _log.Info("Event object initialization done.");
     }
+
+    /// <summary>
+    /// Intended to be used when resetting a game, and only then. Lets us distinguish the files from each other when the backup is made. 
+    /// </summary>
+    /// <param name="seed"></param>
+    /// <param name="title"></param>
+    /// <param name="pladetal"></param>
+    /// <param name="resetTime"></param>
+    public void Initialize(string seed, string title, int pladetal, DateTime resetTime)
+    {
+      _log.Info("Starting event object initialization...");
+      NumberBoard = new BingoNumberBoard();
+      NumberBoard.Initialize();
+      CompetitionList = new BindableCollection<CompetitionObject>();
+      BingoNumberQueue = new BindableCollection<BingoNumber>();
+      BnkOptions = new BankoOptions();
+      CmpOptions = new CompetitionOptions();
+      //VsOptions = new VisualsOptions();
+      SInfo = new SeedInfo(seed);
+      PInfo = new PlateInfo();
+      WindowSettings = new WinSettings();
+      EventTitle = title;
+      PInfo.PlatesGenerated = pladetal;
+      WindowSettings = new WinSettings();
+      _creationTime = DateTime.Now;
+      NotifyOfPropertyChange(() => CreationTime);
+      _initialised = true;
+      IsBingoRunning = false;
+      IsResat = true;
+      ResetTime = resetTime;
+      _log.Info("Event object initialization done.");
+    }
+
+
 
     private string GenerateSeedFromKeyword(string keyword)
     {

@@ -102,17 +102,17 @@ namespace BankoProject.ViewModels
 
     public void showPresBackground()
     {
-      if (Event.Settings.PrsSettings.BackgroundBrush == null)
+      if (Event.WindowSettings.PrsSettings.BackgroundBrush == null)
       {
-        Event.Settings.PrsSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
+        Event.WindowSettings.PrsSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
       }
-      else if (Event.Settings.PrsSettings.BackgroundBrush.Color == Colors.Black)
+      else if (Event.WindowSettings.PrsSettings.BackgroundBrush.Color == Colors.Black)
       {
-        Event.Settings.PrsSettings.BackgroundBrush = null;
+        Event.WindowSettings.PrsSettings.BackgroundBrush = null;
       }
       else
       {
-        Event.Settings.PrsSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
+        Event.WindowSettings.PrsSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
       }
     }
 

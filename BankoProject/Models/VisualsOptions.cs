@@ -7,6 +7,9 @@ using Caliburn.Micro;
 
 namespace BankoProject.Models
 {
+  /// <summary>
+  /// Why does this class exist. it should be migrated into WinSettings or something. Atleast not here and not name like this its retarded. 
+  /// </summary>
   [Serializable]
   public class VisualsOptions : PropertyChangedBase
   {

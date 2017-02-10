@@ -136,7 +136,6 @@
     <Compile Include="Models\CompetitionOptions.cs" />
     <Compile Include="Models\ControlOptions.cs" />
     <Compile Include="Models\Deltagere.cs" />
-    <Compile Include="Models\EventFileInfoList.cs" />
     <Compile Include="Models\PlateInfo.cs" />
     <Compile Include="Models\PresentationScreenSettings.cs" />
     <Compile Include="Models\SeedInfo.cs" />
@@ -169,7 +168,6 @@
     <Compile Include="ViewModels\PresentationScreen\BingoScreenViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\FullscreenImageViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\NumberBarViewModel.cs" />
-    <Compile Include="ViewModels\VisualSnaskViewModel.cs" />
     <Compile Include="Views\BingoBankoView.xaml.cs">
       <DependentUpon>BingoBankoView.xaml</DependentUpon>
     </Compile>
@@ -229,9 +227,6 @@
     </Compile>
     <Compile Include="Views\PresentationScreen\NumberBarView.xaml.cs">
       <DependentUpon>NumberBarView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\VisualSnaskView.xaml.cs">
-      <DependentUpon>VisualSnaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -382,10 +377,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\VisualSnaskView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\WelcomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -412,7 +403,10 @@
       <Name>Plate-Printer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\ConfirmationBoxes\" />
+    <Folder Include="Views\ConfirmationBoxes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
