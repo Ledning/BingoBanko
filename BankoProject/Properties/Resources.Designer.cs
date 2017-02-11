@@ -73,6 +73,26 @@ namespace BankoProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap frontpgggg {
+            get {
+                object obj = ResourceManager.GetObject("frontpgggg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap RYNKEBY_banner_460x157_dk {
+            get {
+                object obj = ResourceManager.GetObject("RYNKEBY_banner_460x157_dk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap teamrynkeby {
             get {
                 object obj = ResourceManager.GetObject("teamrynkeby", resourceCulture);

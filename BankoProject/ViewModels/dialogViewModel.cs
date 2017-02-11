@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BankoProject.ViewModels
 {
+  //TODO: Delete this class, and refactor all the dialogs into something else. Or atleast move it to the right folder and use as a base for other DBoxes
   class dialogViewModel : Screen
   {
     private bool _response = false;

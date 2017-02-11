@@ -136,6 +136,7 @@
     <Compile Include="Models\CompetitionOptions.cs" />
     <Compile Include="Models\ControlOptions.cs" />
     <Compile Include="Models\Deltagere.cs" />
+    <Compile Include="Models\FullscreenOverlaySettings.cs" />
     <Compile Include="Models\PlateInfo.cs" />
     <Compile Include="Models\PresentationScreenSettings.cs" />
     <Compile Include="Models\SeedInfo.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="ViewModels\PresentationScreen\BingoScreenViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\FullscreenImageViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\NumberBarViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreen\PlateOverlayViewModel.cs" />
     <Compile Include="Views\BingoBankoView.xaml.cs">
       <DependentUpon>BingoBankoView.xaml</DependentUpon>
     </Compile>
@@ -227,6 +229,9 @@
     </Compile>
     <Compile Include="Views\PresentationScreen\NumberBarView.xaml.cs">
       <DependentUpon>NumberBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PresentationScreen\PlateOverlayViewModel.xaml.cs">
+      <DependentUpon>PlateOverlayViewModel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -321,6 +326,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PresentationScreen\PlateOverlayViewModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Styles\CustomStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -387,6 +396,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Orchestra.Shell.MahApps.dll" />
+    <None Include="Resources\frontpgggg.PNG" />
+    <None Include="Resources\RYNKEBY_banner_460x157_dk.jpg" />
+    <None Include="Resources\frontpg.bmp" />
     <Resource Include="Resources\10995537_695452673897093_536015149067717983_o.jpg" />
     <Resource Include="Resources\team_rynkeby_banner.jpg" />
     <Resource Include="Views\logoalpha.png" />

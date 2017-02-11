@@ -22,7 +22,11 @@ namespace BankoProject.Tools
       Save,
       Load,
       GeneratePlates, 
-      CreateApplicationDirectories
+      CreateApplicationDirectories, 
+      FullscreenOverlay,
+      BoardOverview,
+      LatestNumbers, 
+      BingoHappened
     }
 
     /// <summary>

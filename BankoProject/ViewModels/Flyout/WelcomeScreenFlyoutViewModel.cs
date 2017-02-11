@@ -14,7 +14,6 @@ namespace BankoProject.ViewModels.Flyout
 
 
 
-
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
     private BingoEvent _bingoEvent;
     private bool _isOpen = false;

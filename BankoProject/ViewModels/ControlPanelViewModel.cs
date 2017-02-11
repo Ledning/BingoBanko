@@ -28,11 +28,12 @@ namespace BankoProject.ViewModels
     private int _contestDuration;
 
 
+    //TODO: Overlay Lbael på view skal fixes - det har en weird kant
+
     public ControlPanelViewModel()
     {
       BoardVM = new BoardViewModel();
       ActivateItem(BoardVM);
-      
     }
 
     protected override void OnViewReady(object view)
@@ -43,23 +44,24 @@ namespace BankoProject.ViewModels
       Event.BnkOptions.SingleRow = true;
       //TODO: Fix this so these options are taken care of in bingoevent or in winsettings
       //Event.VsOptions.EmptyScreen = true;
-      //_events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.ControlPanelView));
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
 
     public void ShowWelcome()
     {
-
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public void SpawnPrezScreen()
     {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.ControlPanelView));
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     #region props
+
     public BingoEvent Event
     {
       get { return _bingoEvent; }
@@ -130,19 +132,26 @@ namespace BankoProject.ViewModels
       }
     }
 
-    private ObservableCollection<Team> _allTeams; 
-    public ObservableCollection<Team> AllTeams { get { return _allTeams; } set { _allTeams = value; NotifyOfPropertyChange(()=> AllTeams);} }
-#endregion
+    private ObservableCollection<Team> _allTeams;
+
+    public ObservableCollection<Team> AllTeams
+    {
+      get { return _allTeams; }
+      set
+      {
+        _allTeams = value;
+        NotifyOfPropertyChange(() => AllTeams);
+      }
+    }
+
+    #endregion
 
     public void ShowLatestNumbers()
     {
       throw new NotImplementedException();
     }
 
-    public void BingoButton()
-    {
-      throw new NotImplementedException();
-    }
+
 
     //this method gets a random number and marks the boardview, that that number is now marked
     public int DrawRandom()
@@ -179,19 +188,6 @@ namespace BankoProject.ViewModels
       }
     }
 
-    //public void AddNumber()
-    //{
-    //  bool? result = _winMan.ShowDialog(new dialogViewModel("Indtast tal...."));
-    //  if (result.HasValue)
-    //  {
-    //    if (result.Value)
-    //    {
-    //      _log.Info("exit on event created, welcomeview");
-    //      _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save, ApplicationWideEnums.SenderTypes.WelcomeView));
-    //      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
-    //    }
-    //  }
-    //}
 
     public void CheckPlateButton()
     {
@@ -207,16 +203,49 @@ namespace BankoProject.ViewModels
 
     public void StartContest()
     {
-      CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams, this.ContestDuration);
+      CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams,
+        this.ContestDuration);
 
       this.AllTeams = new ObservableCollection<Team>(competition.AllTeams);
-      
+
       //this should prolly also start some counter somewhere
     }
 
+    #region PresentationActivation
+    public void ActivateFullscreenOverlay()
+    {
+      _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlay,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
+    }
+
+    public void ActivateLatestNumbersOverlay()
+    {
+      _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.LatestNumbers,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
+    }
+
+    public void ActivatePlateOverviewOverlay()
+    {
+      _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BoardOverview,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
+    }
+
+    public void ActivateBingoHappenedOverlay()
+    {
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BingoHappened, ApplicationWideEnums.SenderTypes.ControlPanelView));
+    }
+    public void ConfirmFullscreenOverlayChange()
+    {
+      throw new NotImplementedException();
+      //TODO: til den lille aktiveringsknap, hensigten er at man klikke rpå den når man vil ændre ift hvad der står i de 3 radiobuttons
+    }
+
+
+    #endregion
 
 
     #region ResetStuff
+
     public void Reset()
     {
       //Save the current event, with a different ending
@@ -257,10 +286,10 @@ namespace BankoProject.ViewModels
       //to.VsOptions = fr.VsOptions;
     }
 
-
     #endregion
 
-
-
+    //todo: somebody for the love of christ make applicationwideenums a shortcut in the files it is use din jeezus i get cancer
+    //TODO: Maybe we should consider having a superuser mode, where  there is no confirmationboxes? and shit
+    //Could be done with just a single bool on the bingoEvent object. 
   }
 }

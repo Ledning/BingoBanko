@@ -27,11 +27,12 @@ namespace BankoProject.Models
     private bool _isResat = false;
     private DateTime _resetTime;
 
+
     [NonSerialized] private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
     private BankoOptions _bnkOptions;
     private CompetitionOptions _cmpOptions;
-    private VisualsOptions _vsOptions;
+//    private VisualsOptions _vsOptions;
     private SeedInfo _seedInfo;
     private PlateInfo _plateInfo;
     private BingoNumberBoard _numberBoard;
@@ -230,6 +231,8 @@ namespace BankoProject.Models
       BnkOptions = new BankoOptions();
       CmpOptions = new CompetitionOptions();
       //VsOptions = new VisualsOptions();
+      //TODO: VSOPTIONS IS OUT, LONG LIVE WINDOWSETTINGS
+      //eg pls make sure it is not used anywehre
       SInfo = new SeedInfo(seed);
       PInfo = new PlateInfo();
       WindowSettings = new WinSettings();

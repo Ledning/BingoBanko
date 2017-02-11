@@ -53,7 +53,9 @@ namespace BankoProject.ViewModels
     PH means placeholder
   */
 
-
+    //TODO: Hvis vi skal have noget applicationwide adjustment of contrast and shit, skal der bindes mange forskellige steder eller noget i den stil. 
+    //it might be possible be easier
+    //TODO: work on prez scren is not done; in particular there is missing a lot of functions for handling blank screen stuff
 
   class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>
   {

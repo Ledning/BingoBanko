@@ -31,6 +31,11 @@ namespace BankoProject.Models
     private int _selectedPresScreen;
     private SolidColorBrush backgroundBrush;
     private WindowState _state;
+    private FullscreenOverlaySettings _fullscreenOverlaySettings;
+
+
+
+
 
 
     #region Props
@@ -90,6 +95,15 @@ namespace BankoProject.Models
       get { return _state; }
       set { _state = value; NotifyOfPropertyChange(() => State); }
     }
+
+
+
+    public FullscreenOverlaySettings OverlaySettings
+    {
+      get { return _fullscreenOverlaySettings; }
+      set { _fullscreenOverlaySettings = value; NotifyOfPropertyChange(()=>OverlaySettings);}
+    }
+
     #endregion
 
 

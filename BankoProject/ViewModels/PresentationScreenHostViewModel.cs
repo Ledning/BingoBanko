@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Media;
 using BankoProject.Models;
 using BankoProject.Tools;
+using BankoProject.Tools.Events;
 using BankoProject.ViewModels.PresentationScreen;
 using Caliburn.Micro;
 
@@ -10,11 +12,11 @@ namespace BankoProject.ViewModels
   /// <summary>
   ///   This is where you would set up all the shit, so when this is put up, the rest follows.
   /// </summary>
-  class PresentationScreenHostViewModel : Conductor<IPresentationScreenItem>.Collection.OneActive
+  class PresentationScreenHostViewModel : Conductor<IPresentationScreenItem>.Collection.OneActive, IHandle<CommunicationObject>
   {
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
     private BingoEvent _event;
-    private IPresentationScreenItem _currentPrezItem;
+    private IPresentationScreenItem _currentPrezItem = new FullscreenImageViewModel();
 
     public PresentationScreenHostViewModel()
     {
@@ -31,6 +33,7 @@ namespace BankoProject.ViewModels
       Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[1].WorkingArea.Left;
       Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[1].WorkingArea.Top;
       Event.WindowSettings.PrsSettings.State = WindowState.Maximized;
+      ActivateItem(CurrentPrezItem);
     }
 
     #endregion
@@ -63,5 +66,31 @@ namespace BankoProject.ViewModels
       _log.Warn("No Presentation screen was found. ERROR");
       return -1; 
     }
+
+    #region Implementation of IHandle<CommunicationObject>
+
+    public void Handle(CommunicationObject message)
+    {
+      if (message.Message == ApplicationWideEnums.MessageTypes.FullscreenOverlay)
+      {
+        ActivateItem(new FullscreenImageViewModel());
+      }
+      else if (message.Message == ApplicationWideEnums.MessageTypes.BoardOverview)
+      {
+        ActivateItem(new PlateOverlayViewModel());
+      }
+      else if (message.Message == ApplicationWideEnums.MessageTypes.LatestNumbers)
+      {
+        ActivateItem(new NumberBarViewModel());
+      }
+      else if (message.Message == ApplicationWideEnums.MessageTypes.BingoHappened)
+      {
+        ActivateItem(new BingoScreenViewModel());
+      }
+      else
+        _log.Info("Not handled by PresentationScreen.");
+    }
+
+    #endregion
   }
 }
