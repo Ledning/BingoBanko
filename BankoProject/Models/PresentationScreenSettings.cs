@@ -32,6 +32,7 @@ namespace BankoProject.Models
     private SolidColorBrush backgroundBrush;
     private WindowState _state;
     private FullscreenOverlaySettings _fullscreenOverlaySettings;
+    private bool _closeWindow = false;
 
 
 
@@ -66,9 +67,7 @@ namespace BankoProject.Models
 
     public PresentationScreenSettings()
     {
-      //PresentationScreenItems.Add(new NumberBarViewModel());
-      //PresentationScreenItems.Add(new BingoScreenViewModel());
-      //PresentationScreenItems.Add(new FullscreenImageViewModel());
+      OverlaySettings = new FullscreenOverlaySettings();;
     }
     public int SelectedPresScreen
     {
@@ -102,6 +101,12 @@ namespace BankoProject.Models
     {
       get { return _fullscreenOverlaySettings; }
       set { _fullscreenOverlaySettings = value; NotifyOfPropertyChange(()=>OverlaySettings);}
+    }
+
+    public bool CloseWindow
+    {
+      get { return _closeWindow; }
+      set { _closeWindow = value; NotifyOfPropertyChange(()=>CloseWindow);}
     }
 
     #endregion

@@ -205,12 +205,10 @@ namespace BankoProject.Models
       WindowSettings = new WinSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
-      WindowSettings = new WinSettings();
       _creationTime = DateTime.Now;
       NotifyOfPropertyChange(() => CreationTime);
       _initialised = true;
       IsBingoRunning = false;
-
       _log.Info("Event object initialization done.");
     }
 

@@ -20,19 +20,22 @@ namespace BankoProject.ViewModels
 
     public PresentationScreenHostViewModel()
     {
-      Event = IoC.Get<BingoEvent>();
+
     }
 
     #region Overrides of ViewAware
 
     protected override void OnViewReady(object view)
     {
+      Event = IoC.Get<BingoEvent>();
       Event.WindowSettings.PrsSettings.Width = (int)Event.WindowSettings.Screens[1].WorkingArea.Width;
       Event.WindowSettings.PrsSettings.Height = (int)Event.WindowSettings.Screens[1].WorkingArea.Height;
 
       Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[1].WorkingArea.Left;
       Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[1].WorkingArea.Top;
       Event.WindowSettings.PrsSettings.State = WindowState.Maximized;
+      CurrentPrezItem = new FullscreenImageViewModel();
+      //ActivateItem(new NumberBarViewModel());
       ActivateItem(CurrentPrezItem);
     }
 
@@ -74,18 +77,27 @@ namespace BankoProject.ViewModels
       if (message.Message == ApplicationWideEnums.MessageTypes.FullscreenOverlay)
       {
         ActivateItem(new FullscreenImageViewModel());
+        _log.Info("fullscrnOLhandled");
       }
       else if (message.Message == ApplicationWideEnums.MessageTypes.BoardOverview)
       {
         ActivateItem(new PlateOverlayViewModel());
+        _log.Info("BoardOLhandled");
       }
       else if (message.Message == ApplicationWideEnums.MessageTypes.LatestNumbers)
       {
         ActivateItem(new NumberBarViewModel());
+        _log.Info("latestnumolhandled");
       }
       else if (message.Message == ApplicationWideEnums.MessageTypes.BingoHappened)
       {
         ActivateItem(new BingoScreenViewModel());
+        _log.Info("bingohapndOLHandled");
+      }
+      else if (message.Message == ApplicationWideEnums.MessageTypes.ClosePrez)
+      {
+          TryClose();
+        _log.Info("Prez closed.");
       }
       else
         _log.Info("Not handled by PresentationScreen.");

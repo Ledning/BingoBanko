@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
 
 namespace BankoProject.Models
@@ -13,7 +14,7 @@ namespace BankoProject.Models
     private bool _emptyScreen; //Denne skal hookes ind i blankt overlay knappen
     private bool _boardViewScreen;
     private bool _userDefinedScreen;
-    private string _isOverlayVisible;
+    private Visibility _isOverlayVisible = Visibility.Visible;
     private string _selectedBackgroundPath;
 
 
@@ -28,7 +29,7 @@ namespace BankoProject.Models
 
     #region props
 
-    public string IsOverlayVisible
+    public Visibility IsOverlayVisible
     {
       get { return _isOverlayVisible; }
       set { _isOverlayVisible = value; NotifyOfPropertyChange(() => IsOverlayVisible); }

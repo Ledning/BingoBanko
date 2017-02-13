@@ -26,7 +26,7 @@ namespace BankoProject.ViewModels.PresentationScreen
     {
       _winMan = IoC.Get<IWindowManager>();
       _events = IoC.Get<IEventAggregator>();
-      _bingoEvent = IoC.Get<BingoEvent>();
+      Event = IoC.Get<BingoEvent>();
     }
 
     public void FontSizeConverter()

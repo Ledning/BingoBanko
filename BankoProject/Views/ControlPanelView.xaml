@@ -33,10 +33,11 @@
           <Grid.Effect>
             <DropShadowEffect BlurRadius="15"/>
           </Grid.Effect>
-          <ToggleButton  Content="Stopur?" metro:ControlsHelper.CornerRadius="0" Margin="153,24,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="177"/>
+          <ToggleButton  Content="Stopur?"  metro:ControlsHelper.CornerRadius="0" Margin="153,24,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="177"/>
+          <ToggleButton x:Name="ActivateLatestNumbersOverlay_Copy" Content="Seneste tal" metro:ControlsHelper.CornerRadius="0" Margin="182,499,0,-125" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="176"/>
         </Grid>
         <Label x:Name="TogglesVisualsLabel" Content="Storskærm" VerticalAlignment="Top" Margin="29,144,398,0" Style="{StaticResource ControlPanelLabel}" HorizontalAlignment="Center" Width="151"/>
-        <ToggleButton x:Name="ActivateLatestNumbersOverlay" Content="Seneste tal" metro:ControlsHelper.CornerRadius="0" Margin="182,535,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="176"/>
+        <ToggleButton x:Name="ActivateLatestNumbersOverlay" Content="Seneste tal" metro:ControlsHelper.CornerRadius="0" Margin="182,504,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="176"/>
 
         <Grid x:Name="BGVisualsGrid" Margin="29,0,30,192" Height="175" VerticalAlignment="Bottom" Background="#FF3E8BCB">
           <Grid.Effect>
@@ -49,9 +50,10 @@
         </Grid>
         <Label x:Name="BackgroundVisualsLabel" Content="Overlay" VerticalAlignment="Bottom" Margin="28,0,0,367" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="152" Style="{StaticResource ControlPanelLabel}"/>
         <Button x:Name="ActivateBingoHappenedOverlay" Content="Bingo" Margin="53,0,47,112" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="36" Height="58" VerticalAlignment="Bottom"/>
-        <ToggleButton x:Name="ActivateFullscreenOverlay" ToolTip="Viser et statisk fuldskærmsoverlay, enten see-through eller" Content="Fuldskærms overlay" metro:ControlsHelper.CornerRadius="0" Margin="153,354,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="237"/>
-        <ToggleButton x:Name="ActivatePlateOverviewOverlay" ToolTip="Viser et stort billede med et overblik over tal der er udtrukket" Content="Spiloverblik" metro:ControlsHelper.CornerRadius="0" Margin="153,285,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="237"/>
-        <ToggleButton x:Name="ActivateFullscreenOverlay_Copy" ToolTip="Gennemsigtigt overlay, brug når der skal vises en video eller lign." Content="Blankt overlay" metro:ControlsHelper.CornerRadius="0" Margin="153,440,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="237"/>
+        <ToggleButton x:Name="ActivateFullscreenOverlay" ToolTip="Viser et statisk fuldskærmsoverlay, enten see-through eller" Content="Fuldskærms overlay" metro:ControlsHelper.CornerRadius="0" Margin="153,362,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="237"/>
+        <ToggleButton x:Name="ActivatePlateOverviewOverlay" ToolTip="Viser et stort billede med et overblik over tal der er udtrukket" Content="Spiloverblik" metro:ControlsHelper.CornerRadius="0" Margin="153,290,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="237"/>
+        <ToggleButton x:Name="ActivateFullscreenOverlay_Copy" ToolTip="Gennemsigtigt overlay, brug når der skal vises en video eller lign." Content="Blankt overlay" metro:ControlsHelper.CornerRadius="0" Margin="153,430,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="237"/>
+        <ToggleButton x:Name="SpawnPrezScreen" Content="Åben/luk Prz" metro:ControlsHelper.CornerRadius="0" Margin="10,61,0,0" Height="40" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="170"/>
       </Grid>
     </Border>
     <Border x:Name="BankoBorder" BorderBrush="Black" BorderThickness="1" Margin="625,10,650,10" Background="#FF74ACFA" CornerRadius="3">
@@ -133,7 +135,7 @@
         <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" VerticalAlignment="Top" Margin="0,489,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
       </Grid>
     </Border>
-    <Button x:Name="SpawnPrezScreen" Content="Tilbage til Hovedmenu" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" Width="151" Height="46" FontSize="14" Background="#FF878787" Opacity="0.5"/>
+    <Button x:Name="GoToWelcomeView" Content="Tilbage til Hovedmenu" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" Width="151" Height="46" FontSize="14" Background="#FF878787" Opacity="0.5"/>
 
   </Grid>
 

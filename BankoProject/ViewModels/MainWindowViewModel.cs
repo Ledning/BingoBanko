@@ -153,7 +153,8 @@ namespace BankoProject.ViewModels
           GeneratePlates();
           break;
         case ApplicationWideEnums.MessageTypes.RbPrezScreen:
-          SpawnPrezScreen();
+          _log.Info("method moved. INFO");
+          //SpawnPrezScreen();
           break;
         case ApplicationWideEnums.MessageTypes.CreateApplicationDirectories:
           _log.Info("Creating directories...");
@@ -206,11 +207,6 @@ namespace BankoProject.ViewModels
       ActivateItem(new ControlPanelViewModel());
       DisplayName = "Bingo Bango: " + Event.EventTitle;
       Event.IsBingoRunning = true;
-    }
-
-    public void SpawnPrezScreen()
-    {
-      _winMan.ShowWindow(new PresentationScreenHostViewModel());
     }
 
     #endregion

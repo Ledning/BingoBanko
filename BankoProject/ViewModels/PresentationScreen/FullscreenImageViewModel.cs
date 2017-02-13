@@ -14,8 +14,10 @@ namespace BankoProject.ViewModels.PresentationScreen
   {
     private BingoEvent _event;
 
+    //Der burde ikke være problemer med at køre IOC her, da den bliver automatisk kaldt ved instantation af viewet
     public FullscreenImageViewModel()
     {
+      Event = IoC.Get<BingoEvent>();
       ShowStandard();
       SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol" + "\\Backgrounds";
       var dueTime = TimeSpan.FromSeconds(10);
@@ -27,8 +29,7 @@ namespace BankoProject.ViewModels.PresentationScreen
 
     protected override void OnViewReady(object view)
     {
-      Event = IoC.Get<BingoEvent>();
-      ShowEmpty();
+      ShowStandard();
     }
 
     #endregion
@@ -36,11 +37,12 @@ namespace BankoProject.ViewModels.PresentationScreen
     #region Background stuff
 
     private const string resourceFolder = "/BankoProject;component/Resources/";
-    private readonly string standardOverlay = resourceFolder + "frontpgggg.bmp";
+    private readonly string standardOverlay = resourceFolder + "frontpgggg.PNG";
     private Visibility _isOverlayVisible = Visibility.Visible;
     private string _selectedBackgroundPath; //for whatever is shown on the overlay
     private string _saveDirectory;
     private string _dropdownSelectedBackground;
+    private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
 
 
     /// <summary>
@@ -48,21 +50,19 @@ namespace BankoProject.ViewModels.PresentationScreen
     /// </summary>
     public void ShowEmpty()
     {
-      IsOverlayVisible = Visibility.Hidden;
+      Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Hidden;
     }
 
     public void ShowStandard()
     {
-      IsOverlayVisible = Visibility.Visible;
-      SelectedBackgroundPath = standardOverlay;
+      Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
+     _log.Info(standardOverlay);
+      Event.WindowSettings.PrsSettings.OverlaySettings.SelectedBackgroundPath = standardOverlay;
     }
 
     public void ShowCustom()
     {
-      IsOverlayVisible = Visibility.Visible;
-
-
-
+      Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
     }
 
 
@@ -102,25 +102,7 @@ namespace BankoProject.ViewModels.PresentationScreen
     #region props
 
 
-    public string SelectedBackgroundPath
-    {
-      get { return _selectedBackgroundPath; }
-      set { _selectedBackgroundPath = value; NotifyOfPropertyChange(() => SelectedBackgroundPath); }
-    }
-
-    public Visibility IsOverlayVisible
-    {
-      get
-      {
-        return _isOverlayVisible;
-      }
-
-      set
-      {
-        _isOverlayVisible = value;
-        NotifyOfPropertyChange(()=> IsOverlayVisible);
-      }
-    }
+    
 
     public string SaveDirectory
     {

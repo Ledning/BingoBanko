@@ -43,8 +43,6 @@ namespace BankoProject.ViewModels
       Event = IoC.Get<BingoEvent>();
       Event.BnkOptions.SingleRow = true;
       //TODO: Fix this so these options are taken care of in bingoevent or in winsettings
-      //Event.VsOptions.EmptyScreen = true;
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
 
@@ -56,8 +54,7 @@ namespace BankoProject.ViewModels
 
     public void SpawnPrezScreen()
     {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.RbPrezScreen,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
+      _winMan.ShowWindow(new PresentationScreenHostViewModel());
     }
 
     #region props

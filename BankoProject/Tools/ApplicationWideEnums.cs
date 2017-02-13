@@ -26,7 +26,8 @@ namespace BankoProject.Tools
       FullscreenOverlay,
       BoardOverview,
       LatestNumbers, 
-      BingoHappened
+      BingoHappened, 
+      ClosePrez
     }
 
     /// <summary>
