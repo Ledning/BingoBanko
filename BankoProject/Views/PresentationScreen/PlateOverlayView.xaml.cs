@@ -18,9 +18,9 @@ namespace BankoProject.Views.PresentationScreen
   /// <summary>
   /// Interaction logic for PlateOverlayViewModel.xaml
   /// </summary>
-  public partial class PlateOverlayViewModel : UserControl
+  public partial class PlateOverlayView : UserControl
   {
-    public PlateOverlayViewModel()
+    public PlateOverlayView()
     {
       InitializeComponent();
     }

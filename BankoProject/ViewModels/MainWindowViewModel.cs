@@ -361,6 +361,7 @@ namespace BankoProject.ViewModels
       BingoEvent ev = new BingoEvent();
       ev = DeSerializeObject<BingoEvent>(SaveDirectory + "\\BingoBankoKontrol" + "\\LatestEvents" + "\\" + sessionName + ".xml");
       CopyEvent(ev, Event);
+      Event.WindowSettings.PrsSettings.IsOverLayOpen = false;
       //TODO: There should be no errors at this point, provided that no files has been corrupted or anything. if it has, the application will crash
       //We should come up with some way of avoiding this, might be a buch of valuechecks or something. 
       return true;

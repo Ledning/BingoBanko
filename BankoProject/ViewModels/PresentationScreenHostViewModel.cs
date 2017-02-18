@@ -16,6 +16,7 @@ namespace BankoProject.ViewModels
   {
     private readonly ILog _log = LogManager.GetLog(typeof(PresentationScreenHostViewModel));
     private BingoEvent _event;
+    private IEventAggregator _eventAgg;
     private IPresentationScreenItem _currentPrezItem = new FullscreenImageViewModel();
 
     public PresentationScreenHostViewModel()
@@ -28,6 +29,8 @@ namespace BankoProject.ViewModels
     protected override void OnViewReady(object view)
     {
       Event = IoC.Get<BingoEvent>();
+      _eventAgg = IoC.Get<IEventAggregator>();
+      _eventAgg.Subscribe(this);
       Event.WindowSettings.PrsSettings.Width = (int)Event.WindowSettings.Screens[1].WorkingArea.Width;
       Event.WindowSettings.PrsSettings.Height = (int)Event.WindowSettings.Screens[1].WorkingArea.Height;
 
@@ -73,33 +76,29 @@ namespace BankoProject.ViewModels
 
     public void Handle(CommunicationObject message)
     {
-      if (message.Message == ApplicationWideEnums.MessageTypes.FullscreenOverlay)
+      switch (message.Message)
       {
-        ActivateItem(new FullscreenImageViewModel());
-        _log.Info("fullscrnOLhandled");
-      }
-      else if (message.Message == ApplicationWideEnums.MessageTypes.BoardOverview)
-      {
-        ActivateItem(new PlateOverlayViewModel());
-        _log.Info("BoardOLhandled");
-      }
-      else if (message.Message == ApplicationWideEnums.MessageTypes.LatestNumbers)
-      {
-        ActivateItem(new NumberBarViewModel());
-        _log.Info("latestnumolhandled");
-      }
-      else if (message.Message == ApplicationWideEnums.MessageTypes.BingoHappened)
-      {
-        ActivateItem(new BingoScreenViewModel());
+        case ApplicationWideEnums.MessageTypes.FullscreenOverlay:
+          ActivateItem(new FullscreenImageViewModel());
+          _log.Info("fullscrnOLhandled");
+          break;
+        case ApplicationWideEnums.MessageTypes.BoardOverview:
+          ActivateItem(new PlateOverlayViewModel());
+          _log.Info("BoardOLhandled");
+          break;
+        case ApplicationWideEnums.MessageTypes.LatestNumbers:
+          ActivateItem(new NumberBarViewModel());
+          _log.Info("latestnumolhandled");
+          break;
+        case ApplicationWideEnums.MessageTypes.BingoHappened:
+          ActivateItem(new BingoScreenViewModel());
           _log.Info("bingohapndOLHandled");
-      }
-      else if (message.Message == ApplicationWideEnums.MessageTypes.ClosePrez)
-      {
+          break;
+        case ApplicationWideEnums.MessageTypes.ClosePrez:
           TryClose();
-        _log.Info("Prez closed.");
+          _log.Info("Prez closed.");
+          break;
       }
-      else
-        _log.Info("Not handled by PresentationScreen.");
     }
 
     #endregion

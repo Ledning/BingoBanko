@@ -8,9 +8,21 @@ using Caliburn.Micro;
 
 namespace BankoProject.ViewModels.PresentationScreen
 {
-  class PlateOverlayViewModel: Screen, IPresentationScreenItem
+  class PlateOverlayViewModel: Conductor<Screen>.Collection.OneActive, IPresentationScreenItem
   {
 
     //det store boardoverview
+    public PlateOverlayViewModel()
+    {
+    }
+
+    #region Overrides of ViewAware
+
+    protected override void OnViewReady(object view)
+    {
+      ActivateItem(new BoardViewModel());
+    }
+
+    #endregion
   }
 }
