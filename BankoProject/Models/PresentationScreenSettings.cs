@@ -33,6 +33,7 @@ namespace BankoProject.Models
     private WindowState _state;
     private FullscreenOverlaySettings _fullscreenOverlaySettings;
     private bool _closeWindow = false;
+    private bool _isOverLayOpen = false;
 
 
 
@@ -107,6 +108,12 @@ namespace BankoProject.Models
     {
       get { return _closeWindow; }
       set { _closeWindow = value; NotifyOfPropertyChange(()=>CloseWindow);}
+    }
+
+    public bool IsOverLayOpen
+    {
+      get { return _isOverLayOpen; }
+      set { _isOverLayOpen = value; NotifyOfPropertyChange(()=> IsOverLayOpen);}
     }
 
     #endregion

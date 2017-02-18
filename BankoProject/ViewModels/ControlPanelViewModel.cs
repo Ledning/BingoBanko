@@ -7,6 +7,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using BankoProject.Models;
 using BankoProject.Tools.Events;
 using BankoProject.ViewModels.PresentationScreen;
@@ -56,7 +57,9 @@ namespace BankoProject.ViewModels
 
     public void SpawnPrezScreen()
     {
+      if (Event.WindowSettings.PrsSettings.IsOverLayOpen == true) return;
       _winMan.ShowWindow(new PresentationScreenHostViewModel());
+      //Event.WindowSettings.PrsSettings.IsOverLayOpen = true;
     }
 
     #region props
@@ -152,11 +155,9 @@ namespace BankoProject.ViewModels
 
     #endregion
 
-    public void ShowLatestNumbers()
+    public void StopWatch()
     {
-      throw new NotImplementedException();
     }
-
 
 
     //this method gets a random number and marks the boardview, that that number is now marked
@@ -224,37 +225,47 @@ namespace BankoProject.ViewModels
     }
 
     #region PresentationActivation
+
     public void ActivateFullscreenOverlay()
     {
+      SpawnPrezScreen();
+
       _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlay,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
+      Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
     }
 
     public void ActivateLatestNumbersOverlay()
     {
+      SpawnPrezScreen();
+
       _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.LatestNumbers,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public void ActivatePlateOverviewOverlay()
     {
+      SpawnPrezScreen();
+
       _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BoardOverview,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public void ActivateBingoHappenedOverlay()
     {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BingoHappened, ApplicationWideEnums.SenderTypes.ControlPanelView));
+      SpawnPrezScreen();
+
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BingoHappened,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
+
     public void ConfirmFullscreenOverlayChange()
     {
       throw new NotImplementedException();
       //TODO: til den lille aktiveringsknap, hensigten er at man klikke rpå den når man vil ændre ift hvad der står i de 3 radiobuttons
     }
 
-
     #endregion
-
 
     #region ResetStuff
 
