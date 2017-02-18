@@ -4,9 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Visibility="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible}">
+             d:DesignHeight="300" d:DesignWidth="300" Height="{Binding Event.WindowSettings.PrsSettings.Height}" Width="{Binding Event.WindowSettings.PrsSettings.Width}" Visibility="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible}">
   <UserControl.Background>
-    <ImageBrush ImageSource="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.SelectedBackgroundPath}" ></ImageBrush>
+    <ImageBrush ImageSource="/BankoProject;component/Resources/10995537_695452673897093_536015149067717983_o.jpg" ></ImageBrush>
   </UserControl.Background>
-  
 </UserControl>

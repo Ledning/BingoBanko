@@ -44,7 +44,8 @@ namespace BankoProject.ViewModels.PresentationScreen
     private string _dropdownSelectedBackground;
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
 
-
+    //
+    //Visibility="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible}"
     /// <summary>
     /// Shows a seethrough overlay, eg nothing
     /// </summary>

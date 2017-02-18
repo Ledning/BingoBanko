@@ -14,7 +14,7 @@ namespace BankoProject.ViewModels
   /// </summary>
   class PresentationScreenHostViewModel : Conductor<IPresentationScreenItem>.Collection.OneActive, IHandle<CommunicationObject>
   {
-    private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
+    private readonly ILog _log = LogManager.GetLog(typeof(PresentationScreenHostViewModel));
     private BingoEvent _event;
     private IPresentationScreenItem _currentPrezItem = new FullscreenImageViewModel();
 
@@ -35,7 +35,6 @@ namespace BankoProject.ViewModels
       Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[1].WorkingArea.Top;
       Event.WindowSettings.PrsSettings.State = WindowState.Maximized;
       CurrentPrezItem = new FullscreenImageViewModel();
-      //ActivateItem(new NumberBarViewModel());
       ActivateItem(CurrentPrezItem);
     }
 
@@ -92,7 +91,7 @@ namespace BankoProject.ViewModels
       else if (message.Message == ApplicationWideEnums.MessageTypes.BingoHappened)
       {
         ActivateItem(new BingoScreenViewModel());
-        _log.Info("bingohapndOLHandled");
+          _log.Info("bingohapndOLHandled");
       }
       else if (message.Message == ApplicationWideEnums.MessageTypes.ClosePrez)
       {
