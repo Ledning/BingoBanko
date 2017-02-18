@@ -130,8 +130,8 @@
         <metro:NumericUpDown x:Name="ContestDuration" Value="{Binding ContestDuration}"  Height="40" VerticalAlignment="Top" Margin="42,489,0,0" FontSize="24" HorizontalAlignment="Left" Width="123"/>
         <ListBox x:Name="TeamsContestComboBox" ItemsSource="{Binding Path = AllTeams, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DisplayMemberPath="TeamInfo" Margin="42,0,42,114" Height="250" VerticalAlignment="Bottom"/>
         <Label x:Name="AddTeamsLabel" Content="Tilføjede hold" VerticalAlignment="Bottom" Margin="174,0,174,385" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
-        <Label x:Name="PlaceHolderLabel" Content="Place holder" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,434,29,0" Width="190" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
-        <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" VerticalAlignment="Top" Margin="0,489,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
+        <Label x:Name="PlaceHolderLabel" Content="Start hold nummer" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,434,29,0" Width="190" HorizontalContentAlignment="Center" Style="{StaticResource ControlPanelLabel}"/>
+        <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" Value="{Binding StartValue}" VerticalAlignment="Top" Margin="0,489,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
       </Grid>
     </Border>
     <Button x:Name="ShowWelcome" Content="Tilbage til Hovedmenu" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" Width="151" Height="46" FontSize="14" Background="#FF878787" Opacity="0.5"/>

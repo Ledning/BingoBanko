@@ -207,14 +207,9 @@ namespace BankoProject.ViewModels
       }
     }
 
-
-    
-
-
     //TODO: Ordentlig boks til titlen i WelcomewView.
     //Den ligner sku en sæk lort lige pt
-
-
+    
     public void OpenFileDialog()
     {
       var ofd = new Microsoft.Win32.OpenFileDialog()

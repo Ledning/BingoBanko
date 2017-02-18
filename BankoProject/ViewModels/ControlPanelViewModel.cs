@@ -35,6 +35,8 @@ namespace BankoProject.ViewModels
     {
       BoardVM = new BoardViewModel();
       ActivateItem(BoardVM);
+
+      this.StartValue = 0;
     }
 
     protected override void OnViewReady(object view)
@@ -99,7 +101,6 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => PlateNumberTextBox);
       }
     }
-
     public string ContestName
     {
       get { return _contestName; }
@@ -140,16 +141,23 @@ namespace BankoProject.ViewModels
       }
     }
 
-    private ObservableCollection<Team> _allTeams;
-
-    public ObservableCollection<Team> AllTeams
+    private int _startValue;
+    public int StartValue
     {
-      get { return _allTeams; }
+      get { return _startValue; }
       set
       {
-        _allTeams = value;
-        NotifyOfPropertyChange(() => AllTeams);
+        _startValue = value;
+        NotifyOfPropertyChange(() => StartValue);
       }
+    }
+    public CompetitionObject Competition { get; set; }
+    
+    private BindableCollection<Team> _allTeams;
+    public BindableCollection<Team> AllTeams
+    {
+      get { return _allTeams; }
+      set { _allTeams = value; NotifyOfPropertyChange(() => AllTeams); }
     }
 
     #endregion
@@ -204,17 +212,21 @@ namespace BankoProject.ViewModels
 
     public void AddTeamButton()
     {
-      throw new NotImplementedException();
+      CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams, this.ContestDuration, this.StartValue);
+      this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
+
+      this.Competition = competition;
+
+      
     }
 
     public void StartContest()
     {
-      CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams,
-        this.ContestDuration);
-
-      this.AllTeams = new ObservableCollection<Team>(competition.AllTeams);
-
-      //this should prolly also start some counter somewhere
+      _winMan.ShowWindow(new CountdownTimerControlViewModel(this.AllTeams));
+      
+      
+      // When this method is activated we can either change the view, or keep everything within
+      //current view. Which is best?
     }
 
     #region PresentationActivation

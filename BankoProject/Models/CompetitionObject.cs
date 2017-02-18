@@ -15,15 +15,20 @@ namespace BankoProject.Models
 
       //TODO: Samme deal her, der skal laves så man på en eller anden skør måde kan få det her til at virke, men med parameterless constructor. måske er det faktisk en slags mønster?
     public CompetitionObject() { }
-    public CompetitionObject(int numberOfParticipants, int numberOfTeams, int competitionDuration)
+    public CompetitionObject(int numberOfParticipants, int numberOfTeams, int competitionDuration, int startValue)
     {
+      int localstartValue = startValue;
       this.AllTeams = new List<Team>();
       for (int i = 0; i < numberOfTeams; i++)
       {
-        Team team = new Team();
+        Team team = new Team(numberOfParticipants);
         this.AllTeams.Add(team);
+        if (startValue != 0 && startValue > 0)
+        {
+          team.TeamNumber = localstartValue;
+          localstartValue++;
+        }
       }
-      this.NumberOfParticipants = numberOfParticipants;
       this.CompetitionDuration = CompetitionDuration;
     }
     public int NumberOfParticipants { get; set; }

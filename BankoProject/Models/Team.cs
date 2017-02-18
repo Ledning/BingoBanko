@@ -9,14 +9,15 @@ namespace BankoProject.Models
 {
   public class Team : PropertyChangedBase
   {
-    public Team()
+    public Team(int teamMembers)
     {
       this.Points = 0;
       this.TeamNumber = _teamNumber;
       _teamNumber++;
+      
     }
     private static int _teamNumber = 0;
-    private int TeamNumber;
+    public int TeamNumber;
 
     private int _points;
     public int Points
@@ -24,7 +25,6 @@ namespace BankoProject.Models
       get { return _points; }
       set { _points = value; NotifyOfPropertyChange(() => Points); }
     }
-
     public override string ToString()
     {
       //returns the team
