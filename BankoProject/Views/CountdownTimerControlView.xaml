@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:BankoProject.Views"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="BankoProject.Views.CountdownTimerControlView"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" Width="254.134" 
              >
-    <DockPanel RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="252">
+    <DockPanel RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="252" Height="303">
         <DockPanel.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
@@ -28,7 +29,7 @@
                 <Button x:Name="TimerReset" BorderBrush="{x:Null}" Background="#FF3E8BCB" Content="Nulstil"/>
             </StackPanel>
         </DockPanel>
-        <TextBox DockPanel.Dock="Bottom" HorizontalAlignment="Center" Width="62" BorderBrush="White" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxHeight="26" VerticalAlignment="Bottom" Custom:ControlsHelper.MouseOverBorderBrush="{x:Null}" Text="00:00:000" Custom:ControlsHelper.FocusBorderBrush="{x:Null}" Margin="0"/>
+        <TextBox DockPanel.Dock="Bottom" HorizontalAlignment="Left" Width="66" BorderBrush="White" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxHeight="26" VerticalAlignment="Bottom" Custom:ControlsHelper.MouseOverBorderBrush="{x:Null}" Text="{Binding CurrentTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=' HH:mm:ss:fff '}" Custom:ControlsHelper.FocusBorderBrush="{x:Null}" Margin="49,0,0,0"/>
         <ListBox ItemsSource="{Binding ButtonsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" IsSynchronizedWithCurrentItem="True" >
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -56,8 +57,21 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <StackPanel Height="260" Width="155">
-            <ListBox Height="255" Width="155" ItemsSource="{Binding AllTeams}" ></ListBox>
+        <StackPanel Height="260" Width="155" Background="White" >
+
+            <ListView Height="260" Width="155" ItemsSource="{Binding AllTeams}" DisplayMemberPath="AllTeams.TeamInfo" Background="White" HorizontalAlignment="Left">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="24" Header="First Name"
+                        DisplayMemberBinding="{Binding FirstName}"  />
+                        <GridViewColumn Width="12" Header="Last Name"  
+                        DisplayMemberBinding="{Binding LastName}" />
+                        <GridViewColumn Width="12" Header="Email Address"
+                        DisplayMemberBinding="{Binding Email}" />
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
         </StackPanel>
     </DockPanel>
 

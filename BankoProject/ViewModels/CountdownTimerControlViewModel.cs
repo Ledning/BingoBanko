@@ -19,17 +19,26 @@ namespace BankoProject.ViewModels
   {
     public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
     
-    private WindowManager winMan;
+    private WindowManager _winMan;
     
-    public CountdownTimerControlViewModel()
+    public CountdownTimerControlViewModel(BindableCollection<Team> allTeams)
     {
       CTBSVM = new CountdowntimerBigScreenViewModel();
-      DispatcherTimer timer = new DispatcherTimer();
-      this.Timer = timer;
+      
+      this.AllTeams = new BindableCollection<Team>(allTeams);
+      this.CurrentTime = new DateTime();
 
+      //setting up the dispatcher thing. This is obviously from stackoverflow..
+      this.Timer = new DispatcherTimer();
+      this.Timer.Tick += new EventHandler(dispatcherTimer_Tick);
+      this.Timer.Interval = new TimeSpan(0, 0, 1);
+      
     }
-    
-    #region GetterSetter
+    private void dispatcherTimer_Tick(object sender, EventArgs e)
+    {
+      this.CurrentTime = this.CurrentTime.AddSeconds(1);
+    }
+
 
     private BindableCollection<Team> _allTeams; 
     public BindableCollection<Team> AllTeams
@@ -38,8 +47,13 @@ namespace BankoProject.ViewModels
       set { _allTeams = value; NotifyOfPropertyChange(() => _allTeams); }
     }
     private DispatcherTimer Timer { get; set; }
-    
-    #endregion
+    private DateTime _currentTime;
+
+    public DateTime CurrentTime
+    {
+      get { return _currentTime; }
+      set { _currentTime = value; NotifyOfPropertyChange( () => CurrentTime); }
+    }
 
     public void TimerStart()
     {
@@ -59,8 +73,10 @@ namespace BankoProject.ViewModels
 
     public void TimerReset()
     {
-      throw new NotImplementedException();
+      if (!this.Timer.IsEnabled)
+      {
+        this.CurrentTime = new DateTime();
+      }
     }
-
   }
 }

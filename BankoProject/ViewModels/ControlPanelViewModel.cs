@@ -144,10 +144,9 @@ namespace BankoProject.ViewModels
       }
     }
     public CompetitionObject Competition { get; set; }
-
-
-    private ObservableCollection<Team> _allTeams;
-    public ObservableCollection<Team> AllTeams
+    
+    private BindableCollection<Team> _allTeams;
+    public BindableCollection<Team> AllTeams
     {
       get { return _allTeams; }
       set { _allTeams = value; NotifyOfPropertyChange(() => AllTeams); }
@@ -206,21 +205,19 @@ namespace BankoProject.ViewModels
     public void AddTeamButton()
     {
       CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams, this.ContestDuration, this.StartValue);
-      this.AllTeams = new ObservableCollection<Team>(competition.AllTeams);
+      this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
 
       this.Competition = competition;
 
-
-
+      
     }
 
     public void StartContest()
     {
-      _winMan.ShowWindow(new CountdownTimerControlViewModel());
+      _winMan.ShowWindow(new CountdownTimerControlViewModel(this.AllTeams));
       
-
-
-      // When this method is activated a can either change the view, or keep everything within
+      
+      // When this method is activated we can either change the view, or keep everything within
       //current view. Which is best?
     }
 
