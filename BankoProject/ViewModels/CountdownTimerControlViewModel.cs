@@ -4,102 +4,63 @@ using Caliburn.Micro;
 using Catel.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace BankoProject.ViewModels
 {
-  public sealed class CountdownTimerControlViewModel : Screen, IMainViewItem
+  public class CountdownTimerControlViewModel : Screen, IMainViewItem
   {
     public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
-    private Timer tmr;
-    private bool _isTmrRunning;
-
-
-
-    private BindableCollection<Deltagere> _buttonsList;    //How many buttons do you want? dont matter 1 button call polit biru
-    private int _counter = 0, counterStartVal = 0; //do all the counting in miliseconds, mod by 60 if needed min or shit.
-    private double countInterval = 10;
-    private WindowManager winMan;
-
     
-    public CountdownTimerControlViewModel(WindowManager wman)
+    private WindowManager winMan;
+    
+    public CountdownTimerControlViewModel()
     {
-      //initalization
-      tmr = new Timer(countInterval);
-      tmr.Elapsed += HandleTimerCountdown;
-      _buttonsList = new BindableCollection<Deltagere>(); //basically list of players
       CTBSVM = new CountdowntimerBigScreenViewModel();
-      winMan = wman;
-    }
+      DispatcherTimer timer = new DispatcherTimer();
+      this.Timer = timer;
 
-    public void timerStart()
-    {
-      tmr.Start();
-      IsTmrRunning = true;
     }
-    public void timerStop()
-    {
-      tmr.Stop();
-      IsTmrRunning = false;
-    }
-    public void timerReset()
-    {
-      timerStop();
-      Counter = counterStartVal;
-    }
-
-    private void HandleTimerCountdown(object source, ElapsedEventArgs e)
-    {
-      Counter = Counter - (int)countInterval;
-    }
+    
     #region GetterSetter
-    public int Counter
+
+    private BindableCollection<Team> _allTeams; 
+    public BindableCollection<Team> AllTeams
     {
-      get
-      {
-        return _counter;
-      }
-
-      set
-      {
-        _counter = value;
-        CTBSVM.Counter = value;
-
-      }
+      get { return _allTeams; }
+      set { _allTeams = value; NotifyOfPropertyChange(() => _allTeams); }
     }
-
-    public BindableCollection<Deltagere> ButtonsList
-    {
-      get
-      {
-        return _buttonsList;
-      }
-
-      set
-      {
-        _buttonsList = value;
-        CTBSVM.ButtonsList = value;
-        NotifyOfPropertyChange(() => ButtonsList);
-      }
-    }
-
-    public bool IsTmrRunning
-    {
-      get
-      {
-        return _isTmrRunning;
-      }
-
-      set
-      {
-        _isTmrRunning = value;
-      }
-    }
+    private DispatcherTimer Timer { get; set; }
+    
     #endregion
+
+    public void TimerStart()
+    {
+      if (!this.Timer.IsEnabled)
+      {
+        this.Timer.Start();
+      }
+    }
+
+    public void TimerStop()
+    {
+      if (this.Timer.IsEnabled)
+      {
+        this.Timer.Stop();
+      }
+    }
+
+    public void TimerReset()
+    {
+      throw new NotImplementedException();
+    }
+
   }
 }

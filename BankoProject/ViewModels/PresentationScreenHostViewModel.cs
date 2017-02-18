@@ -40,25 +40,24 @@ namespace BankoProject.ViewModels
     }
 
     #endregion
-
   
+
     public BingoEvent Event
     {
       get { return _event; }
-
-      set
-      {
-        _event = value;
-        NotifyOfPropertyChange(() => Event);
-      }
+      set { _event = value; NotifyOfPropertyChange(() => Event); }
     }
 
     public IPresentationScreenItem CurrentPrezItem
     {
       get { return _currentPrezItem; }
-      set { _currentPrezItem = value; ActivateItem(CurrentPrezItem);  NotifyOfPropertyChange(()=>CurrentPrezItem);}
+      set
+      {
+        _currentPrezItem = value;
+        ActivateItem(CurrentPrezItem);
+        NotifyOfPropertyChange(() => CurrentPrezItem);
+      }
     }
-
 
     public int GetPresentationScreen()
     {
@@ -69,6 +68,7 @@ namespace BankoProject.ViewModels
       _log.Warn("No Presentation screen was found. ERROR");
       return -1; 
     }
+    
 
     #region Implementation of IHandle<CommunicationObject>
 
