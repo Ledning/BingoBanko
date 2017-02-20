@@ -7,8 +7,13 @@ using Caliburn.Micro;
 
 namespace BankoProject.Models
 {
+  [Serializable]
   public class Team : PropertyChangedBase
   {
+    public Team()
+    {
+      
+    }
     public Team(int teamMembers)
     {
       this.Points = 0;

@@ -48,6 +48,7 @@ namespace BankoProject.ViewModels
       //TODO: Fix this so these options are taken care of in bingoevent or in winsettings
       przScrnDelay();
       Event.WindowSettings.PrsSettings.OverlaySettings.StdScrnOl = true;
+      Event.WindowSettings.PrsSettings.OverlaySettings.UpdateBackgrounds();
     }
 
 

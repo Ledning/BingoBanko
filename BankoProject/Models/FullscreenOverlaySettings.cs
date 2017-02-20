@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using BankoProject.ViewModels;
 using Caliburn.Micro;
 using Catel.Collections;
 
@@ -18,15 +19,20 @@ namespace BankoProject.Models
     private string _selectedBackgroundPath;
     private bool _stdScrnOL;
     private int _selectedIndex = 0;
-    public BindableCollection<string> CustomOverlayImages = new BindableCollection<string>();
+    private BindableCollection<string> _customOverlayImages;
     private bool _scrnActivationRequired;
+    private const string resourceFolder = "\\BankoProject;component\\Resources\\";
+    private readonly string standardOverlay = resourceFolder + "StandardOverlay.jpg";
+    private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
 
 
     public FullscreenOverlaySettings()
     {
+
       var dueTime = TimeSpan.FromSeconds(10);
       var interval = TimeSpan.FromSeconds(10);
       RunPeriodicAsync(UpdateBackgrounds, dueTime, interval, CancellationToken.None);
+      CustomOverlayImages = new BindableCollection<string>();
     }
 
     private static async Task RunPeriodicAsync(System.Action onTick,
@@ -63,8 +69,12 @@ namespace BankoProject.Models
       FileInfo[] fInf = info.GetFiles().OrderBy(p => p.CreationTime).ToArray();
       foreach (var background in fInf)
       {
-        CustomOverlayImages.Add(background.FullName);
+        if (!CustomOverlayImages.Contains(background.FullName))
+        {
+          CustomOverlayImages.Add(background.FullName);
+        }
       }
+      NotifyOfPropertyChange(()=>CustomOverlayImagesConverter);
     }
 
     #region props
@@ -105,7 +115,8 @@ namespace BankoProject.Models
       set
       {
         _selectedIndex = value;
-        NotifyOfPropertyChange(() => SelectedIndex);
+          NotifyOfPropertyChange(() => SelectedIndex);
+        _log.Info(_selectedIndex.ToString());
       }
     }
 
@@ -126,6 +137,39 @@ namespace BankoProject.Models
       {
         _scrnActivationRequired = value;
         NotifyOfPropertyChange(() => ScrnActivationRequired);
+        if (ScrnActivationRequired && UserDefinedScreen)
+        {
+          SelectedBackgroundPath = CustomOverlayImages[SelectedIndex];
+          ScrnActivationRequired = false;
+        }
+        else if (ScrnActivationRequired && StdScrnOl)
+        {
+          SelectedBackgroundPath = standardOverlay;
+          ScrnActivationRequired = false;
+        }
+      }
+    }
+
+    public BindableCollection<string> CustomOverlayImages
+    {
+      get { return _customOverlayImages; }
+      set { _customOverlayImages = value; NotifyOfPropertyChange(()=>CustomOverlayImages); NotifyOfPropertyChange(()=>(CustomOverlayImagesConverter));}
+    }
+
+
+    public BindableCollection<string> CustomOverlayImagesConverter
+    {
+      get
+      {
+        BindableCollection<string> resultCollection = new BindableCollection<string>();
+          foreach (string item in CustomOverlayImages)
+          {
+            if (!(item.LastIndexOf("\\") < 0))
+            {
+              resultCollection.Add(item.Substring(item.LastIndexOf("\\", item.Length)));
+            }
+          }
+        return resultCollection;
       }
     }
 
