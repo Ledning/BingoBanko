@@ -18,11 +18,16 @@ namespace BankoProject.Models
     private Visibility _isOverlayVisible = Visibility.Visible;
     private string _selectedBackgroundPath;
     private bool _stdScrnOL;
+    [NonSerialized]
     private int _selectedIndex = 0;
+    [NonSerialized]
     private BindableCollection<string> _customOverlayImages;
     private bool _scrnActivationRequired;
+    [NonSerialized]
     private const string resourceFolder = "\\BankoProject;component\\Resources\\";
+    [NonSerialized]
     private readonly string standardOverlay = resourceFolder + "StandardOverlay.jpg";
+    [NonSerialized]
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
 
 
@@ -149,6 +154,7 @@ namespace BankoProject.Models
         }
       }
     }
+
 
     public BindableCollection<string> CustomOverlayImages
     {
