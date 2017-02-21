@@ -210,6 +210,7 @@ namespace BankoProject.Models
       _initialised = true;
       IsBingoRunning = false;
       _log.Info("Event object initialization done.");
+      PInfo.CardGenerator = new Generator(SInfo.Seed);
     }
 
     /// <summary>
@@ -228,9 +229,6 @@ namespace BankoProject.Models
       BingoNumberQueue = new BindableCollection<BingoNumber>();
       BnkOptions = new BankoOptions();
       CmpOptions = new CompetitionOptions();
-      //VsOptions = new VisualsOptions();
-      //TODO: VSOPTIONS IS OUT, LONG LIVE WINDOWSETTINGS
-      //eg pls make sure it is not used anywehre
       SInfo = new SeedInfo(seed);
       PInfo = new PlateInfo();
       WindowSettings = new WinSettings();
@@ -244,6 +242,7 @@ namespace BankoProject.Models
       IsResat = true;
       ResetTime = resetTime;
       _log.Info("Event object initialization done.");
+      PInfo.CardGenerator = new Generator(SInfo.Seed);
     }
 
 

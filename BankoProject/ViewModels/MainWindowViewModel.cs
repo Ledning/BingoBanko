@@ -172,9 +172,9 @@ namespace BankoProject.ViewModels
     {
       _log.Info("Async plate-generation running...");
       Event.Generating = true;
-      Generator gen = new Generator(Event.SInfo.Seed);
       PDFMaker maker = new PDFMaker();
-      maker.MakePDF(gen.GenerateCard(Event.PInfo.PlatesGenerated));
+      maker.MakePDF(Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated));
+      Event.PInfo.PlatesUsed = Event.PInfo.CardList.Count;
     }
 
 

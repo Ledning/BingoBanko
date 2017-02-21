@@ -155,6 +155,7 @@ namespace BankoProject.Models
       }
     }
 
+    //TODO: Når man på GUI skifter fra blank overlay til Numberbar viser den ingenting - sikker bare en variable der skal ændres
 
     public BindableCollection<string> CustomOverlayImages
     {

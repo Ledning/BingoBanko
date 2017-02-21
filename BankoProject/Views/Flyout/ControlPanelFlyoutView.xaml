@@ -13,9 +13,13 @@
     </StackPanel>
     <Rectangle Height="20"></Rectangle>
     <StackPanel x:Name="AdjustmentPanel">
-      <Button Height="40" x:Name="Somethingsomethingadjust" Content="stuff"></Button>
+      <Button Height="40" x:Name="Somethingsomethingadjust" Content="Ændr antal brugte plader"></Button>
     </StackPanel>
+    <Rectangle Height="20"/>
+    <Border BorderBrush="Black" BorderThickness="1" Height="46" Margin="50,0,50,0">
+      <Label x:Name="platesusedbox" Content="{Binding Event.PInfo.PlatesUsed}" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+    </Border>
 
-    
+
   </StackPanel>
 </UserControl>
