@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Caliburn.Micro;
 
 namespace BankoProject.Models
@@ -21,7 +22,7 @@ namespace BankoProject.Models
     private bool _fullPlate;
     private WinCondition _winCondition;
 
-    [NonSerialized]
+    [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(BankoOptions));
 
     public WinCondition Condition

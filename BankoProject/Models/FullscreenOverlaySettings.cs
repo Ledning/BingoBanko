@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Serialization;
 using BankoProject.ViewModels;
 using Caliburn.Micro;
 using Catel.Collections;
@@ -18,16 +19,16 @@ namespace BankoProject.Models
     private Visibility _isOverlayVisible = Visibility.Visible;
     private string _selectedBackgroundPath;
     private bool _stdScrnOL;
-    [NonSerialized]
+    [XmlIgnore]
     private int _selectedIndex = 0;
-    [NonSerialized]
+    [XmlIgnore]
     private BindableCollection<string> _customOverlayImages;
     private bool _scrnActivationRequired;
-    [NonSerialized]
+    [XmlIgnore]
     private const string resourceFolder = "\\BankoProject;component\\Resources\\";
-    [NonSerialized]
+    [XmlIgnore]
     private readonly string standardOverlay = resourceFolder + "StandardOverlay.jpg";
-    [NonSerialized]
+    [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
 
 

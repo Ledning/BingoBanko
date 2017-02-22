@@ -19,11 +19,9 @@ namespace BankoProject.Models
     private int _platesUsed;
 
     [XmlIgnore]
-    [NonSerialized]
     private Generator _cardGenerator;
 
     [XmlIgnore]
-    [NonSerialized]
     public List<int[,]> CardList;
 
     public PlateInfo()

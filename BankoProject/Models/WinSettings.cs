@@ -35,7 +35,7 @@ namespace BankoProject.Models
     /// List of all the available screens.
     /// </summary>
 
-    [NonSerialized]
+    [XmlIgnore]
     private BindableCollection<ScrnHelper> _screens;
 
 

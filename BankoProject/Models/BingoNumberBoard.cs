@@ -21,7 +21,7 @@ namespace BankoProject.Models
 
     private BindableCollection<BingoNumber> _board;
     private int _boardSize = 90;
-    [NonSerialized]
+    [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(BingoNumberBoard));
     private int _selectedIndex = 0;
 
