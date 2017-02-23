@@ -144,7 +144,10 @@ namespace BankoProject.ViewModels
       }
     }
 
-
+    public void exitProgram()
+    {
+      Environment.Exit(1);
+    }
 
     public void ShowControl()
     {

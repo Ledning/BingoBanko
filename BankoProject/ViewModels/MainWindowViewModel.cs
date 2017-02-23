@@ -99,6 +99,15 @@ namespace BankoProject.ViewModels
       set { _flyoutViewModel = value; NotifyOfPropertyChange(()=> FlyoutViewModel);}
     }
 
+
+    public void OnApplicationExit()
+    {
+      SaveSession();
+      Environment.Exit(1);
+    }
+    public void Show()
+    {
+    }
     //The function below can be used as a constructor for the view. Everything in it will happen after the view is loaded.
     protected override void OnViewReady(object view)
     {
@@ -153,8 +162,7 @@ namespace BankoProject.ViewModels
           GeneratePlates();
           break;
         case ApplicationWideEnums.MessageTypes.RbPrezScreen:
-          _log.Info("method moved. INFO");
-          //SpawnPrezScreen();
+          _log.Info("method moved. NOT TO BE USED");
           break;
         case ApplicationWideEnums.MessageTypes.CreateApplicationDirectories:
           _log.Info("Creating directories...");
@@ -174,7 +182,7 @@ namespace BankoProject.ViewModels
       Event.Generating = true;
       PDFMaker maker = new PDFMaker();
       maker.MakePDF(Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated));
-      Event.PInfo.PlatesUsed = Event.PInfo.CardList.Count;
+
     }
 
 
@@ -207,6 +215,7 @@ namespace BankoProject.ViewModels
       ActivateItem(new ControlPanelViewModel());
       DisplayName = "Bingo Bango: " + Event.EventTitle;
       Event.IsBingoRunning = true;
+      Event.PInfo.PlatesUsed = Event.PInfo.PlatesGenerated; //Just a standard value for platesused, vi antager bare at man bruger dem alle sammen. 
     }
 
     #endregion
@@ -406,16 +415,19 @@ namespace BankoProject.ViewModels
 
     #endregion
 
+    #region Consolidated async events
+
+    //TODO: Hopefully we can consolidate these calls in here. it is not very clear or readable as it is rn
+
+    #endregion
 
 
-    public void OnApplicationExit()
-    {
-      SaveSession();
-      Environment.Exit(1);
-    }
-    public void Show()
-    {
-    }
+
+
+
+
+
+
 
 
     //TODO: Somebody needs to look through the output log, and fix all the errors there. this is not easy, it takes a lot of time.

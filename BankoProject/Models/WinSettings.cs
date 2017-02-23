@@ -27,6 +27,7 @@ namespace BankoProject.Models
     private int _left;
     private int _top;
     private string currentWindow;
+    private int _choosenPresentationScreen;
 
     //This object holds reference to the current presentation screen. 
     private PresentationScreenSettings _prsSettings;
@@ -45,6 +46,7 @@ namespace BankoProject.Models
       Screens = new BindableCollection<ScrnHelper>(ScrnHelper.AllScreens);
       PrsSettings = new PresentationScreenSettings();
       PrsSettings.State = WindowState.Normal;
+      ChoosenPresentationScreen = 1;
     }
 
 
@@ -91,6 +93,12 @@ namespace BankoProject.Models
     {
       get { return currentWindow; }
       set { currentWindow = value;  NotifyOfPropertyChange(()=>CurrentWindow);}
+    }
+
+    public int ChoosenPresentationScreen
+    {
+      get { return _choosenPresentationScreen; }
+      set { _choosenPresentationScreen = value; NotifyOfPropertyChange(()=> ChoosenPresentationScreen);}
     }
   }
 #endregion

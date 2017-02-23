@@ -31,11 +31,11 @@ namespace BankoProject.ViewModels
       Event = IoC.Get<BingoEvent>();
       _eventAgg = IoC.Get<IEventAggregator>();
       _eventAgg.Subscribe(this);
-      Event.WindowSettings.PrsSettings.Width = (int)Event.WindowSettings.Screens[1].WorkingArea.Width;
-      Event.WindowSettings.PrsSettings.Height = (int)Event.WindowSettings.Screens[1].WorkingArea.Height;
+      Event.WindowSettings.PrsSettings.Width = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Width;
+      Event.WindowSettings.PrsSettings.Height = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Height;
 
-      Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[1].WorkingArea.Left;
-      Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[1].WorkingArea.Top;
+      Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Left;
+      Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Top;
       Event.WindowSettings.PrsSettings.State = WindowState.Maximized;
       CurrentPrezItem = new FullscreenImageViewModel();
       ActivateItem(CurrentPrezItem);
@@ -63,6 +63,7 @@ namespace BankoProject.ViewModels
 
     public int GetPresentationScreen()
     {
+      //TODO: Det her skal laves om så man kan vælge en specifik skærm fra en liste
       var screenNr = 0;
       for (; screenNr < Event.WindowSettings.Screens.Count; screenNr++)
         if (!Event.WindowSettings.Screens[screenNr].Primary)

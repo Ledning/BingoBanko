@@ -14,7 +14,8 @@
       <Setter Property="Height" Value="120"/>
     </Style>
     <Style TargetType="TextBox">
-
+      <Setter Property="Background" Value="Beige"></Setter>
+      <Setter Property="Foreground" Value="Black"></Setter>
     </Style>
     <Style TargetType="Window">
 
