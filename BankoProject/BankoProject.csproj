@@ -154,6 +154,7 @@
     <Compile Include="Tools\SaveLoadInterface.cs" />
     <Compile Include="ViewModels\BingoBankoViewModel.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmationBoxes\AddNumberViewModel.cs" />
     <Compile Include="ViewModels\ConfirmationBoxes\ChangePlatesUsedDialogViewModel.cs" />
     <Compile Include="ViewModels\ContestViewModel.cs" />
     <Compile Include="ViewModels\ControlPanelViewModel.cs" />
@@ -173,6 +174,9 @@
     <Compile Include="ViewModels\PresentationScreen\PlateOverlayViewModel.cs" />
     <Compile Include="Views\BingoBankoView.xaml.cs">
       <DependentUpon>BingoBankoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfirmationBoxes\AddNumberView.xaml.cs">
+      <DependentUpon>AddNumberView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ConfirmationBoxes\ChangePlatesUsedDialogView.xaml.cs">
       <DependentUpon>ChangePlatesUsedDialogView.xaml</DependentUpon>
@@ -288,6 +292,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BingoBankoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfirmationBoxes\AddNumberView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

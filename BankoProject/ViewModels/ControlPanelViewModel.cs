@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using BankoProject.Models;
 using BankoProject.Tools.Events;
+using BankoProject.ViewModels.ConfirmationBoxes;
 using BankoProject.ViewModels.PresentationScreen;
 using Catel.Collections;
 
@@ -205,6 +206,18 @@ namespace BankoProject.ViewModels
             bnum.IsPicked = true;
           }
         }
+      }
+    }
+
+    public void AddNumber()
+    {
+      var dialog = new AddNumberViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result == true)
+      {
+        Event.NumberBoard.Board[dialog.NumberToAdd-1].IsPicked = true; //minus one to make it fit the array lol
+        Event.NumberBoard.Board[dialog.NumberToAdd-1].IsSelected = true;
       }
     }
 

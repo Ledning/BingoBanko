@@ -29,7 +29,7 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
     }
     #endregion
 
-    #region Buttons
+    //TODO: Input restriction. We need to restrict what can be added and what cannot. probably like 1-100k plates is fine
     public void OK()
     {
       TryClose(true);

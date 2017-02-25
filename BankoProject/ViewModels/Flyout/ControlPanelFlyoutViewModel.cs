@@ -203,10 +203,10 @@ namespace BankoProject.ViewModels.Flyout
 
     public void ChangeBigScreen()
     {
+      Event.WindowSettings.PrsSettings.State = WindowState.Normal;
       Event.WindowSettings.ChoosenPresentationScreen = SelectedScreen;
       Event.WindowSettings.PrsSettings.Width = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Width;
       Event.WindowSettings.PrsSettings.Height = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Height;
-
       Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Left;
       Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Top;
       Event.WindowSettings.PrsSettings.State = WindowState.Maximized;

@@ -30,9 +30,7 @@
         </Label>
 
         <Grid x:Name="TogglesVisualsGrid" Margin="30,194,29,0" Height="418" VerticalAlignment="Top" Background="#FF3E8BCB">
-          <Grid.Effect>
-            <DropShadowEffect BlurRadius="15"/>
-          </Grid.Effect>
+
           <ToggleButton x:Name="StopWatch" Content="StopWatch"  metro:ControlsHelper.CornerRadius="0" Margin="153,24,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="177"/>
           <ToggleButton x:Name="ActivateLatestNumbersOverlay_Copy" Content="Seneste tal" metro:ControlsHelper.CornerRadius="0" Margin="182,499,0,-125" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="176"/>
         </Grid>
@@ -77,7 +75,7 @@
             <RadioButton IsChecked="{Binding Event.BnkOptions.DoubleRow}" Margin="38,259,0,124" Content="To rækker" HorizontalAlignment="Left" Width="139" FontWeight="Bold" FontSize="20"/>
             <RadioButton IsChecked="{Binding Event.BnkOptions.FullPlate}" Margin="38,0,0,59" Content="Fuld plade" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="126" FontWeight="Bold" FontSize="20"/>
             <Button x:Name="DrawRandom" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="163" Margin="400,189,0,0" Content="Tilfældigt tal" FontSize="24" FontWeight="Bold"/>
-            <Button x:Name="ResetGame" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,297,0,0" Content="Indtast tal.." FontSize="24" FontWeight="Bold"/>
+            <Button x:Name="AddNumber" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,297,0,0" Content="Indtast tal.." FontSize="24" FontWeight="Bold"/>
             <Button x:Name="AddSelectedNumbers" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,244,0,0" Content="Tilføj valgte tal" FontSize="24" FontWeight="Bold"/>
             <Button x:Name="Reset" Background="DarkRed" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="255" Margin="352,349,0,0" Content="Nustil spil" FontSize="24" FontWeight="Bold"/>
 
@@ -134,7 +132,7 @@
         <metro:NumericUpDown x:Name="PlaceHolderTextBox" Height="40" Value="{Binding StartValue}" VerticalAlignment="Top" Margin="0,489,42,0" FontSize="24" HorizontalAlignment="Right" Width="123"/>
       </Grid>
     </Border>
-    <Button x:Name="ShowWelcome" Content="Tilbage til Hovedmenu" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" Width="151" Height="46" FontSize="14" Background="#FF878787" Opacity="0.5"/>
+    <!--<Button x:Name="ShowWelcome" Content="Tilbage til Hovedmenu" HorizontalAlignment="Left" Margin="21,22,0,0" VerticalAlignment="Top" Width="151" Height="46" FontSize="14" Background="#FF878787" Opacity="0.5"/>-->
 
   </Grid>
 
