@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ using System.Windows.Media;
 using BankoProject.Models;
 using BankoProject.Tools;
 using BankoProject.Tools.Events;
+using BankoProject.ViewModels.ConfirmationBoxes;
+using BankoProject.Views.ConfirmationBoxes;
 using Caliburn.Micro;
 using MahApps.Metro.Controls;
 
@@ -16,6 +19,7 @@ namespace BankoProject.ViewModels
   class DebuggingWindowViewModel : Screen, IHandle<CommunicationObject>
   {
     private IEventAggregator _eventAggregator;
+    private IWindowManager _windowManager;
     private WinSettings _winSngs;
     private BingoEvent _event;
 
@@ -35,6 +39,7 @@ namespace BankoProject.ViewModels
     {
       _eventAggregator = IoC.Get<IEventAggregator>();
       _eventAggregator.Subscribe(this);
+      _windowManager = IoC.Get<IWindowManager>();
       Event = IoC.Get<BingoEvent>();
       NotifyOfPropertyChange(()=>CanGeneratePlatesButton);
     }
@@ -116,17 +121,32 @@ namespace BankoProject.ViewModels
       }
     }
 
-    //public void applycoord()
-    //{
-    //  Event.Settings.PrsSettings.State = WindowState.Normal;
-    //  Event.Settings.PrsSettings.State = WindowState.Maximized;
-    //}
-
     public void ShowWelcome()
     {
       CommunicationObject chwe = new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
         ApplicationWideEnums.SenderTypes.DebuggingView);
       _eventAggregator.PublishOnUIThread(chwe);
+    }
+
+    public void DialogTester()
+    {
+      //Jeg er ikke 100 på hvorfor this expandoshit couldnt be done 
+      var dialog = new ChangePlatesUsedDialogViewModel();
+      //dynamic settings = new ExpandoObject();
+      //settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+      //settings.ResizeMode = ResizeMode.NoResize;
+      //settings.Width = 200;
+      //settings.Height = 120;
+      var result = _windowManager.ShowDialog(dialog/*, null, settings*/);
+      if (result == true)
+      {
+       
+      }
+    }
+
+    public void exitProgram()
+    {
+      Environment.Exit(1);
     }
 
     public void ShowControl()

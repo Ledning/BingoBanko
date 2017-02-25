@@ -27,7 +27,8 @@ namespace BankoProject.Tools
       BoardOverview,
       LatestNumbers, 
       BingoHappened, 
-      ClosePrez
+      ClosePrez,
+      ScrnActivationTriggered
     }
 
     /// <summary>

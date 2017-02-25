@@ -12,15 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
-namespace BankoProject.Views.PresentationScreen
+namespace BankoProject.Views.ConfirmationBoxes
 {
   /// <summary>
-  /// Interaction logic for PlateOverlayViewModel.xaml
+  /// Interaction logic for ChangePlatesUsedDialogView.xaml
   /// </summary>
-  public partial class PlateOverlayViewModel : UserControl
+  public partial class ChangePlatesUsedDialogView : Window
   {
-    public PlateOverlayViewModel()
+    public ChangePlatesUsedDialogView()
     {
       InitializeComponent();
     }

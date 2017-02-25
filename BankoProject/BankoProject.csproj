@@ -154,6 +154,7 @@
     <Compile Include="Tools\SaveLoadInterface.cs" />
     <Compile Include="ViewModels\BingoBankoViewModel.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmationBoxes\ChangePlatesUsedDialogViewModel.cs" />
     <Compile Include="ViewModels\ContestViewModel.cs" />
     <Compile Include="ViewModels\ControlPanelViewModel.cs" />
     <Compile Include="ViewModels\CountdowntimerBigScreenViewModel.cs" />
@@ -172,6 +173,9 @@
     <Compile Include="ViewModels\PresentationScreen\PlateOverlayViewModel.cs" />
     <Compile Include="Views\BingoBankoView.xaml.cs">
       <DependentUpon>BingoBankoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfirmationBoxes\ChangePlatesUsedDialogView.xaml.cs">
+      <DependentUpon>ChangePlatesUsedDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ContestView.xaml.cs">
       <DependentUpon>ContestView.xaml</DependentUpon>
@@ -230,8 +234,8 @@
     <Compile Include="Views\PresentationScreen\NumberBarView.xaml.cs">
       <DependentUpon>NumberBarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PresentationScreen\PlateOverlayViewModel.xaml.cs">
-      <DependentUpon>PlateOverlayViewModel.xaml</DependentUpon>
+    <Compile Include="Views\PresentationScreen\PlateOverlayView.xaml.cs">
+      <DependentUpon>PlateOverlayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -253,10 +257,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <Resource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+      <SubType>Designer</SubType>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -269,7 +274,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="Resources\teamrynkeby.jpg" />
+    <Resource Include="Resources\teamrynkeby.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\bingo1.png" />
@@ -283,6 +288,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BingoBankoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfirmationBoxes\ChangePlatesUsedDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,7 +335,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PresentationScreen\PlateOverlayViewModel.xaml">
+    <Page Include="Views\PresentationScreen\PlateOverlayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,6 +344,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Styles\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\DialogBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -396,9 +409,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Orchestra.Shell.MahApps.dll" />
-    <None Include="Resources\frontpgggg.PNG" />
-    <None Include="Resources\RYNKEBY_banner_460x157_dk.jpg" />
-    <None Include="Resources\frontpg.bmp" />
+    <Resource Include="Resources\Achtung.png" />
+    <Resource Include="Resources\StandardOverlay.jpg" />
+    <Resource Include="Resources\RYNKEBY_banner_460x157_dk.jpg" />
+    <Resource Include="Resources\frontpg.bmp" />
     <Resource Include="Resources\10995537_695452673897093_536015149067717983_o.jpg" />
     <Resource Include="Resources\team_rynkeby_banner.jpg" />
     <Resource Include="Views\logoalpha.png" />
@@ -415,10 +429,7 @@
       <Name>Plate-Printer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\ConfirmationBoxes\" />
-    <Folder Include="Views\ConfirmationBoxes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

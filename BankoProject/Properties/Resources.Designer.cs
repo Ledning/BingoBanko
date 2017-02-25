@@ -63,6 +63,16 @@ namespace BankoProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap _570411 {
+            get {
+                object obj = ResourceManager.GetObject("_570411", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap bingo1 {
             get {
                 object obj = ResourceManager.GetObject("bingo1", resourceCulture);
@@ -73,9 +83,9 @@ namespace BankoProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap frontpgggg {
+        public static System.Drawing.Bitmap RYNKEBY_banner_460x157_dk {
             get {
-                object obj = ResourceManager.GetObject("frontpgggg", resourceCulture);
+                object obj = ResourceManager.GetObject("RYNKEBY_banner_460x157_dk", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +93,9 @@ namespace BankoProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RYNKEBY_banner_460x157_dk {
+        public static System.Drawing.Bitmap StandardOverlay {
             get {
-                object obj = ResourceManager.GetObject("RYNKEBY_banner_460x157_dk", resourceCulture);
+                object obj = ResourceManager.GetObject("StandardOverlay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
