@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,64 +19,140 @@ namespace BankoProject.ViewModels
   public class CountdownTimerControlViewModel : Screen, IMainViewItem
   {
     public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
-    
     private WindowManager _winMan;
     
-    public CountdownTimerControlViewModel(BindableCollection<Team> allTeams)
+    public CountdownTimerControlViewModel(BindableCollection<Team> allTeams, int seconds)
     {
       CTBSVM = new CountdowntimerBigScreenViewModel();
-      
       this.AllTeams = new BindableCollection<Team>(allTeams);
-      this.CurrentTime = new DateTime();
+      this._currentTimeSpan = new TimeSpan();
+      this._localTimeSpan = new TimeSpan();
+      this._emptyTimeSpan = new TimeSpan();
 
-      //setting up the dispatcher thing. This is obviously from stackoverflow..
-      this.Timer = new DispatcherTimer();
-      this.Timer.Tick += new EventHandler(dispatcherTimer_Tick);
-      this.Timer.Interval = new TimeSpan(0, 0, 1);
-      
+      //setting up dispatcher and stopwatch
+      this._stopWatch = new Stopwatch();
+      this._timer = new DispatcherTimer();
+      this._timer.Tick += new EventHandler(dispatcherTimer_Tick);
+      this._timer.Interval = new TimeSpan(0, 0, 0, 0, milliseconds:10);
+      this._countUp = true;
+
+      if (seconds > 0)
+      {
+        this._currentTimeSpan = this._currentTimeSpan.Add(new TimeSpan(0, 0, 0, seconds));
+        this.CountDownInput = seconds;
+        this._countUp = false;
+      }
     }
+
+    private TimeSpan _currentTimeSpan;
+    private TimeSpan _localTimeSpan;
+    private TimeSpan _emptyTimeSpan; 
     private void dispatcherTimer_Tick(object sender, EventArgs e)
     {
-      this.CurrentTime = this.CurrentTime.AddSeconds(1);
+
+      if (_countUp)
+      {
+        this.CurrentTime = FormatString(_stopWatch.Elapsed);
+      }
+      else
+      {
+        this._localTimeSpan = this._currentTimeSpan - this._stopWatch.Elapsed;
+        this.CurrentTime = FormatString(this._localTimeSpan);
+        
+        if (this._localTimeSpan < this._emptyTimeSpan)
+        {
+          this.TimerStop();
+          this.TimerReset();
+        }
+      }
+    }
+    //this property decides if the timer counts up or down
+    private bool _countUp;
+    //should prolly enter seconds
+    private int _countDownInput;
+    public int CountDownInput
+    {
+      get { return _countDownInput;}
+      set { _countDownInput = value; NotifyOfPropertyChange( () => CountDownInput);}
     }
 
-
+    public Team SelectedTeam { get; set; }
     private BindableCollection<Team> _allTeams; 
     public BindableCollection<Team> AllTeams
     {
       get { return _allTeams; }
       set { _allTeams = value; NotifyOfPropertyChange(() => _allTeams); }
     }
-    private DispatcherTimer Timer { get; set; }
-    private DateTime _currentTime;
 
-    public DateTime CurrentTime
+    private Stopwatch _stopWatch;
+    private DispatcherTimer _timer;
+
+
+    private string _currentTime;
+    public string CurrentTime
     {
       get { return _currentTime; }
       set { _currentTime = value; NotifyOfPropertyChange( () => CurrentTime); }
     }
 
+    private string FormatString(TimeSpan timespan)
+    {
+      string currentTime = String.Format("{0:00}:{1:00}:{2:00}",
+                timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10);
+      return currentTime;
+    }
+
+
+    #region TimerMethods
+
     public void TimerStart()
     {
-      if (!this.Timer.IsEnabled)
+      
+      if (!this._timer.IsEnabled)
       {
-        this.Timer.Start();
+        this._timer.Start();
+        this._stopWatch.Start();
       }
     }
 
     public void TimerStop()
     {
-      if (this.Timer.IsEnabled)
+      if (this._timer.IsEnabled)
       {
-        this.Timer.Stop();
+        this._timer.Stop();
+        this._stopWatch.Stop();
       }
     }
 
     public void TimerReset()
     {
-      if (!this.Timer.IsEnabled)
+      if (!this._timer.IsEnabled)
       {
-        this.CurrentTime = new DateTime();
+        this.CurrentTime = FormatString(new TimeSpan()); //reset it
+        this._stopWatch.Reset();
+        this._countUp = true;
+      }
+    }
+
+    #endregion
+
+    public void RemoveSelectedTeamFromCompetition()
+    {
+      if (this.SelectedTeam != null)
+      {
+        this.SelectedTeam.IsTeamActive = false;
+      }
+    }
+
+    public void InitializeNewCountDownTimer()
+    {
+      if (this.CountDownInput > 0 && !this._timer.IsEnabled)
+      {
+        this.TimerReset();
+        this.CurrentTime = FormatString(new TimeSpan(0, 0, 0, this.CountDownInput));
+        this._currentTimeSpan = new TimeSpan(0,0,0,this.CountDownInput);
+        this._countUp = false;
+        this.CountDownInput = 0;
       }
     }
   }
