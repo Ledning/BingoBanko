@@ -14,15 +14,37 @@ namespace BankoProject.ViewModels
   /// </summary>
   class PresentationScreenHostViewModel : Conductor<IPresentationScreenItem>.Collection.OneActive, IHandle<CommunicationObject>
   {
+    #region Fields
     private readonly ILog _log = LogManager.GetLog(typeof(PresentationScreenHostViewModel));
     private BingoEvent _event;
     private IEventAggregator _eventAgg;
     private IPresentationScreenItem _currentPrezItem = new FullscreenImageViewModel();
+    #endregion
 
+    #region Constructors
     public PresentationScreenHostViewModel()
     {
+    } 
+    #endregion
 
+    #region Properties
+    public BingoEvent Event
+    {
+      get { return _event; }
+      set { _event = value; NotifyOfPropertyChange(() => Event); }
     }
+
+    public IPresentationScreenItem CurrentPrezItem
+    {
+      get { return _currentPrezItem; }
+      set
+      {
+        _currentPrezItem = value;
+        ActivateItem(CurrentPrezItem);
+        NotifyOfPropertyChange(() => CurrentPrezItem);
+      }
+    }
+    #endregion
 
     #region Overrides of ViewAware
 
@@ -42,25 +64,8 @@ namespace BankoProject.ViewModels
     }
 
     #endregion
-  
 
-    public BingoEvent Event
-    {
-      get { return _event; }
-      set { _event = value; NotifyOfPropertyChange(() => Event); }
-    }
-
-    public IPresentationScreenItem CurrentPrezItem
-    {
-      get { return _currentPrezItem; }
-      set
-      {
-        _currentPrezItem = value;
-        ActivateItem(CurrentPrezItem);
-        NotifyOfPropertyChange(() => CurrentPrezItem);
-      }
-    }
-
+    #region Methods
     public int GetPresentationScreen()
     {
       //TODO: Det her skal laves om så man kan vælge en specifik skærm fra en liste
@@ -69,9 +74,9 @@ namespace BankoProject.ViewModels
         if (!Event.WindowSettings.Screens[screenNr].Primary)
           return screenNr;
       _log.Warn("No Presentation screen was found. ERROR");
-      return -1; 
-    }
-    
+      return -1;
+    } 
+    #endregion
 
     #region Implementation of IHandle<CommunicationObject>
 

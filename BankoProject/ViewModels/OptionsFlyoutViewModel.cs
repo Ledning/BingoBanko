@@ -13,22 +13,14 @@ namespace BankoProject.ViewModels
   /// </summary>
   public class OptionsFlyoutViewModel : Screen
   {
-
-
     private readonly ILog _log = LogManager.GetLog(typeof(MainWindowViewModel));
 
     public OptionsFlyoutViewModel()
     {
-
     }
 
     protected override void OnViewReady(object view)
     {
-
     }
-
-
-
-
   }
 }

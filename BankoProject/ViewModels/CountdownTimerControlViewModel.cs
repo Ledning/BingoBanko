@@ -18,9 +18,24 @@ namespace BankoProject.ViewModels
 {
   public class CountdownTimerControlViewModel : Screen, IMainViewItem
   {
-    public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
+    #region Fields
+    public CountdowntimerBigScreenViewModel CTBSVM { get; set; }
     private WindowManager _winMan;
-    
+
+    private bool _countUp; //this property decides if the timer counts up or down
+    private int _countDownInput;//should prolly enter seconds
+    private BindableCollection<Team> _allTeams; 
+    private Stopwatch _stopWatch;
+    private DispatcherTimer _timer;
+    private string _currentTime;
+
+    //dispatcherTimer_Tick
+    private TimeSpan _currentTimeSpan;
+    private TimeSpan _localTimeSpan;
+    private TimeSpan _emptyTimeSpan; 
+    #endregion
+
+    #region Constructors
     public CountdownTimerControlViewModel(BindableCollection<Team> allTeams, int seconds)
     {
       CTBSVM = new CountdowntimerBigScreenViewModel();
@@ -33,7 +48,7 @@ namespace BankoProject.ViewModels
       this._stopWatch = new Stopwatch();
       this._timer = new DispatcherTimer();
       this._timer.Tick += new EventHandler(dispatcherTimer_Tick);
-      this._timer.Interval = new TimeSpan(0, 0, 0, 0, milliseconds:10);
+      this._timer.Interval = new TimeSpan(0, 0, 0, 0, milliseconds: 10);
       this._countUp = true;
 
       if (seconds > 0)
@@ -43,56 +58,49 @@ namespace BankoProject.ViewModels
         this._countUp = false;
       }
     }
+    #endregion
 
-    private TimeSpan _currentTimeSpan;
-    private TimeSpan _localTimeSpan;
-    private TimeSpan _emptyTimeSpan; 
-    private void dispatcherTimer_Tick(object sender, EventArgs e)
-    {
-
-      if (_countUp)
-      {
-        this.CurrentTime = FormatString(_stopWatch.Elapsed);
-      }
-      else
-      {
-        this._localTimeSpan = this._currentTimeSpan - this._stopWatch.Elapsed;
-        this.CurrentTime = FormatString(this._localTimeSpan);
-        
-        if (this._localTimeSpan < this._emptyTimeSpan)
-        {
-          this.TimerStop();
-          this.TimerReset();
-        }
-      }
-    }
-    //this property decides if the timer counts up or down
-    private bool _countUp;
-    //should prolly enter seconds
-    private int _countDownInput;
+    #region Properties
     public int CountDownInput
     {
-      get { return _countDownInput;}
-      set { _countDownInput = value; NotifyOfPropertyChange( () => CountDownInput);}
+      get { return _countDownInput; }
+      set { _countDownInput = value; NotifyOfPropertyChange(() => CountDownInput); }
     }
 
     public Team SelectedTeam { get; set; }
-    private BindableCollection<Team> _allTeams; 
+
     public BindableCollection<Team> AllTeams
     {
       get { return _allTeams; }
       set { _allTeams = value; NotifyOfPropertyChange(() => _allTeams); }
     }
 
-    private Stopwatch _stopWatch;
-    private DispatcherTimer _timer;
-
-
-    private string _currentTime;
     public string CurrentTime
     {
       get { return _currentTime; }
-      set { _currentTime = value; NotifyOfPropertyChange( () => CurrentTime); }
+      set { _currentTime = value; NotifyOfPropertyChange(() => CurrentTime); }
+    }
+    #endregion
+
+    #region Methods
+    private void dispatcherTimer_Tick(object sender, EventArgs e)
+    {
+      if (_countUp)
+      {
+        this.CurrentTime = FormatString(_stopWatch.Elapsed);
+      }
+
+      else
+      {
+        this._localTimeSpan = this._currentTimeSpan - this._stopWatch.Elapsed;
+        this.CurrentTime = FormatString(this._localTimeSpan);
+
+        if (this._localTimeSpan < this._emptyTimeSpan)
+        {
+          this.TimerStop();
+          this.TimerReset();
+        }
+      }
     }
 
     private string FormatString(TimeSpan timespan)
@@ -102,6 +110,26 @@ namespace BankoProject.ViewModels
       return currentTime;
     }
 
+    public void RemoveSelectedTeamFromCompetition()
+    {
+      if (this.SelectedTeam != null)
+      {
+        this.SelectedTeam.IsTeamActive = false;
+      }
+    }
+
+    public void InitializeNewCountDownTimer()
+    {
+      if (this.CountDownInput > 0 && !this._timer.IsEnabled)
+      {
+        this.TimerReset();
+        this.CurrentTime = FormatString(new TimeSpan(0, 0, 0, this.CountDownInput));
+        this._currentTimeSpan = new TimeSpan(0, 0, 0, this.CountDownInput);
+        this._countUp = false;
+        this.CountDownInput = 0;
+      }
+    } 
+    #endregion
 
     #region TimerMethods
 
@@ -135,25 +163,5 @@ namespace BankoProject.ViewModels
     }
 
     #endregion
-
-    public void RemoveSelectedTeamFromCompetition()
-    {
-      if (this.SelectedTeam != null)
-      {
-        this.SelectedTeam.IsTeamActive = false;
-      }
-    }
-
-    public void InitializeNewCountDownTimer()
-    {
-      if (this.CountDownInput > 0 && !this._timer.IsEnabled)
-      {
-        this.TimerReset();
-        this.CurrentTime = FormatString(new TimeSpan(0, 0, 0, this.CountDownInput));
-        this._currentTimeSpan = new TimeSpan(0,0,0,this.CountDownInput);
-        this._countUp = false;
-        this.CountDownInput = 0;
-      }
-    }
   }
 }

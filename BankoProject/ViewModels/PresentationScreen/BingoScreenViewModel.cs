@@ -5,8 +5,6 @@ namespace BankoProject.ViewModels.PresentationScreen
 {
   class BingoScreenViewModel : PropertyChangedBase, IPresentationScreenItem
   {
-
-
-
+    //Y u empty? smh
   }
 }

@@ -19,14 +19,17 @@ namespace BankoProject.ViewModels
 {
   class WelcomeViewModel : Screen, IMainViewItem
   {
+    #region Fields
     private IWindowManager _winMan;
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
     private readonly ILog _log = LogManager.GetLog(typeof(WelcomeViewModel));
-    private KeyValuePair<string,string> _selectedEvent;
+    private KeyValuePair<string, string> _selectedEvent;
     private BindableCollection<KeyValuePair<string, string>> _latestEvents;
     private string _title;
+    #endregion
 
+    #region Constructors
     public WelcomeViewModel()
     {
       Title = "BingoBanko Kontrol";
@@ -41,7 +44,53 @@ namespace BankoProject.ViewModels
       var interval = TimeSpan.FromSeconds(10);
       RunPeriodicAsync(UpdateLatestEvents, dueTime, interval, CancellationToken.None);
     }
+    #endregion
 
+    #region Properties
+    public BingoEvent Event
+    {
+      get { return _bingoEvent; }
+      set
+      {
+        _bingoEvent = value;
+        NotifyOfPropertyChange(() => Event);
+      }
+    }
+
+    public string Title
+    {
+      get { return _title; }
+      set
+      {
+        _title = value;
+        NotifyOfPropertyChange(() => Title);
+      }
+    }
+
+    public string SaveDirectory
+    {
+      get { return _saveDirectory; }
+      set { _saveDirectory = value; }
+    }
+
+    public KeyValuePair<string, string> SelectedEvent
+    {
+      get { return _selectedEvent; }
+
+      set
+      {
+        _selectedEvent = value;
+        NotifyOfPropertyChange(() => SelectedEvent);
+      }
+    }
+
+    public BindableCollection<KeyValuePair<string, string>> LatestEvents
+    {
+      get { return _latestEvents; }
+    }
+    #endregion
+    
+    #region Overrides for ViewAware
     protected override void OnViewReady(object view)
     {
       SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -49,6 +98,9 @@ namespace BankoProject.ViewModels
       _events = IoC.Get<IEventAggregator>();
       Event = IoC.Get<BingoEvent>();
     }
+    #endregion
+    
+    #region Methods
     /// <summary>
     /// Used for doing things when doubleclicking latestevents
     /// </summary>
@@ -57,7 +109,8 @@ namespace BankoProject.ViewModels
       //TODO: Der var et crash her. jeg sværger. dunno what happened, but that NEEDS to be thoroughly checked.
       _events.PublishOnCurrentThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Load, ApplicationWideEnums.SenderTypes.WelcomeView, SelectedEvent.Key.Replace(".xml", "")));
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngControlPanelView, ApplicationWideEnums.SenderTypes.WelcomeView));
-    }
+    } 
+    #endregion
 
     #region BindableCollectionManipulation
     //So some of these might not be entirely needed, but i was not 100% sure on waht the built in ones for keyvaluepair did, so i thought this was better
@@ -84,6 +137,7 @@ namespace BankoProject.ViewModels
       }
     }
     #endregion
+
     #region asynctask latestevents
     public void UpdateLatestEvents()
     {
@@ -144,51 +198,7 @@ namespace BankoProject.ViewModels
     }
 
     #endregion
-    #region props
-    public BingoEvent Event
-    {
-      get { return _bingoEvent; }
-      set
-      {
-        _bingoEvent = value;
-        NotifyOfPropertyChange(() => Event);
-      }
-    }
 
-
-
-    public string Title
-    {
-      get { return _title; }
-      set
-      {
-        _title = value;
-        NotifyOfPropertyChange(() => Title);
-      }
-    }
-
-    public string SaveDirectory
-    {
-      get { return _saveDirectory; }
-      set { _saveDirectory = value; }
-    }
-
-    public KeyValuePair<string, string> SelectedEvent
-    {
-      get { return _selectedEvent; }
-
-      set
-      {
-        _selectedEvent = value;
-        NotifyOfPropertyChange(() => SelectedEvent);
-      }
-    }
-
-    public BindableCollection<KeyValuePair<string, string>> LatestEvents
-    {
-      get { return _latestEvents; }
-    }
-    #endregion
     #region Loading/creating
     public void CreateEvent()
     {
@@ -231,6 +241,7 @@ namespace BankoProject.ViewModels
       }
     }
     #endregion
+
     #region DirectoryStuff
 
     private string _saveDirectory;

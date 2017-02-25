@@ -14,22 +14,23 @@ namespace BankoProject.ViewModels
 {
   public sealed class CountdowntimerBigScreenViewModel : Screen
   {
+    #region Fields
     //The colour of the button at start and finish. NSFP. Modify if different colours are wanted. cannot be made from designer. 
     string finishCoulour = "#FF3FBD5B";
     string unfinishColour = "#FFBF5050";
 
-
     int _buttonWidth, _buttonHeight; //buttonsize. maybe make scale with button count? certainly possible, try scaling in control and syncing that here. SFP
 
     int _counter; //timer count int ms, SFP
-    BindableCollection<Deltagere> _buttonsList; //list of buttons on the screen. set to 0 if no buttons are desired, it will now show only the timer. hopefully. helpers might be needed. SFP
+    BindableCollection<Deltagere> _buttonsList; //list of buttons on the screen. set to 0 if no buttons are desired, it will now show only the timer. hopefully. helpers might be needed. SFP 
+    #endregion
 
+    #region Constructors
     public CountdowntimerBigScreenViewModel()
     {
       _buttonsList = new BindableCollection<Deltagere>();
-    }
-
-
+    } 
+    #endregion
 
     #region GetterSetter
     public int Counter
@@ -60,6 +61,5 @@ namespace BankoProject.ViewModels
     }
 
     #endregion
-
   }
 }

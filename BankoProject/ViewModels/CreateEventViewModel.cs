@@ -28,20 +28,25 @@ namespace BankoProject.ViewModels
     //TODO: Make this window great again
     //det ligner lidt lårt gør det ikk? Make it better or summin, idunno
 
+    #region Fields
     private BingoEvent _bingoEvent;
     private string _phTitle;
     private string _seed;
     private int _phPladetal;
 
     private readonly ILog _log = LogManager.GetLog(typeof(CreateEventViewModel));
+    #endregion
 
+    #region Constructors
     public CreateEventViewModel()
     {
       this._phPladetal = 5;
       this._seed = "DefaultValue";
       this._phTitle = "Default";
     }
+    #endregion
 
+    #region Properties
     public BingoEvent Event
     {
       get { return _bingoEvent; }
@@ -51,11 +56,13 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => Event);
       }
     }
-    
+
     public int PhPladetal
     {
       get { return _phPladetal; }
-      set { _phPladetal = value; NotifyOfPropertyChange(() => PhPladetal);
+      set
+      {
+        _phPladetal = value; NotifyOfPropertyChange(() => PhPladetal);
         IsAmountPlatesValid(value, nameof(this.PhPladetal)); NotifyOfPropertyChange(() => CanAcceptButton);
       }
     }
@@ -67,16 +74,23 @@ namespace BankoProject.ViewModels
     public string PhTitle
     {
       get { return _phTitle; }
-      set { _phTitle = value; NotifyOfPropertyChange(() => PhTitle);
-        IsValid(value, nameof(this.PhTitle)); NotifyOfPropertyChange(() => CanAcceptButton); }
+      set
+      {
+        _phTitle = value; NotifyOfPropertyChange(() => PhTitle);
+        IsValid(value, nameof(this.PhTitle)); NotifyOfPropertyChange(() => CanAcceptButton);
+      }
     }
+    #endregion
 
+    #region Overrides of ViewAware
     protected override void OnViewReady(object view)
     {
       Event = IoC.Get<BingoEvent>();
       DisplayName = "Nyt Event";
     }
+    #endregion
 
+    #region Buttons
     public void AcceptButton()
     {
       Event.Initialize(PhSeed, PhTitle, PhPladetal); //skal fjernes når vi kan åbne et event rigtigt
@@ -87,11 +101,12 @@ namespace BankoProject.ViewModels
     {
       get { return !HasErrors; }
     }
-    
+
     public void CancelButton()
     {
       TryClose(false);
-    }
+    } 
+    #endregion
 
     //this should be moved to a baseclass, in case more views need inputvalidation
     #region Implementation of INotifyDataErrorInfo

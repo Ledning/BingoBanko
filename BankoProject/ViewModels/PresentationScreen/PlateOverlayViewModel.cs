@@ -10,11 +10,12 @@ namespace BankoProject.ViewModels.PresentationScreen
 {
   class PlateOverlayViewModel: Conductor<Screen>.Collection.OneActive, IPresentationScreenItem
   {
-
+    #region Constructor
     //det store boardoverview
     public PlateOverlayViewModel()
     {
-    }
+    } 
+    #endregion
 
     #region Overrides of ViewAware
 

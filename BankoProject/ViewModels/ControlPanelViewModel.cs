@@ -30,10 +30,9 @@ namespace BankoProject.ViewModels
     private int _contestDuration;
     #endregion
 
-
-
     //TODO: Overlay Lbael på view skal fixes - det har en weird kant
 
+    #region Constructors
     public ControlPanelViewModel()
     {
       BoardVM = new BoardViewModel();
@@ -41,7 +40,9 @@ namespace BankoProject.ViewModels
 
       this.StartValue = 0;
     }
+    #endregion
 
+    #region Overrides of ViewAware
     protected override void OnViewReady(object view)
     {
       _events = IoC.Get<IEventAggregator>();
@@ -52,29 +53,10 @@ namespace BankoProject.ViewModels
       przScrnDelay();
       Event.WindowSettings.PrsSettings.OverlaySettings.StdScrnOl = true;
       Event.WindowSettings.PrsSettings.OverlaySettings.UpdateBackgrounds();
-    }
+    } 
+    #endregion
 
-
-    public void ShowWelcome()
-    {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
-    }
-
-    public void SpawnPrezScreen()
-    {
-      if (Event.WindowSettings.PrsSettings.IsOverLayOpen == true) return;
-      _winMan.ShowWindow(new PresentationScreenHostViewModel());
-      Event.WindowSettings.PrsSettings.IsOverLayOpen = true;
-    }
-
-    public async Task przScrnDelay()
-    {
-      await Task.Delay(1000);
-      SpawnPrezScreen();
-    }
-
-    #region props
+    #region Properties
 
     public BingoEvent Event
     {
@@ -163,13 +145,33 @@ namespace BankoProject.ViewModels
       get { return _allTeams; }
       set { _allTeams = value; NotifyOfPropertyChange(() => AllTeams); }
     }
-
     #endregion
+
+    #region Async stuff
+    public void SpawnPrezScreen()
+    {
+      if (Event.WindowSettings.PrsSettings.IsOverLayOpen == true) return;
+      _winMan.ShowWindow(new PresentationScreenHostViewModel());
+      Event.WindowSettings.PrsSettings.IsOverLayOpen = true;
+    }
+
+    public async Task przScrnDelay()
+    {
+      await Task.Delay(1000);
+      SpawnPrezScreen();
+    }
+    #endregion
+
+    #region Methods
+    public void ShowWelcome()
+    {
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
+    }
 
     public void StopWatch()
     {
     }
-
 
     //this method gets a random number and marks the boardview, that that number is now marked
     public int DrawRandom()
@@ -206,8 +208,6 @@ namespace BankoProject.ViewModels
       }
     }
 
-
-
     public void CheckPlateButton()
     {
       //OO this one is...intredasting
@@ -221,18 +221,17 @@ namespace BankoProject.ViewModels
       this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
 
       this.Competition = competition;
-
-      
     }
 
     public void StartContest()
     {
       _winMan.ShowWindow(new CountdownTimerControlViewModel(this.AllTeams, this.ContestDuration));
-      
-      
+
+
       // When this method is activated we can either change the view, or keep everything within
       //current view. Which is best?
-    }
+    } 
+    #endregion
 
     #region PresentationActivation
 
@@ -281,8 +280,6 @@ namespace BankoProject.ViewModels
     
 
     #endregion
-
-
 
     #region ResetStuff
 

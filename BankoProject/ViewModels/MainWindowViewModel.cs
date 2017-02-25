@@ -59,6 +59,7 @@ namespace BankoProject.ViewModels
 
   class MainWindowViewModel : Conductor<IMainViewItem>.Collection.OneActive, IShell, IHandle<CommunicationObject>
   {
+    #region Fields
     private IWindowManager _winMan;
     private IEventAggregator _eventAggregator;
     private BingoEvent _bingoEvent;
@@ -66,12 +67,16 @@ namespace BankoProject.ViewModels
     private string _saveDirectory;
     private bool _directoriesInitialised;
     private IFlyoutItem _flyoutViewModel;
+    #endregion
 
+    #region Constructors
     public MainWindowViewModel()
     {
       ActivateItem(new WelcomeViewModel());
     }
+    #endregion
 
+    #region Properties
     public BingoEvent Event
     {
       get { return _bingoEvent; }
@@ -96,18 +101,11 @@ namespace BankoProject.ViewModels
     public IFlyoutItem FlyoutViewModel
     {
       get { return _flyoutViewModel; }
-      set { _flyoutViewModel = value; NotifyOfPropertyChange(()=> FlyoutViewModel);}
-    }
+      set { _flyoutViewModel = value; NotifyOfPropertyChange(() => FlyoutViewModel); }
+    } 
+    #endregion
 
-
-    public void OnApplicationExit()
-    {
-      SaveSession();
-      Environment.Exit(1);
-    }
-    public void Show()
-    {
-    }
+    #region Overrides of ViewAware
     //The function below can be used as a constructor for the view. Everything in it will happen after the view is loaded.
     protected override void OnViewReady(object view)
     {
@@ -125,12 +123,21 @@ namespace BankoProject.ViewModels
       _directoriesInitialised = true;
       FlyoutViewModel = new WelcomeScreenFlyoutViewModel();
     }
+    #endregion
 
+    #region Methods
+    public void OnApplicationExit()
+    {
+      SaveSession();
+      Environment.Exit(1);
+    }
+    public void Show()
+    {
+    }
     private Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
     {
       return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
     }
-
 
     public void Handle(CommunicationObject message)
     {
@@ -161,15 +168,18 @@ namespace BankoProject.ViewModels
           _log.Info("Generate-plates message recieved...");
           GeneratePlates();
           break;
+
         case ApplicationWideEnums.MessageTypes.RbPrezScreen:
           _log.Info("method moved. NOT TO BE USED");
           break;
+
         case ApplicationWideEnums.MessageTypes.CreateApplicationDirectories:
           _log.Info("Creating directories...");
           CreateApplicationDirectories();
           break;
       }
-    }
+    } 
+    #endregion
 
     #region async plate generation
 
@@ -420,15 +430,6 @@ namespace BankoProject.ViewModels
     //TODO: Hopefully we can consolidate these calls in here. it is not very clear or readable as it is rn
 
     #endregion
-
-
-
-
-
-
-
-
-
 
     //TODO: Somebody needs to look through the output log, and fix all the errors there. this is not easy, it takes a lot of time.
   }

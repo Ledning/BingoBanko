@@ -14,19 +14,21 @@ namespace BankoProject.ViewModels
 {
   public sealed class ControlsScreenViewModel : Screen, IMainViewItem
   {
+    #region Fields
     private OptionsFlyoutViewModel _OFVM;
     private ControlOptions _COptions;
     private BingoNumberBoard _BNBoard;
     private Random randomNumber; //use to pick new random number. Maybe make into seperate class that adjusts according to prev numbers being picked.
     private readonly SolidColorBrush _defaultBrush = Brushes.Black;
+    #endregion
 
+    #region Constructors
     public ControlsScreenViewModel()
     {
       OFVM = new OptionsFlyoutViewModel();
       _BNBoard = new BingoNumberBoard();
-    }
-
-
+    } 
+    #endregion
 
     #region Wrappers
     /*public void Pick(int num)
@@ -43,7 +45,7 @@ namespace BankoProject.ViewModels
     }*/
     #endregion
 
-    #region GetterSetter
+    #region Properties
     public OptionsFlyoutViewModel OFVM
     {
       get

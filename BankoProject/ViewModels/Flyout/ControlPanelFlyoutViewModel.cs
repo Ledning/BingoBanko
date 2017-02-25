@@ -50,7 +50,6 @@ namespace BankoProject.ViewModels.Flyout
     
 
     #endregion
-    
 
     #region props
 
@@ -85,8 +84,6 @@ namespace BankoProject.ViewModels.Flyout
     }
     #endregion
 
-    
-
     #region Overrides of ViewAware
 
     protected override void OnViewReady(object view)
@@ -96,6 +93,41 @@ namespace BankoProject.ViewModels.Flyout
 
     #endregion
 
+    #region Async stuff
+    private void UpdateScreensAvailable()
+    {
+      List<WpfScreenHelper.Screen> result = ScrnHelper.AllScreens.ToList();
+      BindableCollection<WpfScreenHelper.Screen> bindableresult = new BindableCollection<ScrnHelper>();
+      foreach (var screen in result)
+      {
+        bindableresult.Add(screen);
+      }
+      Event.WindowSettings.Screens = bindableresult;
+    }
+
+    private static async Task RunPeriodicAsync(System.Action onTick,
+      TimeSpan dueTime,
+      TimeSpan interval,
+      CancellationToken token)
+    {
+      // Initial wait time before we begin the periodic loop.
+      if (dueTime > TimeSpan.Zero)
+        await Task.Delay(dueTime, token);
+
+      // Repeat this loop until cancelled.
+      while (!token.IsCancellationRequested)
+      {
+        // Call our onTick function.
+        onTick?.Invoke();
+
+        // Wait to repeat again.
+        if (interval > TimeSpan.Zero)
+          await Task.Delay(interval, token);
+      }
+    }
+    #endregion
+
+    #region Methods
     public void ToggleBingo()
     {
       if (Event != null)
@@ -128,38 +160,6 @@ namespace BankoProject.ViewModels.Flyout
       }
     }
 
-    private void UpdateScreensAvailable()
-    {
-      List<WpfScreenHelper.Screen> result = ScrnHelper.AllScreens.ToList();
-      BindableCollection<WpfScreenHelper.Screen> bindableresult = new BindableCollection<ScrnHelper>();
-      foreach (var screen in result)
-      {
-        bindableresult.Add(screen);
-      }
-      Event.WindowSettings.Screens = bindableresult;
-    }
-
-    private static async Task RunPeriodicAsync(System.Action onTick,
-      TimeSpan dueTime,
-      TimeSpan interval,
-      CancellationToken token)
-    {
-      // Initial wait time before we begin the periodic loop.
-      if (dueTime > TimeSpan.Zero)
-        await Task.Delay(dueTime, token);
-
-      // Repeat this loop until cancelled.
-      while (!token.IsCancellationRequested)
-      {
-        // Call our onTick function.
-        onTick?.Invoke();
-
-        // Wait to repeat again.
-        if (interval > TimeSpan.Zero)
-          await Task.Delay(interval, token);
-      }
-    }
-
     public void GeneratePlates()
     {
       _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.GeneratePlates,
@@ -169,7 +169,7 @@ namespace BankoProject.ViewModels.Flyout
 
     public void CanGeneratePlates()
     {
-      
+
       //TODO: Code for checking if a file with the appropriate name already exists in the bingobanko base dir in documents
     }
 
@@ -187,7 +187,7 @@ namespace BankoProject.ViewModels.Flyout
           }
           else
           {
-            result.Add( "SECONDARY" + screenItem.DeviceName);
+            result.Add("SECONDARY" + screenItem.DeviceName);
           }
         }
         return result;
@@ -197,7 +197,7 @@ namespace BankoProject.ViewModels.Flyout
     public int SelectedScreen
     {
       get { return _selectedScreen; }
-      set { _selectedScreen = value; NotifyOfPropertyChange(()=>SelectedScreen); }
+      set { _selectedScreen = value; NotifyOfPropertyChange(() => SelectedScreen); }
     }
 
 
@@ -210,6 +210,7 @@ namespace BankoProject.ViewModels.Flyout
       Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Left;
       Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Top;
       Event.WindowSettings.PrsSettings.State = WindowState.Maximized;
-    }
+    } 
+    #endregion
   }
 }

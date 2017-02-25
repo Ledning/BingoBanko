@@ -13,17 +13,19 @@ namespace BankoProject.ViewModels.PresentationScreen
 {
   class FullscreenImageViewModel : Screen, IPresentationScreenItem, IHandle<CommunicationObject>
   {
+    #region Fields
     private BingoEvent _event;
+    #endregion
 
+    #region Constructor
     //Der burde ikke være problemer med at køre IOC her, da den bliver automatisk kaldt ved instantation af viewet
     public FullscreenImageViewModel()
     {
       Event = IoC.Get<BingoEvent>();
       ShowStandard();
       SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol" + "\\Backgrounds";
-
-
-    }
+    } 
+    #endregion
 
     #region Overrides of ViewAware
 
