@@ -19,25 +19,29 @@ namespace BankoProject.ViewModels
   public class CountdownTimerControlViewModel : Screen, IMainViewItem
   {
     public CountdowntimerBigScreenViewModel CTBSVM { get; set;}
-    
     private WindowManager _winMan;
     
-    public CountdownTimerControlViewModel(BindableCollection<Team> allTeams)
+    public CountdownTimerControlViewModel(BindableCollection<Team> allTeams, int seconds)
     {
       CTBSVM = new CountdowntimerBigScreenViewModel();
-      
       this.AllTeams = new BindableCollection<Team>(allTeams);
       this._currentTimeSpan = new TimeSpan();
       this._localTimeSpan = new TimeSpan();
       this._emptyTimeSpan = new TimeSpan();
+
       //setting up dispatcher and stopwatch
       this._stopWatch = new Stopwatch();
-      this.Timer = new DispatcherTimer();
-      this.Timer.Tick += new EventHandler(dispatcherTimer_Tick);
-      this.Timer.Interval = new TimeSpan(0, 0, 0, 0, milliseconds:10);
+      this._timer = new DispatcherTimer();
+      this._timer.Tick += new EventHandler(dispatcherTimer_Tick);
+      this._timer.Interval = new TimeSpan(0, 0, 0, 0, milliseconds:10);
       this._countUp = true;
-      
-      
+
+      if (seconds > 0)
+      {
+        this._currentTimeSpan = this._currentTimeSpan.Add(new TimeSpan(0, 0, 0, seconds));
+        this.CountDownInput = seconds;
+        this._countUp = false;
+      }
     }
 
     private TimeSpan _currentTimeSpan;
@@ -81,7 +85,7 @@ namespace BankoProject.ViewModels
     }
 
     private Stopwatch _stopWatch;
-    private DispatcherTimer Timer { get; set; }
+    private DispatcherTimer _timer;
 
 
     private string _currentTime;
@@ -104,25 +108,25 @@ namespace BankoProject.ViewModels
     public void TimerStart()
     {
       
-      if (!this.Timer.IsEnabled)
+      if (!this._timer.IsEnabled)
       {
-        this.Timer.Start();
+        this._timer.Start();
         this._stopWatch.Start();
       }
     }
 
     public void TimerStop()
     {
-      if (this.Timer.IsEnabled)
+      if (this._timer.IsEnabled)
       {
-        this.Timer.Stop();
+        this._timer.Stop();
         this._stopWatch.Stop();
       }
     }
 
     public void TimerReset()
     {
-      if (!this.Timer.IsEnabled)
+      if (!this._timer.IsEnabled)
       {
         this.CurrentTime = FormatString(new TimeSpan()); //reset it
         this._stopWatch.Reset();
@@ -142,8 +146,9 @@ namespace BankoProject.ViewModels
 
     public void InitializeNewCountDownTimer()
     {
-      if (this.CountDownInput > 0 && !this.Timer.IsEnabled)
+      if (this.CountDownInput > 0 && !this._timer.IsEnabled)
       {
+        this.TimerReset();
         this.CurrentTime = FormatString(new TimeSpan(0, 0, 0, this.CountDownInput));
         this._currentTimeSpan = new TimeSpan(0,0,0,this.CountDownInput);
         this._countUp = false;

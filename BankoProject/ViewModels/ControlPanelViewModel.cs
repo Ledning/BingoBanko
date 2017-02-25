@@ -223,7 +223,7 @@ namespace BankoProject.ViewModels
 
     public void StartContest()
     {
-      _winMan.ShowWindow(new CountdownTimerControlViewModel(this.AllTeams));
+      _winMan.ShowWindow(new CountdownTimerControlViewModel(this.AllTeams, this.ContestDuration));
       
       
       // When this method is activated we can either change the view, or keep everything within

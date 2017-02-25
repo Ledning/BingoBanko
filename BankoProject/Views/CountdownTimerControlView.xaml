@@ -26,7 +26,7 @@
                 <Button x:Name="TimerStart" BorderBrush="{x:Null}" Background="#FF3E8BCB" Content="Start" Width="94"/>
                 <Button x:Name="TimerStop" BorderBrush="{x:Null}" Background="#FF3E8BCB" Content="Stop"/>
                 <Button x:Name="TimerReset" BorderBrush="{x:Null}" Background="#FF3E8BCB" Content="Nulstil"/>
-                <Button x:Name="InitializeNewCountDownTimer" BorderBrush="{x:Null}" Background="#FF3E8BCB" FontSize="9" Content="New Countdown"/>
+                <Button x:Name="InitializeNewCountDownTimer" BorderBrush="{x:Null}" Background="#FF3E8BCB" FontSize="9" Content="NY NEDTÆLLING"/>
                 <TextBox x:Name="CountDownInput" Text="{Binding CountDownInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </DockPanel>
