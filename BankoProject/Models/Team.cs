@@ -31,6 +31,14 @@ namespace BankoProject.Models
       return "Hold" + " " + this.TeamNumber.ToString();
     }
 
+    private bool _isTeamActive;
+
+    public bool IsTeamActive
+    {
+      get { return _isTeamActive; }
+      set { _isTeamActive = value; NotifyOfPropertyChange( () => IsTeamActive); }
+    }
+
     public string TeamInfo { get { return ToString(); } }
 
   }
