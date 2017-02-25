@@ -11,14 +11,11 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
   {
     private int _numberToAdd;
 
-
     public AddNumberViewModel()
     {
       DisplayName = "Indtast tal..";
       NumberToAdd = 1;
     }
-
-   
 
     public void OK()
     {

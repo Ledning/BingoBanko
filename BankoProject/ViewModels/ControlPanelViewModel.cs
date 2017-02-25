@@ -221,13 +221,22 @@ namespace BankoProject.ViewModels
       }
     }
 
-    public void CheckPlateButton()
+    public void CheckPlate()
     {
       //OO this one is...intredasting
       //TODO: implement lol
       throw new NotImplementedException();
     }
 
+    public bool CanCheckPlate()
+    {
+      //This is just a rudimentary check to see if the plates has been generated
+      if (Event.PInfo.CardList.Count >= Event.PInfo.PlatesGenerated)
+      {
+        return true;
+      }
+      return false;
+    }
     public void AddTeamButton()
     {
       CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams, this.ContestDuration, this.StartValue);
