@@ -21,7 +21,7 @@
     <Rectangle Height="20"/>
     <Button x:Name="GeneratePlates" Content="Generer plader"/>
     <Rectangle Height="20"/>
-    <ComboBox x:Name="comboBox" ItemsSource="{Binding ScreenConverter}"/>
+    <ComboBox x:Name="comboBox" ItemsSource="{Binding ScreenConverter}" SelectedIndex="{Binding SelectedScreen}"/>
     <Button x:Name="ChangeBigScreen" Content="Skift storskærm"/>
     <Rectangle Height="20"/>
 

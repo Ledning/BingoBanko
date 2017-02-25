@@ -17,6 +17,7 @@ namespace BankoProject.ViewModels
 {
   class ControlPanelViewModel : Conductor<IMainViewItem>.Collection.OneActive, IMainViewItem
   {
+    #region fields
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
     private IWindowManager _winMan;
@@ -27,6 +28,8 @@ namespace BankoProject.ViewModels
     private int _numberOfContestants;
     private int _numberOfTeams;
     private int _contestDuration;
+    #endregion
+
 
 
     //TODO: Overlay Lbael på view skal fixes - det har en weird kant
@@ -204,6 +207,7 @@ namespace BankoProject.ViewModels
     }
 
 
+
     public void CheckPlateButton()
     {
       //OO this one is...intredasting
@@ -272,6 +276,14 @@ namespace BankoProject.ViewModels
     }
     #endregion
 
+    #region ScreenCollectionUpdate
+
+    
+
+    #endregion
+
+
+
     #region ResetStuff
 
     public void Reset()
@@ -321,3 +333,4 @@ namespace BankoProject.ViewModels
     //Could be done with just a single bool on the bingoEvent object. 
   }
 }
+

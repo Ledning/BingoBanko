@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using BankoProject.Models;
 using BankoProject.Tools;
 using BankoProject.Tools.Events;
 using BankoProject.ViewModels.ConfirmationBoxes;
 using Caliburn.Micro;
+using Printer_Project;
+using ScrnHelper = WpfScreenHelper.Screen;
 
 namespace BankoProject.ViewModels.Flyout
 {
@@ -19,6 +25,7 @@ namespace BankoProject.ViewModels.Flyout
     private string _startStopText = "Stop BingoBanko";
     private IEventAggregator _events;
     private IWindowManager _windowManager;
+    private int _selectedScreen;
 
     //IMPORTANT
     //For once in this apps lifetime, these things have to be loaded in here. since this is a flyout, OnViewReady is not called/not called at the appropriate time, so that does not work.
@@ -30,6 +37,10 @@ namespace BankoProject.ViewModels.Flyout
       _windowManager = IoC.Get<IWindowManager>();
       DisplayName = "";
       _log.Info("ControlFlyoutTriggered");
+      var dueTime = TimeSpan.FromSeconds(5);
+      var interval = TimeSpan.FromSeconds(5);
+      RunPeriodicAsync(UpdateScreensAvailable, dueTime, interval, CancellationToken.None);
+      SelectedScreen = Event.WindowSettings.ChoosenPresentationScreen;
     }
 
 
@@ -47,6 +58,7 @@ namespace BankoProject.ViewModels.Flyout
 
     protected override void OnViewReady(object view)
     {
+
     }
 
     #endregion
@@ -83,13 +95,48 @@ namespace BankoProject.ViewModels.Flyout
       }
     }
 
+    private void UpdateScreensAvailable()
+    {
+      List<WpfScreenHelper.Screen> result = ScrnHelper.AllScreens.ToList();
+      BindableCollection<WpfScreenHelper.Screen> bindableresult = new BindableCollection<ScrnHelper>();
+      foreach (var screen in result)
+      {
+        bindableresult.Add(screen);
+      }
+      Event.WindowSettings.Screens = bindableresult;
+    }
+
+    private static async Task RunPeriodicAsync(System.Action onTick,
+      TimeSpan dueTime,
+      TimeSpan interval,
+      CancellationToken token)
+    {
+      // Initial wait time before we begin the periodic loop.
+      if (dueTime > TimeSpan.Zero)
+        await Task.Delay(dueTime, token);
+
+      // Repeat this loop until cancelled.
+      while (!token.IsCancellationRequested)
+      {
+        // Call our onTick function.
+        onTick?.Invoke();
+
+        // Wait to repeat again.
+        if (interval > TimeSpan.Zero)
+          await Task.Delay(interval, token);
+      }
+    }
+
     public void GeneratePlates()
     {
-      //TODO: Trigger the generation of plates, and the placement of output pdf in bingobanko in documents
+      _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.GeneratePlates,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
+
 
     public void CanGeneratePlates()
     {
+      
       //TODO: Code for checking if a file with the appropriate name already exists in the bingobanko base dir in documents
     }
 
@@ -97,18 +144,39 @@ namespace BankoProject.ViewModels.Flyout
     {
       get
       {
-        return new List<string>()
+        List<string> result = new List<string>();
+
+        foreach (var screenItem in ScrnHelper.AllScreens)
         {
-          "1",
-          "2",
-          "3"
-        };
+          if (screenItem.Primary)
+          {
+            result.Add("PRIMARY");
+          }
+          else
+          {
+            result.Add( "SECONDARY" + screenItem.DeviceName);
+          }
+        }
+        return result;
       }
     }
 
+    public int SelectedScreen
+    {
+      get { return _selectedScreen; }
+      set { _selectedScreen = value; NotifyOfPropertyChange(()=>SelectedScreen); }
+    }
+
+
     public void ChangeBigScreen()
     {
+      Event.WindowSettings.ChoosenPresentationScreen = SelectedScreen;
+      Event.WindowSettings.PrsSettings.Width = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Width;
+      Event.WindowSettings.PrsSettings.Height = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Height;
 
+      Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Left;
+      Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Top;
+      Event.WindowSettings.PrsSettings.State = WindowState.Maximized;
     }
 
     #region props

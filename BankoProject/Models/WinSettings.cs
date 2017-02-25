@@ -51,6 +51,9 @@ namespace BankoProject.Models
 
 
 
+
+
+
     #region props
     public int Width
     {

@@ -36,10 +36,6 @@ namespace BankoProject.Models
     private bool _isOverLayOpen = false;
 
 
-
-
-
-
     #region Props
     public int Width
     {
@@ -70,6 +66,7 @@ namespace BankoProject.Models
     {
       OverlaySettings = new FullscreenOverlaySettings();;
     }
+
     public int SelectedPresScreen
     {
         get
