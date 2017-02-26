@@ -172,6 +172,7 @@
     <Compile Include="ViewModels\PresentationScreen\FullscreenImageViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\NumberBarViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\PlateOverlayViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreen\PresentationBoardViewModel.cs" />
     <Compile Include="Views\BingoBankoView.xaml.cs">
       <DependentUpon>BingoBankoView.xaml</DependentUpon>
     </Compile>
@@ -240,6 +241,12 @@
     </Compile>
     <Compile Include="Views\PresentationScreen\PlateOverlayView.xaml.cs">
       <DependentUpon>PlateOverlayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PresentationScreen\PresentationBoardView.xaml.cs">
+      <DependentUpon>PresentationBoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Styles\PresentationBoardElement.xaml.cs">
+      <DependentUpon>PresentationBoardElement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -347,6 +354,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PresentationScreen\PresentationBoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Styles\CustomStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -400,6 +411,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Styles\LabelStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\PresentationBoardElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
