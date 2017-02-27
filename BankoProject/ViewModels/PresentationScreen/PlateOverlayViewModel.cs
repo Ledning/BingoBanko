@@ -21,7 +21,7 @@ namespace BankoProject.ViewModels.PresentationScreen
 
     protected override void OnViewReady(object view)
     {
-      ActivateItem(new BoardViewModel());
+      ActivateItem(new PresentationBoardViewModel());
     }
 
     #endregion
