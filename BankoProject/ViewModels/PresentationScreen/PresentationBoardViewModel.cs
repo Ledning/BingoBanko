@@ -14,16 +14,17 @@ namespace BankoProject.ViewModels.PresentationScreen
 
     public PresentationBoardViewModel()
     {
-      _event = IoC.Get<BingoEvent>();
+      Event = IoC.Get<BingoEvent>();
     }
 
-    
+    #region Overrides of ViewAware
 
+    protected override void OnViewReady(object view)
+    {
+      Event = IoC.Get<BingoEvent>();
+    }
 
-
-
-
-
+    #endregion
 
     public BingoEvent Event
     {

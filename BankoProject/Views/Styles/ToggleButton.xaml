@@ -29,15 +29,30 @@
             <metro:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (metro:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
           </Grid>
           <ControlTemplate.Triggers>
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="IsChecked" Value="True"/>
-                <Condition Property="tools:ControlExtensions.IsPicked" Value ="True"/>
-              </MultiTrigger.Conditions>
+            <Trigger Property="tools:ControlExtensions.IsPicked" Value="True">
               <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
               <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
-              <Setter Property="Background" TargetName="Background" Value="#FF32DC32"/>
+              <Setter Property="Background" TargetName="Background" Value="#FF00D600"/>
+            </Trigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsChecked" Value ="True"/>
+                <Condition Property="tools:ControlExtensions.IsPicked" Value ="true"/>
+              </MultiTrigger.Conditions>
+              <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
+              <Setter Property="Background" TargetName="Background" Value="#FFB5F35A"/>
+              <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
             </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="tools:ControlExtensions.IsPicked" Value ="True"/>
+                <Condition Property="IsMouseOver" Value ="true"/>
+              </MultiTrigger.Conditions>
+              <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
+              <Setter Property="Background" TargetName="Background" Value="#FFB5F35A"/>
+              <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
+            </MultiTrigger>
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsChecked" Value ="True"/>
@@ -47,11 +62,7 @@
               <Setter Property="Background" TargetName="Background" Value="Yellow"/>
               <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
             </MultiTrigger>
-            <!--<Trigger Property="IsChecked" Value="True">
-              <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
-              <Setter Property="Background" TargetName="Background" Value="Yellow"/>
-              <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
-            </Trigger>-->
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsMouseOver" Value="True"/>

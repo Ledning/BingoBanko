@@ -62,6 +62,5 @@ namespace BankoProject.Models
     }
 
 
-
   }
 }

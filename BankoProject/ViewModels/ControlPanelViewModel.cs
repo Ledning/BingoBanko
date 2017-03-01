@@ -19,6 +19,7 @@ namespace BankoProject.ViewModels
   class ControlPanelViewModel : Conductor<IMainViewItem>.Collection.OneActive, IMainViewItem
   {
     #region fields
+
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
     private IWindowManager _winMan;
@@ -29,11 +30,13 @@ namespace BankoProject.ViewModels
     private int _numberOfContestants;
     private int _numberOfTeams;
     private int _contestDuration;
+
     #endregion
 
     //TODO: Overlay Lbael på view skal fixes - det har en weird kant
 
     #region Constructors
+
     public ControlPanelViewModel()
     {
       BoardVM = new BoardViewModel();
@@ -41,9 +44,11 @@ namespace BankoProject.ViewModels
 
       this.StartValue = 0;
     }
+
     #endregion
 
     #region Overrides of ViewAware
+
     protected override void OnViewReady(object view)
     {
       _events = IoC.Get<IEventAggregator>();
@@ -54,7 +59,8 @@ namespace BankoProject.ViewModels
       przScrnDelay();
       Event.WindowSettings.PrsSettings.OverlaySettings.StdScrnOl = true;
       Event.WindowSettings.PrsSettings.OverlaySettings.UpdateBackgrounds();
-    } 
+    }
+
     #endregion
 
     #region Properties
@@ -88,6 +94,7 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => PlateNumberTextBox);
       }
     }
+
     public string ContestName
     {
       get { return _contestName; }
@@ -129,6 +136,7 @@ namespace BankoProject.ViewModels
     }
 
     private int _startValue;
+
     public int StartValue
     {
       get { return _startValue; }
@@ -138,17 +146,25 @@ namespace BankoProject.ViewModels
         NotifyOfPropertyChange(() => StartValue);
       }
     }
+
     public CompetitionObject Competition { get; set; }
-    
+
     private BindableCollection<Team> _allTeams;
+
     public BindableCollection<Team> AllTeams
     {
       get { return _allTeams; }
-      set { _allTeams = value; NotifyOfPropertyChange(() => AllTeams); }
+      set
+      {
+        _allTeams = value;
+        NotifyOfPropertyChange(() => AllTeams);
+      }
     }
+
     #endregion
 
     #region Async stuff
+
     public void SpawnPrezScreen()
     {
       if (Event.WindowSettings.PrsSettings.IsOverLayOpen == true) return;
@@ -161,9 +177,11 @@ namespace BankoProject.ViewModels
       await Task.Delay(1000);
       SpawnPrezScreen();
     }
+
     #endregion
 
     #region Methods
+
     public void ShowWelcome()
     {
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
@@ -175,23 +193,32 @@ namespace BankoProject.ViewModels
     }
 
     //this method gets a random number and marks the boardview, that that number is now marked
-    public int DrawRandom()
-    {
-      //TODO: Lav et eller andet check så man ikke kan trække hvis der er få tal tilbage 
-      Random rdn = new Random();
+    public void DrawRandom() { 
+      //TODO: Fix this. The search slows down as the board fills up. dunno why. maybe hashsets, but its hard to keep the list updated. Maybe use some kind of linq that selects subset of main set(boarD) and searches that
+    //{
+    //  if (Event.NumberBoard.AvailableNumbers.Count==1)
+    //  {
+    //    Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[1].Value - 1].IsPicked = true;
+    //    Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[1].Value - 1].IsChecked = false;
+    //    Event.NumberBoard.AvailableNumbers.Remove(Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[1].Value - 1]);
+    //    return;
+    //  }
+    //  //TODO: Lav et eller andet check så man ikke kan trække hvis der er få tal tilbage 
+    //  Random rdn = new Random();
+    //  int rdnnumber = rdn.Next(0, Event.NumberBoard.AvailableNumbers.Count);
 
-      int rdnnumber = rdn.Next(0, 89);
-      while (true)
-      {
-        if (this.Event.NumberBoard.Board[rdnnumber].IsPicked == false)
-        {
-          this.Event.NumberBoard.Board[rdnnumber].IsPicked = true;
-          Event.NumberBoard.Board[rdnnumber].IsSelected = true;
-          return 1;
-        }
-        rdnnumber = rdn.Next(0, 89);
-      }
-      return 0;
+    //  if (Event.NumberBoard.AvailableNumbers.Count>0)
+    //  {
+    //    if (!Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1].IsPicked)
+    //    {
+    //      _log.Info(Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1].Value.ToString());
+    //      Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1].IsPicked = true;
+    //      Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1].IsChecked = false;
+    //      Event.NumberBoard.AvailableNumbers.Remove(Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1]);
+    //      return;
+    //    }
+    //    _log.Info("This should not happen");
+    //  }
     }
 
     public void AddSelectedNumbers()
@@ -199,11 +226,17 @@ namespace BankoProject.ViewModels
       //TODO: Make the numbers enter into a secondary queue, so that they might be animated
       foreach (BingoNumber bnum in Event.NumberBoard.Board)
       {
-        if (bnum.IsSelected)
+        if (bnum.IsChecked)
         {
           if (!bnum.IsPicked)
           {
             bnum.IsPicked = true;
+            bnum.IsChecked = false;
+          }
+          else if (bnum.IsPicked)
+          {
+            bnum.IsPicked = false;
+            bnum.IsChecked = false;
           }
         }
       }
@@ -216,8 +249,12 @@ namespace BankoProject.ViewModels
       var result = _winMan.ShowDialog(dialog);
       if (result == true)
       {
-        Event.NumberBoard.Board[dialog.NumberToAdd-1].IsPicked = true; //minus one to make it fit the array lol
-        Event.NumberBoard.Board[dialog.NumberToAdd-1].IsSelected = true;
+        if (!Event.NumberBoard.Board[dialog.NumberToAdd -1].IsPicked)
+        {
+          Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsPicked = true; //minus one to make it fit the array lol
+          Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsChecked = false;
+        }
+        
       }
     }
 
@@ -237,9 +274,11 @@ namespace BankoProject.ViewModels
       }
       return false;
     }
+
     public void AddTeamButton()
     {
-      CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams, this.ContestDuration, this.StartValue);
+      CompetitionObject competition = new CompetitionObject(this.NumberOfContestants, this.NumberOfTeams,
+        this.ContestDuration, this.StartValue);
       this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
 
       this.Competition = competition;
@@ -252,7 +291,8 @@ namespace BankoProject.ViewModels
 
       // When this method is activated we can either change the view, or keep everything within
       //current view. Which is best?
-    } 
+    }
+
     #endregion
 
     #region PresentationActivation
@@ -295,11 +335,10 @@ namespace BankoProject.ViewModels
     {
       Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Hidden;
     }
+
     #endregion
 
     #region ScreenCollectionUpdate
-
-    
 
     #endregion
 
@@ -352,4 +391,3 @@ namespace BankoProject.ViewModels
     //Could be done with just a single bool on the bingoEvent object. 
   }
 }
-
