@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="1920" Visibility="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible}">
   <Grid Width="1900" Height="300" ClipToBounds="True">
     <Grid.Background>
-      <SolidColorBrush Color="Gray" Opacity="0.5"></SolidColorBrush>
+      <SolidColorBrush Color="Gray" Opacity="0.6"></SolidColorBrush>
     </Grid.Background>
     <ItemsControl IsTabStop="False" ItemsSource="{Binding Event.BingoNumberQueue}" cal:Bind.AtDesignTime="True">
       <ItemsControl.ItemTemplate>

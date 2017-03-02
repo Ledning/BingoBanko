@@ -28,7 +28,8 @@ namespace BankoProject.Tools
       LatestNumbers, 
       BingoHappened, 
       ClosePrez,
-      ScrnActivationTriggered
+      ScrnActivationTriggered,
+      FullscreenOverlayBlank
     }
 
     /// <summary>

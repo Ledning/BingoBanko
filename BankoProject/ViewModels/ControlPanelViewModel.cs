@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using BankoProject.Models;
 using BankoProject.Tools.Events;
 using BankoProject.ViewModels.ConfirmationBoxes;
@@ -333,7 +334,8 @@ namespace BankoProject.ViewModels
 
     public void ActivateBlankOverlay()
     {
-      Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Hidden;
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     #endregion

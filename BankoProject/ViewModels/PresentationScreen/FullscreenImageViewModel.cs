@@ -24,14 +24,21 @@ namespace BankoProject.ViewModels.PresentationScreen
       Event = IoC.Get<BingoEvent>();
       ShowStandard();
       SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol" + "\\Backgrounds";
-    } 
+    }
+
+    public FullscreenImageViewModel(bool blank)
+    {
+      Event = IoC.Get<BingoEvent>();
+      Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Hidden;
+      SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol" + "\\Backgrounds";
+    }
     #endregion
 
     #region Overrides of ViewAware
 
     protected override void OnViewReady(object view)
     {
-      ShowStandard();
+      //ShowStandard(); If bugs appear; consider reenabling this
     }
 
     #endregion

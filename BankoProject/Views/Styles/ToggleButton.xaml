@@ -34,6 +34,8 @@
               <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
               <Setter Property="Background" TargetName="Background" Value="#FF00D600"/>
             </Trigger>
+            
+
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsChecked" Value ="True"/>
@@ -45,14 +47,13 @@
             </MultiTrigger>
             <MultiTrigger>
               <MultiTrigger.Conditions>
-                <Condition Property="tools:ControlExtensions.IsPicked" Value ="True"/>
+                <Condition Property="IsChecked" Value ="True"/>
                 <Condition Property="IsMouseOver" Value ="true"/>
               </MultiTrigger.Conditions>
               <Setter Property="BorderThickness" TargetName="Border" Value="2"/>
-              <Setter Property="Background" TargetName="Background" Value="#FFB5F35A"/>
+              <Setter Property="Background" TargetName="Background" Value="#FF00D600"/>
               <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
             </MultiTrigger>
-            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsChecked" Value ="True"/>
@@ -63,13 +64,7 @@
               <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush5}"/>
             </MultiTrigger>
             
-            <MultiTrigger>
-              <MultiTrigger.Conditions>
-                <Condition Property="IsMouseOver" Value="True"/>
-                <Condition Property="IsChecked" Value="False"/>
-              </MultiTrigger.Conditions>
-              <Setter Property="Background" TargetName="Background" Value="{DynamicResource GrayBrush8}"/>
-            </MultiTrigger>
+
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="IsMouseOver" Value="True"/>

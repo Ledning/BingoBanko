@@ -104,6 +104,9 @@ namespace BankoProject.ViewModels
           TryClose();
           _log.Info("Prez closed.");
           break;
+        case ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank:
+          ActivateItem(new FullscreenImageViewModel(true));
+          break;
       }
     }
 
