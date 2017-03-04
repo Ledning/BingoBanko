@@ -6,23 +6,26 @@
              xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.PresentationScreen.NumberBarView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1920" Visibility="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible}">
-  <Grid Width="1900" Height="300" ClipToBounds="True">
+  <Grid Width="{Binding Event.WindowSettings.PrsSettings.Width}" Height="150" ClipToBounds="True">
     <Grid.Background>
-      <SolidColorBrush Color="Gray" Opacity="0.6"></SolidColorBrush>
+      <SolidColorBrush Color="Gray" Opacity="0.4"></SolidColorBrush>
     </Grid.Background>
-    <ItemsControl IsTabStop="False" ItemsSource="{Binding Event.BingoNumberQueue}" cal:Bind.AtDesignTime="True">
+    <ItemsControl IsTabStop="False" ItemsSource="{Binding Event.BingoNumberQueue}" cal:Bind.AtDesignTime="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
-          <Border Tag="{Binding}" cal:Bind.AtDesignTime="True">
-            <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
-              <TextBox Text="{Binding VText, Mode=OneWay}" Width="182" Background="Transparent" Margin="10,0,0,0" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" cal:Bind.AtDesignTime="True"/>
+          <Border Tag="{Binding}" Opacity="0.87" cal:Bind.AtDesignTime="True" Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center">
+            <Border.Effect>
+              <DropShadowEffect/>
+            </Border.Effect>
+            <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
+              <TextBox Text="{Binding VText, Mode=OneWay}" Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" cal:Bind.AtDesignTime="True"/>
             </Viewbox>
           </Border>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
-          <StackPanel Height="180" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Bottom" cal:Bind.AtDesignTime="True">
+          <StackPanel Height="100" Orientation="Horizontal" FlowDirection="RightToLeft" VerticalAlignment="Center" cal:Bind.AtDesignTime="True">
           </StackPanel>
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
