@@ -220,6 +220,8 @@ namespace BankoProject.ViewModels
     //    }
     //    _log.Info("This should not happen");
     //  }
+
+      //TODO: REMEMBER TO ADD FUNCTIONALITY FOR KEEPIN QUEUE UPDATED HERE
     }
 
     public void AddSelectedNumbers()
@@ -233,11 +235,13 @@ namespace BankoProject.ViewModels
           {
             bnum.IsPicked = true;
             bnum.IsChecked = false;
+            Event.BingoNumberQueue.Add(bnum);
           }
           else if (bnum.IsPicked)
           {
             bnum.IsPicked = false;
             bnum.IsChecked = false;
+            Event.BingoNumberQueue.Remove(bnum);
           }
         }
       }
@@ -254,6 +258,7 @@ namespace BankoProject.ViewModels
         {
           Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsPicked = true; //minus one to make it fit the array lol
           Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsChecked = false;
+          Event.BingoNumberQueue.Add(Event.NumberBoard.Board[dialog.NumberToAdd - 1]);
         }
         
       }
