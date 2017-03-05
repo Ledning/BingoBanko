@@ -12,5 +12,15 @@ namespace BankoProject.Views
     {
       InitializeComponent();
     }
+
+    private void ActiveItem_TransitionCompleted(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void ActiveItem_Unloaded(object sender, RoutedEventArgs e)
+    {
+
+    }
   }
 }

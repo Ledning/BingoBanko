@@ -19,6 +19,7 @@ namespace BankoProject.ViewModels
     private BingoEvent _event;
     private IEventAggregator _eventAgg;
     private IPresentationScreenItem _currentPrezItem = new FullscreenImageViewModel();
+    private bool _fadeOut;
     #endregion
 
     #region Constructors
@@ -42,6 +43,20 @@ namespace BankoProject.ViewModels
         _currentPrezItem = value;
         ActivateItem(CurrentPrezItem);
         NotifyOfPropertyChange(() => CurrentPrezItem);
+      }
+    }
+
+    public bool FadeOut
+    {
+      get
+      {
+        return _fadeOut;
+      }
+
+      set
+      {
+        _fadeOut = value;
+        NotifyOfPropertyChange(() => FadeOut);
       }
     }
     #endregion
@@ -85,27 +100,43 @@ namespace BankoProject.ViewModels
       switch (message.Message)
       {
         case ApplicationWideEnums.MessageTypes.FullscreenOverlay:
-          ActivateItem(new FullscreenImageViewModel());
-          _log.Info("fullscrnOLhandled");
+          if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
+          {
+            ActivateItem(new FullscreenImageViewModel());
+            _log.Info("fullscrnOLhandled");
+          }
           break;
         case ApplicationWideEnums.MessageTypes.BoardOverview:
-          ActivateItem(new PlateOverlayViewModel());
-          _log.Info("BoardOLhandled");
+          if (ActiveItem.GetType() != typeof(PlateOverlayViewModel))
+          {
+            ActivateItem(new PlateOverlayViewModel());
+            _log.Info("BoardOLhandled");
+          }
           break;
         case ApplicationWideEnums.MessageTypes.LatestNumbers:
-          ActivateItem(new NumberBarViewModel());
-          _log.Info("latestnumolhandled");
+          if (ActiveItem.GetType() != typeof(NumberBarViewModel))
+          {
+            ActivateItem(new NumberBarViewModel());
+            _log.Info("latestnumolhandled");
+          }
           break;
         case ApplicationWideEnums.MessageTypes.BingoHappened:
-          ActivateItem(new BingoScreenViewModel());
-          _log.Info("bingohapndOLHandled");
+          if (ActiveItem.GetType() != typeof(BingoScreenViewModel))
+          {
+            ActivateItem(new BingoScreenViewModel());
+            _log.Info("bingohapndOLHandled");
+          }
           break;
         case ApplicationWideEnums.MessageTypes.ClosePrez:
           TryClose();
           _log.Info("Prez closed.");
           break;
         case ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank:
-          ActivateItem(new FullscreenImageViewModel(true));
+          if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
+          {
+            ActivateItem(new FullscreenImageViewModel(true));
+            _log.Info("fullscrnOLhandled");
+          }
           break;
       }
     }

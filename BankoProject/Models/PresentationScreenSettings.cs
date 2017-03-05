@@ -34,18 +34,19 @@ namespace BankoProject.Models
     private FullscreenOverlaySettings _fullscreenOverlaySettings;
     private bool _closeWindow = false;
     private bool _isOverLayOpen = false;
-
+    [XmlIgnore]
+    private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
     #region Props
     public int Width
     {
-      get { return _width; }
+      get { return _width;  _log.Info(Width.ToString());}
       set { _width = value; NotifyOfPropertyChange(() => Width); }
     }
 
     public int Height
     {
-      get { return _height; }
+      get { return _height; _log.Info(Height.ToString());}
       set { _height = value; NotifyOfPropertyChange(() => Height); }
     }
 

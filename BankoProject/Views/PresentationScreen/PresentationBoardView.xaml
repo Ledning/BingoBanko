@@ -8,6 +8,7 @@
                           xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
               xmlns:tools="clr-namespace:BankoProject.Tools"
              xmlns:BoardElement="clr-namespace:BankoProject.Views.Styles"
+             
              d:DesignHeight="600" d:DesignWidth="600">
   <UserControl.Resources>
     <Style x:Key="BorderStyle" TargetType="Border">
@@ -19,10 +20,14 @@
           <Setter Property="Opacity" Value="1"></Setter>
         </Trigger>
       </Style.Triggers>
+      <Setter Property="RenderOptions.ClearTypeHint"
+                Value="Auto" />
+      <Setter Property="TextOptions.TextFormattingMode"
+                Value="Ideal" />
     </Style>
   </UserControl.Resources>
 
-  <Border Margin="-26,0,0,0" Width="620" Height="600" CornerRadius="40">
+  <Border Margin="-26,0,0,0"  CornerRadius="40" >
     <Border.Background>
       <SolidColorBrush Color="Beige" Opacity="0.75"/>
     </Border.Background>
@@ -31,7 +36,7 @@
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
-      <Label Content="1" FontSize="37.333" Foreground="White" FontFamily="Segoe WP Black" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" d:IsHidden="False"/>
+      <Label  Content="1" FontSize="37.333" Foreground="White" FontFamily="Segoe WP Black" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" d:IsHidden="False"/>
     </Border>
     <Border BorderThickness="0" CornerRadius="15" Background="#FF5E8F4F" Style="{DynamicResource BorderStyle}"  tools:ControlExtensions.IsPicked="{Binding Event.NumberBoard.Board[1].IsPicked}" Width="55.62" VerticalAlignment="Top" HorizontalAlignment="Left" d:LayoutOverrides="TopMargin, BottomMargin" Margin="60.62,0,0,0">
       <Border.Effect>
@@ -61,7 +66,7 @@
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
-      <Label Content="6" FontSize="37.333" Foreground="White" FontFamily="Segoe WP Black" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" d:IsHidden="False"/>
+        <Label  Content="6" FontSize="37.333" Foreground="White" FontFamily="Segoe WP Black" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" d:IsHidden="False"/>
     </Border>
     <Border BorderThickness="0" CornerRadius="15" Background="#FF5E8F4F" Style="{DynamicResource BorderStyle}" tools:ControlExtensions.IsPicked="{Binding Event.NumberBoard.Board[6].IsPicked}" Width="55.62" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,180.66,0" d:LayoutOverrides="TopMargin, BottomMargin">
       <Border.Effect>
