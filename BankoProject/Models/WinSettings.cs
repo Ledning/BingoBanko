@@ -46,7 +46,7 @@ namespace BankoProject.Models
       Screens = new BindableCollection<ScrnHelper>(ScrnHelper.AllScreens);
       PrsSettings = new PresentationScreenSettings();
       PrsSettings.State = WindowState.Normal;
-      ChoosenPresentationScreen = 1;
+      ChoosenPresentationScreen = 0;
     }
 
 

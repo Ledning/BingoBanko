@@ -100,31 +100,43 @@ namespace BankoProject.ViewModels
       switch (message.Message)
       {
         case ApplicationWideEnums.MessageTypes.FullscreenOverlay:
-          if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
+          if (ActiveItem != null)
           {
-            ActivateItem(new FullscreenImageViewModel());
-            _log.Info("fullscrnOLhandled");
+            if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
+            {
+              ActivateItem(new FullscreenImageViewModel());
+              _log.Info("fullscrnOLhandled");
+            }
           }
           break;
         case ApplicationWideEnums.MessageTypes.BoardOverview:
-          if (ActiveItem.GetType() != typeof(PlateOverlayViewModel))
+          if (ActiveItem != null)
           {
-            ActivateItem(new PlateOverlayViewModel());
-            _log.Info("BoardOLhandled");
+            if (ActiveItem.GetType() != typeof(PlateOverlayViewModel))
+            {
+              ActivateItem(new PlateOverlayViewModel());
+              _log.Info("BoardOLhandled");
+            } 
           }
           break;
         case ApplicationWideEnums.MessageTypes.LatestNumbers:
-          if (ActiveItem.GetType() != typeof(NumberBarViewModel))
+          if (ActiveItem != null)
           {
-            ActivateItem(new NumberBarViewModel());
-            _log.Info("latestnumolhandled");
+            if (ActiveItem.GetType() != typeof(NumberBarViewModel))
+            {
+              ActivateItem(new NumberBarViewModel());
+              _log.Info("latestnumolhandled");
+            } 
           }
           break;
         case ApplicationWideEnums.MessageTypes.BingoHappened:
-          if (ActiveItem.GetType() != typeof(BingoScreenViewModel))
+          if (ActiveItem != null)
           {
-            ActivateItem(new BingoScreenViewModel());
-            _log.Info("bingohapndOLHandled");
+            if (ActiveItem.GetType() != typeof(BingoScreenViewModel))
+            {
+              ActivateItem(new BingoScreenViewModel());
+              _log.Info("bingohapndOLHandled");
+            } 
           }
           break;
         case ApplicationWideEnums.MessageTypes.ClosePrez:
@@ -132,10 +144,13 @@ namespace BankoProject.ViewModels
           _log.Info("Prez closed.");
           break;
         case ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank:
-          if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
+          if (ActiveItem != null)
           {
-            ActivateItem(new FullscreenImageViewModel(true));
-            _log.Info("fullscrnOLhandled");
+            if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
+            {
+              ActivateItem(new FullscreenImageViewModel(true));
+              _log.Info("fullscrnOLhandled");
+            } 
           }
           break;
       }

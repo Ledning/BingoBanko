@@ -27,7 +27,7 @@
     </Style>
   </UserControl.Resources>
 
-  <Border Margin="-26,0,0,0"  CornerRadius="40" >
+    <Border Margin="-26,0,0,0" Width="620" Height="600" CornerRadius="40" >
     <Border.Background>
       <SolidColorBrush Color="Beige" Opacity="0.75"/>
     </Border.Background>
@@ -198,7 +198,7 @@
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
-      <Label Content="28" FontSize="37.333" Foreground="White" FontFamily="Segoe WP Black" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" d:IsHidden="False"/>
+      <Label Content="28"  FontSize="37.333" Foreground="White" FontFamily="Segoe WP Black" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" d:IsHidden="False"/>
     </Border>
     <Border BorderThickness="0" CornerRadius="15" Background="#FF5E8F4F" Style="{DynamicResource BorderStyle}" tools:ControlExtensions.IsPicked="{Binding Event.NumberBoard.Board[28].IsPicked}" Width="55.62" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,129.312,60.62,0">
       <Border.Effect>
