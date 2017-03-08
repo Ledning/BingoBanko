@@ -44,6 +44,8 @@ namespace BankoProject.Models
     [XmlArray("BingoNumberQueue")] [XmlArrayItem("BingoNumber")] private BindableCollection<BingoNumber>
       _bingoNumberQueue; //the numbers picked in the game, input into this list as they come in. 
 
+    [XmlArray("AvailableNumbersQueue")] [XmlArrayItem("AvailableNumbers")] private BindableCollection<BingoNumber>
+      _availableNumbersQueue; //The numbers available to be picked.
 
     #region GetterSetter
 
@@ -95,6 +97,19 @@ namespace BankoProject.Models
         _bingoNumberQueue = value;
         QueueLength = _bingoNumberQueue.Count;
         NotifyOfPropertyChange(() => BingoNumberQueue);
+      }
+    }
+
+    [XmlArray("AvailableNumbersQueue")]
+    [XmlArrayItem(Type = typeof(BingoNumber))]
+    public BindableCollection<BingoNumber> AvailableNumbersQueue
+    {
+      get { return _availableNumbersQueue; }
+      set
+      {
+        _availableNumbersQueue = value;
+        QueueLength = _availableNumbersQueue.Count;
+        NotifyOfPropertyChange(() => AvailableNumbersQueue);
       }
     }
 
@@ -211,6 +226,14 @@ namespace BankoProject.Models
       IsBingoRunning = false;
       _log.Info("Event object initialization done.");
       PInfo.CardGenerator = new Generator(SInfo.Seed);
+
+      AvailableNumbersQueue= new BindableCollection<BingoNumber>();
+      for (int i = 1; i <= 90; i++)
+      {
+        BingoNumber j = new BingoNumber();
+        j.Value = i;
+        AvailableNumbersQueue.Add(j);
+      }
     }
 
     /// <summary>
@@ -243,6 +266,14 @@ namespace BankoProject.Models
       ResetTime = resetTime;
       _log.Info("Event object initialization done.");
       PInfo.CardGenerator = new Generator(SInfo.Seed);
+
+      AvailableNumbersQueue = new BindableCollection<BingoNumber>();
+      for (int i = 1; i <= 90; i++)
+      {
+        BingoNumber j = new BingoNumber();
+        j.Value = i;
+       AvailableNumbersQueue.Add(j);
+      }
     }
 
 

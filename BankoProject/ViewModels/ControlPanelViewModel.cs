@@ -194,32 +194,32 @@ namespace BankoProject.ViewModels
     }
 
     //this method gets a random number and marks the boardview, that that number is now marked
-    public void DrawRandom() { 
+    public void DrawRandom()
+    {
       //TODO: Fix this. The search slows down as the board fills up. dunno why. maybe hashsets, but its hard to keep the list updated. Maybe use some kind of linq that selects subset of main set(boarD) and searches that
-    //{
-    //  if (Event.NumberBoard.AvailableNumbers.Count==1)
-    //  {
-    //    Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[1].Value - 1].IsPicked = true;
-    //    Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[1].Value - 1].IsChecked = false;
-    //    Event.NumberBoard.AvailableNumbers.Remove(Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[1].Value - 1]);
-    //    return;
-    //  }
-    //  //TODO: Lav et eller andet check så man ikke kan trække hvis der er få tal tilbage 
-    //  Random rdn = new Random();
-    //  int rdnnumber = rdn.Next(0, Event.NumberBoard.AvailableNumbers.Count);
+      //if (Event.AvailableNumbersQueue.Count == 1)
+      //{
+      //  Event.NumberBoard.Board[Event.AvailableNumbersQueue[1].Value - 1].IsPicked = true;
+      //  Event.NumberBoard.Board[Event.AvailableNumbersQueue[1].Value - 1].IsChecked = false;
+      //  Event.NumberBoard.AvailableNumbers.Remove(Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[1].Value - 1]);
+      //  return;
+      //}
+      //  //TODO: Lav et eller andet check så man ikke kan trække hvis der er få tal tilbage 
+      Random rdn = new Random();
+      int rdnnumber = rdn.Next(0, Event.AvailableNumbersQueue.Count);
 
-    //  if (Event.NumberBoard.AvailableNumbers.Count>0)
-    //  {
-    //    if (!Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1].IsPicked)
-    //    {
-    //      _log.Info(Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1].Value.ToString());
-    //      Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1].IsPicked = true;
-    //      Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1].IsChecked = false;
-    //      Event.NumberBoard.AvailableNumbers.Remove(Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[rdnnumber].Value-1]);
-    //      return;
-    //    }
-    //    _log.Info("This should not happen");
-    //  }
+      if (Event.AvailableNumbersQueue.Count > 0)
+      {
+        if (!Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value -1].IsPicked)
+        {
+          _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value -1].Value.ToString());
+          Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value -1].IsPicked = true;
+          Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value -1].IsChecked = false;
+          Event.AvailableNumbersQueue.Remove(Event.AvailableNumbersQueue[rdnnumber]);
+          return;
+        }
+        _log.Info("This should not happen");
+      }
 
       //TODO: REMEMBER TO ADD FUNCTIONALITY FOR KEEPIN QUEUE UPDATED HERE
     }
@@ -236,12 +236,14 @@ namespace BankoProject.ViewModels
             bnum.IsPicked = true;
             bnum.IsChecked = false;
             Event.BingoNumberQueue.Add(bnum);
+            Event.AvailableNumbersQueue.Remove(bnum);
           }
           else if (bnum.IsPicked)
           {
             bnum.IsPicked = false;
             bnum.IsChecked = false;
             Event.BingoNumberQueue.Remove(bnum);
+            Event.AvailableNumbersQueue.Add(bnum);
           }
         }
       }
