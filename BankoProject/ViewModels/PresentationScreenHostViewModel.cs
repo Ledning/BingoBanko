@@ -102,6 +102,11 @@ namespace BankoProject.ViewModels
         case ApplicationWideEnums.MessageTypes.FullscreenOverlay:
           if (ActiveItem != null)
           {
+            if (ActiveItem.GetType() == typeof(FullscreenImageViewModel))
+            {
+              ActivateItem(new FullscreenImageViewModel());
+              _log.Info("fullscrnOLhandled");
+            }
             if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
             {
               ActivateItem(new FullscreenImageViewModel());
@@ -146,6 +151,18 @@ namespace BankoProject.ViewModels
         case ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank:
           if (ActiveItem != null)
           {
+            if (ActiveItem.GetType() == typeof(FullscreenImageViewModel))
+            {
+              var temp = ActiveItem as FullscreenImageViewModel;
+              if (temp != null)
+              {
+                if (!temp.IsBlank)
+                {
+                  ActivateItem(new FullscreenImageViewModel(true));
+                  _log.Info("fullscrnOLBlankhandled");
+                }
+              }
+            }
             if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
             {
               ActivateItem(new FullscreenImageViewModel(true));

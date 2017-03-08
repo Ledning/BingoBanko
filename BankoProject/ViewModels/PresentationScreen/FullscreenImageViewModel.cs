@@ -15,6 +15,7 @@ namespace BankoProject.ViewModels.PresentationScreen
   {
     #region Fields
     private BingoEvent _event;
+    private bool isBlank;
     #endregion
 
     #region Constructor
@@ -28,6 +29,7 @@ namespace BankoProject.ViewModels.PresentationScreen
 
     public FullscreenImageViewModel(bool blank)
     {
+      isBlank = blank;
       Event = IoC.Get<BingoEvent>();
       Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Hidden;
       SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol" + "\\Backgrounds";
@@ -104,6 +106,12 @@ namespace BankoProject.ViewModels.PresentationScreen
     {
       get { return _selectedBackgroundPath; }
       set { _selectedBackgroundPath = value; NotifyOfPropertyChange(()=>SelectedBackgroundPath);}
+    }
+
+    public bool IsBlank
+    {
+      get { return isBlank; }
+      set { isBlank = value; NotifyOfPropertyChange(()=>IsBlank);}
     }
 
     #endregion

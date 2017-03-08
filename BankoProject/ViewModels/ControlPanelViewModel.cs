@@ -168,7 +168,7 @@ namespace BankoProject.ViewModels
 
     public void SpawnPrezScreen()
     {
-      if (Event.WindowSettings.PrsSettings.IsOverLayOpen == true) return;
+      if (Event.WindowSettings.PrsSettings.IsOverLayOpen) return;
       _winMan.ShowWindow(new PresentationScreenHostViewModel());
       Event.WindowSettings.PrsSettings.IsOverLayOpen = true;
     }
@@ -305,7 +305,10 @@ namespace BankoProject.ViewModels
 
     public void ActivateFullscreenOverlay()
     {
-      SpawnPrezScreen();
+      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      {
+        SpawnPrezScreen();
+      }
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlay,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
       Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
@@ -313,21 +316,30 @@ namespace BankoProject.ViewModels
 
     public void ActivateLatestNumbersOverlay()
     {
-      SpawnPrezScreen();
+      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      {
+        SpawnPrezScreen();
+      }
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.LatestNumbers,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public void ActivatePlateOverviewOverlay()
     {
-      SpawnPrezScreen();
+      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      {
+        SpawnPrezScreen();
+      }
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BoardOverview,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public void ActivateBingoHappenedOverlay()
     {
-      SpawnPrezScreen();
+      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      {
+        SpawnPrezScreen();
+      }
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BingoHappened,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
@@ -339,6 +351,10 @@ namespace BankoProject.ViewModels
 
     public void ActivateBlankOverlay()
     {
+      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      {
+        SpawnPrezScreen();
+      }
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
