@@ -104,12 +104,16 @@ namespace BankoProject.ViewModels
           {
             if (ActiveItem.GetType() == typeof(FullscreenImageViewModel))
             {
+              ActivateItem(new FullscreenImageViewModel(true));
               ActivateItem(new FullscreenImageViewModel());
+              Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
               _log.Info("fullscrnOLhandled");
             }
             if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
             {
+              ActivateItem(new FullscreenImageViewModel(true));
               ActivateItem(new FullscreenImageViewModel());
+              Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
               _log.Info("fullscrnOLhandled");
             }
           }
@@ -119,7 +123,9 @@ namespace BankoProject.ViewModels
           {
             if (ActiveItem.GetType() != typeof(PlateOverlayViewModel))
             {
+              ActivateItem(new FullscreenImageViewModel(true));
               ActivateItem(new PlateOverlayViewModel());
+              Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
               _log.Info("BoardOLhandled");
             } 
           }
@@ -129,7 +135,9 @@ namespace BankoProject.ViewModels
           {
             if (ActiveItem.GetType() != typeof(NumberBarViewModel))
             {
+              ActivateItem(new FullscreenImageViewModel(true));
               ActivateItem(new NumberBarViewModel());
+              Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
               _log.Info("latestnumolhandled");
             } 
           }
@@ -139,7 +147,9 @@ namespace BankoProject.ViewModels
           {
             if (ActiveItem.GetType() != typeof(BingoScreenViewModel))
             {
-              ActivateItem(new BingoScreenViewModel());
+              FullscreenImageViewModel fvm = new FullscreenImageViewModel();
+              ActivateItem(fvm);
+              fvm.ShowBingo();
               _log.Info("bingohapndOLHandled");
             } 
           }

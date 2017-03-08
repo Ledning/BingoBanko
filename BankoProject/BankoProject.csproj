@@ -262,11 +262,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -274,7 +269,6 @@
     </Compile>
     <Resource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Resource>
     <None Include="packages.config" />
@@ -444,6 +438,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Orchestra.Shell.MahApps.dll" />
+    <Resource Include="Resources\BingoBanko2016.jpg" />
     <Resource Include="Resources\Achtung.png" />
     <Resource Include="Resources\StandardOverlay.jpg" />
     <Resource Include="Resources\RYNKEBY_banner_460x157_dk.jpg" />

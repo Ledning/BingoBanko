@@ -49,6 +49,7 @@ namespace BankoProject.ViewModels.PresentationScreen
 
     private const string resourceFolder = "\\BankoProject;component\\Resources\\";
     private readonly string standardOverlay = resourceFolder + "StandardOverlay.jpg";
+    private readonly string bingoOverlay = resourceFolder + "BingoBanko2016.jpg";
     private Visibility _isOverlayVisible = Visibility.Visible;
     private string _selectedBackgroundPath; //for whatever is shown on the overlay
     private string _saveDirectory;
@@ -70,6 +71,13 @@ namespace BankoProject.ViewModels.PresentationScreen
       Event.WindowSettings.PrsSettings.OverlaySettings.SelectedBackgroundPath =
        SelectedBackgroundPath = Event.WindowSettings.PrsSettings.OverlaySettings.ReturnSelectedPath();
       Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
+    }
+
+    public void ShowBingo()
+    {
+      Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
+      _log.Info(bingoOverlay);
+      Event.WindowSettings.PrsSettings.OverlaySettings.SelectedBackgroundPath = bingoOverlay;
     }
 
 

@@ -197,13 +197,6 @@ namespace BankoProject.ViewModels
     public void DrawRandom()
     {
       //TODO: Fix this. The search slows down as the board fills up. dunno why. maybe hashsets, but its hard to keep the list updated. Maybe use some kind of linq that selects subset of main set(boarD) and searches that
-      //if (Event.AvailableNumbersQueue.Count == 1)
-      //{
-      //  Event.NumberBoard.Board[Event.AvailableNumbersQueue[1].Value - 1].IsPicked = true;
-      //  Event.NumberBoard.Board[Event.AvailableNumbersQueue[1].Value - 1].IsChecked = false;
-      //  Event.NumberBoard.AvailableNumbers.Remove(Event.NumberBoard.Board[Event.NumberBoard.AvailableNumbers[1].Value - 1]);
-      //  return;
-      //}
       //  //TODO: Lav et eller andet check så man ikke kan trække hvis der er få tal tilbage 
       Random rdn = new Random();
       int rdnnumber = rdn.Next(0, Event.AvailableNumbersQueue.Count);
@@ -268,9 +261,6 @@ namespace BankoProject.ViewModels
 
     public void CheckPlate()
     {
-      //OO this one is...intredasting
-      //TODO: implement lol
-      throw new NotImplementedException();
     }
 
     public bool CanCheckPlate()
