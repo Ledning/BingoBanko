@@ -23,11 +23,10 @@ namespace BankoProject.Models
       {
         Team team = new Team(numberOfParticipants);
         this.AllTeams.Add(team);
-        if (startValue != 0 && startValue > 0)
-        {
-          team.TeamNumber = localstartValue;
-          localstartValue++;
-        }
+
+        team.TeamNumber = localstartValue;
+        localstartValue++;
+
       }
       this.CompetitionDuration = CompetitionDuration;
     }
