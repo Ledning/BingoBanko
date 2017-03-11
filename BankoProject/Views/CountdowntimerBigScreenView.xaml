@@ -11,6 +11,6 @@
              MaxHeight="600" MaxWidth="800"
              >
     <Viewbox>
-        <TextBlock Text="{Binding Event.TimeOpt.TextTime}"></TextBlock>
+        <TextBlock Text="{Binding Event.TimeOpt.BTimer.CurrentTime}"></TextBlock>
     </Viewbox>
 </UserControl>

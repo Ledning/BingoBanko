@@ -183,6 +183,12 @@ namespace BankoProject.ViewModels
 
     #region Methods
 
+    public void ToggleTimer()
+    {
+      Event.TimeOpt.ToggleTimer();
+    }
+
+
     public void ShowWelcome()
     {
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,

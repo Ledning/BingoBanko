@@ -150,6 +150,7 @@
     <Compile Include="Models\WinSettings.cs" />
     <Compile Include="Tools\ApplicationWideEnums.cs" />
     <Compile Include="Tools\BingoDeserializer.cs" />
+    <Compile Include="Tools\BingoTimer.cs" />
     <Compile Include="Tools\ControlExtensions.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\Events\CommunicationObject.cs" />
