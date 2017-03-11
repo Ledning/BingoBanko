@@ -24,7 +24,7 @@ namespace BankoProject.Models
   [Serializable]
   public class PresentationScreenSettings: PropertyChangedBase
   {
-
+    private string _colorScheme;
     private int _width;
     private int _height;
     private int _left;
@@ -38,10 +38,15 @@ namespace BankoProject.Models
 
     [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
-
     private Dock _dockingPlace;
 
     #region Props
+    public string colorScheme
+    {
+      get { return _colorScheme; }
+      set { _colorScheme = value; NotifyOfPropertyChange(() => colorScheme); }
+    }
+
     public int Width
     {
       get { return _width;}

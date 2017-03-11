@@ -364,25 +364,40 @@ namespace BankoProject.ViewModels
 
     public void Reset()
     {
-      //Save the current event, with a different ending
-      //if it was named bingo2017, save a file called bingo2017RESET[TIMESTAMP]
-      _log.Info("Saving event before reset...");
-      _events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
-      BingoEvent resetEv = new BingoEvent();
-      //The following block is almost excatly like the method CopyTo in MainWindowVM, different in the fact that it does not copy over number positions or queues or anything. 
-      resetEv.Initialize(Event.SInfo.Seed, Event.EventTitle, Event.PInfo.PlatesGenerated, DateTime.Now);
-      resetEv.WindowSettings = Event.WindowSettings;
-      resetEv.PInfo = Event.PInfo;
-      resetEv.SInfo = Event.SInfo;
-      //create a new object, that is the same except for the following:
-      //empty competitionlist
-      //empty numberqueue, reset numberboard
-      //reset singlerow/doublerow/plate to singlerow
-      CopyEvent(resetEv, Event);
-      _log.Info("Reset Done");
-      //TODO: Somebody else needs to check up on if this actually copies it all over correctly and resets the correct thingies
-      //ask kris if summin is missin, maybe theres a stupid ass reason for it
+      #region attempt that saves event and stuff
+      ////Save the current event, with a different ending
+      ////if it was named bingo2017, save a file called bingo2017RESET[TIMESTAMP]
+      //_log.Info("Saving event before reset...");
+      //_events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save,
+      //  ApplicationWideEnums.SenderTypes.ControlPanelView));
+      //BingoEvent resetEv = new BingoEvent();
+      ////The following block is almost excatly like the method CopyTo in MainWindowVM, different in the fact that it does not copy over number positions or queues or anything. 
+      //resetEv.Initialize(Event.SInfo.Seed, Event.EventTitle, Event.PInfo.PlatesGenerated, DateTime.Now);
+      //resetEv.WindowSettings = Event.WindowSettings;
+      //resetEv.PInfo = Event.PInfo;
+      //resetEv.SInfo = Event.SInfo;
+      ////create a new object, that is the same except for the following:
+      ////empty competitionlist
+      ////empty numberqueue, reset numberboard
+      ////reset singlerow/doublerow/plate to singlerow
+      //CopyEvent(resetEv, Event);
+      //_log.Info("Reset Done");
+      ////TODO: Somebody else needs to check up on if this actually copies it all over correctly and resets the correct thingies
+      ////ask kris if summin is missin, maybe theres a stupid ass reason for it
+      #endregion
+      foreach (BingoNumber bnum in Event.NumberBoard.Board)
+      {
+        bnum.IsPicked = false;
+        bnum.IsChecked = false;
+        Event.BingoNumberQueue.Remove(bnum);
+      }
+      Event.AvailableNumbersQueue = new BindableCollection<BingoNumber>();
+      for (int i = 1; i <= 90; i++)
+      {
+        BingoNumber j = new BingoNumber();
+        j.Value = i;
+        Event.AvailableNumbersQueue.Add(j);
+      }
     }
 
     private void CopyEvent(BingoEvent fr, BingoEvent to)
