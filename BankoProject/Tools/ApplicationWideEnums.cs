@@ -29,7 +29,8 @@ namespace BankoProject.Tools
       BingoHappened, 
       ClosePrez,
       ScrnActivationTriggered,
-      FullscreenOverlayBlank
+      FullscreenOverlayBlank,
+      Stopwatch
     }
 
     /// <summary>

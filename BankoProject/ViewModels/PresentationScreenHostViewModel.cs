@@ -180,6 +180,12 @@ namespace BankoProject.ViewModels
             } 
           }
           break;
+
+        case ApplicationWideEnums.MessageTypes.Stopwatch:
+
+          ActivateItem(new CountdowntimerBigScreenViewModel());
+          break;
+
       }
     }
 

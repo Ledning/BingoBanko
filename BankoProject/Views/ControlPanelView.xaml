@@ -31,8 +31,11 @@
 
         <Grid x:Name="TogglesVisualsGrid" Margin="30,194,29,0" Height="418" VerticalAlignment="Top" Background="#FF3E8BCB">
 
-          <ToggleButton x:Name="StopWatch" Content="StopWatch"  metro:ControlsHelper.CornerRadius="0" Margin="153,24,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="177"/>
+          <ToggleButton x:Name="ActivateStopWatch" Content="StopWatch"  metro:ControlsHelper.CornerRadius="0" Margin="124,24,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="178"/>
           <ToggleButton x:Name="ActivateLatestNumbersOverlay_Copy" Content="Seneste tal" metro:ControlsHelper.CornerRadius="0" Margin="182,499,0,-125" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="176"/>
+          <TextBox x:Name="asdasd"  HorizontalAlignment="Left" Height="44" Margin="325,24,0,0" metro:TextBoxHelper.Watermark="00:00" TextWrapping="Wrap" Text="{Binding Event.TimeOpt.TextTime}" VerticalAlignment="Top" Width="73" FontSize="24" >
+
+          </TextBox>
         </Grid>
         <Label x:Name="TogglesVisualsLabel" Content="Storskærm" VerticalAlignment="Top" Margin="29,144,398,0" Style="{StaticResource ControlPanelLabel}" HorizontalAlignment="Center" Width="151"/>
         <ToggleButton x:Name="ActivateLatestNumbersOverlay" Content="Seneste tal" metro:ControlsHelper.CornerRadius="0" Margin="182,504,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="176"/>

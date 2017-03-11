@@ -21,6 +21,7 @@ namespace BankoProject.Models
     private string _eventTitle;
     private DateTime _creationTime;
     private WinSettings _winSettings;
+    private TimerOptions _timeOpt;
     private bool _initialised = false;
     private bool _generating = false;
     private bool _isBingoRunning = false;
@@ -202,6 +203,12 @@ namespace BankoProject.Models
       get { return _resetTime; }
       set {_log.Warn("Not intended for display"); _resetTime = value;
       }
+    }
+
+    public TimerOptions TimeOpt
+    {
+      get { return _timeOpt; }
+      set { _timeOpt = value; NotifyOfPropertyChange(()=>TimeOpt);}
     }
 
     #endregion

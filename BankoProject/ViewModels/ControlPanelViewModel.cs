@@ -189,9 +189,7 @@ namespace BankoProject.ViewModels
         ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
-    public void StopWatch()
-    {
-    }
+
 
     //this method gets a random number and marks the boardview, that that number is now marked
     public void DrawRandom()
@@ -349,6 +347,11 @@ namespace BankoProject.ViewModels
       }
       _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank,
         ApplicationWideEnums.SenderTypes.ControlPanelView));
+    }
+
+    public void ActivateStopWatch()
+    {
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Stopwatch, ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     #endregion

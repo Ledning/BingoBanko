@@ -145,6 +145,7 @@
     <Compile Include="Models\PresentationScreenSettings.cs" />
     <Compile Include="Models\SeedInfo.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TimerOptions.cs" />
     <Compile Include="Models\VisualsOptions.cs" />
     <Compile Include="Models\WinSettings.cs" />
     <Compile Include="Tools\ApplicationWideEnums.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Views\Styles\PresentationBoardElement.xaml.cs">
       <DependentUpon>PresentationBoardElement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ValidationRules\StopWatchTimerValidationRule.cs" />
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
     </Compile>
@@ -438,6 +440,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Orchestra.Shell.MahApps.dll" />
+    <Resource Include="Resources\nicklas.png" />
     <Resource Include="Resources\BingoBanko2016.jpg" />
     <Resource Include="Resources\Achtung.png" />
     <Resource Include="Resources\StandardOverlay.jpg" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using BankoProject.Tools;
@@ -37,16 +38,18 @@ namespace BankoProject.Models
     [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 
+    private Dock _dockingPlace;
+
     #region Props
     public int Width
     {
-      get { return _width;  _log.Info(Width.ToString());}
+      get { return _width;}
       set { _width = value; NotifyOfPropertyChange(() => Width); }
     }
 
     public int Height
     {
-      get { return _height; _log.Info(Height.ToString());}
+      get { return _height;}
       set { _height = value; NotifyOfPropertyChange(() => Height); }
     }
 
@@ -65,7 +68,8 @@ namespace BankoProject.Models
 
     public PresentationScreenSettings()
     {
-      OverlaySettings = new FullscreenOverlaySettings();;
+      OverlaySettings = new FullscreenOverlaySettings();
+      DockingPlace = Dock.Bottom;
     }
 
     public int SelectedPresScreen
@@ -112,6 +116,12 @@ namespace BankoProject.Models
     {
       get { return _isOverLayOpen; }
       set { _isOverLayOpen = value; NotifyOfPropertyChange(()=> IsOverLayOpen);}
+    }
+
+    public Dock DockingPlace
+    {
+      get { return _dockingPlace; }
+      set { _dockingPlace = value; NotifyOfPropertyChange(()=>DockingPlace);}
     }
 
     #endregion
