@@ -13,7 +13,7 @@ namespace BankoProject.Models
   {
     #region Fields
     private TimeSpan _timerTime;
-    private string _textTime = "00:00";
+    private string _textTime;
     private string _error;
 
     #endregion
@@ -22,8 +22,9 @@ namespace BankoProject.Models
 
     public TimerOptions()
     {
-      _timerTime = new TimeSpan();
+      _timerTime = new TimeSpan(0,0,0);
       NotifyOfPropertyChange(()=>TimerTime);
+      TextTime = "05:00";
     }
 
 
@@ -61,6 +62,7 @@ namespace BankoProject.Models
           TimeSpan? convertedTimespan = null;
           try
           {
+            var temp = DateTime.Parse(TextTime);
             convertedTimespan = TimeSpan.Parse(TextTime);
           }
           catch (Exception)

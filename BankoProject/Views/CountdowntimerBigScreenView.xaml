@@ -11,6 +11,6 @@
              MaxHeight="600" MaxWidth="800"
              >
     <Viewbox>
-        <TextBlock Text="{Binding Event.}"></TextBlock>
+        <TextBlock Text="{Binding Event.TimeOpt.TextTime}"></TextBlock>
     </Viewbox>
 </UserControl>

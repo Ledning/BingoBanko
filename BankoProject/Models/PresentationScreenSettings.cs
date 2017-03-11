@@ -35,6 +35,7 @@ namespace BankoProject.Models
     private FullscreenOverlaySettings _fullscreenOverlaySettings;
     private bool _closeWindow = false;
     private bool _isOverLayOpen = false;
+
     [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(BingoEvent));
 

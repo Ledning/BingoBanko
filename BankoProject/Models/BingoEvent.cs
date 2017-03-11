@@ -233,7 +233,7 @@ namespace BankoProject.Models
       IsBingoRunning = false;
       _log.Info("Event object initialization done.");
       PInfo.CardGenerator = new Generator(SInfo.Seed);
-
+      TimeOpt = new TimerOptions();
       AvailableNumbersQueue= new BindableCollection<BingoNumber>();
       for (int i = 1; i <= 90; i++)
       {

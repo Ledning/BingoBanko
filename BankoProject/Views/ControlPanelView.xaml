@@ -33,7 +33,7 @@
 
           <ToggleButton x:Name="ActivateStopWatch" Content="StopWatch"  metro:ControlsHelper.CornerRadius="0" Margin="124,24,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="178"/>
           <ToggleButton x:Name="ActivateLatestNumbersOverlay_Copy" Content="Seneste tal" metro:ControlsHelper.CornerRadius="0" Margin="182,499,0,-125" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="176"/>
-          <TextBox x:Name="asdasd"  HorizontalAlignment="Left" Height="44" Margin="325,24,0,0" metro:TextBoxHelper.Watermark="00:00" TextWrapping="Wrap" Text="{Binding Event.TimeOpt.TextTime}" VerticalAlignment="Top" Width="73" FontSize="24" >
+          <TextBox MaxLines="1" MaxLength="5" HorizontalAlignment="Left" Height="44" Margin="325,24,0,0" metro:TextBoxHelper.Watermark="05:00" TextWrapping="Wrap" Text="{Binding Event.TimeOpt.TextTime, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="77" FontSize="24" >
 
           </TextBox>
         </Grid>
