@@ -20,7 +20,6 @@ namespace BankoProject.ViewModels
   class ControlPanelViewModel : Conductor<IMainViewItem>.Collection.OneActive, IMainViewItem
   {
     #region fields
-
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
     private IWindowManager _winMan;
@@ -60,6 +59,7 @@ namespace BankoProject.ViewModels
       przScrnDelay();
       Event.WindowSettings.PrsSettings.OverlaySettings.StdScrnOl = true;
       Event.WindowSettings.PrsSettings.OverlaySettings.UpdateBackgrounds();
+      StartValue = 1;
     }
 
     #endregion
@@ -422,5 +422,10 @@ namespace BankoProject.ViewModels
     //todo: somebody for the love of christ make applicationwideenums a shortcut in the files it is use din jeezus i get cancer
     //TODO: Maybe we should consider having a superuser mode, where  there is no confirmationboxes? and shit
     //Could be done with just a single bool on the bingoEvent object. 
+    #region Stopwatch
+
+    private bool _isStopwatchRunning;
+
+    #endregion
   }
 }

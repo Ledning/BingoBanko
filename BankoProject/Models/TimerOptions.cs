@@ -15,6 +15,8 @@ namespace BankoProject.Models
     private TimeSpan _timerTime;
     private string _textTime;
     private string _error;
+    private bool _canShow;
+    private string _toggleTimerText;
 
     #endregion
 
@@ -25,6 +27,8 @@ namespace BankoProject.Models
       _timerTime = new TimeSpan(0,0,0);
       NotifyOfPropertyChange(()=>TimerTime);
       TextTime = "05:00";
+      CanShow = true;
+      
     }
 
 
@@ -63,10 +67,11 @@ namespace BankoProject.Models
           try
           {
             var temp = DateTime.Parse(TextTime);
-            convertedTimespan = TimeSpan.Parse(TextTime);
+            convertedTimespan = TimeSpan.Parse("0:" + TextTime);
           }
           catch (Exception)
           {
+            CanShow = false;
             result = "Invalid time-format";
           }
           if (convertedTimespan.HasValue)
@@ -74,17 +79,27 @@ namespace BankoProject.Models
             if (convertedTimespan <= TimeSpan.Zero)
             {
               result = "The Interval is 0 or less.";
+              CanShow = false;
             }
-            if (convertedTimespan >= new TimeSpan(0,1,0))
+            if (convertedTimespan >= new TimeSpan(1,0,0))
             {
               result = "The interval is larger than an hour.";
+              CanShow = false;
             }
+          }
+          if (TextTime.Contains("-"))
+          {
+            result = "No negative values.";
+            CanShow = false;
           }
         }
 
 
 
-
+        if (result == null)
+        {
+          CanShow = true;
+        }
         return result;
       }
     }
@@ -92,6 +107,18 @@ namespace BankoProject.Models
     public string Error
     {
       get { return _error; }
+    }
+
+    public bool CanShow
+    {
+      get { return _canShow; }
+      set { _canShow = value; NotifyOfPropertyChange(()=>CanShow);}
+    }
+
+    public string ToggleTimerText
+    {
+      get { return _toggleTimerText; }
+      set { _toggleTimerText = value; NotifyOfPropertyChange(()=>ToggleTimerText);}
     }
 
     #endregion
