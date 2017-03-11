@@ -398,6 +398,10 @@ namespace BankoProject.ViewModels
         j.Value = i;
         Event.AvailableNumbersQueue.Add(j);
       }
+
+      CompetitionObject competition = new CompetitionObject(0, 0,
+        0, 1);
+      this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
     }
 
     private void CopyEvent(BingoEvent fr, BingoEvent to)
