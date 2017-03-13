@@ -44,7 +44,7 @@ namespace BankoProject.Models
       CountUp = false;
       ResetTimer = true;
       BTimer = new BingoTimer(0);
-      BTimer.LocalTime = "00:00";
+      BTimer.LocalTime = "00:00:00";
     }
 
 
@@ -173,6 +173,8 @@ namespace BankoProject.Models
         return result;
       }
     }
+
+
 
     public string Error
     {

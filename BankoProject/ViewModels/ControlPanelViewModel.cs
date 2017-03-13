@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using BankoProject.Models;
 using BankoProject.Tools.Events;
@@ -60,6 +61,7 @@ namespace BankoProject.ViewModels
       Event.WindowSettings.PrsSettings.OverlaySettings.StdScrnOl = true;
       Event.WindowSettings.PrsSettings.OverlaySettings.UpdateBackgrounds();
       StartValue = 1;
+      Event.WindowSettings.PrsSettings.DockingPlace = Dock.Bottom;
     }
 
     #endregion

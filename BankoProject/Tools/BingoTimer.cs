@@ -18,8 +18,8 @@ namespace BankoProject.Tools
     private int _countDownInput;//should prolly enter seconds
     private Stopwatch _stopWatch;
     private DispatcherTimer _timer;
-    private string _currentTime;
-    private string _localTime = "00:00";
+    private string _currentTime="00:00:00";
+    private string _localTime = "00:00:00";
     private BingoEvent Event;
 
     private bool _isTimerStarted = false;
@@ -104,6 +104,7 @@ namespace BankoProject.Tools
 
         if (this._localTimeSpan.Negate() > this._targetTimeSpan)
         {
+          CurrentTime = this.CurrentTime = FormatString(_targetTimeSpan);
           this.TimerStop();
         }
       }
@@ -115,6 +116,7 @@ namespace BankoProject.Tools
 
         if (this._localTimeSpan < this._emptyTimeSpan)
         {
+          CurrentTime = this.CurrentTime = FormatString(new TimeSpan(0, 0, 0, 0));
           this.TimerStop();
         }
       }

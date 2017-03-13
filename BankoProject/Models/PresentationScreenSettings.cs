@@ -50,7 +50,7 @@ namespace BankoProject.Models
     public int Width
     {
       get { return _width;}
-      set { _width = value; NotifyOfPropertyChange(() => Width); }
+      set { _width = value; NotifyOfPropertyChange(() => Width); NotifyOfPropertyChange(()=>TimerWidth);}
     }
 
     public int Height
@@ -75,7 +75,14 @@ namespace BankoProject.Models
     public PresentationScreenSettings()
     {
       OverlaySettings = new FullscreenOverlaySettings();
-      DockingPlace = Dock.Bottom;
+    }
+
+    public int TimerWidth
+    {
+      get
+      {
+        return (int)(Width*0.25);
+      }
     }
 
     public int SelectedPresScreen

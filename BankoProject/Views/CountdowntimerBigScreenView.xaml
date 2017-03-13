@@ -8,9 +8,19 @@
              xmlns:cal="http://www.caliburnproject.org" 
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
-             MaxHeight="600" MaxWidth="800"
              >
-    <Viewbox>
-        <TextBlock Text="{Binding Event.TimeOpt.BTimer.CurrentTime}"></TextBlock>
-    </Viewbox>
+
+  <Viewbox Width="{Binding Event.WindowSettings.PrsSettings.TimerWidth}" Height="50">
+    <TextBox Text="{Binding Event.TimeOpt.BTimer.CurrentTime}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22">
+      <TextBox.Background>
+        <SolidColorBrush Opacity="0.7" Color="Gray"></SolidColorBrush>
+      </TextBox.Background>
+      <TextBox.Resources>
+        <Style TargetType="{x:Type Border}">
+          <Setter Property="CornerRadius" Value="10"></Setter>
+        </Style>
+      </TextBox.Resources>
+    </TextBox>
+  </Viewbox>
+
 </UserControl>
