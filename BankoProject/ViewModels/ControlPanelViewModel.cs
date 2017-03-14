@@ -290,7 +290,7 @@ namespace BankoProject.ViewModels
       int[,] chosenPlate = Event.PInfo.CardList[_plateToCheck];
       int rules = 0;
       int winRow = 0;
-      if (/*EN RÆKKE*/)
+      if (Event.BnkOptions.SingleRow)
       {
         rules = 1;
         for (int rows = 0; rows < 3; rows++)
@@ -306,12 +306,12 @@ namespace BankoProject.ViewModels
         }
       }
 
-      else if (/*TO RÆKKER*/)
+      else if (Event.BnkOptions.DoubleRow)
       {
         
       }
 
-      else if ( /*FULD PLADE*/)
+      else if (Event.BnkOptions.FullPlate)
       {
         
       }
@@ -328,6 +328,10 @@ namespace BankoProject.ViewModels
       //This is just a rudimentary check to see if the plates has been generated
       if (Event.PInfo.CardList != null)
       {
+        if (_plateToCheck == -1)
+        {
+          return false;
+        }
         return true;
       }
       return false;
@@ -521,6 +525,8 @@ namespace BankoProject.ViewModels
             {
 
               result = "This is not a correct plate number.";
+              _plateToCheck = -1;
+
             }
             if (resultInt != null)
             {
@@ -529,11 +535,13 @@ namespace BankoProject.ViewModels
                 if (resultInt > Event.PInfo.CardList.Count)
                 {
                   result = "That number is not within the valid plate-range.";
+                  _plateToCheck = -1;
                 }
               }
               else
               {
                 result = "Cardlist is null!";
+                _plateToCheck = -1;
               }
             }
 
@@ -542,6 +550,7 @@ namespace BankoProject.ViewModels
           else
           {
             result = "This is not a valid input number.";
+            _plateToCheck = -1;
           }
         }
         if (result == null)
