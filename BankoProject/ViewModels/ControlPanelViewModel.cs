@@ -264,6 +264,41 @@ namespace BankoProject.ViewModels
 
     public void CheckPlate()
     {
+      int plateNumber = 5 //TODO: BIND DEN TIL BOKSEN I STEDET FOR 5. :)
+      int[,] chosenPlate = Event.PInfo.CardList[plateNumber];
+      int rules = 0;
+      int winRow = 0;
+      if (/*EN RÆKKE*/)
+      {
+        rules = 1;
+        for (int rows = 0; rows < 3; rows++)
+        {
+          for (int columns = 0; columns < 9; columns++)
+          {
+            if (chosenPlate[rows, columns] != 0 || chosenPlate[rows,columns] != Event.BingoNumberQueue[chosenPlate[rows, columns]].Value)
+            {
+
+            }
+          }
+          winRow++;
+        }
+      }
+
+      else if (/*TO RÆKKER*/)
+      {
+        
+      }
+
+      else if ( /*FULD PLADE*/)
+      {
+        
+      }
+
+      else
+      {
+        _log.Info("Ingen regler valgt. THIS SHOULD NEVER HAPPEN");
+      }
+
     }
 
     public bool CanCheckPlate()
