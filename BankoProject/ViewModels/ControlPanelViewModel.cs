@@ -185,6 +185,7 @@ namespace BankoProject.ViewModels
       {
         _allTeams = value;
         NotifyOfPropertyChange(() => AllTeams);
+        NotifyOfPropertyChange(()=>CanStartContest);
       }
     }
 
@@ -368,13 +369,16 @@ namespace BankoProject.ViewModels
       //current view. Which is best?
     }
 
-    public bool CanStartContest()
+    public bool CanStartContest
     {
-      if (this.AllTeams == null)
+      get
       {
-        return false; //Signifies that no teams has been made
+        if (this.AllTeams == null)
+        {
+          return false; //Signifies that no teams has been made
+        }
+        return true;
       }
-      return true;
     }
 
     #endregion
@@ -554,7 +558,7 @@ namespace BankoProject.ViewModels
             {
               if (Event.PInfo.CardList != null)
               {
-                if (resultInt > Event.PInfo.CardList.Count)
+                if (resultInt >= Event.PInfo.CardList.Count)
                 {
                   result = "That number is not within the valid plate-range.";
                   _plateToCheck = -1;
