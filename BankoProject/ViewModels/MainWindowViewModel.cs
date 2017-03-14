@@ -424,6 +424,7 @@ namespace BankoProject.ViewModels
       to.WindowSettings = fr.WindowSettings;
       to.SInfo = fr.SInfo;
       Event.PInfo.CardList = Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated);
+      Event.PInfo.HasPlatesBeenGenerated = true;
     }
 
 

@@ -88,6 +88,7 @@ namespace BankoProject.ViewModels
       {
         _text = value;
         NotifyOfPropertyChange(() => PlateToCheckText);
+
       }
     }
 
@@ -330,18 +331,22 @@ namespace BankoProject.ViewModels
       }
     }
 
-    public bool CanCheckPlate()
+    public bool CanCheckPlate
     {
-      //This is just a rudimentary check to see if the plates has been generated
-      if (Event.PInfo.CardList != null)
+      get
       {
-        if (_plateToCheck == -1)
+        if (Event.PInfo.CardList != null)
         {
-          return false;
+          if (_plateToCheck == -1)
+          {
+            return false;
+          }
+          return true;
         }
-        return true;
+        return false;
       }
-      return false;
+      //This is just a rudimentary check to see if the plates has been generated
+
     }
 
     public void AddTeamButton()
@@ -568,10 +573,12 @@ namespace BankoProject.ViewModels
             result = "This is not a valid input number.";
             _plateToCheck = -1;
           }
-        }
-        if (result == null)
-        {
-          _plateToCheck = int.Parse(PlateToCheckText);
+
+          if (result == null)
+          {
+            _plateToCheck = int.Parse(PlateToCheckText);
+            NotifyOfPropertyChange(() => CanCheckPlate);
+          }
         }
         return result;
       }
