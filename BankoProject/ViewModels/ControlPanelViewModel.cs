@@ -288,7 +288,7 @@ namespace BankoProject.ViewModels
     public void CheckPlate()
     {
       int[,] chosenPlate = Event.PInfo.CardList[_plateToCheck];
-      int rules = 0;
+      int rules;
       bool rowFailed = false;
       int winRows = 0;
 
@@ -306,6 +306,8 @@ namespace BankoProject.ViewModels
 
       for (int rows = 0; rows < 3; rows++)
       {
+        rowFailed = false;
+
         for (int columns = 0; columns < 9; columns++)
         {
           if (chosenPlate[rows, columns] != 0 || chosenPlate[rows,columns] != Event.BingoNumberQueue[chosenPlate[rows, columns]].Value)
@@ -313,11 +315,10 @@ namespace BankoProject.ViewModels
             rowFailed = true;
             break;
           }
-
         }
+
         if (!rowFailed)
           winRows++;
-
       }
 
       if (winRows >= rules)
