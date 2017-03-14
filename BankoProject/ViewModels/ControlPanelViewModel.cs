@@ -394,8 +394,9 @@ namespace BankoProject.ViewModels
       {
         bnum.IsPicked = false;
         bnum.IsChecked = false;
-        Event.BingoNumberQueue.Remove(bnum);
       }
+
+      Event.BingoNumberQueue = new BindableCollection<BingoNumber>();
       Event.AvailableNumbersQueue = new BindableCollection<BingoNumber>();
       for (int i = 1; i <= 90; i++)
       {
