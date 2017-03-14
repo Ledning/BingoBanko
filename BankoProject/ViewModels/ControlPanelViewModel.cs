@@ -36,6 +36,7 @@ namespace BankoProject.ViewModels
     private int _contestDuration;
     private string _error;
     private string _text;
+    private int _plateToCheck;
 
     #endregion
 
@@ -286,8 +287,7 @@ namespace BankoProject.ViewModels
 
     public void CheckPlate()
     {
-      int plateNumber = 5 //TODO: BIND DEN TIL BOKSEN I STEDET FOR 5. :)
-      int[,] chosenPlate = Event.PInfo.CardList[plateNumber];
+      int[,] chosenPlate = Event.PInfo.CardList[_plateToCheck];
       int rules = 0;
       int winRow = 0;
       if (/*EN RÆKKE*/)
@@ -543,6 +543,10 @@ namespace BankoProject.ViewModels
           {
             result = "This is not a valid input number.";
           }
+        }
+        if (result == null)
+        {
+          _plateToCheck = int.Parse(PlateToCheckText);
         }
         return result;
       }
