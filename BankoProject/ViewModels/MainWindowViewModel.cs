@@ -122,6 +122,8 @@ namespace BankoProject.ViewModels
       CreateApplicationDirectories();
       _directoriesInitialised = true;
       FlyoutViewModel = new WelcomeScreenFlyoutViewModel();
+
+
     }
     #endregion
 
@@ -188,11 +190,22 @@ namespace BankoProject.ViewModels
 
     private void worker_DoWork(object sender, DoWorkEventArgs e)
     {
+      if (File.Exists(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                         "\\BingoBankoKontrol\\" +
+                         Event.EventTitle + "Plader.pdf"))
+      {
+        _log.Info("Plates has already been generated.");
+        Event.PInfo.HasPlatesBeenGenerated = true;
+        return;
+      }
       _log.Info("Async plate-generation running...");
       Event.Generating = true;
       PDFMaker maker = new PDFMaker();
-      maker.MakePDF(Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated));
-
+      string outputDir = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                         "\\BingoBankoKontrol\\" +
+                         Event.EventTitle + "Plader";
+      Event.PInfo.CardList = maker.MakePDF(Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated), outputDir); //Takes care of generating the plates, and returning the used array. Should be secure enough.
+      Event.PInfo.HasPlatesBeenGenerated = true;
     }
 
 
@@ -397,6 +410,7 @@ namespace BankoProject.ViewModels
     /// <param name="to"></param>
     private void CopyEvent(BingoEvent fr, BingoEvent to)
     {
+      to.PInfo = fr.PInfo;
       to.Initialize(fr.SInfo.Seed, fr.EventTitle, fr.PInfo.PlatesGenerated);
       to.BingoNumberQueue = fr.BingoNumberQueue;
       to.BnkOptions = fr.BnkOptions;
@@ -405,10 +419,11 @@ namespace BankoProject.ViewModels
       to.EventTitle = fr.EventTitle;
       to.Generating = fr.Generating;
       to.NumberBoard = fr.NumberBoard;
-      to.PInfo = fr.PInfo;
+
       to.RecentFiles = fr.RecentFiles;
       to.WindowSettings = fr.WindowSettings;
       to.SInfo = fr.SInfo;
+      Event.PInfo.CardList = Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated);
     }
 
 

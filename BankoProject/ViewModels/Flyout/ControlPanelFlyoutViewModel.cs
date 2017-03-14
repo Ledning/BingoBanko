@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -167,10 +168,15 @@ namespace BankoProject.ViewModels.Flyout
     }
 
 
-    public void CanGeneratePlates()
+    public bool CanGeneratePlates()
     {
-
-      //TODO: Code for checking if a file with the appropriate name already exists in the bingobanko base dir in documents
+      if (
+        File.Exists(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\BingoBankoKontrol\\" +
+                    Event.EventTitle + "Plader" + ".pdf"))
+      {
+        return false;
+      }
+      return true;
     }
 
     public List<string> ScreenConverter

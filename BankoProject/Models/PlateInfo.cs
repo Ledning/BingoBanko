@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace BankoProject.Models
   {
     private int _platesGenerated;
     private int _platesUsed;
+    private bool _hasPlatesBeenGenerated = false;
+    private string _saveDirectory;
 
     [XmlIgnore]
     private Generator _cardGenerator;
@@ -27,6 +30,33 @@ namespace BankoProject.Models
     public PlateInfo()
     {
       CardList = new List<int[,]>();
+      SaveDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+      if (!DoesDirectoryExist())
+      {
+        Directory.CreateDirectory(SaveDirectory + "\\BingoBankoKontrol");
+      }
+    }
+
+
+
+
+    public bool DoesDirectoryExist()
+    {
+
+      if (Directory.Exists(SaveDirectory + "\\BingoBankoKontrol"))
+      {
+        return true;
+      }
+
+
+      return false;
+    }
+
+
+    public string SaveDirectory
+    {
+      get { return _saveDirectory; }
+      set { _saveDirectory = value; }
     }
 
     public int PlatesGenerated
@@ -45,6 +75,17 @@ namespace BankoProject.Models
     {
       get { return _cardGenerator; }
       set { _cardGenerator = value;}
+    }
+
+    public bool HasPlatesBeenGenerated
+    {
+      get { return _hasPlatesBeenGenerated; }
+      set { _hasPlatesBeenGenerated = value; NotifyOfPropertyChange(()=>HasPlatesBeenGenerated); NotifyOfPropertyChange(()=>CanGeneratePlates);}
+    }
+
+    public bool CanGeneratePlates
+    {
+      get { return !HasPlatesBeenGenerated; }
     }
   }
 }

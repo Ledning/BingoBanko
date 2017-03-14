@@ -12,14 +12,14 @@
     </StackPanel>
     <Rectangle Height="20"></Rectangle>
     <StackPanel x:Name="AdjustmentPanel">
-      <Button Height="40" x:Name="ChangePlatesUsed" Content="Ændr antal brugte plader"></Button>
+      <Button Height="40" x:Name="ChangePlatesUsed" Content="Ændr antal brugte plader" IsEnabled="false"></Button>
     </StackPanel>
     <Rectangle Height="20"/>
     <Border BorderBrush="Black" BorderThickness="1" Height="46" Margin="50,0,50,0">
-      <Label x:Name="platesusedbox" Content="{Binding Event.PInfo.PlatesUsed}" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+      <Label x:Name="platesusedbox" IsEnabled="False" Content="{Binding Event.PInfo.PlatesUsed}" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Border>
     <Rectangle Height="20"/>
-    <Button x:Name="GeneratePlates" Content="Generer plader"/>
+    <Button x:Name="GeneratePlates" Content="Generer plader" IsEnabled="{Binding Event.PInfo.CanGeneratePlates}"/>
     <Rectangle Height="20"/>
     <ComboBox x:Name="comboBox" ItemsSource="{Binding ScreenConverter}" SelectedIndex="{Binding SelectedScreen}"/>
     <Button x:Name="ChangeBigScreen" Content="Skift storskærm"/>

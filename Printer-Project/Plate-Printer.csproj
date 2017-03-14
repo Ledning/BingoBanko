@@ -113,6 +113,12 @@
   <ItemGroup>
     <Resource Include="StarMath.XML" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BingoCardGenerator\BingoCardGenerator.csproj">
+      <Project>{b8dc75dc-3400-4a30-a3a1-0af9b2866d89}</Project>
+      <Name>BingoCardGenerator</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

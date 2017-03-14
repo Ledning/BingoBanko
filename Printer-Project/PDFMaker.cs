@@ -10,6 +10,7 @@ namespace Printer_Project
 {
   public class PDFMaker
   {
+
     public PDFMaker()
     {
       
@@ -21,8 +22,9 @@ namespace Printer_Project
     {
       _outputDirectory = outputDirectory;
     }
-    public void MakePDF(List<int[,]> cards)
+    public List<int[,]> MakePDF(List<int[,]> cards, string _saveLoc)
     {
+      
       string imgName = @"bingo1.png";
       string imgSource = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\", imgName);
       if (_outputDirectory != null)
@@ -31,7 +33,7 @@ namespace Printer_Project
       }      
       string saveLoc = imgSource.Replace("png", "pdf");
       PdfDocument doc = new PdfDocument();
-
+      saveLoc = _saveLoc + ".pdf";
       
       XImage img = XImage.FromFile(imgSource);
       XFont numberFont = new XFont("Verdana", 125, XFontStyle.Italic);
@@ -107,6 +109,7 @@ namespace Printer_Project
 
       doc.Save(saveLoc);
       doc.Close();
+      return cards;
     }    
   }
 }

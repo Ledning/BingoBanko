@@ -3,7 +3,9 @@ using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +20,10 @@ using Catel.Collections;
 
 namespace BankoProject.ViewModels
 {
-  class ControlPanelViewModel : Conductor<IMainViewItem>.Collection.OneActive, IMainViewItem
+  class ControlPanelViewModel : Conductor<IMainViewItem>.Collection.OneActive, IMainViewItem, IDataErrorInfo
   {
     #region fields
+
     private IEventAggregator _events;
     private BingoEvent _bingoEvent;
     private IWindowManager _winMan;
@@ -31,6 +34,8 @@ namespace BankoProject.ViewModels
     private int _numberOfContestants;
     private int _numberOfTeams;
     private int _contestDuration;
+    private string _error;
+    private string _text;
 
     #endregion
 
@@ -62,11 +67,28 @@ namespace BankoProject.ViewModels
       Event.WindowSettings.PrsSettings.OverlaySettings.UpdateBackgrounds();
       StartValue = 1;
       Event.WindowSettings.PrsSettings.DockingPlace = Dock.Bottom;
+      if (File.Exists(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                      "\\BingoBankoKontrol\\" +
+                      Event.EventTitle + "Plader.pdf"))
+      {
+        _log.Info("Plates has already been generated.");
+        Event.PInfo.HasPlatesBeenGenerated = true;
+      }
     }
 
     #endregion
 
     #region Properties
+
+    public string PlateToCheckText
+    {
+      get { return _text; }
+      set
+      {
+        _text = value;
+        NotifyOfPropertyChange(() => PlateToCheckText);
+      }
+    }
 
     public BingoEvent Event
     {
@@ -207,11 +229,11 @@ namespace BankoProject.ViewModels
 
       if (Event.AvailableNumbersQueue.Count > 0)
       {
-        if (!Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value -1].IsPicked)
+        if (!Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked)
         {
-          _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value -1].Value.ToString());
-          Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value -1].IsPicked = true;
-          Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value -1].IsChecked = false;
+          _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].Value.ToString());
+          Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
+          Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
           Event.AvailableNumbersQueue.Remove(Event.AvailableNumbersQueue[rdnnumber]);
           Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value]);
           return;
@@ -252,13 +274,13 @@ namespace BankoProject.ViewModels
       var result = _winMan.ShowDialog(dialog);
       if (result == true)
       {
-        if (!Event.NumberBoard.Board[dialog.NumberToAdd -1].IsPicked)
+        if (!Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsPicked)
         {
           Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsPicked = true; //minus one to make it fit the array lol
           Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsChecked = false;
           Event.BingoNumberQueue.Add(Event.NumberBoard.Board[dialog.NumberToAdd - 1]);
         }
-        
+
       }
     }
 
@@ -269,7 +291,7 @@ namespace BankoProject.ViewModels
     public bool CanCheckPlate()
     {
       //This is just a rudimentary check to see if the plates has been generated
-      if (Event.PInfo.CardList.Count >= Event.PInfo.PlatesGenerated)
+      if (Event.PInfo.CardList != null)
       {
         return true;
       }
@@ -356,7 +378,8 @@ namespace BankoProject.ViewModels
 
     public void ActivateStopWatch()
     {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Stopwatch, ApplicationWideEnums.SenderTypes.ControlPanelView));
+      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Stopwatch,
+        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     #endregion
@@ -370,6 +393,7 @@ namespace BankoProject.ViewModels
     public void Reset()
     {
       #region attempt that saves event and stuff
+
       ////Save the current event, with a different ending
       ////if it was named bingo2017, save a file called bingo2017RESET[TIMESTAMP]
       //_log.Info("Saving event before reset...");
@@ -389,7 +413,9 @@ namespace BankoProject.ViewModels
       //_log.Info("Reset Done");
       ////TODO: Somebody else needs to check up on if this actually copies it all over correctly and resets the correct thingies
       ////ask kris if summin is missin, maybe theres a stupid ass reason for it
+
       #endregion
+
       foreach (BingoNumber bnum in Event.NumberBoard.Board)
       {
         bnum.IsPicked = false;
@@ -431,9 +457,67 @@ namespace BankoProject.ViewModels
     //todo: somebody for the love of christ make applicationwideenums a shortcut in the files it is use din jeezus i get cancer
     //TODO: Maybe we should consider having a superuser mode, where  there is no confirmationboxes? and shit
     //Could be done with just a single bool on the bingoEvent object. 
+
     #region Stopwatch
 
     private bool _isStopwatchRunning;
+
+    #endregion
+
+    #region Implementation of IDataErrorInfo
+
+    public string this[string columnName]
+    {
+      get
+      {
+
+        string result = null;
+        if (columnName == "PlateToCheckText")
+        {
+          if (PlateToCheckText != null && !PlateToCheckText.Contains("-") && !PlateToCheckText.Contains("-"))
+          {
+            int? resultInt = null;
+            try
+            {
+              resultInt = int.Parse(PlateToCheckText);
+            }
+            catch (Exception)
+            {
+
+              result = "This is not a correct plate number.";
+            }
+            if (resultInt != null)
+            {
+              if (Event.PInfo.CardList != null)
+              {
+                if (resultInt > Event.PInfo.CardList.Count)
+                {
+                  result = "That number is not within the valid plate-range.";
+                }
+              }
+              else
+              {
+                result = "Cardlist is null!";
+              }
+            }
+
+
+          }
+          else
+          {
+            result = "This is not a valid input number.";
+          }
+        }
+        return result;
+      }
+    }
+
+    public string Error
+    {
+      get { return _error; }
+    }
+
+
 
     #endregion
   }
