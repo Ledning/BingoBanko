@@ -373,7 +373,7 @@ namespace BankoProject.ViewModels
     {
       get
       {
-        if (this.AllTeams == null)
+        if (this.AllTeams == null || this.AllTeams.Count == 0)
         {
           return false; //Signifies that no teams has been made
         }
