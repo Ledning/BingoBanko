@@ -355,6 +355,15 @@ namespace BankoProject.ViewModels
       //current view. Which is best?
     }
 
+    public bool CanStartContest()
+    {
+      if (this.AllTeams == null)
+      {
+        return false; //Signifies that no teams has been made
+      }
+      return true;
+    }
+
     #endregion
 
     #region PresentationActivation
