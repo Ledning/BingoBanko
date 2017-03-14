@@ -289,38 +289,45 @@ namespace BankoProject.ViewModels
     {
       int[,] chosenPlate = Event.PInfo.CardList[_plateToCheck];
       int rules = 0;
-      int winRow = 0;
-      if (/*EN RÆKKE*/)
-      {
+      bool rowFailed = false;
+      int winRows = 0;
+
+      if (Event.BnkOptions.SingleRow)
         rules = 1;
-        for (int rows = 0; rows < 3; rows++)
-        {
-          for (int columns = 0; columns < 9; columns++)
-          {
-            if (chosenPlate[rows, columns] != 0 || chosenPlate[rows,columns] != Event.BingoNumberQueue[chosenPlate[rows, columns]].Value)
-            {
-
-            }
-          }
-          winRow++;
-        }
-      }
-
-      else if (/*TO RÆKKER*/)
-      {
-        
-      }
-
-      else if ( /*FULD PLADE*/)
-      {
-        
-      }
-
+      else if (Event.BnkOptions.DoubleRow)
+        rules = 2;
+      else if (Event.BnkOptions.FullPlate)
+        rules = 3;
       else
       {
-        _log.Info("Ingen regler valgt. THIS SHOULD NEVER HAPPEN");
+        _log.Info("No rules. This should not happen");
+        return;
       }
 
+      for (int rows = 0; rows < 3; rows++)
+      {
+        for (int columns = 0; columns < 9; columns++)
+        {
+          if (chosenPlate[rows, columns] != 0 || chosenPlate[rows,columns] != Event.BingoNumberQueue[chosenPlate[rows, columns]].Value)
+          {
+            rowFailed = true;
+            break;
+          }
+
+        }
+        if (!rowFailed)
+          winRows++;
+
+      }
+
+      if (winRows >= rules)
+      {
+        /*WIR HABEN BINGO MOTHERFUCKERS!!!*/
+      }
+      else
+      {
+        /*Sad face :( */
+      }
     }
 
     public bool CanCheckPlate()
