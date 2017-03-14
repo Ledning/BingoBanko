@@ -185,7 +185,7 @@ namespace BankoProject.ViewModels
       {
         _allTeams = value;
         NotifyOfPropertyChange(() => AllTeams);
-        NotifyOfPropertyChange(()=>CanStartContest);
+        NotifyOfPropertyChange(() => CanStartContest);
       }
     }
 
@@ -234,11 +234,21 @@ namespace BankoProject.ViewModels
       {
         if (!Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked)
         {
-          _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].Value.ToString());
-          Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
-          Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
-          Event.AvailableNumbersQueue.Remove(Event.AvailableNumbersQueue[rdnnumber]);
-          Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value]);
+          try
+          {
+            _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].Value.ToString());
+            Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
+            Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
+            Event.AvailableNumbersQueue.Remove(Event.AvailableNumbersQueue[rdnnumber]);
+            Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value]);
+          }
+          catch (Exception ex)
+          {
+            _log.Info(rdnnumber.ToString());
+            _log.Info(Event.AvailableNumbersQueue.Count.ToString());
+            _log.Info("Exception in random numb!");
+          }
+
           return;
         }
         _log.Info("This should not happen");
