@@ -106,6 +106,7 @@ namespace BankoProject.Models
 
     public TimeSpan TimerTime
     {
+      //TODO: Kan crashes nemt ved at skrive ulovlige input.
       get
       {
         return TimeSpan.Parse("0:" + TextTime);
@@ -137,10 +138,11 @@ namespace BankoProject.Models
           try
           {
             var temp = DateTime.Parse(TextTime);
-            convertedTimespan = TimeSpan.Parse("0:" + TextTime);
+            convertedTimespan = TimeSpan.Parse("0:" + TextTime);//this thinks its in 24 hr format, while it is actually in mm:ss
           }
           catch (Exception)
           {
+            //TODO: RN this throws exceptions whenever anything is wrong 
             CanShow = false;
             result = "Invalid time-format";
           }
