@@ -335,6 +335,10 @@ namespace BankoProject.ViewModels
       //This is just a rudimentary check to see if the plates has been generated
       if (Event.PInfo.CardList != null)
       {
+        if (_plateToCheck == -1)
+        {
+          return false;
+        }
         return true;
       }
       return false;
@@ -356,6 +360,15 @@ namespace BankoProject.ViewModels
 
       // When this method is activated we can either change the view, or keep everything within
       //current view. Which is best?
+    }
+
+    public bool CanStartContest()
+    {
+      if (this.AllTeams == null)
+      {
+        return false; //Signifies that no teams has been made
+      }
+      return true;
     }
 
     #endregion
@@ -528,6 +541,8 @@ namespace BankoProject.ViewModels
             {
 
               result = "This is not a correct plate number.";
+              _plateToCheck = -1;
+
             }
             if (resultInt != null)
             {
@@ -536,11 +551,13 @@ namespace BankoProject.ViewModels
                 if (resultInt > Event.PInfo.CardList.Count)
                 {
                   result = "That number is not within the valid plate-range.";
+                  _plateToCheck = -1;
                 }
               }
               else
               {
                 result = "Cardlist is null!";
+                _plateToCheck = -1;
               }
             }
 
@@ -549,6 +566,7 @@ namespace BankoProject.ViewModels
           else
           {
             result = "This is not a valid input number.";
+            _plateToCheck = -1;
           }
         }
         if (result == null)
