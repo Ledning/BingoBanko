@@ -37,6 +37,7 @@ namespace BankoProject.ViewModels
     private string _error;
     private string _text;
     private int _plateToCheck;
+    private bool _plateHasBingo = false;
 
     #endregion
 
@@ -299,6 +300,8 @@ namespace BankoProject.ViewModels
 
     public void CheckPlate()
     {
+      List<List<int>> MissingNumbersInRows = new List<List<int>>();
+      List<int> MissingNumbers = new List<int>();
       int[,] chosenPlate = Event.PInfo.CardList[_plateToCheck];
       int rules;
       bool rowFailed = false;
@@ -322,10 +325,30 @@ namespace BankoProject.ViewModels
 
         for (int columns = 0; columns < 9; columns++)
         {
-          if (chosenPlate[rows, columns] != 0 || chosenPlate[rows,columns] != Event.BingoNumberQueue[chosenPlate[rows, columns]].Value)
+          if (chosenPlate[0,0] == -1)
           {
             rowFailed = true;
             break;
+          }
+          if (chosenPlate[columns, rows] != 0)
+          {
+            if (chosenPlate[columns, rows] != Event.NumberBoard.Board[chosenPlate[columns, rows]-1].Value)
+            {
+              MissingNumbers.AddRange(CalcMissingNumbersInRow(rows, chosenPlate));
+              MissingNumbersInRows.Add(MissingNumbers);
+              rowFailed = true;
+              _log.Info("THIS SHOULD PROBABLY NOT HAPPEN");
+              break;
+              //i believe this can be removed? these values will always be equal afaik. maybe leave in as dumb check for errors
+            }
+            if (!Event.NumberBoard.Board[chosenPlate[columns, rows] - 1].IsPicked)
+            {
+              //MMMM NNESTING
+              MissingNumbers.AddRange(CalcMissingNumbersInRow(rows, chosenPlate));
+              MissingNumbersInRows.Add(MissingNumbers);
+              rowFailed = true;
+              break;
+            }
           }
         }
 
@@ -336,11 +359,38 @@ namespace BankoProject.ViewModels
       if (winRows >= rules)
       {
         /*WIR HABEN BINGO MOTHERFUCKERS!!!*/
+
+        _plateHasBingo = true;
+        //Show window with whether or not plate has bingo? to prevent overtyping and misunderstandings in the gui. I think that would be cool.
+
+        //if it does not have bingo, show window with the missing numbers. crosscheck with board.
+        _winMan.ShowDialog(new PlateHasBingoViewModel(_plateToCheck, chosenPlate, MissingNumbersInRows, true));
+        //Consider maybe showing the plate. otherwise it has to be fail-tested a lot
       }
       else
       {
-        /*Sad face :( */
+        _winMan.ShowDialog(new PlateHasBingoViewModel(_plateToCheck, chosenPlate, MissingNumbersInRows, false));
       }
+    }
+
+    public int[] CalcMissingNumbersInRow(int row, int[,] chosenPlate)
+    {
+      int[] missingNumbers = new int[9];
+      for (int columns = 0; columns < 9; columns++)
+      {
+        if (chosenPlate[columns, row] != 0)
+        {
+          if (!Event.NumberBoard.Board[chosenPlate[columns, row] - 1].IsPicked)
+          {
+            missingNumbers[columns] = Event.NumberBoard.Board[chosenPlate[columns, row] - 1].Value;
+          }
+        }
+        else
+        {
+          missingNumbers[columns] = 0;
+        }
+      }
+      return missingNumbers;
     }
 
     public bool CanCheckPlate
