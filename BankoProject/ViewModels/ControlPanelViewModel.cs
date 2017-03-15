@@ -548,6 +548,18 @@ namespace BankoProject.ViewModels
       {
 
         string result = null;
+        if (columnName == "NumberOfTeams")
+        {
+
+        }
+        if (columnName=="NumberOfContestants")
+        {
+          
+        }
+        if (columnName == "ContestDuration")
+        {
+
+        }
         if (columnName == "PlateToCheckText")
         {
           if (PlateToCheckText != null && !PlateToCheckText.Contains("-") && !PlateToCheckText.Contains("-"))
