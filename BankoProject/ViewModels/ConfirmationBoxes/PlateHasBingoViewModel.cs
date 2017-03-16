@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using System.Windows.Media;
 
 namespace BankoProject.ViewModels.ConfirmationBoxes
 {
@@ -14,6 +15,9 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
     private string _answerText = "Error";
     private List<List<int>> _missingNumbersInRows;
     private int[,] _chosenPlate;
+    private string brush;
+    private string _bingo = "#FF3DCD4A";
+    private string _noBingo = "#FF850000";
 
     #endregion
 
@@ -28,6 +32,7 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
       {
         DisplayName = "Plade nr " + plateNum + "har BANKO!";
         AnswerText = "Pladen har BANKO!";
+        Brush = _bingo;
       }
       else
       {
@@ -52,6 +57,7 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
           AnswerText =
             "Pladen har ikke banko, da det er en ugyldig/frafiltreret plade.\n Ydermere, hvis der findes en person med dette pladenummer, er der noget seriøst galt.";
         }
+        Brush = _noBingo;
       }
     }
 
@@ -71,6 +77,19 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
     {
       get { return _missingNumbersInRows; }
       set { _missingNumbersInRows = value; NotifyOfPropertyChange(()=>MissingNumbersInRows);}
+    }
+
+    public string Brush
+    {
+      get
+      {
+        return brush;
+      }
+
+      set
+      {
+        brush = value; NotifyOfPropertyChange(() => Brush);
+      }
     }
 
     #endregion
