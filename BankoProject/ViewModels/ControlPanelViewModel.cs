@@ -242,7 +242,7 @@ namespace BankoProject.ViewModels
             Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
             Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
             Event.AvailableNumbersQueue.Remove(Event.AvailableNumbersQueue[rdnnumber]);
-            Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1]);
+            Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1-1]);
           }
           catch (Exception ex)
           {
@@ -595,6 +595,12 @@ namespace BankoProject.ViewModels
 
     #endregion
 
+    #region Bugserinos
+    //Seneste tal:
+    // - Seneste tal kan kun slettes hvis man sletter de seneste. slettes den anden nyeste fx, fjernes den ikke og kan tilføjes igen, hvilket resulterer i at den forekommer 2 gange.
+    // - Random number tilføjer tallet til højre for det næste ikkevalgte tal på seneste tal. fx hvis 41, 42 og 43 er valgt og rng vælger 40, vil 45 kommer op på storskærmen.
+    #endregion
+
     #region Implementation of IDataErrorInfo
 
     public string this[string columnName]
@@ -677,8 +683,3 @@ namespace BankoProject.ViewModels
   }
 }
 
-#region Bugserinos in the coderino
-//Seneste tal:
-// - Seneste tal kan kun slettes hvis man sletter de seneste. slettes den anden nyeste fx, fjernes den ikke og kan tilføjes igen, hvilket resulterer i at den forekommer 2 gange.
-// - Random number tilføjer tallet til højre for det næste ikkevalgte tal på seneste tal. fx hvis 41, 42 og 43 er valgt og rng vælger 40, vil 45 kommer op på storskærmen.
-endregion
