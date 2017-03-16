@@ -254,6 +254,7 @@ namespace BankoProject.ViewModels
           return;
         }
         _log.Info("This should not happen");
+        DrawRandom();
       }
     }
 
