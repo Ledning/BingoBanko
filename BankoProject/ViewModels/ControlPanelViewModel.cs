@@ -237,11 +237,12 @@ namespace BankoProject.ViewModels
         {
           try
           {
+            BingoNumber temp = Event.AvailableNumbersQueue[rdnnumber];
             _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].Value.ToString());
             Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
             Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
             Event.AvailableNumbersQueue.Remove(Event.AvailableNumbersQueue[rdnnumber]);
-            Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value]);
+            Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1]);
           }
           catch (Exception ex)
           {
