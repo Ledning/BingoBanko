@@ -24,7 +24,7 @@
 
   <DockPanel  LastChildFill="False">
     <Viewbox DockPanel.Dock="{Binding Event.WindowSettings.PrsSettings.DockingPlace}">
-      <metro:TransitioningContentControl  Style="{StaticResource specialTransition}" x:Name="ActiveItem" RestartTransitionOnContentChange="True" tools:ControlExtensions.IsPicked="{Binding FadeOut, NotifyOnTargetUpdated=True}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+      <metro:TransitioningContentControl Style="{StaticResource specialTransition}" x:Name="ActiveItem" RestartTransitionOnContentChange="True" tools:ControlExtensions.IsPicked="{Binding FadeOut, NotifyOnTargetUpdated=True}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
       </metro:TransitioningContentControl>
     </Viewbox>
   </DockPanel>

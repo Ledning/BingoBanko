@@ -104,10 +104,10 @@ namespace BankoProject.ViewModels
           {
             if (ActiveItem.GetType() == typeof(FullscreenImageViewModel))
             {
-              ActivateItem(new FullscreenImageViewModel(true));
-              ActivateItem(new FullscreenImageViewModel());
-              Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
-              _log.Info("fullscrnOLhandled");
+              //ActivateItem(new FullscreenImageViewModel(true));
+              //ActivateItem(new FullscreenImageViewModel());
+              //Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
+              //_log.Info("fullscrnOLhandled");
             }
             if (ActiveItem.GetType() != typeof(FullscreenImageViewModel))
             {
@@ -182,10 +182,11 @@ namespace BankoProject.ViewModels
           break;
 
         case ApplicationWideEnums.MessageTypes.Stopwatch:
-
-          ActivateItem(new CountdowntimerBigScreenViewModel());
+          if (ActiveItem.GetType() != typeof(CountdowntimerBigScreenViewModel))
+          {
+            ActivateItem(new CountdowntimerBigScreenViewModel());
+          }
           break;
-
       }
     }
 

@@ -41,13 +41,17 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
         int i = 1;
         foreach (var missingNumbers in MissingNumbersInRows)
         {
-          AnswerText = AnswerText + "Række" + i;
+          AnswerText = AnswerText + "Række " + i + ":";
           foreach (var number in missingNumbers)
           {
-            if (number != 0)
+            if (AnswerText.Contains(":"))
             {
-              AnswerText = AnswerText + ", " + number;
+              if (number != 0)
+              {
+                AnswerText = AnswerText + " " + number;
+              }
             }
+
           }
           i++;
           AnswerText = AnswerText + "\n";

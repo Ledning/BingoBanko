@@ -334,8 +334,8 @@ namespace BankoProject.ViewModels
           {
             if (chosenPlate[columns, rows] != Event.NumberBoard.Board[chosenPlate[columns, rows]-1].Value)
             {
-              MissingNumbers.AddRange(CalcMissingNumbersInRow(rows, chosenPlate));
-              MissingNumbersInRows.Add(MissingNumbers);
+
+
               rowFailed = true;
               _log.Info("THIS SHOULD PROBABLY NOT HAPPEN");
               break;
@@ -344,8 +344,6 @@ namespace BankoProject.ViewModels
             if (!Event.NumberBoard.Board[chosenPlate[columns, rows] - 1].IsPicked)
             {
               //MMMM NNESTING
-              MissingNumbers.AddRange(CalcMissingNumbersInRow(rows, chosenPlate));
-              MissingNumbersInRows.Add(MissingNumbers);
               rowFailed = true;
               break;
             }
@@ -369,6 +367,12 @@ namespace BankoProject.ViewModels
       }
       else
       {
+        for (int i = 0; i < 3; i++)//running through rows one by one to get the missing ones
+        {
+          MissingNumbers = new List<int>();
+          MissingNumbers.AddRange(CalcMissingNumbersInRow(i, chosenPlate));
+          MissingNumbersInRows.Add(MissingNumbers);
+        }
         _winMan.ShowDialog(new PlateHasBingoViewModel(_plateToCheck, chosenPlate, MissingNumbersInRows, false));
       }
     }
