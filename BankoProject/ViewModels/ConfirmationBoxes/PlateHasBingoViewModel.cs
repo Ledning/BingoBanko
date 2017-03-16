@@ -30,13 +30,13 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
       //determine if bingo or np
       if (hasBingo)
       {
-        DisplayName = "Plade nr " + plateNum + "har BANKO!";
+        DisplayName = "Plade nr. " + plateNum + " har BANKO!";
         AnswerText = "Pladen har BANKO!";
         Brush = _bingo;
       }
       else
       {
-        DisplayName = "Plade nr " + plateNum + "har ikke banko.";
+        DisplayName = "Plade nr. " + plateNum + " har ikke banko.";
         AnswerText = "Pladen har ikke banko. Der mangler nedenstående numre:\n ";
         int i = 1;
         foreach (var missingNumbers in MissingNumbersInRows)
