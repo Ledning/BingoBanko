@@ -38,6 +38,7 @@ namespace BankoProject.ViewModels
     private string _text;
     private int _plateToCheck;
     private bool _plateHasBingo = false;
+    private Random rdn;
 
     #endregion
 
@@ -76,6 +77,7 @@ namespace BankoProject.ViewModels
         _log.Info("Plates has already been generated.");
         Event.PInfo.HasPlatesBeenGenerated = true;
       }
+      rdn = new Random();
     }
 
     #endregion
@@ -228,21 +230,28 @@ namespace BankoProject.ViewModels
     //this method gets a random number and marks the boardview, that that number is now marked
     public void DrawRandom()
     {
-      Random rdn = new Random();
-      int rdnnumber = rdn.Next(0, Event.AvailableNumbersQueue.Count);
 
+      BindableCollection<BingoNumber> numberList = new BindableCollection<BingoNumber>();
+      foreach (BingoNumber number in Event.NumberBoard.Board)
+      {
+        if (!number.IsPicked)
+        {
+          numberList.Add(number);
+        }
+      }
+      Event.AvailableNumbersQueue = numberList;
+      int rdnnumber = rdn.Next(0, Event.AvailableNumbersQueue.Count);
       if (Event.AvailableNumbersQueue.Count > 0)
       {
         if (!Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked)
         {
           try
           {
-            BingoNumber temp = Event.AvailableNumbersQueue[rdnnumber];
             _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].Value.ToString());
             Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
             Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
-            Event.AvailableNumbersQueue.Remove(Event.AvailableNumbersQueue[rdnnumber]);
-            Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1-1]);
+            Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1]);
+
           }
           catch (Exception ex)
           {
@@ -250,10 +259,8 @@ namespace BankoProject.ViewModels
             _log.Info(Event.AvailableNumbersQueue.Count.ToString());
             _log.Info("Exception in random numb!");
           }
-
           return;
         }
-        _log.Info("This should not happen");
         DrawRandom();
       }
     }
