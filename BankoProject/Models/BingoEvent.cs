@@ -50,8 +50,7 @@ namespace BankoProject.Models
 
     [XmlArray("LatestNumbersQueue")]
     [XmlArrayItem("LatestNumbers")]
-    private BindableCollection<int>
-      _latestNumbersQueue; /// <summary>
+    private BindableCollection<string> _latestNumbersQueue; /// <summary>
       /// The latest 10 nubers to be picked.
       /// </summary>
 
@@ -104,6 +103,29 @@ namespace BankoProject.Models
       {
         _bingoNumberQueue = value;
         QueueLength = _bingoNumberQueue.Count;
+        LatestNumbersQueue = new BindableCollection<string>();
+        for (int i = 0; i < 10; i++)
+        {
+          LatestNumbersQueue.Add("-1");
+        }
+        if (BingoNumberQueue.Count != 0)
+        {
+          if (BingoNumberQueue.Count >= 10)
+          {
+            for (int i = 0; i < 10; i++)
+            {
+              LatestNumbersQueue[i] = BingoNumberQueue[BingoNumberQueue.Count - i - 1].Value.ToString();
+            }
+          }
+          else
+          {
+            for (int i = BingoNumberQueue.Count; i >= 0; i--)
+            {
+              LatestNumbersQueue[i - BingoNumberQueue.Count] = BingoNumberQueue[i - 1].Value.ToString();
+            }
+          }
+        }
+        NotifyOfPropertyChange(() => LatestNumbersQueue);
         NotifyOfPropertyChange(() => BingoNumberQueue);
       }
     }
@@ -117,32 +139,13 @@ namespace BankoProject.Models
       {
         _availableNumbersQueue = value;
         QueueLength = _availableNumbersQueue.Count;
-        LatestNumbersQueue = new BindableCollection<int>();
-        for (int i = 0; i < 10; i++)
-        {
-          LatestNumbersQueue.Add(-1);
-        }
-        if (AvailableNumbersQueue.Count > 10)
-        {
-          for (int i = 0; i < 10; i++)
-          {
-            LatestNumbersQueue[i] = AvailableNumbersQueue[AvailableNumbersQueue.Count - i].Value;
-          }
-        }
-        else
-        {
-          for (int i = 0; i < AvailableNumbersQueue.Count; i++)
-          {
-            LatestNumbersQueue[i] = AvailableNumbersQueue[AvailableNumbersQueue.Count - i].Value;
-          }
-        }
-
+        NotifyOfPropertyChange(() => LatestNumbersQueue);
         NotifyOfPropertyChange(() => AvailableNumbersQueue);
       }
     }
     [XmlArray("LatestNumbersQueue")]
-    [XmlArrayItem(Type = typeof(int))]
-    public BindableCollection<int> LatestNumbersQueue
+    [XmlArrayItem(Type = typeof(string))]
+    public BindableCollection<string> LatestNumbersQueue
     {
       get { return _latestNumbersQueue; }
       set
@@ -273,7 +276,7 @@ namespace BankoProject.Models
       _log.Info("Event object initialization done.");
       PInfo.CardGenerator = new Generator(SInfo.Seed);
       TimeOpt = new TimerOptions();
-      LatestNumbersQueue = new BindableCollection<int>();
+      LatestNumbersQueue = new BindableCollection<string>();
       AvailableNumbersQueue = new BindableCollection<BingoNumber>();
       for (int i = 1; i <= 90; i++)
       {
@@ -292,6 +295,7 @@ namespace BankoProject.Models
     /// <param name="resetTime"></param>
     public void Initialize(string seed, string title, int pladetal, DateTime resetTime)
     {
+      //TODO: Refactor the contents of the intialize functions out into seperate functions for types of things that has to be initted, make it more clear
       _log.Info("Starting event object initialization...");
       NumberBoard = new BingoNumberBoard();
       NumberBoard.Initialize();
@@ -314,7 +318,7 @@ namespace BankoProject.Models
       _log.Info("Event object initialization done.");
       PInfo.CardGenerator = new Generator(SInfo.Seed);
       TimeOpt = new TimerOptions();
-      LatestNumbersQueue = new BindableCollection<int>();
+      LatestNumbersQueue = new BindableCollection<string>();
       AvailableNumbersQueue = new BindableCollection<BingoNumber>();
       for (int i = 1; i <= 90; i++)
       {
