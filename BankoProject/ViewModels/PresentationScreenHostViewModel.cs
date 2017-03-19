@@ -136,7 +136,7 @@ namespace BankoProject.ViewModels
             if (ActiveItem.GetType() != typeof(NumberBarViewModel))
             {
               ActivateItem(new FullscreenImageViewModel(true));
-              ActivateItem(new NumberBarViewModel());
+              ActivateItem(new FixedNumberBarViewModel());
               Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
               _log.Info("latestnumolhandled");
             } 

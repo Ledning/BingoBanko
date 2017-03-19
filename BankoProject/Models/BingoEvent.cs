@@ -48,6 +48,13 @@ namespace BankoProject.Models
     [XmlArray("AvailableNumbersQueue")] [XmlArrayItem("AvailableNumbers")] private BindableCollection<BingoNumber>
       _availableNumbersQueue; //The numbers available to be picked.
 
+    [XmlArray("LatestNumbersQueue")]
+    [XmlArrayItem("LatestNumbers")]
+    private BindableCollection<int>
+      _latestNumbersQueue; /// <summary>
+      /// The latest 10 nubers to be picked.
+      /// </summary>
+
     #region GetterSetter
 
     public string EventTitle
@@ -110,9 +117,41 @@ namespace BankoProject.Models
       {
         _availableNumbersQueue = value;
         QueueLength = _availableNumbersQueue.Count;
+        LatestNumbersQueue = new BindableCollection<int>();
+        for (int i = 0; i < 10; i++)
+        {
+          LatestNumbersQueue.Add(-1);
+        }
+        if (AvailableNumbersQueue.Count > 10)
+        {
+          for (int i = 0; i < 10; i++)
+          {
+            LatestNumbersQueue[i] = AvailableNumbersQueue[AvailableNumbersQueue.Count - i].Value;
+          }
+        }
+        else
+        {
+          for (int i = 0; i < AvailableNumbersQueue.Count; i++)
+          {
+            LatestNumbersQueue[i] = AvailableNumbersQueue[AvailableNumbersQueue.Count - i].Value;
+          }
+        }
+
         NotifyOfPropertyChange(() => AvailableNumbersQueue);
       }
     }
+    [XmlArray("LatestNumbersQueue")]
+    [XmlArrayItem(Type = typeof(int))]
+    public BindableCollection<int> LatestNumbersQueue
+    {
+      get { return _latestNumbersQueue; }
+      set
+      {
+        _latestNumbersQueue = value;
+        NotifyOfPropertyChange(()=>LatestNumbersQueue);
+      }
+    }
+
 
     public bool Generating
     {
@@ -234,7 +273,8 @@ namespace BankoProject.Models
       _log.Info("Event object initialization done.");
       PInfo.CardGenerator = new Generator(SInfo.Seed);
       TimeOpt = new TimerOptions();
-      AvailableNumbersQueue= new BindableCollection<BingoNumber>();
+      LatestNumbersQueue = new BindableCollection<int>();
+      AvailableNumbersQueue = new BindableCollection<BingoNumber>();
       for (int i = 1; i <= 90; i++)
       {
         BingoNumber j = new BingoNumber();
@@ -274,6 +314,7 @@ namespace BankoProject.Models
       _log.Info("Event object initialization done.");
       PInfo.CardGenerator = new Generator(SInfo.Seed);
       TimeOpt = new TimerOptions();
+      LatestNumbersQueue = new BindableCollection<int>();
       AvailableNumbersQueue = new BindableCollection<BingoNumber>();
       for (int i = 1; i <= 90; i++)
       {

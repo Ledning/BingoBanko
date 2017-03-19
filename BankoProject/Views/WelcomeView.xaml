@@ -44,7 +44,7 @@
       <Grid.Effect>
         <DropShadowEffect BlurRadius="15"/>
       </Grid.Effect>
-      <ListView x:Name="LatestEventsview" cal:Message.Attach="[Event MouseDoubleClick] = [Action DoubleClickAction()]" IsManipulationEnabled="false" ItemsSource="{Binding LatestEvents}" SelectionMode="Single" HorizontalAlignment="Right" Margin="30.5,28,30.5,28" Width="540" Background="CornflowerBlue" SelectedItem="{Binding SelectedEvent}">
+      <ListView x:Name="LatestEventsview" cal:Message.Attach="[Event MouseDoubleClick] = [Action DoubleClickAction()]" IsManipulationEnabled="false" ItemsSource="{Binding LatestEvents}" SelectionMode="Single" HorizontalAlignment="Right" Margin="30.5,28,30.5,28" Width="540" Background="CornflowerBlue" SelectedItem="{Binding SelectedEvent}" FontSize="18">
         <ListView.View>
           <GridView>
             <GridViewColumn Header="Begivenhedsnavn" Width="288" DisplayMemberBinding="{Binding Key}"/>

@@ -176,6 +176,7 @@
     <Compile Include="ViewModels\Flyout\WelcomeScreenFlyoutViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreenHostViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\BingoScreenViewModel.cs" />
+    <Compile Include="ViewModels\PresentationScreen\FixedNumberBarViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\FullscreenImageViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\NumberBarViewModel.cs" />
     <Compile Include="ViewModels\PresentationScreen\PlateOverlayViewModel.cs" />
@@ -242,6 +243,9 @@
     </Compile>
     <Compile Include="Views\PresentationScreen\BingoScreenView.xaml.cs">
       <DependentUpon>BingoScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PresentationScreen\FixedNumberBarView.xaml.cs">
+      <DependentUpon>FixedNumberBarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PresentationScreen\FullscreenImageView.xaml.cs">
       <DependentUpon>FullscreenImageView.xaml</DependentUpon>
@@ -348,6 +352,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PresentationScreen\BingoScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PresentationScreen\FixedNumberBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
