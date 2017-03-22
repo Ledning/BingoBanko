@@ -78,6 +78,7 @@ namespace BankoProject.ViewModels
         Event.PInfo.HasPlatesBeenGenerated = true;
       }
       rdn = new Random();
+      RefreshLatest();
     }
 
     #endregion
@@ -259,6 +260,7 @@ namespace BankoProject.ViewModels
             _log.Info(Event.AvailableNumbersQueue.Count.ToString());
             _log.Info("Exception in random numb!");
           }
+          RefreshLatest();
           return;
         }
         DrawRandom();
@@ -278,6 +280,7 @@ namespace BankoProject.ViewModels
             bnum.IsChecked = false;
             Event.BingoNumberQueue.Add(bnum);
             Event.AvailableNumbersQueue.Remove(bnum);
+            RefreshLatest();
           }
           else if (bnum.IsPicked)
           {
@@ -285,6 +288,7 @@ namespace BankoProject.ViewModels
             bnum.IsChecked = false;
             Event.BingoNumberQueue.Remove(bnum);
             Event.AvailableNumbersQueue.Add(bnum);
+            RefreshLatest();
           }
         }
       }
@@ -302,9 +306,31 @@ namespace BankoProject.ViewModels
           Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsPicked = true; //minus one to make it fit the array lol
           Event.NumberBoard.Board[dialog.NumberToAdd - 1].IsChecked = false;
           Event.BingoNumberQueue.Add(Event.NumberBoard.Board[dialog.NumberToAdd - 1]);
+          RefreshLatest();
         }
 
       }
+    }
+
+    public void RefreshLatest()
+    {
+        if (Event.BingoNumberQueue.Count != 0)
+        {
+          if (Event.BingoNumberQueue.Count >= 10)
+          {
+            for (int i = 0; i < 10; i++)
+            {
+              Event.LatestNumbersQueue[i] = Event.BingoNumberQueue[Event.BingoNumberQueue.Count - i - 1].Value.ToString();
+            }
+          }
+          else
+          {
+            for (int i = Event.BingoNumberQueue.Count; i > 0; i--)
+            {
+              Event.LatestNumbersQueue[Event.BingoNumberQueue.Count - i] = Event.BingoNumberQueue[i - 1].Value.ToString();
+            }
+          }
+        }
     }
 
     public void CheckPlate()
