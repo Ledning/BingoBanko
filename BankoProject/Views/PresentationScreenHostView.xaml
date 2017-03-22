@@ -11,7 +11,7 @@
         WindowState="{Binding Event.WindowSettings.PrsSettings.State}"
         ResizeMode ="NoResize"
 
-        Background="{Binding Event.WindowSettings.PrsSettings.BackgroundBrush}" Top="{Binding Event.WindowSettings.PrsSettings.Top, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Left="{Binding Event.WindowSettings.PrsSettings.Left, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowInTaskbar="False" Topmost="false" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
+        Background="{Binding Event.WindowSettings.BgColor}" Top="{Binding Event.WindowSettings.PrsSettings.Top, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Left="{Binding Event.WindowSettings.PrsSettings.Left, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowInTaskbar="False" Topmost="false" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
   <Window.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>

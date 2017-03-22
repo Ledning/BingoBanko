@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BankoProject.Views.PresentationScreen"
              mc:Ignorable="d" 
              d:DesignHeight="120" d:DesignWidth="1200"
-             Visibility="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible}">
+             Visibility="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible}" Background="{Binding Event.WindowSettings.BgColor}">
   <StackPanel Orientation="Horizontal" MaxHeight="120">
     <StackPanel.Background>
       <SolidColorBrush Color="Gray" Opacity="0"></SolidColorBrush>

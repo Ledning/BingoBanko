@@ -126,6 +126,7 @@ namespace BankoProject.ViewModels
       {
         Event.WindowSettings.PrsSettings.BackgroundBrush = new SolidColorBrush(Colors.Black);
       }
+      //this is unused
     }
 
     public void ShowWelcome()

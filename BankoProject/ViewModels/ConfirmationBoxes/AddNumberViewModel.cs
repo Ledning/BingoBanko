@@ -14,12 +14,14 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
     private int _numberToAdd;
     private string _error;
     private BingoEvent Event;
+    private bool _canConfirmNumber;
 
     public AddNumberViewModel()
     {
       DisplayName = "Indtast tal..";
       NumberToAdd = 1;
       Event = IoC.Get<BingoEvent>();
+      CanConfirmNumber = false;
     }
 
     public void OK()
@@ -35,6 +37,11 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
 
     //TODO: InputRestriktion: må kun indtaste mellem 1 og 90
 
+    public bool CanConfirmNumber
+    {
+      get { return _canConfirmNumber; }
+      set { _canConfirmNumber = value; NotifyOfPropertyChange(()=>CanConfirmNumber); }
+    }
 
     public int NumberToAdd
     {
@@ -54,37 +61,39 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
           if (NumberToAdd <= 0)
           {
             result = "Tallet må ikke være 0 eller under.";
-            return result;
+            CanConfirmNumber = false;
           }
-          if (NumberToAdd > 90)
+          else if (NumberToAdd > 90)
           {
             result = "Tallet må ikke være over 90.";
-            return result;
+            CanConfirmNumber = false;
           }
-          if (!CheckIfNumberIsPicked(NumberToAdd))
+          else if (!CheckIfNumberIsPicked(NumberToAdd))
           {
             result = "Tallet er allerede taget. Vælg et andet.";
+            CanConfirmNumber = false;
           }
-
-
-
+          else
+          {
+            CanConfirmNumber = true;
+          }
         }
         return result;
       }
     }
 
-    /// <summary>
-    /// Returns false if the number is picked.
-    /// </summary>
-    /// <param name="number"></param>
-    /// <returns></returns>
+
+
     public bool CheckIfNumberIsPicked(int number)
     {
-      if (Event.AvailableNumbersQueue.Contains(new BingoNumber(number)))
+      foreach (BingoNumber bnum in Event.BingoNumberQueue)
       {
-        return true;
+        if (bnum.Value == number)
+        {
+          return false;
+        }
       }
-      return false;
+      return true;
     }
 
     public string Error
