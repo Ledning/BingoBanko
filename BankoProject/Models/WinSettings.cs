@@ -49,6 +49,7 @@ namespace BankoProject.Models
       PrsSettings = new PresentationScreenSettings();
       PrsSettings.State = WindowState.Normal;
       ChoosenPresentationScreen = 0;
+
       ToggleBG();
     }
 
@@ -65,6 +66,8 @@ namespace BankoProject.Models
         BgColor = null;
         BgColorText = "Klik for at skifte til hvid";
       }
+
+      //sæt baggrunden til at være = BgColor her :)))))
     }
 
 
