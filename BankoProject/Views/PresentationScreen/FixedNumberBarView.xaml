@@ -9,41 +9,50 @@
              Visibility="{Binding Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible}">
   <StackPanel Orientation="Horizontal" MaxHeight="120">
     <StackPanel.Background>
-      <SolidColorBrush Color="Gray" Opacity="0.4"></SolidColorBrush>
+      <SolidColorBrush Color="Gray" Opacity="0"></SolidColorBrush>
     </StackPanel.Background>
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.45"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="{Binding Event.LatestNumbersQueue[0]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
+        <TextBox Text="{Binding Event.LatestNumbersQueue[9]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.55"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="{Binding Event.LatestNumbersQueue[1]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
+        <TextBox Text="{Binding Event.LatestNumbersQueue[8]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.63"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="{Binding Event.LatestNumbersQueue[2]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
+        <TextBox Text="{Binding Event.LatestNumbersQueue[7]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.70"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="{Binding Event.LatestNumbersQueue[3]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
+        <TextBox Text="{Binding Event.LatestNumbersQueue[6]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
+      </Viewbox>
+    </Border>
+
+    <Border Opacity="0.85"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+      <Border.Effect>
+        <DropShadowEffect/>
+      </Border.Effect>
+      <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
+        <TextBox Text="{Binding Event.LatestNumbersQueue[5]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
       </Viewbox>
     </Border>
 
@@ -61,7 +70,7 @@
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="6"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
+        <TextBox Text="{Binding Event.LatestNumbersQueue[3]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
       </Viewbox>
     </Border>
 
@@ -70,7 +79,7 @@
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="7"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
+        <TextBox Text="{Binding Event.LatestNumbersQueue[2]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
       </Viewbox>
     </Border>
 
@@ -79,7 +88,7 @@
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="8"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
+        <TextBox Text="{Binding Event.LatestNumbersQueue[1]}"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
       </Viewbox>
     </Border>
 
@@ -88,16 +97,7 @@
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="9"  Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold" />
-      </Viewbox>
-    </Border>
-
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
-      <Border.Effect>
-        <DropShadowEffect/>
-      </Border.Effect>
-      <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="10" Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold"/>
+        <TextBox Text="{Binding Event.LatestNumbersQueue[0]}" Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold"/>
       </Viewbox>
     </Border>
 

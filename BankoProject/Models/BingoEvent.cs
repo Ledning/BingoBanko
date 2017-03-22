@@ -105,29 +105,6 @@ namespace BankoProject.Models
       {
         _bingoNumberQueue = value;
         QueueLength = _bingoNumberQueue.Count;
-        LatestNumbersQueue = new BindableCollection<string>();
-        for (int i = 0; i < 10; i++)
-        {
-          LatestNumbersQueue.Add("-1");
-        }
-        if (BingoNumberQueue.Count != 0)
-        {
-          if (BingoNumberQueue.Count >= 10)
-          {
-            for (int i = 0; i < 10; i++)
-            {
-              LatestNumbersQueue[i] = BingoNumberQueue[BingoNumberQueue.Count - i - 1].Value.ToString();
-            }
-          }
-          else
-          {
-            for (int i = BingoNumberQueue.Count; i >= 0; i--)
-            {
-              LatestNumbersQueue[i - BingoNumberQueue.Count] = BingoNumberQueue[i - 1].Value.ToString();
-            }
-          }
-        }
-        NotifyOfPropertyChange(() => LatestNumbersQueue);
         NotifyOfPropertyChange(() => BingoNumberQueue);
       }
     }
@@ -141,7 +118,6 @@ namespace BankoProject.Models
       {
         _availableNumbersQueue = value;
         QueueLength = _availableNumbersQueue.Count;
-        NotifyOfPropertyChange(() => LatestNumbersQueue);
         NotifyOfPropertyChange(() => AvailableNumbersQueue);
       }
     }
@@ -301,6 +277,10 @@ namespace BankoProject.Models
       PInfo.CardGenerator = new Generator(SInfo.Seed);
       TimeOpt = new TimerOptions();
       LatestNumbersQueue = new BindableCollection<string>();
+      for (int i = 0; i < 10; i++)
+      {
+        LatestNumbersQueue.Add("");
+      }
       AvailableNumbersQueue = new BindableCollection<BingoNumber>();
       for (int i = 1; i <= 90; i++)
       {
@@ -343,6 +323,10 @@ namespace BankoProject.Models
       PInfo.CardGenerator = new Generator(SInfo.Seed);
       TimeOpt = new TimerOptions();
       LatestNumbersQueue = new BindableCollection<string>();
+      for (int i = 0; i < 10; i++)
+      {
+        LatestNumbersQueue.Add("");
+      }
       AvailableNumbersQueue = new BindableCollection<BingoNumber>();
       for (int i = 1; i <= 90; i++)
       {

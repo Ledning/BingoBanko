@@ -30,6 +30,5 @@
     <Button x:Name="BgColor" Content="{Binding Event.WindowSettings.BgColorText}" Height="37" VerticalAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200"/>
 
 
-
   </StackPanel>
 </UserControl>
