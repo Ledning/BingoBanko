@@ -35,7 +35,9 @@ namespace BankoProject.Models
     private BankoOptions _bnkOptions;
     private CompetitionOptions _cmpOptions;
     private SeedInfo _seedInfo;
+    private string _seedInfoText;
     private PlateInfo _plateInfo;
+    private string _plateInfoText;
     private BingoNumberBoard _numberBoard;
 
     //any aggregated objects; settings object(general/specific), lists of objects for the competitions held during the event,
@@ -196,6 +198,16 @@ namespace BankoProject.Models
       }
     }
 
+    public string SInfoText
+    {
+      get { return _seedInfoText; }
+      set
+      {
+        _seedInfoText = value;
+        NotifyOfPropertyChange(() => SInfoText);
+      }
+    }
+
     public PlateInfo PInfo
     {
       get { return _plateInfo; }
@@ -203,6 +215,16 @@ namespace BankoProject.Models
       {
         _plateInfo = value;
         NotifyOfPropertyChange(() => PInfo);
+      }
+    }
+
+    public string PInfoText
+    {
+      get { return _plateInfoText; }
+      set
+      {
+        _plateInfoText = value;
+        NotifyOfPropertyChange(() => PInfoText);
       }
     }
 
@@ -269,6 +291,8 @@ namespace BankoProject.Models
       WindowSettings = new WinSettings();
       EventTitle = title;
       PInfo.PlatesGenerated = pladetal;
+      PInfoText = "Antal plader: " + pladetal;
+      SInfoText = "Seed: " + SInfo.Seed;
       _creationTime = DateTime.Now;
       NotifyOfPropertyChange(() => CreationTime);
       _initialised = true;
