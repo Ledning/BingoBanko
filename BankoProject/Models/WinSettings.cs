@@ -28,6 +28,8 @@ namespace BankoProject.Models
     private int _top;
     private string currentWindow;
     private int _choosenPresentationScreen;
+    private string _bgColor;
+    private string _bgColorText;
 
     //This object holds reference to the current presentation screen. 
     private PresentationScreenSettings _prsSettings;
@@ -47,9 +49,23 @@ namespace BankoProject.Models
       PrsSettings = new PresentationScreenSettings();
       PrsSettings.State = WindowState.Normal;
       ChoosenPresentationScreen = 0;
+      ToggleBG();
     }
 
+    public void ToggleBG()
+    {
+      if (_bgColor == null)
+      {
+        _bgColor = "#ffffff";
+        _bgColorText = "Klik for at skifte \n til gennemsigtig.";
+      }
 
+      else
+      {
+        _bgColor = null;
+        _bgColorText = "Klik for at skifte til hvid";
+      }
+    }
 
 
 
@@ -103,6 +119,18 @@ namespace BankoProject.Models
       get { return _choosenPresentationScreen; }
       set { _choosenPresentationScreen = value; NotifyOfPropertyChange(()=> ChoosenPresentationScreen);}
     }
+
+    public string BgColor
+    {
+      get { return _bgColor; }
+      set { _bgColor = value; NotifyOfPropertyChange(() => BgColor); }
+    }
+
+    public string BgColorText
+    {
+      get { return _bgColorText; }
+    }
+
   }
 #endregion
 }

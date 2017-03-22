@@ -17,6 +17,7 @@ using BankoProject.Tools.Events;
 using BankoProject.ViewModels.ConfirmationBoxes;
 using BankoProject.ViewModels.PresentationScreen;
 using Catel.Collections;
+using MahApps.Metro.Controls;
 
 namespace BankoProject.ViewModels
 {

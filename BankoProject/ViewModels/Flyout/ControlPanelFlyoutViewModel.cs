@@ -216,7 +216,12 @@ namespace BankoProject.ViewModels.Flyout
       Event.WindowSettings.PrsSettings.Left = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Left;
       Event.WindowSettings.PrsSettings.Top = (int)Event.WindowSettings.Screens[Event.WindowSettings.ChoosenPresentationScreen].WorkingArea.Top;
       Event.WindowSettings.PrsSettings.State = WindowState.Maximized;
-    } 
+    }
+
+    public void BgColor()
+    {
+      Event.WindowSettings.ToggleBG();
+    }
     #endregion
   }
 }
