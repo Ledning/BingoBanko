@@ -63,7 +63,7 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
           }
           if (!CheckIfNumberIsPicked(NumberToAdd))
           {
-            
+            result = "Tallet er allerede taget. Vælg et andet.";
           }
 
 
@@ -80,17 +80,11 @@ namespace BankoProject.ViewModels.ConfirmationBoxes
     /// <returns></returns>
     public bool CheckIfNumberIsPicked(int number)
     {
-      if (Event.)
+      if (Event.AvailableNumbersQueue.Contains(new BingoNumber(number)))
       {
-        
+        return true;
       }
-      for (int i = 0; i < R; i++)
-      {
-        
-      }
-
-
-      return true;
+      return false;
     }
 
     public string Error
