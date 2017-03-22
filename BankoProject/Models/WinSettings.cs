@@ -54,16 +54,16 @@ namespace BankoProject.Models
 
     public void ToggleBG()
     {
-      if (_bgColor == null)
+      if (BgColor == null)
       {
-        _bgColor = "#ffffff";
-        _bgColorText = "Klik for at skifte \n til gennemsigtig.";
+        BgColor = "#ffffff";
+        BgColorText = "Klik for at skifte \n til gennemsigtig.";
       }
 
       else
       {
-        _bgColor = null;
-        _bgColorText = "Klik for at skifte til hvid";
+        BgColor = null;
+        BgColorText = "Klik for at skifte til hvid";
       }
     }
 
@@ -129,6 +129,7 @@ namespace BankoProject.Models
     public string BgColorText
     {
       get { return _bgColorText; }
+      set { _bgColorText = value; NotifyOfPropertyChange(() => BgColorText); }
     }
 
   }
