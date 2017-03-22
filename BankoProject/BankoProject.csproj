@@ -162,6 +162,7 @@
     <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="ViewModels\ConfirmationBoxes\AddNumberViewModel.cs" />
     <Compile Include="ViewModels\ConfirmationBoxes\ChangePlatesUsedDialogViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmationBoxes\ConfirmChangeDialogViewModel.cs" />
     <Compile Include="ViewModels\ConfirmationBoxes\PlateHasBingoViewModel.cs" />
     <Compile Include="ViewModels\ContestViewModel.cs" />
     <Compile Include="ViewModels\ControlPanelViewModel.cs" />
@@ -189,6 +190,9 @@
     </Compile>
     <Compile Include="Views\ConfirmationBoxes\ChangePlatesUsedDialogView.xaml.cs">
       <DependentUpon>ChangePlatesUsedDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfirmationBoxes\ConfirmChangeDialogView.xaml.cs">
+      <DependentUpon>ConfirmChangeDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ConfirmationBoxes\PlateHasBingoView.xaml.cs">
       <DependentUpon>PlateHasBingoView.xaml</DependentUpon>
@@ -316,6 +320,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConfirmationBoxes\ChangePlatesUsedDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfirmationBoxes\ConfirmChangeDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

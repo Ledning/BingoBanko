@@ -222,8 +222,17 @@ namespace BankoProject.ViewModels
 
     public void ShowWelcome()
     {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
+      var dialog = new ConfirmChangeDialogViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
+      {
+        if (result == true)
+        {
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.ChngWelcomeView,
+            ApplicationWideEnums.SenderTypes.ControlPanelView));
+        }
+      }
     }
 
 
@@ -231,64 +240,81 @@ namespace BankoProject.ViewModels
     //this method gets a random number and marks the boardview, that that number is now marked
     public void DrawRandom()
     {
+      var dialog = new ConfirmChangeDialogViewModel();
 
-      BindableCollection<BingoNumber> numberList = new BindableCollection<BingoNumber>();
-      foreach (BingoNumber number in Event.NumberBoard.Board)
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
       {
-        if (!number.IsPicked)
+        if (result == true)
         {
-          numberList.Add(number);
-        }
-      }
-      Event.AvailableNumbersQueue = numberList;
-      int rdnnumber = rdn.Next(0, Event.AvailableNumbersQueue.Count);
-      if (Event.AvailableNumbersQueue.Count > 0)
-      {
-        if (!Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked)
-        {
-          try
+          BindableCollection<BingoNumber> numberList = new BindableCollection<BingoNumber>();
+          foreach (BingoNumber number in Event.NumberBoard.Board)
           {
-            _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].Value.ToString());
-            Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
-            Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
-            Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1]);
+            if (!number.IsPicked)
+            {
+              numberList.Add(number);
+            }
+          }
+          Event.AvailableNumbersQueue = numberList;
+          int rdnnumber = rdn.Next(0, Event.AvailableNumbersQueue.Count);
+          if (Event.AvailableNumbersQueue.Count > 0)
+          {
+            if (!Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked)
+            {
+              try
+              {
+                _log.Info(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].Value.ToString());
+                Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
+                Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
+                Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1]);
 
+              }
+              catch (Exception ex)
+              {
+                _log.Info(rdnnumber.ToString());
+                _log.Info(Event.AvailableNumbersQueue.Count.ToString());
+                _log.Info("Exception in random numb!");
+              }
+              RefreshLatest();
+              return;
+            }
+            DrawRandom();
           }
-          catch (Exception ex)
-          {
-            _log.Info(rdnnumber.ToString());
-            _log.Info(Event.AvailableNumbersQueue.Count.ToString());
-            _log.Info("Exception in random numb!");
-          }
-          RefreshLatest();
-          return;
         }
-        DrawRandom();
       }
     }
 
     public void AddSelectedNumbers()
     {
-      //TODO: Make the numbers enter into a secondary queue, so that they might be animated
-      foreach (BingoNumber bnum in Event.NumberBoard.Board)
+      var dialog = new ConfirmChangeDialogViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
       {
-        if (bnum.IsChecked)
+        if (result == true)
         {
-          if (!bnum.IsPicked)
+          //TODO: Make the numbers enter into a secondary queue, so that they might be animated
+          foreach (BingoNumber bnum in Event.NumberBoard.Board)
           {
-            bnum.IsPicked = true;
-            bnum.IsChecked = false;
-            Event.BingoNumberQueue.Add(bnum);
-            Event.AvailableNumbersQueue.Remove(bnum);
-            RefreshLatest();
-          }
-          else if (bnum.IsPicked)
-          {
-            bnum.IsPicked = false;
-            bnum.IsChecked = false;
-            Event.BingoNumberQueue.Remove(bnum);
-            Event.AvailableNumbersQueue.Add(bnum);
-            RefreshLatest();
+            if (bnum.IsChecked)
+            {
+              if (!bnum.IsPicked)
+              {
+                bnum.IsPicked = true;
+                bnum.IsChecked = false;
+                Event.BingoNumberQueue.Add(bnum);
+                Event.AvailableNumbersQueue.Remove(bnum);
+                RefreshLatest();
+              }
+              else if (bnum.IsPicked)
+              {
+                bnum.IsPicked = false;
+                bnum.IsChecked = false;
+                Event.BingoNumberQueue.Remove(bnum);
+                Event.AvailableNumbersQueue.Add(bnum);
+                RefreshLatest();
+              }
+            }
           }
         }
       }
@@ -486,118 +512,196 @@ namespace BankoProject.ViewModels
 
     public void ActivateFullscreenOverlay()
     {
-      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      var dialog = new ConfirmChangeDialogViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
       {
-        SpawnPrezScreen();
+        if (result == true)
+        {
+          if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+          {
+            SpawnPrezScreen();
+          }
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlay,
+            ApplicationWideEnums.SenderTypes.ControlPanelView));
+          Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
+        }
       }
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlay,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
-      Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
     }
 
     public void ActivateLatestNumbersOverlay()
     {
-      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      var dialog = new ConfirmChangeDialogViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
       {
-        SpawnPrezScreen();
+        if (result == true)
+        {
+          if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+          {
+            SpawnPrezScreen();
+          }
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.LatestNumbers,
+            ApplicationWideEnums.SenderTypes.ControlPanelView));
+        }
       }
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.LatestNumbers,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
-    public void ActivatePlateOverviewOverlay()
+    public
+      void ActivatePlateOverviewOverlay()
     {
-      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      var dialog = new ConfirmChangeDialogViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
       {
-        SpawnPrezScreen();
+        if (result == true)
+        {
+          if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+          {
+            SpawnPrezScreen();
+          }
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BoardOverview,
+            ApplicationWideEnums.SenderTypes.ControlPanelView));
+        }
       }
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BoardOverview,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
-    public void ActivateBingoHappenedOverlay()
+    public
+      void ActivateBingoHappenedOverlay()
     {
-      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      var dialog = new ConfirmChangeDialogViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
       {
-        SpawnPrezScreen();
+        if (result == true)
+        {
+          if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+          {
+            SpawnPrezScreen();
+          }
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BingoHappened,
+            ApplicationWideEnums.SenderTypes.ControlPanelView));
+        }
       }
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BingoHappened,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
     public void ConfirmFullscreenOverlayChange()
     {
-      Event.WindowSettings.PrsSettings.OverlaySettings.ScrnActivationRequired = true;
-    }
+      var dialog = new ConfirmChangeDialogViewModel();
 
-    public void ActivateBlankOverlay()
-    {
-      if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
       {
-        SpawnPrezScreen();
+        if (result == true)
+        {
+          Event.WindowSettings.PrsSettings.OverlaySettings.ScrnActivationRequired = true;
+        }
       }
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
     }
 
-    public void ActivateStopWatch()
+    public
+      void ActivateBlankOverlay()
     {
-      _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Stopwatch,
-        ApplicationWideEnums.SenderTypes.ControlPanelView));
+      var dialog = new ConfirmChangeDialogViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
+      {
+        if (result == true)
+        {
+          if (!Event.WindowSettings.PrsSettings.IsOverLayOpen)
+          {
+            SpawnPrezScreen();
+          }
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank,
+            ApplicationWideEnums.SenderTypes.ControlPanelView));
+        }
+      }
+    }
+
+    public
+      void ActivateStopWatch()
+    {
+      var dialog = new ConfirmChangeDialogViewModel();
+
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
+      {
+        if (result == true)
+        {
+          _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Stopwatch,
+            ApplicationWideEnums.SenderTypes.ControlPanelView));
+        }
+      }
     }
 
     #endregion
 
-    #region ScreenCollectionUpdate
-
-    #endregion
-
-    #region ResetStuff
-
-    public void Reset()
-    {
-      #region attempt that saves event and stuff
-
-      ////Save the current event, with a different ending
-      ////if it was named bingo2017, save a file called bingo2017RESET[TIMESTAMP]
-      //_log.Info("Saving event before reset...");
-      //_events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save,
-      //  ApplicationWideEnums.SenderTypes.ControlPanelView));
-      //BingoEvent resetEv = new BingoEvent();
-      ////The following block is almost excatly like the method CopyTo in MainWindowVM, different in the fact that it does not copy over number positions or queues or anything. 
-      //resetEv.Initialize(Event.SInfo.Seed, Event.EventTitle, Event.PInfo.PlatesGenerated, DateTime.Now);
-      //resetEv.WindowSettings = Event.WindowSettings;
-      //resetEv.PInfo = Event.PInfo;
-      //resetEv.SInfo = Event.SInfo;
-      ////create a new object, that is the same except for the following:
-      ////empty competitionlist
-      ////empty numberqueue, reset numberboard
-      ////reset singlerow/doublerow/plate to singlerow
-      //CopyEvent(resetEv, Event);
-      //_log.Info("Reset Done");
-      ////TODO: Somebody else needs to check up on if this actually copies it all over correctly and resets the correct thingies
-      ////ask kris if summin is missin, maybe theres a stupid ass reason for it
+      #region ScreenCollectionUpdate
 
       #endregion
 
-      foreach (BingoNumber bnum in Event.NumberBoard.Board)
-      {
-        bnum.IsPicked = false;
-        bnum.IsChecked = false;
-      }
+      #region ResetStuff
 
-      Event.BingoNumberQueue = new BindableCollection<BingoNumber>();
-      Event.AvailableNumbersQueue = new BindableCollection<BingoNumber>();
-      for (int i = 1; i <= 90; i++)
-      {
-        BingoNumber j = new BingoNumber();
-        j.Value = i;
-        Event.AvailableNumbersQueue.Add(j);
-      }
+      public
+      void Reset()
+    {
+      var dialog = new ConfirmChangeDialogViewModel();
 
-      CompetitionObject competition = new CompetitionObject(0, 0,
-        0, 1);
-      this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
+      var result = _winMan.ShowDialog(dialog);
+      if (result != null)
+      {
+        if (result == true)
+        {
+
+          #region attempt that saves event and stuff
+
+          ////Save the current event, with a different ending
+          ////if it was named bingo2017, save a file called bingo2017RESET[TIMESTAMP]
+          //_log.Info("Saving event before reset...");
+          //_events.PublishOnBackgroundThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Save,
+          //  ApplicationWideEnums.SenderTypes.ControlPanelView));
+          //BingoEvent resetEv = new BingoEvent();
+          ////The following block is almost excatly like the method CopyTo in MainWindowVM, different in the fact that it does not copy over number positions or queues or anything. 
+          //resetEv.Initialize(Event.SInfo.Seed, Event.EventTitle, Event.PInfo.PlatesGenerated, DateTime.Now);
+          //resetEv.WindowSettings = Event.WindowSettings;
+          //resetEv.PInfo = Event.PInfo;
+          //resetEv.SInfo = Event.SInfo;
+          ////create a new object, that is the same except for the following:
+          ////empty competitionlist
+          ////empty numberqueue, reset numberboard
+          ////reset singlerow/doublerow/plate to singlerow
+          //CopyEvent(resetEv, Event);
+          //_log.Info("Reset Done");
+          ////TODO: Somebody else needs to check up on if this actually copies it all over correctly and resets the correct thingies
+          ////ask kris if summin is missin, maybe theres a stupid ass reason for it
+
+          #endregion
+
+          foreach (BingoNumber bnum in Event.NumberBoard.Board)
+          {
+            bnum.IsPicked = false;
+            bnum.IsChecked = false;
+          }
+
+          Event.BingoNumberQueue = new BindableCollection<BingoNumber>();
+          Event.AvailableNumbersQueue = new BindableCollection<BingoNumber>();
+          for (int i = 1; i <= 90; i++)
+          {
+            BingoNumber j = new BingoNumber();
+            j.Value = i;
+            Event.AvailableNumbersQueue.Add(j);
+          }
+
+          CompetitionObject competition = new CompetitionObject(0, 0,
+            0, 1);
+          this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
+        }
+      }
     }
 
     private void CopyEvent(BingoEvent fr, BingoEvent to)
