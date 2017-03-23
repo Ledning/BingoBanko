@@ -13,7 +13,6 @@ using BankoProject.Tools;
 using BankoProject.Tools.Events;
 using BankoProject.ViewModels.ConfirmationBoxes;
 using Caliburn.Micro;
-using Printer_Project;
 using ScrnHelper = WpfScreenHelper.Screen;
 
 namespace BankoProject.ViewModels.Flyout

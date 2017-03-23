@@ -20,7 +20,6 @@ using BankoProject.Tools.Events;
 using BingoCardGenerator;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using Printer_Project;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
@@ -200,7 +199,7 @@ namespace BankoProject.ViewModels
       }
       _log.Info("Async plate-generation running...");
       Event.Generating = true;
-      PDFMaker maker = new PDFMaker();
+      Tools.PDFMaker maker = new Tools.PDFMaker();
       string outputDir = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                          "\\BingoBankoKontrol\\" +
                          Event.EventTitle + "Plader";

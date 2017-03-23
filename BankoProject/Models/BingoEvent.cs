@@ -10,7 +10,7 @@ using System.Drawing.Text;
 using System.Windows.Controls.Primitives;
 using System.Xml.Serialization;
 using BingoCardGenerator;
-using Printer_Project;
+
 
 namespace BankoProject.Models
 {
