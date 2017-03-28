@@ -17,7 +17,7 @@
   </Window.Resources>
   <Grid Height="Auto" Width="Auto">
     <TextBox  HorizontalAlignment="Left" Height="21" Margin="78,39,0,0" TextWrapping="Wrap" Text="Er du sikker?" VerticalAlignment="Top" Width="77"/>
-    <Button x:Name="OK" Content="OK" HorizontalAlignment="Left" Margin="19,91,0,0" VerticalAlignment="Top" Width="75"/>
+    <Button IsDefault="True" x:Name="OK" Content="OK" HorizontalAlignment="Left" Margin="19,91,0,0" VerticalAlignment="Top" Width="75"/>
     <Button x:Name="Cancel" Content="Annuller" HorizontalAlignment="Left" Margin="140,91,0,0" VerticalAlignment="Top" Width="75"/>
   </Grid>
 </Window>

@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BankoProject.Models;
-using Caliburn.Micro;
-using System.ComponentModel.Composition;
-using System.IO;
-using BankoProject.ViewModels;
-using System.Windows.Media;
 using System.Xml.Serialization;
+using Caliburn.Micro;
 
-namespace BankoProject.Models
+namespace TestProject.Models
 {
   [Serializable]
   public class BingoNumberBoard : PropertyChangedBase
@@ -26,7 +17,7 @@ namespace BankoProject.Models
     private int _selectedIndex = 0;
 
 
-    private IWindowManager _winMan;
+    //private IWindowManager _winMan;
     public BingoNumberBoard()
     {
 

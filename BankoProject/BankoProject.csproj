@@ -176,6 +176,7 @@
     <Compile Include="Tools\BingoDeserializer.cs" />
     <Compile Include="Tools\BingoTimer.cs" />
     <Compile Include="Tools\ControlExtensions.cs" />
+    <Compile Include="Tools\CsvFileWriter.cs" />
     <Compile Include="Tools\Debugger.cs" />
     <Compile Include="Tools\Events\CommunicationObject.cs" />
     <Compile Include="Tools\IFlyoutItem.cs" />

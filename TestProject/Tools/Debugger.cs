@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using Caliburn.Micro;
 
-namespace BankoProject.Tools
+namespace TestProject.Tools
 {
   class Debugger : ILog
   {

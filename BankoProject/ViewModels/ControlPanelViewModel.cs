@@ -213,6 +213,89 @@ namespace BankoProject.ViewModels
 
     #endregion
 
+    #region  TestMethods
+
+    private void CheckAmountPlatesBingoFromNewNumb()
+    {
+      _log.Warn("----------------------------------------------------------------------");
+      _log.Warn("--------------------ANTAL PLADER DER HAR BINGO -----------------------");
+      //int[,] chosenPlate = Event.PInfo.CardList[_plateToCheck];
+
+      int rules;
+      if (Event.BnkOptions.SingleRow)
+        rules = 1;
+      else if (Event.BnkOptions.DoubleRow)
+        rules = 2;
+      else if (Event.BnkOptions.FullPlate)
+        rules = 3;
+      else
+      {
+        _log.Info("No rules. This should not happen");
+        return;
+      }
+      int i = 0;
+      foreach (var chosenPlate in Event.PInfo.CardList)
+      {
+
+        bool rowFailed = false;
+        int winRows = 0;
+        for (int rows = 0; rows < 3; rows++)
+        {
+          rowFailed = false;
+
+          for (int columns = 0; columns < 9; columns++)
+          {
+            if (chosenPlate[0, 0] == -1)
+            {
+              rowFailed = true;
+              break;
+            }
+            if (chosenPlate[columns, rows] != 0)
+            {
+              if (chosenPlate[columns, rows] != Event.NumberBoard.Board[chosenPlate[columns, rows] - 1].Value)
+              {
+
+
+                rowFailed = true;
+                _log.Info("THIS SHOULD PROBABLY NOT HAPPEN");
+                break;
+                //i believe this can be removed? these values will always be equal afaik. maybe leave in as dumb check for errors
+              }
+              if (!Event.NumberBoard.Board[chosenPlate[columns, rows] - 1].IsPicked)
+              {
+                //MMMM NNESTING
+                rowFailed = true;
+                break;
+              }
+            }
+          }
+
+          if (!rowFailed)
+            winRows++;
+        }
+
+        if (winRows >= rules)
+        {
+          /*WIR HABEN BINGO MOTHERFUCKERS!!!*/
+          _log.Warn("------------------PLADE " + i + "---------------------------");
+          _plateHasBingo = true;
+          //Show window with whether or not plate has bingo? to prevent overtyping and misunderstandings in the gui. I think that would be cool.
+
+          //if it does not have bingo, show window with the missing numbers. crosscheck with board.
+          //Consider maybe showing the plate. otherwise it has to be fail-tested a lot
+        }
+        else
+        {
+          //nothing, this method is for testing banko
+        }
+        i++;
+      }
+      
+    }
+
+    #endregion
+
+
     #region Methods
 
     public void ToggleTimer()
@@ -341,7 +424,19 @@ namespace BankoProject.ViewModels
 
     public void RefreshLatest()
     {
-        if (Event.BingoNumberQueue.Count != 0)
+      //CheckAmountPlatesBingoFromNewNumb(); // SHOULD BE DISABLED
+      if (Event.LatestNumbersQueue.Count == 0)
+      {
+        for (int i = 0; i <= 10; i++)
+        {
+          Event.LatestNumbersQueue.Add("");
+        }
+      }
+      if (Event.BingoNumberQueue.Count <= 0)
+      {
+        Event.LatestNumbersQueue = new BindableCollection<string>();
+      }
+      else if (Event.BingoNumberQueue.Count != 0)
         {
           if (Event.BingoNumberQueue.Count >= 10)
           {
@@ -358,6 +453,7 @@ namespace BankoProject.ViewModels
             }
           }
         }
+
     }
 
     public void CheckPlate()
@@ -429,13 +525,13 @@ namespace BankoProject.ViewModels
       }
       else
       {
-        for (int i = 0; i < 3; i++)//running through rows one by one to get the missing ones
-        {
-          MissingNumbers = new List<int>();
-          MissingNumbers.AddRange(CalcMissingNumbersInRow(i, chosenPlate));
-          MissingNumbersInRows.Add(MissingNumbers);
-        }
-        _winMan.ShowDialog(new PlateHasBingoViewModel(_plateToCheck, chosenPlate, MissingNumbersInRows, false));
+          for (int i = 0; i < 3; i++)//running through rows one by one to get the missing ones
+          {
+            MissingNumbers = new List<int>();
+            MissingNumbers.AddRange(CalcMissingNumbersInRow(i, chosenPlate));
+            MissingNumbersInRows.Add(MissingNumbers);
+          }
+          _winMan.ShowDialog(new PlateHasBingoViewModel(_plateToCheck, chosenPlate, MissingNumbersInRows, false));
       }
     }
 
@@ -444,7 +540,7 @@ namespace BankoProject.ViewModels
       int[] missingNumbers = new int[9];
       for (int columns = 0; columns < 9; columns++)
       {
-        if (chosenPlate[columns, row] != 0)
+        if (chosenPlate[columns, row] != 0 && chosenPlate[columns, row] != -1)
         {
           if (!Event.NumberBoard.Board[chosenPlate[columns, row] - 1].IsPicked)
           {
@@ -691,6 +787,7 @@ namespace BankoProject.ViewModels
 
           Event.BingoNumberQueue = new BindableCollection<BingoNumber>();
           Event.AvailableNumbersQueue = new BindableCollection<BingoNumber>();
+          RefreshLatest();
           for (int i = 1; i <= 90; i++)
           {
             BingoNumber j = new BingoNumber();
@@ -703,6 +800,7 @@ namespace BankoProject.ViewModels
           this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
         }
       }
+
     }
 
     private void CopyEvent(BingoEvent fr, BingoEvent to)
@@ -734,11 +832,7 @@ namespace BankoProject.ViewModels
 
     #endregion
 
-    #region Bugserinos
-    //Seneste tal:
-    // - Seneste tal kan kun slettes hvis man sletter de seneste. slettes den anden nyeste fx, fjernes den ikke og kan tilføjes igen, hvilket resulterer i at den forekommer 2 gange.
-    // - Random number tilføjer tallet til højre for det næste ikkevalgte tal på seneste tal. fx hvis 41, 42 og 43 er valgt og rng vælger 40, vil 45 kommer op på storskærmen.
-    #endregion
+
 
     #region Implementation of IDataErrorInfo
 
