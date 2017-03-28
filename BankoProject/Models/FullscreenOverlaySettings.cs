@@ -145,7 +145,14 @@ namespace BankoProject.Models
         NotifyOfPropertyChange(() => ScrnActivationRequired);
         if (ScrnActivationRequired && UserDefinedScreen)
         {
-          SelectedBackgroundPath = CustomOverlayImages[SelectedIndex];
+          if (CustomOverlayImages != null)
+          {
+            if (CustomOverlayImages.Count!=0)
+            {
+              SelectedBackgroundPath = CustomOverlayImages[SelectedIndex];
+            }
+          }
+
           ScrnActivationRequired = false;
         }
         else if (ScrnActivationRequired && StdScrnOl)
