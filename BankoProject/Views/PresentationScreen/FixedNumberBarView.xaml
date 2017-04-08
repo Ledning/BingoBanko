@@ -11,7 +11,7 @@
     <StackPanel.Background>
       <SolidColorBrush Color="Gray" Opacity="0"></SolidColorBrush>
     </StackPanel.Background>
-    <Border Opacity="0.45"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.45"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -20,7 +20,7 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.55"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.55"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -29,7 +29,7 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.63"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.63"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -38,7 +38,7 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.70"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.70"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -47,7 +47,7 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.85"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.85"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -56,7 +56,7 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.87"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -65,7 +65,7 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.87"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -74,7 +74,7 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.87"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -83,7 +83,7 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.87"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
@@ -92,12 +92,12 @@
       </Viewbox>
     </Border>
 
-    <Border Opacity="0.87"  Background="#FF5E8F4F" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
+    <Border Opacity="0.87"  Background="#FFFFE459" CornerRadius="20" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="120">
       <Border.Effect>
         <DropShadowEffect/>
       </Border.Effect>
       <Viewbox Stretch="Uniform" StretchDirection="DownOnly" >
-        <TextBox Text="{Binding Event.LatestNumbersQueue[0]}" Width="100" Background="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold"/>
+        <TextBox Text="{Binding Event.LatestNumbersQueue[0]}" Width="100" Background="#FFFFE459" HorizontalContentAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontSize="80" FontWeight="Bold"/>
       </Viewbox>
     </Border>
 

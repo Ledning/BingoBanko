@@ -57,7 +57,8 @@ namespace BankoProject.Models
     {
       if (BgColor == null)
       {
-        BgColor = "#ffffff";
+        //BgColor = "#ffffff";
+        BgColor = "#FF5AFF27";
         BgColorText = "Klik for at skifte \n til gennemsigtig.";
       }
 

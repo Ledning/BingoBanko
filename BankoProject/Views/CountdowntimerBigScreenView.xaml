@@ -13,7 +13,7 @@
   <Viewbox Width="{Binding Event.WindowSettings.PrsSettings.TimerWidth}" Height="50">
     <TextBox Text="{Binding Event.TimeOpt.BTimer.CurrentTime}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22">
       <TextBox.Background>
-        <SolidColorBrush Opacity="0.7" Color="Gray"></SolidColorBrush>
+        <SolidColorBrush Opacity="0.7" Color="#FFFFE459"></SolidColorBrush>
       </TextBox.Background>
       <TextBox.Resources>
         <Style TargetType="{x:Type Border}">

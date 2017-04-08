@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using BankoProject.Models;
 using BankoProject.Tools;
@@ -147,10 +148,16 @@ namespace BankoProject.ViewModels
           {
             if (ActiveItem.GetType() != typeof(BingoScreenViewModel))
             {
+              ActivateItem(new FullscreenImageViewModel(true));
+              ActivateItem(new BingoScreenViewModel());
+              Event.WindowSettings.PrsSettings.DockingPlace = Dock.Top;
+              Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
+              /* ALTERNATIVE BINGO
               FullscreenImageViewModel fvm = new FullscreenImageViewModel();
               ActivateItem(fvm);
               fvm.ShowBingo();
               _log.Info("bingohapndOLHandled");
+              */
             } 
           }
           break;
