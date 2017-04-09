@@ -7,11 +7,12 @@
         xmlns:styles="clr-namespace:BankoProject.Views.Styles"
                       xmlns:tools="clr-namespace:BankoProject.Tools"
         mc:Ignorable="d"
+
         WindowStartupLocation="Manual" Height="{Binding Event.WindowSettings.PrsSettings.Height}" Width="{Binding Event.WindowSettings.PrsSettings.Width}" Focusable="False"
         WindowState="{Binding Event.WindowSettings.PrsSettings.State}"
         ResizeMode ="NoResize"
 
-        Background="{Binding Event.WindowSettings.BgColor}" Top="{Binding Event.WindowSettings.PrsSettings.Top, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Left="{Binding Event.WindowSettings.PrsSettings.Left, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowInTaskbar="False" Topmost="false" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
+        Background="{Binding Event.WindowSettings.BgColor}" Top="{Binding Event.WindowSettings.PrsSettings.Top, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Left="{Binding Event.WindowSettings.PrsSettings.Left, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowInTaskbar="False" Topmost="False" IsHitTestVisible="False" AllowsTransparency="True" WindowStyle="None" >
   <Window.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
