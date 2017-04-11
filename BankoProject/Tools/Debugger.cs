@@ -34,7 +34,7 @@ namespace BankoProject.Tools
 
     public void Info(string format, params object[] args)
     {
-      Debug.WriteLine(CreateLogMessage(format, args), "INFO");
+      //Debug.WriteLine(CreateLogMessage(format, args), "INFO");
     }
 
     public void Warn(string format, params object[] args)

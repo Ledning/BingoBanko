@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BankoProject.Views"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" >
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -19,43 +19,40 @@
 
 
 
-  <Grid Background="#FF74ACDA">
+  <Grid Background="#FF74ACDA" HorizontalAlignment="Left" Width="258" Height="300" VerticalAlignment="Top">
     <Grid.RowDefinitions>
       <RowDefinition/>
     </Grid.RowDefinitions>
-    <Grid x:Name="CreateNewEventGrid" Margin="10,39,10,0" Height="251" VerticalAlignment="Top" Background="#FF3E8BCB">
-      <Grid.Effect>
-        <DropShadowEffect BlurRadius="15"/>
-      </Grid.Effect>
+    <Grid x:Name="CreateNewEventGrid" Margin="10,39,0,0" Height="251" VerticalAlignment="Top" Background="#FF3E8BCB" HorizontalAlignment="Left" Width="239">
+
+      <Grid x:Name="SeedCreateEventGrid" Background="#FF3E8BCB" Margin="10,96,14,115">
+        <Grid.Effect>
+          <DropShadowEffect BlurRadius="15"/>
+        </Grid.Effect>
+        <TextBox Text="{Binding PhSeed}" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="Indtast seed"/>
+      </Grid>
+      <Grid x:Name="NumberOfPlatesCreateEventGrid" Background="#FF3E8BCB" Margin="10,154,14,56">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="33*"/>
+          <ColumnDefinition Width="182*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Effect>
+          <DropShadowEffect BlurRadius="15"/>
+        </Grid.Effect>
+        <controls:NumericUpDown Value="{Binding PhPladetal}" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="1-10000" Minimum="1" Grid.ColumnSpan="2"/>
+      </Grid>
+      <Button x:Name="CancelButton" Width="100" Margin="125,0,0,17" Content="Annuller" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26"/>
+      <Button x:Name="AcceptButton" IsEnabled="{Binding CanAcceptButton, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Width="100" Margin="10,0,0,17" Content="Færdig" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" RenderTransformOrigin="0.5,0.5"/>
+      <Label x:Name="SeedCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Seed" Margin="10,82,202,155" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" Width="27"/>
+      <Label x:Name="NumberOfPlatesCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Antal plader" Margin="9,141,172,96" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True"/>
+      <Label x:Name="EventNameCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Navn" Margin="9,10,203,227" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" Width="27"/>
+      <Grid x:Name="EventNameGrid" Background="#FF3E8BCB" Margin="9,24,15,186">
+        <Grid.Effect>
+          <DropShadowEffect BlurRadius="15"/>
+        </Grid.Effect>
+        <TextBox Text="{Binding PhTitle}" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="Indtast begivenhedsnavn"/>
+      </Grid>
+      <Label x:Name="CreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Ny begivenhed" Margin="-1,-25,128,253" Height="Auto" FontSize="15" Padding="2,0,0,0" HorizontalAlignment="Center" Width="112"/>
     </Grid>
-    <Label x:Name="CreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Ny begivenhed" Margin="10,16,178,261" Height="Auto" FontSize="15" Padding="2,0,0,0" HorizontalAlignment="Center" Width="112"/>
-    <Grid x:Name="EventNameGrid" Background="#FF3E8BCB" Margin="18,64,45,195">
-      <Grid.Effect>
-        <DropShadowEffect BlurRadius="15"/>
-      </Grid.Effect>
-      <TextBox Text="{Binding Event.EventTitle}" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="Indtast begivenhedsnavn"/>
-    </Grid>
-    <Label x:Name="EventNameCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Navn" Margin="17,50,256,236" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" Width="27"/>
-
-    <Grid x:Name="SeedCreateEventGrid" Background="#FF3E8BCB" Margin="18,129,45,131">
-      <Grid.Effect>
-        <DropShadowEffect BlurRadius="15"/>
-      </Grid.Effect>
-      <TextBox Text="{Binding PlaceholderSeed}" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="Indtast seed"/>
-    </Grid>
-    <Label x:Name="SeedCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Seed" Margin="17,115,256,171" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" Width="27"/>
-
-    <Grid x:Name="NumberOfPlatesCreateEventGrid" Background="#FF3E8BCB" Margin="18,194,45,65">
-      <Grid.Effect>
-        <DropShadowEffect BlurRadius="15"/>
-      </Grid.Effect>
-      <controls:NumericUpDown Value="{Binding Event.PlatesGenerated}" Margin="5,10,5,5" controls:TextBoxHelper.Watermark="1-10000" Minimum="1"/>
-    </Grid>
-    <Label x:Name="NumberOfPlatesCreateEventLabel" Style="{StaticResource ControlPanelLabel}" Content="Antal plader" Margin="17,180,210,106" Height="Auto" FontSize="9" Padding="2,0,0,0" ScrollViewer.CanContentScroll="True"/>
-    <Button x:Name="AcceptButton" Width="100" Margin="18,0,0,26" Content="Færdig" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" RenderTransformOrigin="0.5,0.5"/>
-    <Button x:Name="CancelButton" Width="100" Margin="155,0,0,26" Content="Annuller" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26"/>
-
-
-
   </Grid>
 </UserControl>

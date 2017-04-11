@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Caliburn.Micro;
 
 namespace BankoProject.Models
@@ -13,13 +14,15 @@ namespace BankoProject.Models
     DoubleRow,
     FullPlate
   }
-
+  [Serializable]
   public class BankoOptions : PropertyChangedBase
   {
     private bool _singleRow;
     private bool _doubleRow;
     private bool _fullPlate;
-    private WinCondition winCondition;
+    private WinCondition _winCondition;
+
+    [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(BankoOptions));
 
     public WinCondition Condition

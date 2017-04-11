@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Caliburn.Micro;
 
 namespace BankoProject.Models
 {
+  /// <summary>
+  /// Why does this class exist. it should be migrated into WinSettings or something. Atleast not here and not name like this its retarded. 
+  /// </summary>
+  [Serializable]
   public class VisualsOptions : PropertyChangedBase
   {
+    [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(BankoOptions));
+
     private bool _emptyScreen;
     private bool _plateScreen;
     private bool _userDefinedScreen;
     private BindableCollection<string> _userDefinedScreens;
 
-
+#region
     public BindableCollection<string> UserDefinedScreens
     {
       get { return _userDefinedScreens; }
@@ -39,5 +46,6 @@ namespace BankoProject.Models
       get { return _userDefinedScreen; }
       set { _userDefinedScreen = value; NotifyOfPropertyChange(() => UserDefinedScreen);}
     }
+#endregion
   }
 }

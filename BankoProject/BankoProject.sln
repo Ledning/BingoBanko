@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankoProject", "BankoProject.csproj", "{D907E36B-1E87-478E-89B9-21A193FDC3BE}"
 EndProject
@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoCardGenerator", "..\Bi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analysis", "..\Analysis\Analysis.csproj", "{B9D8B267-1835-41FA-9B32-676DCCB55205}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmHasher", "..\AlgorithmHasher\AlgorithmHasher.csproj", "{9B59CA8F-2718-4AA8-A0A0-2A6BF5DADE84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "..\TestProject\TestProject.csproj", "{3E9D066F-C9BF-43A2-97A5-9AFDF407248C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,25 +30,22 @@ Global
 		{D907E36B-1E87-478E-89B9-21A193FDC3BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D907E36B-1E87-478E-89B9-21A193FDC3BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1CAE63C4-C55B-478D-A5AF-5D33117DF3AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CAE63C4-C55B-478D-A5AF-5D33117DF3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CAE63C4-C55B-478D-A5AF-5D33117DF3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1CAE63C4-C55B-478D-A5AF-5D33117DF3AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{59197ABE-CCC9-450D-9C57-315BEEEAAB18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{59197ABE-CCC9-450D-9C57-315BEEEAAB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59197ABE-CCC9-450D-9C57-315BEEEAAB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59197ABE-CCC9-450D-9C57-315BEEEAAB18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{53FEF30D-68E0-40E9-90BA-4B40BD855D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53FEF30D-68E0-40E9-90BA-4B40BD855D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53FEF30D-68E0-40E9-90BA-4B40BD855D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53FEF30D-68E0-40E9-90BA-4B40BD855D06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8DC75DC-3400-4A30-A3A1-0AF9B2866D89}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9D8B267-1835-41FA-9B32-676DCCB55205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9D8B267-1835-41FA-9B32-676DCCB55205}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9D8B267-1835-41FA-9B32-676DCCB55205}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9D8B267-1835-41FA-9B32-676DCCB55205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B59CA8F-2718-4AA8-A0A0-2A6BF5DADE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B59CA8F-2718-4AA8-A0A0-2A6BF5DADE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9D066F-C9BF-43A2-97A5-9AFDF407248C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9D066F-C9BF-43A2-97A5-9AFDF407248C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

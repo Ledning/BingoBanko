@@ -8,6 +8,7 @@
   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
   xmlns:views="clr-namespace:BankoProject.Views"
   xmlns:tools="clr-namespace:BankoProject.Tools"
+  xmlns:flyout="clr-namespace:BankoProject.Views.Flyout"
   xmlns:cal="http://www.caliburnproject.org" x:Class="BankoProject.Views.MainWindowView"
   xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
   mc:Ignorable="d"
@@ -17,6 +18,7 @@
   WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" ResizeMode="CanResizeWithGrip"
   Icon="/BankoProject;component/Resources/bingo1.png"
   dialog:DialogParticipation.Register="ShowDialog"
+  cal:Message.Attach="[Event Closing] = [Action OnApplicationExit()]"
   >
   <metro:MetroWindow.Resources>
     <ResourceDictionary>
@@ -35,8 +37,24 @@
   </Viewbox>
   <metro:MetroWindow.Flyouts>
     <metro:FlyoutsControl>
-      <metro:Flyout Header="Indstillinger" Position="Left" ></metro:Flyout>
+      <metro:Flyout DataContext="{Binding FlyoutViewModel}" 
+                    Position="Right"
+                    Header="{Binding DisplayName}"
+                    IsOpen="{Binding IsOpen}"
+                    Theme="Light"
+                    IsModal="True"
+                    Width="300"
+                    Background="DodgerBlue">
+
+        <ContentControl cal:View.Model="{Binding .}" />
+      </metro:Flyout>
     </metro:FlyoutsControl>
   </metro:MetroWindow.Flyouts>
+
+  <metro:MetroWindow.RightWindowCommands>
+    <metro:WindowCommands>
+      <ToggleButton Content="Indstillinger" IsChecked="{Binding FlyoutViewModel.IsOpen}" Cursor="Hand"></ToggleButton>
+    </metro:WindowCommands>
+  </metro:MetroWindow.RightWindowCommands>
 
 </metro:MetroWindow>

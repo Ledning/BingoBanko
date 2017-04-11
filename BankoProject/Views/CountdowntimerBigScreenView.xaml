@@ -8,26 +8,19 @@
              xmlns:cal="http://www.caliburnproject.org" 
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
-             MaxHeight="600" MaxWidth="800"
              >
-    <Viewbox>
-        <DockPanel>
-            <ListBox ItemsSource="{Binding ButtonsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical" Opacity="1">
-                            <Button Content="{Binding Name}" Style="{DynamicResource MetroCircleButtonStyle}" Height="60" Width="60" Background="#FFBF5050" Foreground="{x:Null}"/>
-                            <Label Content="{Binding Time}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center"  />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-            </ListBox>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">3:00</TextBlock>
-        </DockPanel>
-    </Viewbox>
+
+  <Viewbox Width="{Binding Event.WindowSettings.PrsSettings.TimerWidth}" Height="50">
+    <TextBox Text="{Binding Event.TimeOpt.BTimer.CurrentTime}" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22">
+      <TextBox.Background>
+        <SolidColorBrush Opacity="0.7" Color="#FFFFE459"></SolidColorBrush>
+      </TextBox.Background>
+      <TextBox.Resources>
+        <Style TargetType="{x:Type Border}">
+          <Setter Property="CornerRadius" Value="10"></Setter>
+        </Style>
+      </TextBox.Resources>
+    </TextBox>
+  </Viewbox>
+
 </UserControl>

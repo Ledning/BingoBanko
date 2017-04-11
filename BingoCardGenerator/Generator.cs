@@ -18,7 +18,8 @@ namespace BingoCardGenerator
     public int originalAmount = 0;
     public int totalAmountOfCardsGenerated = 0;
     public int validCards = 0;
-    
+
+
 
     //Takes in the key, converts it to an int representation of the string, and stores it as a token to be reused by the algorithm.
     public Generator(string key)

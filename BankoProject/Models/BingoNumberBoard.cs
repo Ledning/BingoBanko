@@ -9,9 +9,11 @@ using System.ComponentModel.Composition;
 using System.IO;
 using BankoProject.ViewModels;
 using System.Windows.Media;
+using System.Xml.Serialization;
 
 namespace BankoProject.Models
 {
+  [Serializable]
   public class BingoNumberBoard : PropertyChangedBase
   {
     //supposed to implement a large array and all the needed functionality for controlling the numbers 1-90. 
@@ -19,17 +21,20 @@ namespace BankoProject.Models
 
     private BindableCollection<BingoNumber> _board;
     private int _boardSize = 90;
+    [XmlIgnore]
     private readonly ILog _log = LogManager.GetLog(typeof(BingoNumberBoard));
+    private int _selectedIndex = 0;
 
 
     private IWindowManager _winMan;
     public BingoNumberBoard()
     {
-      Initialize();
-      _winMan = IoC.Get<IWindowManager>();
+
+      //_winMan = IoC.Get<IWindowManager>();
     }
 
-    private void Initialize()
+    //TODO: Consider this function. should it even be here?=
+    public void Initialize()
     {
       _log.Info("Initialising bingo-board with 90 numbers...");
       _board = new BindableCollection<BingoNumber>();
@@ -37,68 +42,25 @@ namespace BankoProject.Models
       {
         Board.Add(new BingoNumber(i+1));
       }
+      NotifyOfPropertyChange(() => Board);
       _log.Info("Initialization of board done.");
     }
 
-    public void PickNumber(int number)
-    {
-      _log.Info("Picking number: " + number);
-      if (!Board[number].IsPicked)
-      {
-        bool? result = _winMan.ShowDialog(new dialogViewModel("Træk nr: " + number));
-        if (result.HasValue)
-        {
-          if (result.Value)
-          {
-            Board[number].IsPicked = true;
-          }
-        }
-      }
-    }
-
-    public void UnPickNumber(int number)
-    {
-      _log.Info("Un-Picking number: " + number);
-      if (Board[number].IsPicked)
-      {
-        bool? result = _winMan.ShowDialog(new dialogViewModel("Træk nr: " + number));
-        if (result.HasValue)
-        {
-          if (result.Value)
-          {
-            Board[number].IsPicked = false;
-          }
-        }
-      }
-    }
-
-
-
-
-
-    public void ResetBoard()
-    {
-      _log.Info("Resetting board...");
-      bool? result = _winMan.ShowDialog(new dialogViewModel("Bekræft reset af spil"));
-      if (result.HasValue)
-      {
-        if (result.Value)
-        {
-          foreach (var bingoNumber in Board)
-          {
-            bingoNumber.IsPicked = false;
-          }
-        }
-      }
-    }
-   
-
+    [XmlArray("Board")]
+    [XmlArrayItem(Type = typeof(BingoNumber))]
     public BindableCollection<BingoNumber> Board
     {
       get
       {
         return _board;
       }
+      set
+      {
+        _board = value;
+        NotifyOfPropertyChange(()=> Board);
+      }
     }
+
+
   }
 }

@@ -29,45 +29,19 @@ namespace BankoProject.Models
 
     public string Name
     {
-      get
-      {
-        return name;
-      }
-
-      set
-      {
-        name = value;
-        NotifyOfPropertyChange(() => Name);
-      }
+      get { return name; }
+      set { name = value; NotifyOfPropertyChange(() => Name);}
     }
 
     public int Time
-    {
-      get
-      {
-        return time;
-      }
-
-      set
-      {
-        time = value;
-        NotifyOfPropertyChange(() => Name);
-      }
+    { get { return time; }
+      set { time = value; NotifyOfPropertyChange(() => Name); }
     }
 
     public bool IsFinished
     {
-      get
-      {
-        return isFinished;
-      }
-
-      set
-      {
-        isFinished = value;
-        NotifyOfPropertyChange(() => IsFinished);
-
-      }
+      get { return isFinished; }
+      set { isFinished = value; NotifyOfPropertyChange(() => IsFinished); }
     }
   }
 }

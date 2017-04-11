@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankoProject.Models
 {
+  [Serializable]
   public class CompetitionOptions
   {
   }
