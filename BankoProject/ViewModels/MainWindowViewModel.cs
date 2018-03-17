@@ -122,7 +122,6 @@ namespace BankoProject.ViewModels
       _directoriesInitialised = true;
       FlyoutViewModel = new WelcomeScreenFlyoutViewModel();
 
-
     }
     #endregion
 
@@ -203,7 +202,7 @@ namespace BankoProject.ViewModels
       string outputDir = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                          "\\BingoBankoKontrol\\" +
                          Event.EventTitle + "Plader";
-      Event.PInfo.CardList = maker.MakePDF2Plates(Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated), outputDir); //Takes care of generating the plates, and returning the used array. Should be secure enough.
+      Event.PInfo.CardList = maker.MakePDF3Plates(Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated), outputDir); //Takes care of generating the plates, and returning the used array. Should be secure enough.
       Event.PInfo.HasPlatesBeenGenerated = true;
     }
 
@@ -424,6 +423,8 @@ namespace BankoProject.ViewModels
       to.SInfo = fr.SInfo;
       Event.PInfo.CardList = Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated);
       Event.PInfo.HasPlatesBeenGenerated = true;
+
+      to.LatestTimers = fr.LatestTimers;
     }
 
 

@@ -51,7 +51,6 @@ namespace BankoProject.ViewModels
     {
       BoardVM = new BoardViewModel();
       ActivateItem(BoardVM);
-
       this.StartValue = 0;
     }
 
@@ -80,6 +79,7 @@ namespace BankoProject.ViewModels
       }
       rdn = new Random();
       RefreshLatest();
+      Event.LatestTimers.Add("2:00");
     }
 
     #endregion

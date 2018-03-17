@@ -50,6 +50,10 @@ namespace BankoProject.Models
     [XmlArray("AvailableNumbersQueue")] [XmlArrayItem("AvailableNumbers")] private BindableCollection<BingoNumber>
       _availableNumbersQueue; //The numbers available to be picked.
 
+    [XmlArray("LatestTimers")] [XmlArrayItem("Timer")]
+    private BindableCollection<string>
+      _latestTimers; //The latest timers used in the project
+
     [XmlArray("LatestNumbersQueue")]
     [XmlArrayItem("LatestNumbers")]
     private BindableCollection<string> _latestNumbersQueue; /// <summary>
@@ -82,6 +86,17 @@ namespace BankoProject.Models
       {
         _numberBoard = value;
         NotifyOfPropertyChange(() => NumberBoard);
+      }
+    }
+
+    [XmlArray("LatestTimers")]
+    [XmlArrayItem(Type = typeof(string))]
+    public BindableCollection<string> LatestTimers
+    {
+      get { return _latestTimers; }
+      set
+      {
+        _latestTimers = value; NotifyOfPropertyChange(() => CompetitionList);
       }
     }
 
@@ -251,6 +266,8 @@ namespace BankoProject.Models
       set { _timeOpt = value; NotifyOfPropertyChange(()=>TimeOpt);}
     }
 
+
+
     #endregion
 
     public void Initialize(string seed, string title, int pladetal)
@@ -288,6 +305,7 @@ namespace BankoProject.Models
         j.Value = i;
         AvailableNumbersQueue.Add(j);
       }
+      LatestTimers = new BindableCollection<string>();
     }
 
     /// <summary>
@@ -334,6 +352,7 @@ namespace BankoProject.Models
         j.Value = i;
        AvailableNumbersQueue.Add(j);
       }
+      LatestTimers  = new BindableCollection<string>();
     }
 
 
