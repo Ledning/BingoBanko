@@ -33,9 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StarMath, Version=2.0.14.1114, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\BankoProject\packages\StarMath.2.0.16.0229\lib\portable-net4+sl5+wp8+win8\StarMath.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="StarMath, Version=1.0.17.725, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\BankoProject\packages\StarMath.2.0.17.1019\lib\netstandard1.0\StarMath.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,9 +56,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="StarMath.XML" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AlgorithmTester\AlgorithmTester.csproj">
       <Project>{1cae63c4-c55b-478d-a5af-5d33117df3aa}</Project>
       <Name>AlgorithmTester</Name>
@@ -76,6 +72,9 @@
       <Project>{59197abe-ccc9-450d-9c57-315beeeaab18}</Project>
       <Name>Plate-Printer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="StarMath.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

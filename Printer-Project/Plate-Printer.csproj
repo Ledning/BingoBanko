@@ -46,9 +46,8 @@
       <HintPath>..\BankoProject\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="StarMath, Version=2.0.14.1114, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\BankoProject\packages\StarMath.2.0.16.0229\lib\portable-net4+sl5+wp8+win8\StarMath.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="StarMath, Version=1.0.17.725, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\BankoProject\packages\StarMath.2.0.17.1019\lib\netstandard1.0\StarMath.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -114,13 +113,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="StarMath.XML" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BingoCardGenerator\BingoCardGenerator.csproj">
       <Project>{b8dc75dc-3400-4a30-a3a1-0af9b2866d89}</Project>
       <Name>BingoCardGenerator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="StarMath.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
