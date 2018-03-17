@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
                     xmlns:ee="clr-namespace:Microsoft.Expression.Media.Effects;assembly=Microsoft.Expression.Effects"
-
+                    xmlns:eialternative="expression"
                     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
   <Style TargetType="controls:TransitioningContentControl"
 	       x:Key="specialTransition">
