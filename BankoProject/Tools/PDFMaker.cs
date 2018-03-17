@@ -132,13 +132,13 @@ namespace BankoProject.Tools
       XImage pdfSize = XImage.FromFile(imgSource);
 
       #region PixelStuff
-      int startPlateY = 834;
-      int startX = 356;
-      int jumpX = 222;
-      int jumpY = 240;
-      int jumpYPlate = 796;
-      int plateNumX = 45;
-      int plateNumY = 3300;
+      int startPlateY = 507;
+      int startX = 159;
+      int jumpX = 69;
+      int jumpY = 73;
+      int jumpYPlate = 254;
+      int plateNumX = 612;
+      int plateNumY = 1071;
       #endregion
 
 
