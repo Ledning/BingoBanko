@@ -172,6 +172,11 @@
     <Compile Include="Models\TimerOptions.cs" />
     <Compile Include="Models\VisualsOptions.cs" />
     <Compile Include="Models\WinSettings.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tools\ApplicationWideEnums.cs" />
     <Compile Include="Tools\BingoDeserializer.cs" />
     <Compile Include="Tools\BingoTimer.cs" />
@@ -311,6 +316,7 @@
     <Resource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -325,9 +331,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\teamrynkeby.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\bingo1.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WindowsIcons-license.txt" />
@@ -491,6 +494,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Orchestra.Shell.MahApps.dll" />
+    <None Include="Resources\bingo2017.png" />
     <Resource Include="Resources\nicklas.png" />
     <Resource Include="Resources\BingoBanko2016.jpg" />
     <Resource Include="Resources\Achtung.png" />
