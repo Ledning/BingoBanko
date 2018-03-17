@@ -40,6 +40,7 @@ namespace BankoProject.ViewModels
     private int _plateToCheck;
     private bool _plateHasBingo = false;
     private Random rdn;
+    private string _currentLatestTimer;
 
     #endregion
 
@@ -80,12 +81,14 @@ namespace BankoProject.ViewModels
 
       rdn = new Random();
       RefreshLatest();
-      Event.LatestTimers.Add("2:00");
+      Event.LatestTimers.Add("12:00");
     }
 
     #endregion
 
     #region Properties
+
+
 
     public string PlateToCheckText
     {
@@ -917,6 +920,8 @@ namespace BankoProject.ViewModels
     {
       get { return _error; }
     }
+
+
 
     #endregion
   }
