@@ -23,7 +23,7 @@ namespace BankoProject.Tools
     {
       _outputDirectory = outputDirectory;
     }
-    public List<int[,]> MakePDF2Plates(List<int[,]> cards, string _saveLoc)
+    public List<int[,]> MakePDF3Plates(List<int[,]> cards, string _saveLoc)
     {
 
       string imgName = @"bingo2017.png";
@@ -113,7 +113,7 @@ namespace BankoProject.Tools
       return cards;
     }
 
-    public List<int[,]> MakePDF3Plates(List<int[,]> cards, string _saveLoc)
+    public List<int[,]> MakePDF2Plates(List<int[,]> cards, string _saveLoc)
     {
 
       string imgName = @"bingo2018.png";
@@ -127,17 +127,17 @@ namespace BankoProject.Tools
       saveLoc = _saveLoc + ".pdf";
 
       XImage img = XImage.FromFile(imgSource);
-      XFont numberFont = new XFont("Verdana", 125, XFontStyle.Italic);
+      XFont numberFont = new XFont("Verdana", 40, XFontStyle.Italic);
       XFont plateNumFont = new XFont("Verdana", 30, XFontStyle.Regular);
       XImage pdfSize = XImage.FromFile(imgSource);
 
       #region PixelStuff
       int startPlateY = 507;
       int startX = 159;
-      int jumpX = 69;
+      int jumpX = 70;
       int jumpY = 73;
       int jumpYPlate = 254;
-      int plateNumX = 612;
+      int plateNumX = 190;
       int plateNumY = 1071;
       #endregion
 
