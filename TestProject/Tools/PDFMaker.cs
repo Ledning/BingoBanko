@@ -18,7 +18,7 @@ namespace TestProject.Tools
   //  {
   //    _outputDirectory = outputDirectory;
   //  }
-  //  public List<int[,]> MakePDF(List<int[,]> cards, string _saveLoc)
+  //  public List<int[,]> MakePDF2Plates(List<int[,]> cards, string _saveLoc)
   //  {
 
   //    //string imgName = @"bingo1.png";

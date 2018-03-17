@@ -203,7 +203,7 @@ namespace BankoProject.ViewModels
       string outputDir = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                          "\\BingoBankoKontrol\\" +
                          Event.EventTitle + "Plader";
-      Event.PInfo.CardList = maker.MakePDF(Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated), outputDir); //Takes care of generating the plates, and returning the used array. Should be secure enough.
+      Event.PInfo.CardList = maker.MakePDF2Plates(Event.PInfo.CardGenerator.GenerateCard(Event.PInfo.PlatesGenerated), outputDir); //Takes care of generating the plates, and returning the used array. Should be secure enough.
       Event.PInfo.HasPlatesBeenGenerated = true;
     }
 
