@@ -1,0 +1,54 @@
+
+<UserControl
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:cal="http://www.caliburnproject.org"
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:local="clr-namespace:BankoProject.Views"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+   xmlns:System="clr-namespace:System;assembly=mscorlib"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   MaxHeight="600"
+   MaxWidth="800"
+   mc:Ignorable="d">
+   <Viewbox>
+      <DockPanel>
+         <ListBox
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            DockPanel.Dock="Top"
+            Foreground="{x:Null}"
+            ItemsSource="{Binding ButtonsList}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+               <DataTemplate>
+                  <StackPanel Opacity="1" Orientation="Vertical">
+                     <Button
+                        Width="60"
+                        Height="60"
+                        Background="#FFBF5050"
+                        Content="{Binding Name}"
+                        Foreground="{x:Null}"
+                        Style="{DynamicResource MetroCircleButtonStyle}"/>
+                     <Label HorizontalAlignment="Center" VerticalAlignment="Top" Content="{Binding Time}"/>
+                  </StackPanel>
+               </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+               <ItemsPanelTemplate>
+                  <WrapPanel
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Top"
+                     IsItemsHost="True"
+                     Orientation="Horizontal"/>
+               </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+         </ListBox>
+         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">3:00
+         
+         </TextBlock>
+      </DockPanel>
+   </Viewbox>
+</UserControl>
