@@ -77,6 +77,7 @@ namespace BankoProject.ViewModels
         _log.Info("Plates has already been generated.");
         Event.PInfo.HasPlatesBeenGenerated = true;
       }
+
       rdn = new Random();
       RefreshLatest();
       Event.LatestTimers.Add("2:00");
@@ -93,7 +94,6 @@ namespace BankoProject.ViewModels
       {
         _text = value;
         NotifyOfPropertyChange(() => PlateToCheckText);
-
       }
     }
 
@@ -233,10 +233,10 @@ namespace BankoProject.ViewModels
         _log.Info("No rules. This should not happen");
         return;
       }
+
       int i = 0;
       foreach (var chosenPlate in Event.PInfo.CardList)
       {
-
         bool rowFailed = false;
         int winRows = 0;
         for (int rows = 0; rows < 3; rows++)
@@ -250,17 +250,17 @@ namespace BankoProject.ViewModels
               rowFailed = true;
               break;
             }
+
             if (chosenPlate[columns, rows] != 0)
             {
               if (chosenPlate[columns, rows] != Event.NumberBoard.Board[chosenPlate[columns, rows] - 1].Value)
               {
-
-
                 rowFailed = true;
                 _log.Info("THIS SHOULD PROBABLY NOT HAPPEN");
                 break;
                 //i believe this can be removed? these values will always be equal afaik. maybe leave in as dumb check for errors
               }
+
               if (!Event.NumberBoard.Board[chosenPlate[columns, rows] - 1].IsPicked)
               {
                 //MMMM NNESTING
@@ -288,9 +288,9 @@ namespace BankoProject.ViewModels
         {
           //nothing, this method is for testing banko
         }
+
         i++;
       }
-      
     }
 
     #endregion
@@ -301,6 +301,11 @@ namespace BankoProject.ViewModels
     public void ToggleTimer()
     {
       Event.TimeOpt.ToggleTimer();
+    }
+
+    public void DoubleClickTimer()
+    {
+      throw new NotImplementedException();
     }
 
 
@@ -318,7 +323,6 @@ namespace BankoProject.ViewModels
         }
       }
     }
-
 
 
     //this method gets a random number and marks the boardview, that that number is now marked
@@ -339,6 +343,7 @@ namespace BankoProject.ViewModels
               numberList.Add(number);
             }
           }
+
           Event.AvailableNumbersQueue = numberList;
           int rdnnumber = rdn.Next(0, Event.AvailableNumbersQueue.Count);
           if (Event.AvailableNumbersQueue.Count > 0)
@@ -351,7 +356,6 @@ namespace BankoProject.ViewModels
                 Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsPicked = true;
                 Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1].IsChecked = false;
                 Event.BingoNumberQueue.Add(Event.NumberBoard.Board[Event.AvailableNumbersQueue[rdnnumber].Value - 1]);
-
               }
               catch (Exception ex)
               {
@@ -359,9 +363,11 @@ namespace BankoProject.ViewModels
                 _log.Info(Event.AvailableNumbersQueue.Count.ToString());
                 _log.Info("Exception in random numb!");
               }
+
               RefreshLatest();
               return;
             }
+
             DrawRandom();
           }
         }
@@ -418,7 +424,6 @@ namespace BankoProject.ViewModels
           Event.BingoNumberQueue.Add(Event.NumberBoard.Board[dialog.NumberToAdd - 1]);
           RefreshLatest();
         }
-
       }
     }
 
@@ -432,28 +437,28 @@ namespace BankoProject.ViewModels
           Event.LatestNumbersQueue.Add("");
         }
       }
+
       if (Event.BingoNumberQueue.Count <= 0)
       {
         Event.LatestNumbersQueue = new BindableCollection<string>();
       }
       else if (Event.BingoNumberQueue.Count != 0)
+      {
+        if (Event.BingoNumberQueue.Count >= 10)
         {
-          if (Event.BingoNumberQueue.Count >= 10)
+          for (int i = 0; i < 10; i++)
           {
-            for (int i = 0; i < 10; i++)
-            {
-              Event.LatestNumbersQueue[i] = Event.BingoNumberQueue[Event.BingoNumberQueue.Count - i - 1].Value.ToString();
-            }
-          }
-          else
-          {
-            for (int i = Event.BingoNumberQueue.Count; i > 0; i--)
-            {
-              Event.LatestNumbersQueue[Event.BingoNumberQueue.Count - i] = Event.BingoNumberQueue[i - 1].Value.ToString();
-            }
+            Event.LatestNumbersQueue[i] = Event.BingoNumberQueue[Event.BingoNumberQueue.Count - i - 1].Value.ToString();
           }
         }
-
+        else
+        {
+          for (int i = Event.BingoNumberQueue.Count; i > 0; i--)
+          {
+            Event.LatestNumbersQueue[Event.BingoNumberQueue.Count - i] = Event.BingoNumberQueue[i - 1].Value.ToString();
+          }
+        }
+      }
     }
 
     public void CheckPlate()
@@ -483,22 +488,22 @@ namespace BankoProject.ViewModels
 
         for (int columns = 0; columns < 9; columns++)
         {
-          if (chosenPlate[0,0] == -1)
+          if (chosenPlate[0, 0] == -1)
           {
             rowFailed = true;
             break;
           }
+
           if (chosenPlate[columns, rows] != 0)
           {
-            if (chosenPlate[columns, rows] != Event.NumberBoard.Board[chosenPlate[columns, rows]-1].Value)
+            if (chosenPlate[columns, rows] != Event.NumberBoard.Board[chosenPlate[columns, rows] - 1].Value)
             {
-
-
               rowFailed = true;
               _log.Info("THIS SHOULD PROBABLY NOT HAPPEN");
               break;
               //i believe this can be removed? these values will always be equal afaik. maybe leave in as dumb check for errors
             }
+
             if (!Event.NumberBoard.Board[chosenPlate[columns, rows] - 1].IsPicked)
             {
               //MMMM NNESTING
@@ -525,13 +530,14 @@ namespace BankoProject.ViewModels
       }
       else
       {
-          for (int i = 0; i < 3; i++)//running through rows one by one to get the missing ones
-          {
-            MissingNumbers = new List<int>();
-            MissingNumbers.AddRange(CalcMissingNumbersInRow(i, chosenPlate));
-            MissingNumbersInRows.Add(MissingNumbers);
-          }
-          _winMan.ShowDialog(new PlateHasBingoViewModel(_plateToCheck, chosenPlate, MissingNumbersInRows, false));
+        for (int i = 0; i < 3; i++) //running through rows one by one to get the missing ones
+        {
+          MissingNumbers = new List<int>();
+          MissingNumbers.AddRange(CalcMissingNumbersInRow(i, chosenPlate));
+          MissingNumbersInRows.Add(MissingNumbers);
+        }
+
+        _winMan.ShowDialog(new PlateHasBingoViewModel(_plateToCheck, chosenPlate, MissingNumbersInRows, false));
       }
     }
 
@@ -552,6 +558,7 @@ namespace BankoProject.ViewModels
           missingNumbers[columns] = 0;
         }
       }
+
       return missingNumbers;
     }
 
@@ -565,12 +572,13 @@ namespace BankoProject.ViewModels
           {
             return false;
           }
+
           return true;
         }
+
         return false;
       }
       //This is just a rudimentary check to see if the plates has been generated
-
     }
 
     public void AddTeamButton()
@@ -599,6 +607,7 @@ namespace BankoProject.ViewModels
         {
           return false; //Signifies that no teams has been made
         }
+
         return true;
       }
     }
@@ -620,6 +629,7 @@ namespace BankoProject.ViewModels
           {
             SpawnPrezScreen();
           }
+
           _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlay,
             ApplicationWideEnums.SenderTypes.ControlPanelView));
           Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
@@ -640,6 +650,7 @@ namespace BankoProject.ViewModels
           {
             SpawnPrezScreen();
           }
+
           _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.LatestNumbers,
             ApplicationWideEnums.SenderTypes.ControlPanelView));
         }
@@ -660,6 +671,7 @@ namespace BankoProject.ViewModels
           {
             SpawnPrezScreen();
           }
+
           _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BoardOverview,
             ApplicationWideEnums.SenderTypes.ControlPanelView));
         }
@@ -680,6 +692,7 @@ namespace BankoProject.ViewModels
           {
             SpawnPrezScreen();
           }
+
           _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.BingoHappened,
             ApplicationWideEnums.SenderTypes.ControlPanelView));
         }
@@ -714,6 +727,7 @@ namespace BankoProject.ViewModels
           {
             SpawnPrezScreen();
           }
+
           _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.FullscreenOverlayBlank,
             ApplicationWideEnums.SenderTypes.ControlPanelView));
         }
@@ -738,13 +752,13 @@ namespace BankoProject.ViewModels
 
     #endregion
 
-      #region ScreenCollectionUpdate
+    #region ScreenCollectionUpdate
 
-      #endregion
+    #endregion
 
-      #region ResetStuff
+    #region ResetStuff
 
-      public
+    public
       void Reset()
     {
       var dialog = new ConfirmChangeDialogViewModel();
@@ -754,7 +768,6 @@ namespace BankoProject.ViewModels
       {
         if (result == true)
         {
-
           #region attempt that saves event and stuff
 
           ////Save the current event, with a different ending
@@ -800,7 +813,6 @@ namespace BankoProject.ViewModels
           this.AllTeams = new BindableCollection<Team>(competition.AllTeams);
         }
       }
-
     }
 
     private void CopyEvent(BingoEvent fr, BingoEvent to)
@@ -833,27 +845,25 @@ namespace BankoProject.ViewModels
     #endregion
 
 
-
     #region Implementation of IDataErrorInfo
 
     public string this[string columnName]
     {
       get
       {
-
         string result = null;
         if (columnName == "NumberOfTeams")
         {
+        }
 
-        }
-        if (columnName=="NumberOfContestants")
+        if (columnName == "NumberOfContestants")
         {
-          
         }
+
         if (columnName == "ContestDuration")
         {
-
         }
+
         if (columnName == "PlateToCheckText")
         {
           if (PlateToCheckText != null && !PlateToCheckText.Contains("-") && !PlateToCheckText.Contains("-"))
@@ -865,11 +875,10 @@ namespace BankoProject.ViewModels
             }
             catch (Exception)
             {
-
               result = "This is not a correct plate number.";
               _plateToCheck = -1;
-
             }
+
             if (resultInt != null)
             {
               if (Event.PInfo.CardList != null)
@@ -886,8 +895,6 @@ namespace BankoProject.ViewModels
                 _plateToCheck = -1;
               }
             }
-
-
           }
           else
           {
@@ -901,6 +908,7 @@ namespace BankoProject.ViewModels
             NotifyOfPropertyChange(() => CanCheckPlate);
           }
         }
+
         return result;
       }
     }
@@ -910,9 +918,6 @@ namespace BankoProject.ViewModels
       get { return _error; }
     }
 
-
-
     #endregion
   }
 }
-
