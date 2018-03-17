@@ -26,7 +26,7 @@ namespace BankoProject.Tools
     public List<int[,]> MakePDF(List<int[,]> cards, string _saveLoc)
     {
 
-      string imgName = @"bingo1.png";
+      string imgName = @"bingo2017.png";
       string imgSource = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\", @"Resources\", imgName);
       if (_outputDirectory != null)
       {
