@@ -494,6 +494,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Orchestra.Shell.MahApps.dll" />
+    <None Include="Resources\BG_spilleplade.pdf" />
     <None Include="Resources\bingo2017.png" />
     <Resource Include="Resources\nicklas.png" />
     <Resource Include="Resources\BingoBanko2016.jpg" />
