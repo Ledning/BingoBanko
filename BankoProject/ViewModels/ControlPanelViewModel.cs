@@ -336,6 +336,7 @@ namespace BankoProject.ViewModels
     {
       Event.TimeOpt.ToggleTimer();
       Event.TimeOpt.ResetTimer = true;
+      Event.TimeOpt.BTimer.CurrentTime = Event.TimeOpt.TextTime; //this is what we need to look at
     }
 
     public void ShowWelcome()
