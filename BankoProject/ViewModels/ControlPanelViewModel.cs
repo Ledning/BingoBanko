@@ -308,7 +308,7 @@ namespace BankoProject.ViewModels
 
     public void DoubleClickTimer()
     {
-      throw new NotImplementedException();
+      Event.TimeOpt.ToggleTimer();
     }
 
 
