@@ -92,14 +92,23 @@
                     <TextBox MaxLines="1" MaxLength="5" HorizontalAlignment="Left" Height="44" Margin="325,24,0,0" metro:TextBoxHelper.Watermark="05:00" TextWrapping="Wrap" Text="{Binding Event.TimeOpt.TextTime, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="77" FontSize="24" />
                     <Button IsEnabled="{Binding Event.TimeOpt.CanShow, Mode=OneWay}" x:Name="ToggleTimer" FontSize="20" FontWeight="Bold" Content="{Binding Event.TimeOpt.ToggleTimerText}" HorizontalAlignment="Left" Margin="423,24,0,0" VerticalAlignment="Top" Width="86" Height="44"/>
                     <CheckBox IsChecked="{Binding Event.TimeOpt.CountUp}" x:Name="checkBox" Content="Count up" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-                    <CheckBox x:Name="checkBox1" Content="Nulstil?" IsChecked="{Binding Event.TimeOpt.ResetTimer}" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-                    <ListView ItemsSource="{Binding Event.LatestTimers}" HorizontalAlignment="Left" Height="325" Margin="24,491,0,0" VerticalAlignment="Top" Width="485">
+                    
+                    <ListView ItemsSource="{Binding Event.LatestTimers}" SelectedItem="{Binding CurrentLatestTimer}" HorizontalAlignment="Left" Height="325" Margin="24,491,0,0" VerticalAlignment="Top" Width="485">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
                                 <cal:ActionMessage MethodName="DoubleClickTimer"></cal:ActionMessage>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Tid" Width="288" DisplayMemberBinding="{Binding Key}"/>
+                                <GridViewColumn Header="Op" Width="250" DisplayMemberBinding="{Binding Value}"/>
+                            </GridView>
+                        </ListView.View>
                     </ListView>
+                    <Button x:Name="AddTimer" Content="Tilføj Timer" FontSize="20" HorizontalAlignment="Left" Margin="24,450,0,0" VerticalAlignment="Top" Width="128" Height="36"/>
+                    <Button x:Name="ClearTimers" Content="Ryd liste" FontSize="20" HorizontalAlignment="Left" Margin="358,450,0,0" VerticalAlignment="Top" Width="128" Height="36"/>
+                    <Button x:Name="ResetTimer" Content="Nulstil" FontSize="20" HorizontalAlignment="Left" Margin="146,90,0,0" VerticalAlignment="Top" Width="128" Height="36"/>
                 </Grid>
             </Grid>
         </Border>

@@ -59,11 +59,13 @@ namespace BankoProject.Models
       {
         StartTimer();
         Start_StopWatch = false;
+        NotifyOfPropertyChange(() => TimerTime);
       }
       else
       {
         StopTimer();
         Start_StopWatch = true;
+        NotifyOfPropertyChange(() => TimerTime);
       }
     }
     public void StartTimer()

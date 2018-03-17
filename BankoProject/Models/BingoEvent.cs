@@ -51,7 +51,7 @@ namespace BankoProject.Models
       _availableNumbersQueue; //The numbers available to be picked.
 
     [XmlArray("LatestTimers")] [XmlArrayItem("Timer")]
-    private BindableCollection<string>
+    private BindableCollection<KeyValuePair<string, bool>>
       _latestTimers; //The latest timers used in the project
 
     [XmlArray("LatestNumbersQueue")]
@@ -90,8 +90,8 @@ namespace BankoProject.Models
     }
 
     [XmlArray("LatestTimers")]
-    [XmlArrayItem(Type = typeof(string))]
-    public BindableCollection<string> LatestTimers
+    [XmlArrayItem(Type = typeof(KeyValuePair<string, bool>))]
+    public BindableCollection<KeyValuePair<string, bool>> LatestTimers
     {
       get { return _latestTimers; }
       set
@@ -305,7 +305,7 @@ namespace BankoProject.Models
         j.Value = i;
         AvailableNumbersQueue.Add(j);
       }
-      LatestTimers = new BindableCollection<string>();
+      LatestTimers = new BindableCollection<KeyValuePair<string, bool>>();
     }
 
     /// <summary>
@@ -352,7 +352,7 @@ namespace BankoProject.Models
         j.Value = i;
        AvailableNumbersQueue.Add(j);
       }
-      LatestTimers  = new BindableCollection<string>();
+      LatestTimers  = new BindableCollection<KeyValuePair<string, bool>>();
     }
 
 

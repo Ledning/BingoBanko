@@ -40,7 +40,7 @@ namespace BankoProject.ViewModels
     private int _plateToCheck;
     private bool _plateHasBingo = false;
     private Random rdn;
-    private string _currentLatestTimer;
+    private KeyValuePair<string, bool> _currentLatestTimer;
 
     #endregion
 
@@ -81,14 +81,14 @@ namespace BankoProject.ViewModels
 
       rdn = new Random();
       RefreshLatest();
-      Event.LatestTimers.Add("12:00");
+      KeyValuePair<string, bool> tmstr = new KeyValuePair<string, bool>("12:00", true);
+      Event.LatestTimers.Add(tmstr);
+      Event.TimeOpt.TextTime = Event.TimeOpt.TextTime;
     }
 
     #endregion
 
     #region Properties
-
-
 
     public string PlateToCheckText
     {
@@ -179,6 +179,16 @@ namespace BankoProject.ViewModels
       {
         _startValue = value;
         NotifyOfPropertyChange(() => StartValue);
+      }
+    }
+
+    public KeyValuePair<string, bool> CurrentLatestTimer
+    {
+      get { return _currentLatestTimer; }
+      set
+      {
+        _currentLatestTimer = value;
+        NotifyOfPropertyChange(() => CurrentLatestTimer);
       }
     }
 
@@ -306,11 +316,27 @@ namespace BankoProject.ViewModels
       Event.TimeOpt.ToggleTimer();
     }
 
-    public void DoubleClickTimer()
+    public void AddTimer()
     {
-      Event.TimeOpt.ToggleTimer();
+      Event.LatestTimers.Add(new KeyValuePair<string, bool>(Event.TimeOpt.TextTime, Event.TimeOpt.CountUp));
     }
 
+    public void DoubleClickTimer()
+    {
+      Event.TimeOpt.TextTime = CurrentLatestTimer.Key;
+      Event.TimeOpt.CountUp = CurrentLatestTimer.Value;
+    }
+
+    public void ClearTimers()
+    {
+      Event.LatestTimers.Clear();
+    }
+
+    public void ResetTimer()
+    {
+      Event.TimeOpt.ToggleTimer();
+      Event.TimeOpt.ResetTimer = true;
+    }
 
     public void ShowWelcome()
     {
@@ -920,8 +946,6 @@ namespace BankoProject.ViewModels
     {
       get { return _error; }
     }
-
-
 
     #endregion
   }
