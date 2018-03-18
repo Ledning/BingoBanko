@@ -41,6 +41,7 @@ namespace BankoProject.ViewModels
     private bool _plateHasBingo = false;
     private Random rdn;
     private KeyValuePair<string, bool> _currentLatestTimer;
+    private string placeHolderTimerTime;
 
     #endregion
 
@@ -336,8 +337,10 @@ namespace BankoProject.ViewModels
     {
       Event.TimeOpt.ToggleTimer();
       Event.TimeOpt.ResetTimer = true;
-      Event.TimeOpt.BTimer.CurrentTime = Event.TimeOpt.TextTime; //this is what we need to look at
+      Event.TimeOpt.BTimer.CurrentTime = Event.TimeOpt.TextTime;
     }
+
+
 
     public void ShowWelcome()
     {
@@ -687,8 +690,7 @@ namespace BankoProject.ViewModels
       }
     }
 
-    public
-      void ActivatePlateOverviewOverlay()
+    public void ActivatePlateOverviewOverlay()
     {
       var dialog = new ConfirmChangeDialogViewModel();
 
@@ -774,6 +776,12 @@ namespace BankoProject.ViewModels
       {
         if (result == true)
         {
+          if (Event.TimeOpt.CountUp)
+          {
+            Event.TimeOpt.TextTime = "00:00";
+            Event.TimeOpt.BTimer.TimerCountup();
+            NotifyOfPropertyChange(()=> Event.TimeOpt.TimerTime);
+          }
           _events.PublishOnUIThread(new CommunicationObject(ApplicationWideEnums.MessageTypes.Stopwatch,
             ApplicationWideEnums.SenderTypes.ControlPanelView));
         }
@@ -947,6 +955,8 @@ namespace BankoProject.ViewModels
     {
       get { return _error; }
     }
+
+
 
     #endregion
   }

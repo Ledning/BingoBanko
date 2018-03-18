@@ -200,7 +200,15 @@ namespace BankoProject.Models
     public bool CountUp
     {
       get { return _countUp; }
-      set { _countUp = value; NotifyOfPropertyChange(()=>CountUp);}
+      set
+      {
+        _countUp = value; NotifyOfPropertyChange(()=>CountUp);
+        if (value)
+        {
+          BTimer.CurrentTime = "00:00";
+          NotifyOfPropertyChange(()=>BTimer.CurrentTime);
+        }
+      }
     }
 
     [XmlIgnore]

@@ -170,5 +170,13 @@ namespace BankoProject.Tools
         this._countUp = true;
       }
     }
+
+    public void TimerCountup()
+    {
+      if (!this._timer.IsEnabled)
+      {
+        this.CurrentTime = FormatString(new TimeSpan(0, 0, 0));
+      }
+    }
   }
 }
