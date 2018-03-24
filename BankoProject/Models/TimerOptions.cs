@@ -42,9 +42,7 @@ namespace BankoProject.Models
       CanShow = true;
       ToggleTimerText = START;
       CountUp = false;
-      ResetTimer = true;
-      BTimer = new BingoTimer(0);
-      BTimer.LocalTime = "00:00:00";
+      ResetTimer();
     }
 
 
@@ -68,28 +66,24 @@ namespace BankoProject.Models
         NotifyOfPropertyChange(() => TimerTime);
       }
     }
-    public void StartTimer()
+
+    public void ResetTimer()
     {
-      if (ResetTimer)
+      if (CountUp)
       {
-        if (CountUp)
-        {
-          BTimer = new BingoTimer(0);
-        }
-        else
-        {
-          BTimer = new BingoTimer((int)TimerTime.TotalSeconds);
-        }
-        BTimer.InitializeNewCountDownTimer();
-        BTimer.TimerStart();
-        ResetTimer = false;
-        BTimer.IsTimerStarted = true;
+        BTimer = new BingoTimer(0);
       }
       else
       {
-          BTimer.TimerStart();
-          BTimer.IsTimerStarted = true;
+        BTimer = new BingoTimer((int)TimerTime.TotalSeconds);
+        BTimer.CurrentTime = TextTime;
       }
+    }
+
+    public void StartTimer()
+    {
+      BTimer.TimerStart();
+      BTimer.IsTimerStarted = true;
       ToggleTimerText = STOP;
     }
 
@@ -218,11 +212,6 @@ namespace BankoProject.Models
       set { _bTimer = value; NotifyOfPropertyChange(()=>BTimer);}
     }
 
-    public bool ResetTimer
-    {
-      get { return _resetTimer; }
-      set { _resetTimer = value; NotifyOfPropertyChange(()=>ResetTimer);}
-    }
 
     #endregion
   }

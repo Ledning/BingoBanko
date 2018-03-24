@@ -88,7 +88,7 @@
                     </Label.Effect>
                 </Label>
                 <Grid x:Name="TogglesVisualsGrid" Margin="32,122,34,0" Height="854" VerticalAlignment="Top" Background="#FF3E8BCB">
-                    <Button IsEnabled="{Binding Event.TimeOpt.CanShow, Mode=OneWay}" x:Name="ActivateStopWatch" Content="StopWatch"  metro:ControlsHelper.CornerRadius="0" Margin="124,24,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="178"/>
+                    <Button IsEnabled="{Binding Event.TimeOpt.CanShow, Mode=OneWay}" x:Name="ActivateStopWatch" Content="Vis Stopur"  metro:ControlsHelper.CornerRadius="0" Margin="124,24,0,0" Height="44" VerticalAlignment="Top" Background="#FFD5D5D5" Foreground="#FF222222" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" HorizontalAlignment="Left" Width="178"/>
                     <TextBox MaxLines="1" MaxLength="5" HorizontalAlignment="Left" Height="44" Margin="325,24,0,0" metro:TextBoxHelper.Watermark="05:00" TextWrapping="Wrap" Text="{Binding Event.TimeOpt.TextTime, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="77" FontSize="24" />
                     <Button IsEnabled="{Binding Event.TimeOpt.CanShow, Mode=OneWay}" x:Name="ToggleTimer" FontSize="20" FontWeight="Bold" Content="{Binding Event.TimeOpt.ToggleTimerText}" HorizontalAlignment="Left" Margin="423,24,0,0" VerticalAlignment="Top" Width="86" Height="44"/>
                     <CheckBox IsChecked="{Binding Event.TimeOpt.CountUp}" x:Name="checkBox" Content="Count up" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>

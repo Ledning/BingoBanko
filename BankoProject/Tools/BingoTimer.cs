@@ -72,11 +72,12 @@ namespace BankoProject.Tools
         }
         else
         {
-          return LocalTime;
+          return _currentTime;
         }
         
       }
-      set { _currentTime = value; NotifyOfPropertyChange(() => CurrentTime); }
+      set { _currentTime = value; NotifyOfPropertyChange(() => CurrentTime);
+      }
     }
 
     public bool IsTimerStarted

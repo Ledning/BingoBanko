@@ -335,9 +335,7 @@ namespace BankoProject.ViewModels
 
     public void ResetTimer()
     {
-      Event.TimeOpt.ToggleTimer();
-      Event.TimeOpt.ResetTimer = true;
-      Event.TimeOpt.BTimer.CurrentTime = Event.TimeOpt.TextTime;
+      Event.TimeOpt.ResetTimer();
     }
 
 
