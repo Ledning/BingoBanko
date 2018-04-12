@@ -14,7 +14,7 @@ namespace BankoProject.Models
   {
     //this class is necessary because the position in which the numbers are being drawn needs to be recorded.
     private int value;
-    private bool isPicked = false;
+    private bool isPicked = false;  
     private bool _isChecked = false;
     private readonly ILog _log = LogManager.GetLog(typeof(BingoNumber));
 
