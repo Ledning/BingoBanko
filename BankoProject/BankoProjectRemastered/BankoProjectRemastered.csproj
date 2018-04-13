@@ -85,11 +85,12 @@
     <Compile Include="Models\BankoEvent.cs" />
     <Compile Include="Models\CardModels\PlateData.cs" />
     <Compile Include="Models\CardModels\SeedData.cs" />
-    <Compile Include="Models\EventData\EventInfo.cs" />
+    <Compile Include="Models\EventModels\EventData.cs" />
     <Compile Include="Models\GameModels\BingoBoard.cs" />
     <Compile Include="Models\GameModels\BingoNumber.cs" />
     <Compile Include="Models\GameModels\BingoNumberQueue.cs" />
     <Compile Include="Tools\BnkLogger.cs" />
+    <Compile Include="Tools\ExtensionMethods.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
