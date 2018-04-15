@@ -82,6 +82,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="Models\BankoEvent.cs" />
     <Compile Include="Models\CardModels\PlateData.cs" />
     <Compile Include="Models\CardModels\SeedData.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Tools\BnkLogger.cs" />
     <Compile Include="Tools\ExtensionMethods.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SecondaryViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
