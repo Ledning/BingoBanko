@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankoProjectRemastered.Interfaces;
 using BankoProjectRemastered.Tools;
 using Prism.Mvvm;
 
 namespace BankoProjectRemastered.Models.EventModels
 {
   [Serializable]
-  class EventData : BindableBase
+  class EventData : BindableBase, IFieldCopyAble
   {
     private string _eventTitle;
     public EventData()
@@ -37,5 +38,9 @@ namespace BankoProjectRemastered.Models.EventModels
 
     #endregion
 
+    public void CopyFields(object from)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

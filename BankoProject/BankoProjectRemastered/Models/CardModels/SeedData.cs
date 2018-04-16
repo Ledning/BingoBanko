@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankoProjectRemastered.Interfaces;
 using BankoProjectRemastered.Tools;
 using Prism.Mvvm;
 
 namespace BankoProjectRemastered.Models.CardModels
 {
   [Serializable]
-  class SeedData : BindableBase
+  class SeedData : BindableBase, IFieldCopyAble
   {
     private string _seed;
     private readonly string _originalSeed;
@@ -45,5 +46,9 @@ namespace BankoProjectRemastered.Models.CardModels
       return false;
     }
 
+    public void CopyFields(object from)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

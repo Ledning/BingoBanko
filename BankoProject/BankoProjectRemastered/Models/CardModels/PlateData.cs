@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using BankoProjectRemastered.Interfaces;
 using BankoProjectRemastered.Models.GameModels;
 using BankoProjectRemastered.Tools;
 using Prism.Mvvm;
@@ -12,7 +13,7 @@ using Prism.Mvvm;
 namespace BankoProjectRemastered.Models.CardModels
 {
   [Serializable]
-  class PlateData : BindableBase
+  class PlateData : BindableBase, IFieldCopyAble
   {
     private int _totalPlatesGenerated;
     private int platesActuallyUsed;
@@ -64,6 +65,11 @@ namespace BankoProjectRemastered.Models.CardModels
       }
 
       return true;
+    }
+
+    public void CopyFields(object from)
+    {
+      throw new NotImplementedException();
     }
   }
 }

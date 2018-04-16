@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using BankoProjectRemastered.Interfaces;
 using BankoProjectRemastered.Tools;
 using Prism.Mvvm;
 
 namespace BankoProjectRemastered.Models.GameModels
 {
   [Serializable]
-  class BingoNumberQueue : BindableBase
+  class BingoNumberQueue : BindableBase, IFieldCopyAble
   {
     private List<BingoNumber> _numberQueue;
 
@@ -36,6 +37,10 @@ namespace BankoProjectRemastered.Models.GameModels
     {
       return NumberQueue.GetRange(NumberQueue.Count-10, 10).GetObservable();
     }
-    
+
+    public void CopyFields(object from)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

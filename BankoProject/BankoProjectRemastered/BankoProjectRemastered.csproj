@@ -82,6 +82,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IFieldCopyAble.cs" />
+    <Compile Include="Interfaces\IBankoEventObject.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="Models\BankoEvent.cs" />
     <Compile Include="Models\CardModels\PlateData.cs" />
@@ -92,8 +94,12 @@
     <Compile Include="Models\GameModels\BingoNumberQueue.cs" />
     <Compile Include="Tools\BnkLogger.cs" />
     <Compile Include="Tools\ExtensionMethods.cs" />
+    <Compile Include="Tools\SaveLoadTool.cs" />
+    <Compile Include="ViewModels\ControlsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\SecondaryViewModel.cs" />
+    <Compile Include="Views\ControlsView.xaml.cs">
+      <DependentUpon>ControlsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -124,6 +130,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ControlsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using BankoProjectRemastered.Interfaces;
 using BankoProjectRemastered.Models.CardModels;
 using BankoProjectRemastered.Models.EventModels;
 using BankoProjectRemastered.Models.GameModels;
@@ -22,7 +23,7 @@ namespace BankoProjectRemastered.Models
   }
 
   [Serializable]
-  class BankoEvent : BindableBase
+  class BankoEvent : BindableBase, IFieldCopyAble, IBankoEventObject
   {
     private BingoBoard _board;
     private SeedData _seedDataObjet;
@@ -61,6 +62,15 @@ namespace BankoProjectRemastered.Models
       NumberQueue = new BingoNumberQueue();
     }
 
+    /// <summary>
+    /// Should copy each field/subobject field into the one this is called on, internet sources suggested this to be a better way of ensuring each relevant propertychange is called
+    /// </summary>
+    /// <param name="from">The Event object to copy from.</param>
+    public void UpdateInstance(BankoEvent from)
+    {
+      throw new NotImplementedException("Implement with direct field copy.");
+    }
+
     #region GetSet
     public BingoNumberQueue NumberQueue
     {
@@ -93,5 +103,9 @@ namespace BankoProjectRemastered.Models
     }
     #endregion
 
+    public void CopyFields(object from)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

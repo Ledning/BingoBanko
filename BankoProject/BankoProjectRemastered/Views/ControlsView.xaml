@@ -1,15 +1,13 @@
-﻿<Window x:Class="BankoProjectRemastered.Views.MainView"
+﻿<UserControl x:Class="BankoProjectRemastered.Views.ControlsView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BankoProjectRemastered"
+        xmlns:local="clr-namespace:BankoProjectRemastered.Views"
         mc:Ignorable="d"
+        Height="300" Width="300"
         xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
-        xmlns:regions="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="MainView" Height="300" Width="300">
-    <DockPanel>
-        <ContentControl regions:RegionManager.RegionName="ContentRegion" Margin="5" />
-    </DockPanel>
-</Window>
+        Background="Aquamarine">
+    <Grid/>
+</UserControl>

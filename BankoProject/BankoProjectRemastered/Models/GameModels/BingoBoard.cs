@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
+using BankoProjectRemastered.Interfaces;
 using BankoProjectRemastered.Tools;
 using Prism.Mvvm;
 
@@ -12,7 +13,7 @@ namespace BankoProjectRemastered.Models.GameModels
   /// Just a board, no info related to the ui
   /// </summary>
   [Serializable]
-  class BingoBoard : BindableBase
+  class BingoBoard : BindableBase, IFieldCopyAble
   {
     private readonly int _boardSize;
     private ObservableCollection<BingoNumber> _boardNumbers;
@@ -51,6 +52,11 @@ namespace BankoProjectRemastered.Models.GameModels
     public ObservableCollection<BingoNumber> AvailableNumbers()
     {
       return null;
+    }
+
+    public void CopyFields(object from)
+    {
+      throw new NotImplementedException();
     }
   }
 }
