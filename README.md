@@ -1,3 +1,3 @@
 BingoBanko
 
-Bankoprogram for børnecancerfonden
+Bankoprogram for Team Rynkeby Østjylland / Børnecancerfonden
