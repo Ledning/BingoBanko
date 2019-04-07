@@ -126,6 +126,7 @@ namespace BankoProject.ViewModels
             {
               ActivateItem(new FullscreenImageViewModel(true));
               ActivateItem(new PlateOverlayViewModel());
+              Event.WindowSettings.PrsSettings.DockingPlace = Dock.Top;
               Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
               _log.Info("BoardOLhandled");
             } 
@@ -138,6 +139,7 @@ namespace BankoProject.ViewModels
             {
               ActivateItem(new FullscreenImageViewModel(true));
               ActivateItem(new FixedNumberBarViewModel());
+              Event.WindowSettings.PrsSettings.DockingPlace = Dock.Left;
               Event.WindowSettings.PrsSettings.OverlaySettings.IsOverlayVisible = Visibility.Visible;
               _log.Info("latestnumolhandled");
             } 
